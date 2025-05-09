@@ -7,3 +7,6 @@ export 'screens/home/home_screen.dart';
 export 'screens/calender/calender_screen.dart';
 export 'screens/management/management_screen.dart';
 export 'screens/profile/profile_screen.dart';
+export 'screens/home/widgets/user_information.dart';
+export 'screens/home/widgets/more_button.dart';
+export 'screens/home/widgets/task_bubble.dart';

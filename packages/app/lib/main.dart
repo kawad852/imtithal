@@ -134,43 +134,7 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: appProvider.appLocale,
-            theme: ThemeData(
-              colorScheme: colorScheme,
-              useMaterial3: true,
-              fontFamily: GoogleFonts.cairo().fontFamily!,
-              actionIconTheme: ActionIconThemeData(
-                backButtonIconBuilder: (BuildContext context) {
-                  return const CustomBack();
-                },
-              ),
-              appBarTheme: const AppBarTheme(centerTitle: true),
-              inputDecorationTheme: InputDecorationTheme(
-                filled: true,
-                fillColor: const Color(0xFFF5F5F5),
-                contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: colorScheme.error),
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: colorScheme.error),
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                ),
-              ),
-              cardTheme: CardThemeData(
-                color: colorScheme.onInverseSurface,
-                margin: EdgeInsets.zero,
-              ),
-            ),
-            // home: _toggleScreen(context),
+            theme: MyTheme().materialTheme(context, colorScheme),
             home: const AppNavBar(),
           ),
         );

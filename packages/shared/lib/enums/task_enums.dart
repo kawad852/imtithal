@@ -7,3 +7,10 @@ enum TaskStatusEnum {
 
   const TaskStatusEnum(this.value);
 }
+
+enum TaskTypeEnum {
+  incomplete,
+  complete,
+  late,
+  infringement,
+}

@@ -109,3 +109,5 @@ export 'widgets/editors/base_editor.dart';
 export 'widgets/editors/password_editor.dart';
 export 'widgets/editors/text_editor.dart';
 export 'widgets/editors/email_editor.dart';
+export 'widgets/base_network_image.dart';
+export 'widgets/task_card.dart';

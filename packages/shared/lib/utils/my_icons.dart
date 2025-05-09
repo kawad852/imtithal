@@ -10,4 +10,8 @@ class MyIcons {
   static const String profile = '${_path}profile.svg';
   static const String calendar= '${_path}calendar.svg';
   static const String building = '${_path}building.svg';
+  static const String clock = '${_path}clock.svg';
+  static const String notification = '${_path}notification.svg';
+  static const String search = '${_path}search.svg';
+  static const String calendarSearch = '${_path}calendar_search.svg';
 }
