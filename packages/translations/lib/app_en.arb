@@ -53,5 +53,13 @@
   "searchCountryOrCode": "إبحث عن اسم البلد او الرمز",
   "faris": "Faris",
   "termsOfUse": "Terms of use",
-  "privacyPolicy": "privacyPolicy"
+  "privacyPolicy": "privacyPolicy",
+  "simply":"Simply, ",
+  "appName":"Imtithal",
+  "withoutLimits":"without limits",
+  "userNameOrEmail":"Username / Email",
+  "password":"Password",
+  "forgotYourPassword":"Forgot your password?",
+  "resetPassword":"Reset Password",
+  "login":"Login"
 }

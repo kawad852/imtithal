@@ -14,10 +14,16 @@ class ColorPalette {
   Color get black => Colors.black;
 
   //black
-  Color get black001 => const Color(0xFF001427);
+  Color get black252 => const Color(0xFF252E40);
+
+  
+  Color get primary => const Color(0xFF04BF8A);
+
 
   //grey
-  Color get primary => const Color(0xFF708D81);
+  Color get grey8B8 => const Color(0xFF8B8B8B);
+
+
   Color get grey780 => const Color(0x80708D81);
   Color get grey74D => const Color(0x4D708D81);
   Color get greyBDB => const Color(0xFFBDBDBD);

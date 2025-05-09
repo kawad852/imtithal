@@ -4,5 +4,13 @@
   "searchCountryOrCode": "إبحث عن اسم البلد او الرمز",
   "faris": "Faris",
   "termsOfUse": "Terms of use",
-  "privacyPolicy": "privacyPolicy"
+  "privacyPolicy": "privacyPolicy",
+  "simply":"ببساطـــة، ",
+  "appName":"امتثال",
+  "withoutLimits":"بلا حدود",
+  "userNameOrEmail":"اسم المستخدم / البريد الألكتروني",
+  "password":"كلمة المرور",
+  "forgotYourPassword":"هل نسيت كلمة المرور ؟",
+  "resetPassword":" استعادة كلمة المرور",
+  "login":"تسجيل الدخول"
 }

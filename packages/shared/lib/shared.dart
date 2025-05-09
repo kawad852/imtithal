@@ -98,3 +98,14 @@ export 'utils/my_theme.dart';
 export 'utils/providers_extension.dart';
 //utils
 export 'utils/shared_pref.dart';
+
+//widgets
+export 'widgets/stretch_button.dart';
+export 'widgets/bottom_button.dart';
+export 'widgets/custom_svg.dart';
+export 'widgets/titled_textfield.dart';
+export 'widgets/custom_back.dart';
+export 'widgets/editors/base_editor.dart';
+export 'widgets/editors/password_editor.dart';
+export 'widgets/editors/text_editor.dart';
+export 'widgets/editors/email_editor.dart';

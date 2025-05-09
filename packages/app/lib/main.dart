@@ -1,4 +1,5 @@
 import 'package:app/screens/home/home_screen.dart';
+import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey(debugLabel: "Main Navigator");
@@ -137,15 +138,15 @@ class _MyAppState extends State<MyApp> {
               colorScheme: colorScheme,
               useMaterial3: true,
               fontFamily: GoogleFonts.cairo().fontFamily!,
-              // actionIconTheme: ActionIconThemeData(
-              //   backButtonIconBuilder: (BuildContext context) {
-              //     return const CustomBack();
-              //   },
-              // ),
+              actionIconTheme: ActionIconThemeData(
+                backButtonIconBuilder: (BuildContext context) {
+                  return const CustomBack();
+                },
+              ),
               appBarTheme: const AppBarTheme(centerTitle: true),
               inputDecorationTheme: InputDecorationTheme(
                 filled: true,
-                fillColor: const Color(0xFFF2F2F2),
+                fillColor: const Color(0xFFF5F5F5),
                 contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                 enabledBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.transparent),
@@ -170,7 +171,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             // home: _toggleScreen(context),
-            home: const HomeScreen(),
+            home: const AppNavBar(),
           ),
         );
       },
