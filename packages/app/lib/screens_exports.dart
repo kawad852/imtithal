@@ -10,3 +10,7 @@ export 'screens/profile/profile_screen.dart';
 export 'screens/home/widgets/user_information.dart';
 export 'screens/home/widgets/more_button.dart';
 export 'screens/home/widgets/task_bubble.dart';
+export 'screens/management/widgets/manage_button.dart';
+export 'screens/management/widgets/department_card.dart';
+export 'screens/profile/widgets/user_card.dart';
+export 'screens/profile/widgets/profile_card.dart';

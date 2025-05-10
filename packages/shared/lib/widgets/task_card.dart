@@ -7,7 +7,7 @@ class TaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 87,
+      height: 89,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         color: context.colorPalette.greyF5F,
@@ -105,7 +105,7 @@ class TaskCard extends StatelessWidget {
                           return const Align(
                             widthFactor: 0.5,
                             child: BaseNetworkImage(
-                              "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
+                              "",
                               width: 20,
                               height: 20,
                               shape: BoxShape.circle,

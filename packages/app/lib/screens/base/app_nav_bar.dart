@@ -11,7 +11,8 @@ class AppNavBar extends StatefulWidget {
 class _AppNavBarState extends State<AppNavBar> {
   int _currentIndex = 0;
   late PageController _pageController;
-  final cloudMessagingService = CloudMessagingService();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  PersistentBottomSheetController? controller;
 
   final items = [
     MyIcons.home,
@@ -20,14 +21,6 @@ class _AppNavBarState extends State<AppNavBar> {
     MyIcons.building,
     MyIcons.profile,
   ];
-
-  // final itemsSelected = [
-  //   MyIcons.homeSelected,
-  //   MyIcons.warehouseSelected,
-  //   MyIcons.addTask,
-  //   MyIcons.calendarSelected,
-  //   MyIcons.profileSelected,
-  // ];
 
   final screens = [
     const HomeScreen(),
@@ -43,23 +36,34 @@ class _AppNavBarState extends State<AppNavBar> {
         _currentIndex = index;
       });
       _pageController.jumpToPage(_currentIndex);
+    } else {
+      if (controller != null) {
+        controller?.close();
+      } else {
+        controller = _scaffoldKey.currentState!.showBottomSheet(
+          backgroundColor: context.colorPalette.blueC5E,
+          (context) {
+            return Container(
+              width: double.infinity,
+              height: 70,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                ),
+              ),
+            );
+          },
+        );
+        controller?.closed.then((_) => controller = null);
+      }
     }
-    // else {
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return const TaskDialog();
-    //     },
-    //   );
-    // }
   }
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
-    cloudMessagingService.requestPermission(context);
-    context.userProvider.updateDeviceToken(context);
   }
 
   @override
@@ -72,6 +76,7 @@ class _AppNavBarState extends State<AppNavBar> {
   Widget build(BuildContext context) {
     bool withNotch = MediaQuery.of(context).viewPadding.bottom > 0.0;
     return Scaffold(
+      key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
       bottomNavigationBar: Container(

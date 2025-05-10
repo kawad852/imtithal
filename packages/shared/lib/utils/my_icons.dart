@@ -14,4 +14,16 @@ class MyIcons {
   static const String notification = '${_path}notification.svg';
   static const String search = '${_path}search.svg';
   static const String calendarSearch = '${_path}calendar_search.svg';
+  static const String addStaff = '${_path}add_staff.svg';
+  static const String danger = '${_path}danger.svg';
+  static const String emoji = '${_path}emoji.svg';
+  static const String laws = '${_path}laws.svg';
+  static const String notificationSolid = '${_path}notification_solid.svg';
+  static const String report = '${_path}report.svg';
+  static const String edit = '${_path}edit.svg';
+  static const String translate = '${_path}translate.svg';
+  static const String judge = '${_path}judge.svg';
+  static const String policy = '${_path}policy.svg';
+  static const String smsTracking = '${_path}sms_tracking.svg';
+  static const String logout = '${_path}logout.svg';
 }

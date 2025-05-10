@@ -12,6 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           "الصفحة الرئيسية",
@@ -65,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           TextEditor(
             onChanged: (value) {},
+            required: false,
             hintText: "ابحث عن مهمة ، موظف",
             prefixIcon: const IconButton(
               onPressed: null,
