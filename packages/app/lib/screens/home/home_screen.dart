@@ -14,6 +14,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: Container(),
+        leadingWidth: 0,
         title: Text(
           "الصفحة الرئيسية",
           style: TextStyle(
@@ -24,7 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push((context) => const NotificationScreen());
+            },
             icon: const CustomSvg(MyIcons.notification),
           ),
         ],

@@ -37,25 +37,20 @@ class _AppNavBarState extends State<AppNavBar> {
       });
       _pageController.jumpToPage(_currentIndex);
     } else {
+      setState(() {});
       if (controller != null) {
         controller?.close();
       } else {
         controller = _scaffoldKey.currentState!.showBottomSheet(
           backgroundColor: context.colorPalette.blueC5E,
           (context) {
-            return Container(
-              width: double.infinity,
-              height: 70,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
-                ),
-              ),
-            );
+            return const NavSheet();
           },
         );
-        controller?.closed.then((_) => controller = null);
+        controller?.closed.then((_) {
+          setState(() {});
+          controller = null;
+        });
       }
     }
   }
@@ -101,7 +96,10 @@ class _AppNavBarState extends State<AppNavBar> {
                     _onSelect(index);
                   },
                   isSelected: _currentIndex == index,
-                  icon: items[index],
+                  icon:
+                      controller != null && index == 2
+                          ? MyIcons.close
+                          : items[index],
                 );
               }).toList(),
         ),

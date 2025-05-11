@@ -15,16 +15,9 @@ class TaskCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            width: 4,
+          VerticalLine(
             height: 67,
-            decoration: BoxDecoration(
-              color:
-                  context
-                      .colorPalette
-                      .primary, //TODO : yellowE7B , redD62 This color used
-              borderRadius: BorderRadius.circular(2),
-            ),
+            color: context.colorPalette.primary, //TODO : yellowE7B , redD62 This color used,
           ),
           const SizedBox(width: 10),
           Expanded(

@@ -26,4 +26,6 @@ class MyIcons {
   static const String policy = '${_path}policy.svg';
   static const String smsTracking = '${_path}sms_tracking.svg';
   static const String logout = '${_path}logout.svg';
+  static const String close = '${_path}close.svg';
+  static const String notificationLogo = '${_path}notification_logo.svg';
 }

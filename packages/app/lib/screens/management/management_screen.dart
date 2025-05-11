@@ -14,6 +14,8 @@ class _ManagementScreenState extends State<ManagementScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: Container(),
+        leadingWidth: 0,
         title: Text(
           "إدارة المنشأة",
           style: TextStyle(
@@ -62,7 +64,9 @@ class _ManagementScreenState extends State<ManagementScreen> {
           Row(
             children: [
               ManageButton(
-                onTap: () {},
+                onTap: () {
+                  context.push((context) => const HolidaysScreen());
+                },
                 icon: MyIcons.emoji,
                 title: "الإجازات والعطلات",
               ),
@@ -79,7 +83,9 @@ class _ManagementScreenState extends State<ManagementScreen> {
             child: Row(
               children: [
                 ManageButton(
-                  onTap: () {},
+                  onTap: () {
+                    context.push((context) => const ViolationsScreen());
+                  },
                   icon: MyIcons.danger,
                   backgroundColor: context.colorPalette.yellowE7B6,
                   title: "المخالفات",
