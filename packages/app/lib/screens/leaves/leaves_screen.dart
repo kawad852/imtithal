@@ -1,14 +1,14 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
-class HolidaysScreen extends StatefulWidget {
-  const HolidaysScreen({super.key});
+class LeavesScreen extends StatefulWidget {
+  const LeavesScreen({super.key});
 
   @override
-  State<HolidaysScreen> createState() => _HolidaysScreenState();
+  State<LeavesScreen> createState() => _LeavesScreenState();
 }
 
-class _HolidaysScreenState extends State<HolidaysScreen> {
+class _LeavesScreenState extends State<LeavesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,8 +16,10 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
         forceMaterialTransparency: true,
       ),
       bottomNavigationBar: BottomButton(
-        onPressed: () {},
-        text: "اضافة اجازة جديدة",
+        onPressed: () {
+          context.push((context) => const LeaveInputScreen());
+        },
+        text: context.appLocalization.addNewLeave,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
@@ -25,7 +27,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "العطلات والإجازات",
+              context.appLocalization.leavesAndHolidays,
               style: TextStyle(
                 color: context.colorPalette.black252,
                 fontSize: 16,
@@ -35,7 +37,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Text(
-                "يمكنك ادخال ايام اجازة او عطلات لإعفاء الموظفين جميعاً من مهام الإمتثال خلال ايام الإجازة",
+                context.appLocalization.leaveNote,
                 style: TextStyle(
                   color: context.colorPalette.grey8B8,
                   fontSize: 14,
@@ -50,7 +52,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
                 itemBuilder: (context, index) {
-                  return const HolidayCard();
+                  return const LeaveCard();
                 },
               ),
             ),

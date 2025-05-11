@@ -16,7 +16,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
         leading: Container(),
         leadingWidth: 0,
         title: Text(
-          "التقويم",
+          context.appLocalization.calendar,
           style: TextStyle(
             color: context.colorPalette.primary,
             fontSize: 16,

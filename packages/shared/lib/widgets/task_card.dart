@@ -28,7 +28,7 @@ class TaskCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        "مهمة يومية",
+                        context.appLocalization.dailyTask,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: context.colorPalette.grey8B8,

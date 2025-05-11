@@ -28,4 +28,7 @@ class MyIcons {
   static const String logout = '${_path}logout.svg';
   static const String close = '${_path}close.svg';
   static const String notificationLogo = '${_path}notification_logo.svg';
+  static const String attachSquare = '${_path}attach_square.svg';
+  static const String departmentBackground = '${_path}department_background.svg';
+  static const String filter = '${_path}filter.svg';
 }

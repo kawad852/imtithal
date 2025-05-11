@@ -19,7 +19,7 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "مخالفات مرصودة",
+              context.appLocalization.monitoredViolations,
               style: TextStyle(
                 color: context.colorPalette.black252,
                 fontSize: 16,
@@ -31,7 +31,7 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
               child: TextEditor(
                 onChanged: (value) {},
                 required: false,
-                hintText: "ابحث عن مخالفة ، باسم الموظف",
+                hintText: context.appLocalization.searchViolationEmployee,
                 prefixIcon: const IconButton(
                   onPressed: null,
                   icon: CustomSvg(MyIcons.search),

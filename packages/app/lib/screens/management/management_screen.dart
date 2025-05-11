@@ -17,7 +17,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
         leading: Container(),
         leadingWidth: 0,
         title: Text(
-          "إدارة المنشأة",
+          context.appLocalization.facilityManagement,
           style: TextStyle(
             color: context.colorPalette.primary,
             fontSize: 16,
@@ -33,13 +33,13 @@ class _ManagementScreenState extends State<ManagementScreen> {
               ManageButton(
                 onTap: () {},
                 icon: MyIcons.addStaff,
-                title: "اضافة موظف جديد",
+                title: context.appLocalization.addNewEmployee,
               ),
               const SizedBox(width: 10),
               ManageButton(
                 onTap: () {},
                 icon: MyIcons.add,
-                title: "اضافة امتثال جديد",
+                title: context.appLocalization.addNewCompliance,
               ),
             ],
           ),
@@ -50,13 +50,13 @@ class _ManagementScreenState extends State<ManagementScreen> {
                 ManageButton(
                   onTap: () {},
                   icon: MyIcons.add,
-                  title: "اضافة قسم جديد",
+                  title: context.appLocalization.addNewDepartment,
                 ),
                 const SizedBox(width: 10),
                 ManageButton(
                   onTap: () {},
                   icon: MyIcons.notificationSolid,
-                  title: "ارسال اشعار جديد",
+                  title: context.appLocalization.sendNewNotification,
                 ),
               ],
             ),
@@ -65,16 +65,16 @@ class _ManagementScreenState extends State<ManagementScreen> {
             children: [
               ManageButton(
                 onTap: () {
-                  context.push((context) => const HolidaysScreen());
+                  context.push((context) => const LeavesScreen());
                 },
                 icon: MyIcons.emoji,
-                title: "الإجازات والعطلات",
+                title: context.appLocalization.leavesAndHolidays,
               ),
               const SizedBox(width: 10),
               ManageButton(
                 onTap: () {},
                 icon: MyIcons.laws,
-                title: "القوانين والأنظمة",
+                title: context.appLocalization.lawsAndRegulations,
               ),
             ],
           ),
@@ -88,13 +88,13 @@ class _ManagementScreenState extends State<ManagementScreen> {
                   },
                   icon: MyIcons.danger,
                   backgroundColor: context.colorPalette.yellowE7B6,
-                  title: "المخالفات",
+                  title: context.appLocalization.violations,
                 ),
                 const SizedBox(width: 10),
                 ManageButton(
                   onTap: () {},
                   icon: MyIcons.report,
-                  title: "التقارير",
+                  title: context.appLocalization.reports,
                 ),
               ],
             ),
@@ -102,7 +102,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
           TextEditor(
             onChanged: (value) {},
             required: false,
-            hintText: "ابحث عن قسم ، موظف",
+            hintText: context.appLocalization.searchDepartmentEmployee,
             prefixIcon: const IconButton(
               onPressed: null,
               icon: CustomSvg(MyIcons.search),
@@ -111,7 +111,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
-              "اقسام المنشأة",
+              context.appLocalization.facilityDepartments,
               style: TextStyle(
                 color: context.colorPalette.primary,
                 fontSize: 16,

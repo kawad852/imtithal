@@ -9,167 +9,251 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get conWithGoogle => 'Continue with Google';
-
-  @override
-  String get conWithApple => 'Continue with Apple';
-
-  @override
-  String get conWithPhone => 'Continue with Phone';
-
-  @override
-  String get regTitle => 'Welcome to Nudoo!';
-
-  @override
-  String get regBody => 'Organize your tasks, boost your productivity, and get things done effortlessly.\nSign up now to start managing your tasks like a pro!';
-
-  @override
-  String get generalError => 'Oops, Something went wrong !';
-
-  @override
-  String get networkError => 'Internet Connection Error';
-
-  @override
-  String get generalErrorTitle => 'Something Went Wrong';
-
-  @override
-  String get generalErrorBody => 'An unexpected error occurred. Please try again later or contact support.';
-
-  @override
-  String get connectionErrorTitle => 'Connection Error';
-
-  @override
-  String get connectionErrorBody => 'Unable to reach the server. Please check your internet connection and try again.';
-
-  @override
-  String get retry => 'Retry';
-
-  @override
-  String get serverErrorTitle => 'Data Unavailable';
-
-  @override
-  String get serverErrorBody => 'We\'re currently having trouble retrieving data from the server. Please try again later.';
-
-  @override
-  String get requiredField => 'Required field';
-
-  @override
-  String get required => 'Required';
-
-  @override
-  String get authFailed => 'Registration failed';
-
-  @override
-  String get guest => 'Guest';
-
-  @override
   String get login => 'Login';
 
   @override
-  String get totalAmount => 'Total Amount';
+  String get requiredField => 'Required Field';
 
   @override
-  String get checkout => 'Checkout';
+  String get networkError => 'Internet connection error';
 
   @override
-  String get addToBasket => 'Add to basket';
+  String get generalError => 'Sorry, something went wrong!';
 
   @override
-  String get locationServiceDisabledMsg => 'Location services are disabled in your device';
+  String get authFailed => 'Error in the registration process';
 
   @override
-  String get enable => 'Enable';
+  String get simply => 'Simply, ';
 
   @override
-  String get basketEmptyTitle => 'Your Basket is Empty';
+  String get limitless => 'Limitless';
 
   @override
-  String get basketEmptyBody => 'Start adding items to your basket by exploring our collection. Once you find something you like, simply tap \'Add to Basket\' to begin your shopping journey. Happy shopping!';
+  String get usernameEmail => 'Username / Email';
 
   @override
-  String get contShipping => 'Continue shopping';
+  String get password => 'Password';
 
   @override
-  String get cont => 'Continue';
+  String get forgotPassword => 'Forgot password?';
 
   @override
-  String get deliveryInfo => 'Delivery arrives in 30-40 minutes.';
+  String get resetPassword => 'Reset Password';
 
   @override
-  String get shoppingBasket => 'Shopping Basket';
+  String get imtithal => 'Imtithal';
 
   @override
-  String get explore => 'Explore';
+  String get invalidEmail => 'Invalid email';
 
   @override
-  String get basket => 'Basket';
+  String get invalidNumber => 'Invalid number';
 
   @override
-  String get mealAdded => 'Meal Added';
+  String get passwordTooShort => 'Must be at least 6 characters';
 
   @override
-  String get itemNotAvailableMsg => 'Item no longer available';
+  String get passwordNotMatch => 'password Does not Match';
 
   @override
-  String get note => 'Note';
+  String get lostYourPassword => 'Lost your password? Easy!';
 
   @override
-  String get confirm => 'Confirm';
+  String get youCanRecoverIt => 'You can recover it with simple steps.';
 
   @override
-  String get cancel => 'Cancel';
+  String get enterEmailToRecoverPass => 'Please enter your email address to recover your password.';
 
   @override
-  String get itemDeleteTitle => 'Delete Item';
+  String get home => 'Home';
 
   @override
-  String get itemBasketDeleteBody => 'Are you sure you want to delete the item from basket ?';
+  String get hello => 'Hello';
 
   @override
-  String get addedSuccessfully => 'Added Successfully';
+  String get facilityCompliance => 'Facility compliance';
 
   @override
-  String get successfullyUpdated => 'Successfully Updated';
+  String get todayImtithalSummary => 'Today\'s Imtithal summary';
 
   @override
-  String get deliveryAddress => 'Delivery Addresses';
+  String get more => 'More';
 
   @override
-  String get firstName => 'First Name';
+  String get incomplete => 'Incomplete';
 
   @override
-  String get lastName => 'Last Name';
+  String get complete => 'Complete';
 
   @override
-  String get email => 'Email';
+  String get late => 'Late';
 
   @override
-  String get fullName => 'Full name';
+  String get nonCompliant => 'Non-compliant';
 
   @override
-  String get managingHajjOperations => 'Managing Hajj Warehouse Operations';
+  String get searchTaskEmployee => 'Search for task, employee';
 
   @override
-  String get emailAlreadyInUse => 'This email is already registered.';
+  String get topTasks => 'Top tasks';
 
   @override
-  String get emailNotFount => 'No user found with this email.';
+  String get dailyTask => 'Daily task';
 
   @override
-  String get wrongPassword => 'Incorrect password for this email.';
+  String get calendar => 'Calendar';
 
   @override
-  String get khaled => 'Khaled';
+  String get addNewTask => 'Add new task';
 
   @override
-  String get searchCountryOrCode => 'إبحث عن اسم البلد او الرمز';
+  String get monitorViolation => 'Monitor violation';
 
   @override
-  String get faris => 'Faris';
+  String get facilityManagement => 'Facility Management';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get addNewEmployee => 'Add new employee';
 
   @override
-  String get privacyPolicy => 'privacyPolicy';
+  String get addNewCompliance => 'Add new compliance';
+
+  @override
+  String get addNewDepartment => 'Add new department';
+
+  @override
+  String get sendNewNotification => 'Send new notification';
+
+  @override
+  String get leavesAndHolidays => 'Leaves and holidays';
+
+  @override
+  String get lawsAndRegulations => 'Laws and regulations';
+
+  @override
+  String get violations => 'Violations';
+
+  @override
+  String get reports => 'Reports';
+
+  @override
+  String get searchDepartmentEmployee => 'Search for department, employee';
+
+  @override
+  String get facilityDepartments => 'Facility Departments';
+
+  @override
+  String get employee => 'Employee';
+
+  @override
+  String get responsibleManager => 'Responsible Manager';
+
+  @override
+  String get personalAccount => 'Personal Account';
+
+  @override
+  String get system => 'System';
+
+  @override
+  String get changeLanguage => 'Change Language';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get sendComplaintOrReport => 'Send a complaint or report to management';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get changePassword => 'Change Password';
+
+  @override
+  String get logOut => 'Log Out';
+
+  @override
+  String get send => 'Send';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get addNewLeave => 'Add new leave';
+
+  @override
+  String get leaveNote => 'You can enter leave days or holidays to exempt all employees from compliance tasks during leave days.';
+
+  @override
+  String get leaveNo => 'Leave No';
+
+  @override
+  String get leaveSetFromDate => 'Leave set from date';
+
+  @override
+  String get toDate => 'To date';
+
+  @override
+  String get monitoredViolations => 'Monitored violations';
+
+  @override
+  String get searchViolationEmployee => 'Search for violation, by employee name';
+
+  @override
+  String get lastResponseBy => 'Last response by';
+
+  @override
+  String get leaveTitle => 'Leave Title';
+
+  @override
+  String get taskTitleToComplyWith => 'Task Title to Comply With';
+
+  @override
+  String get leaveDescription => 'Leave Description';
+
+  @override
+  String get requiredTaskDescription => 'Required Task Description';
+
+  @override
+  String get fromDate => 'From Date';
+
+  @override
+  String get doYouHaveComplaintReport => 'Do you have a complaint or report?';
+
+  @override
+  String get complaintNote => 'Send it to the management with complete privacy and confidentiality, and it will be handled seriously for the overall benefit of the facility.';
+
+  @override
+  String get yourMessage => 'Your message';
+
+  @override
+  String get attachFilesImages => 'Attach files, images';
+
+  @override
+  String get department => 'Department';
+
+  @override
+  String get thisMonthComplianceAssessment => 'This Month\'s Compliance Assessment';
+
+  @override
+  String get since => 'Since';
+
+  @override
+  String get toDay => 'To day';
+
+  @override
+  String get departmentComplianceAssessment => 'Department Compliance Assessment';
+
+  @override
+  String get mostCompliantEmployee => 'Most Compliant Employee';
+
+  @override
+  String get leastCompliantEmployee => 'Least Compliant Employee';
+
+  @override
+  String get searchForEmployee => 'Search for Employee';
+
+  @override
+  String get departmentEmployees => 'Department Employees';
 }

@@ -9,167 +9,251 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get conWithGoogle => 'Continue with Google';
+  String get login => 'تسجيل الدخول';
 
   @override
-  String get conWithApple => 'Continue with Apple';
+  String get requiredField => 'حقل مطلوب';
 
   @override
-  String get conWithPhone => 'Continue with Phone';
+  String get networkError => 'خطأ في إتصال الإنترنت';
 
   @override
-  String get regTitle => 'Welcome to Nudoo!';
+  String get generalError => 'عذرًا، حدث خطأ ما!';
 
   @override
-  String get regBody => 'Organize your tasks, boost your productivity, and get things done effortlessly.\nSign up now to start managing your tasks like a pro!';
+  String get authFailed => 'خطأ في عملية التسجيل';
 
   @override
-  String get generalError => 'Oops, Something went wrong !';
+  String get simply => 'ببساطـــــــــــة، ';
 
   @override
-  String get networkError => 'Internet Connection Error';
+  String get limitless => 'بلا حدود';
 
   @override
-  String get generalErrorTitle => 'Something Went Wrong';
+  String get usernameEmail => 'اسم المستخدم / البريد الألكتروني';
 
   @override
-  String get generalErrorBody => 'An unexpected error occurred. Please try again later or contact support.';
+  String get password => 'كلمة المرور';
 
   @override
-  String get connectionErrorTitle => 'Connection Error';
+  String get forgotPassword => 'هل نسيت كلمة المرور ؟';
 
   @override
-  String get connectionErrorBody => 'Unable to reach the server. Please check your internet connection and try again.';
+  String get resetPassword => 'استعادة كلمة المرور';
 
   @override
-  String get retry => 'Retry';
+  String get imtithal => 'امتثال';
 
   @override
-  String get serverErrorTitle => 'Data Unavailable';
+  String get invalidEmail => 'بريد إلكتروني غير صالح';
 
   @override
-  String get serverErrorBody => 'We\'re currently having trouble retrieving data from the server. Please try again later.';
+  String get invalidNumber => 'رقم غير صالح';
 
   @override
-  String get requiredField => 'Required field';
+  String get passwordTooShort => 'يجب أن يكون على الأقل 6 أحرف';
 
   @override
-  String get required => 'Required';
+  String get passwordNotMatch => 'كلمة المرور غير متطابقة';
 
   @override
-  String get authFailed => 'Registration failed';
+  String get lostYourPassword => 'هل فقدت كلمة المرور ؟ سهلة';
 
   @override
-  String get guest => 'Guest';
+  String get youCanRecoverIt => 'يمكنك استعادتها بخطوات بسيطة';
 
   @override
-  String get login => 'Login';
+  String get enterEmailToRecoverPass => 'يرجى ادخال بريدك الإلكتروني لإستعادة كلمة المرور.';
 
   @override
-  String get totalAmount => 'Total Amount';
+  String get home => 'الصفحة الرئيسية';
 
   @override
-  String get checkout => 'Checkout';
+  String get hello => 'السلام عليكم';
 
   @override
-  String get addToBasket => 'Add to basket';
+  String get facilityCompliance => 'إمتثال المنشأة';
 
   @override
-  String get locationServiceDisabledMsg => 'Location services are disabled in your device';
+  String get todayImtithalSummary => 'ملخص إمتثال اليوم';
 
   @override
-  String get enable => 'Enable';
+  String get more => 'المزيد';
 
   @override
-  String get basketEmptyTitle => 'Your Basket is Empty';
+  String get incomplete => 'غير مكتملة';
 
   @override
-  String get basketEmptyBody => 'Start adding items to your basket by exploring our collection. Once you find something you like, simply tap \'Add to Basket\' to begin your shopping journey. Happy shopping!';
+  String get complete => 'مكتملة';
 
   @override
-  String get contShipping => 'Continue shopping';
+  String get late => 'متأخرة';
 
   @override
-  String get cont => 'Continue';
+  String get nonCompliant => 'مخالفة';
 
   @override
-  String get deliveryInfo => 'Delivery arrives in 30-40 minutes.';
+  String get searchTaskEmployee => 'ابحث عن مهمة ، موظف';
 
   @override
-  String get shoppingBasket => 'Shopping Basket';
+  String get topTasks => 'ابرز المهام';
 
   @override
-  String get explore => 'Explore';
+  String get dailyTask => 'مهمة يومية';
 
   @override
-  String get basket => 'Basket';
+  String get calendar => 'التقويم';
 
   @override
-  String get mealAdded => 'Meal Added';
+  String get addNewTask => 'اضافة مهمة جديدة';
 
   @override
-  String get itemNotAvailableMsg => 'Item no longer available';
+  String get monitorViolation => 'رصد مخالفة';
 
   @override
-  String get note => 'Note';
+  String get facilityManagement => 'إدارة المنشأة';
 
   @override
-  String get confirm => 'Confirm';
+  String get addNewEmployee => 'اضافة موظف جديد';
 
   @override
-  String get cancel => 'Cancel';
+  String get addNewCompliance => 'اضافة امتثال جديد';
 
   @override
-  String get itemDeleteTitle => 'Delete Item';
+  String get addNewDepartment => 'اضافة قسم جديد';
 
   @override
-  String get itemBasketDeleteBody => 'Are you sure you want to delete the item from basket ?';
+  String get sendNewNotification => 'ارسال اشعار جديد';
 
   @override
-  String get addedSuccessfully => 'Added Successfully';
+  String get leavesAndHolidays => 'الإجازات والعطلات';
 
   @override
-  String get successfullyUpdated => 'Successfully Updated';
+  String get lawsAndRegulations => 'القوانين والأنظمة';
 
   @override
-  String get deliveryAddress => 'Delivery Addresses';
+  String get violations => 'المخالفات';
 
   @override
-  String get firstName => 'First Name';
+  String get reports => 'التقارير';
 
   @override
-  String get lastName => 'Last Name';
+  String get searchDepartmentEmployee => 'ابحث عن قسم ، موظف';
 
   @override
-  String get email => 'Email';
+  String get facilityDepartments => 'اقسام المنشأة';
 
   @override
-  String get fullName => 'Full name';
+  String get employee => 'موظف';
 
   @override
-  String get managingHajjOperations => 'إدارة العمليات في مخازن الحج';
+  String get responsibleManager => 'المدير المسؤول';
 
   @override
-  String get emailAlreadyInUse => 'This email is already registered.';
+  String get personalAccount => 'الحساب الشخصي';
 
   @override
-  String get emailNotFount => 'No user found with this email.';
+  String get system => 'النظام';
 
   @override
-  String get wrongPassword => 'Incorrect password for this email.';
+  String get changeLanguage => 'تغيير اللغة';
 
   @override
-  String get khaled => 'Khaled';
+  String get privacyPolicy => 'سياسة الخصوصية';
 
   @override
-  String get searchCountryOrCode => 'إبحث عن اسم البلد او الرمز';
+  String get sendComplaintOrReport => 'ارسال شكوى او بلاغ للإدارة';
 
   @override
-  String get faris => 'Faris';
+  String get account => 'الحساب';
 
   @override
-  String get termsOfUse => 'Terms of use';
+  String get changePassword => 'تغيير كلمة المرور';
 
   @override
-  String get privacyPolicy => 'privacyPolicy';
+  String get logOut => 'تسجيل الخروج';
+
+  @override
+  String get send => 'ارسال';
+
+  @override
+  String get notifications => 'الإشعارات';
+
+  @override
+  String get addNewLeave => 'اضافة اجازة جديدة';
+
+  @override
+  String get leaveNote => 'يمكنك ادخال ايام اجازة او عطلات لإعفاء الموظفين جميعاً من مهام الإمتثال خلال ايام الإجازة';
+
+  @override
+  String get leaveNo => 'اجازة رقم';
+
+  @override
+  String get leaveSetFromDate => 'تم تحديد الإجازة من تاريخ';
+
+  @override
+  String get toDate => 'إلى تاريخ';
+
+  @override
+  String get monitoredViolations => 'مخالفات مرصودة';
+
+  @override
+  String get searchViolationEmployee => 'ابحث عن مخالفة ، باسم الموظف';
+
+  @override
+  String get lastResponseBy => 'اخر رد من خلال';
+
+  @override
+  String get leaveTitle => 'عنوان الإجازة';
+
+  @override
+  String get taskTitleToComplyWith => 'عنوان المهمة المطلوب الإمتثال لها';
+
+  @override
+  String get leaveDescription => 'وصف الإجازة';
+
+  @override
+  String get requiredTaskDescription => 'وصف المهمة المطلوبة';
+
+  @override
+  String get fromDate => 'من تاريخ';
+
+  @override
+  String get doYouHaveComplaintReport => 'هل لديك شكوى او بلاغ ؟';
+
+  @override
+  String get complaintNote => 'ارسله للإدارة بكل خصوصية وسرية وسيتم العمل عليه لأجل المصلحة العامة للمنشأة بجدية';
+
+  @override
+  String get yourMessage => 'رسالتك';
+
+  @override
+  String get attachFilesImages => 'إرفاق ملفات ، صور';
+
+  @override
+  String get department => 'قسم';
+
+  @override
+  String get thisMonthComplianceAssessment => 'تقييم الإمتثال هذا الشهر';
+
+  @override
+  String get since => 'منذ';
+
+  @override
+  String get toDay => 'الى اليوم';
+
+  @override
+  String get departmentComplianceAssessment => 'تقييم امتثال القسم';
+
+  @override
+  String get mostCompliantEmployee => 'الموظف الأكثر امتثالاً';
+
+  @override
+  String get leastCompliantEmployee => 'الموظف الأقل امتثالاً';
+
+  @override
+  String get searchForEmployee => 'ابحث عن موظف';
+
+  @override
+  String get departmentEmployees => 'موظفين القسم';
 }

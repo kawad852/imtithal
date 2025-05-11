@@ -9,25 +9,25 @@ class TaskBubble extends StatelessWidget {
     switch (taskType) {
       case TaskTypeEnum.incomplete:
         return (
-          "غير مكتملة",
+          context.appLocalization.incomplete,
           context.colorPalette.greyF5F,
           context.colorPalette.greyDAD,
         );
       case TaskTypeEnum.complete:
         return (
-          "مكتملة",
+          context.appLocalization.complete,
           context.colorPalette.greenC5E,
           context.colorPalette.green04B,
         );
       case TaskTypeEnum.late:
         return (
-          "متأخرة",
+          context.appLocalization.late,
           context.colorPalette.yellowF5E,
           context.colorPalette.yellowE7B,
         );
       case TaskTypeEnum.infringement:
         return (
-          "مخالفة",
+          context.appLocalization.nonCompliant,
           context.colorPalette.redF7D,
           context.colorPalette.redD62,
         );

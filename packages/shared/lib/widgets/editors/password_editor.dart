@@ -58,8 +58,8 @@ class _PasswordEditorState extends State<PasswordEditor> {
       },
       validator: (value) {
         if (widget.isConfirm) {
-          return widget.password == value ? null : "context.appLocalization.passwordNotMatch";
-        } //context.appLocalization.passwordNotMatch
+          return widget.password == value ? null : context.appLocalization.passwordNotMatch;
+        } 
         return ValidationHelper.password(context, value);
       },
     );

@@ -21,7 +21,7 @@ class UserInformation extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "السلام عليكم ، ",
+                    "${context.appLocalization.hello} ، ",
                     style: TextStyle(
                       color: context.colorPalette.black252,
                       fontSize: 16,
@@ -54,7 +54,7 @@ class UserInformation extends StatelessWidget {
                 ),
               ),
               Text(
-                "%94 ، إمتثال المنشأة ممتاز",
+                "%94 ، ${context.appLocalization.facilityCompliance} ممتاز",
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: context.colorPalette.primary,

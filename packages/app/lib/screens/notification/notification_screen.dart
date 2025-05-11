@@ -13,14 +13,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      bottomNavigationBar: BottomButton(onPressed: () {}, text: "ارسال"),
+      bottomNavigationBar: BottomButton(onPressed: () {}, text: context.appLocalization.send),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "الإشعارات",
+              context.appLocalization.notifications,
               style: TextStyle(
                 color: context.colorPalette.black252,
                 fontSize: 16,

@@ -16,7 +16,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: Container(),
         leadingWidth: 0,
         title: Text(
-          "الحساب الشخصي",
+          context.appLocalization.personalAccount,
           style: TextStyle(
             color: context.colorPalette.primary,
             fontSize: 16,
@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
-              "النظام",
+              context.appLocalization.system,
               style: TextStyle(
                 color: context.colorPalette.primary,
                 fontSize: 16,
@@ -42,27 +42,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ProfileCard(
             onTap: () {},
             icon: MyIcons.translate,
-            title: "تغيير اللغة",
+            title: context.appLocalization.changeLanguage,
           ),
           ProfileCard(
-            onTap: () {},
+            onTap: () {
+              context.push((context) => const PolicyScreen(policyEnum: PolicyEnum.laws));
+            },
             icon: MyIcons.judge,
-            title: "القوانين والأنظمة",
+            title: context.appLocalization.lawsAndRegulations,
           ),
           ProfileCard(
-            onTap: () {},
+            onTap: () {
+              context.push((context) => const PolicyScreen(policyEnum: PolicyEnum.policy));
+            },
             icon: MyIcons.policy,
-            title: "سياسة الخصوصية",
+            title: context.appLocalization.privacyPolicy,
           ),
           ProfileCard(
-            onTap: () {},
+            onTap: () {
+              context.push((context) => const ComplaintScreen());
+            },
             icon: MyIcons.smsTracking,
-            title: "ارسال شكوى او بلاغ للإدارة",
+            title: context.appLocalization.sendComplaintOrReport,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
-              "الحساب",
+              context.appLocalization.account,
               style: TextStyle(
                 color: context.colorPalette.primary,
                 fontSize: 16,
@@ -73,13 +79,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ProfileCard(
             onTap: () {},
             icon: MyIcons.lock,
-            title: "تغيير كلمة المرور",
+            title: context.appLocalization.changePassword,
           ),
           ProfileCard(
             onTap: () {},
             icon: MyIcons.logout,
             backgroundColor: context.colorPalette.redD623,
-            title: "تسجيل الخروج",
+            title: context.appLocalization.logOut,
           ),
         ],
       ),

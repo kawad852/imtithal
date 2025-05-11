@@ -12,7 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomButton(text: "تسجيل الدخول", onPressed: () {}),
+      bottomNavigationBar: BottomButton(text: context.appLocalization.login, onPressed: () {}),
       body: Column(
         children: [
           SizedBox(width: context.mediaQuery.width, height: 100),
@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "ببساطـــــــــــة، ",
+                  context.appLocalization.simply,
                   style: TextStyle(
                     color: context.colorPalette.black252,
                     fontSize: 16,
@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Text(
-                  "امتثال",
+                  context.appLocalization.imtithal,
                   style: TextStyle(
                     color: context.colorPalette.primary,
                     fontSize: 16,
@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Text(
-                  " بلا حدود",
+                  context.appLocalization.limitless,
                   style: TextStyle(
                     color: context.colorPalette.black252,
                     fontSize: 16,
@@ -54,27 +54,21 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               children: [
                 TitledTextField(
-                  title: "اسم المستخدم / البريد الألكتروني",
+                  title: context.appLocalization.usernameEmail,
                   child: TextEditor(
                     onChanged: (value) {},
-                    prefixIcon: const IconButton(
-                      onPressed: null,
-                      icon: CustomSvg(MyIcons.user),
-                    ),
+                    prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.user)),
                   ),
                 ),
                 const SizedBox(height: 10),
                 TitledTextField(
-                  title: "كلمة المرور",
-                  child: PasswordEditor(
-                    onChanged: (value) {},
-                    initialValue: null,
-                  ),
+                  title: context.appLocalization.password,
+                  child: PasswordEditor(onChanged: (value) {}, initialValue: null),
                 ),
                 Row(
                   children: [
                     Text(
-                      "هل نسيت كلمة المرور ؟",
+                      context.appLocalization.forgotPassword,
                       style: TextStyle(
                         color: context.colorPalette.black252,
                         fontSize: 14,
@@ -86,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         context.push((context) => const ResetPasswordScreen());
                       },
                       child: Text(
-                        "استعادة كلمة المرور",
+                        context.appLocalization.resetPassword,
                         style: TextStyle(
                           color: context.colorPalette.primary,
                           fontSize: 14,

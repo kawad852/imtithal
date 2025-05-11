@@ -36,7 +36,7 @@ class NavSheet extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        "اضافة مهمة جديدة",
+                        context.appLocalization.addNewTask,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -69,7 +69,7 @@ class NavSheet extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        "رصد مخالفة",
+                        context.appLocalization.monitorViolation,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

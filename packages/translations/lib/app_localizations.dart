@@ -95,335 +95,503 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
-  /// No description provided for @conWithGoogle.
+  /// No description provided for @login.
   ///
-  /// In en, this message translates to:
-  /// **'Continue with Google'**
-  String get conWithGoogle;
-
-  /// No description provided for @conWithApple.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue with Apple'**
-  String get conWithApple;
-
-  /// No description provided for @conWithPhone.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue with Phone'**
-  String get conWithPhone;
-
-  /// No description provided for @regTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome to Nudoo!'**
-  String get regTitle;
-
-  /// No description provided for @regBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Organize your tasks, boost your productivity, and get things done effortlessly.\nSign up now to start managing your tasks like a pro!'**
-  String get regBody;
-
-  /// No description provided for @generalError.
-  ///
-  /// In en, this message translates to:
-  /// **'Oops, Something went wrong !'**
-  String get generalError;
-
-  /// No description provided for @networkError.
-  ///
-  /// In en, this message translates to:
-  /// **'Internet Connection Error'**
-  String get networkError;
-
-  /// No description provided for @generalErrorTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Something Went Wrong'**
-  String get generalErrorTitle;
-
-  /// No description provided for @generalErrorBody.
-  ///
-  /// In en, this message translates to:
-  /// **'An unexpected error occurred. Please try again later or contact support.'**
-  String get generalErrorBody;
-
-  /// No description provided for @connectionErrorTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Connection Error'**
-  String get connectionErrorTitle;
-
-  /// No description provided for @connectionErrorBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to reach the server. Please check your internet connection and try again.'**
-  String get connectionErrorBody;
-
-  /// No description provided for @retry.
-  ///
-  /// In en, this message translates to:
-  /// **'Retry'**
-  String get retry;
-
-  /// No description provided for @serverErrorTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Data Unavailable'**
-  String get serverErrorTitle;
-
-  /// No description provided for @serverErrorBody.
-  ///
-  /// In en, this message translates to:
-  /// **'We\'re currently having trouble retrieving data from the server. Please try again later.'**
-  String get serverErrorBody;
+  /// In ar, this message translates to:
+  /// **'تسجيل الدخول'**
+  String get login;
 
   /// No description provided for @requiredField.
   ///
-  /// In en, this message translates to:
-  /// **'Required field'**
+  /// In ar, this message translates to:
+  /// **'حقل مطلوب'**
   String get requiredField;
 
-  /// No description provided for @required.
+  /// No description provided for @networkError.
   ///
-  /// In en, this message translates to:
-  /// **'Required'**
-  String get required;
+  /// In ar, this message translates to:
+  /// **'خطأ في إتصال الإنترنت'**
+  String get networkError;
+
+  /// No description provided for @generalError.
+  ///
+  /// In ar, this message translates to:
+  /// **'عذرًا، حدث خطأ ما!'**
+  String get generalError;
 
   /// No description provided for @authFailed.
   ///
-  /// In en, this message translates to:
-  /// **'Registration failed'**
+  /// In ar, this message translates to:
+  /// **'خطأ في عملية التسجيل'**
   String get authFailed;
 
-  /// No description provided for @guest.
+  /// No description provided for @simply.
   ///
-  /// In en, this message translates to:
-  /// **'Guest'**
-  String get guest;
+  /// In ar, this message translates to:
+  /// **'ببساطـــــــــــة، '**
+  String get simply;
 
-  /// No description provided for @login.
+  /// No description provided for @limitless.
   ///
-  /// In en, this message translates to:
-  /// **'Login'**
-  String get login;
+  /// In ar, this message translates to:
+  /// **'بلا حدود'**
+  String get limitless;
 
-  /// No description provided for @totalAmount.
+  /// No description provided for @usernameEmail.
   ///
-  /// In en, this message translates to:
-  /// **'Total Amount'**
-  String get totalAmount;
+  /// In ar, this message translates to:
+  /// **'اسم المستخدم / البريد الألكتروني'**
+  String get usernameEmail;
 
-  /// No description provided for @checkout.
+  /// No description provided for @password.
   ///
-  /// In en, this message translates to:
-  /// **'Checkout'**
-  String get checkout;
+  /// In ar, this message translates to:
+  /// **'كلمة المرور'**
+  String get password;
 
-  /// No description provided for @addToBasket.
+  /// No description provided for @forgotPassword.
   ///
-  /// In en, this message translates to:
-  /// **'Add to basket'**
-  String get addToBasket;
+  /// In ar, this message translates to:
+  /// **'هل نسيت كلمة المرور ؟'**
+  String get forgotPassword;
 
-  /// No description provided for @locationServiceDisabledMsg.
+  /// No description provided for @resetPassword.
   ///
-  /// In en, this message translates to:
-  /// **'Location services are disabled in your device'**
-  String get locationServiceDisabledMsg;
+  /// In ar, this message translates to:
+  /// **'استعادة كلمة المرور'**
+  String get resetPassword;
 
-  /// No description provided for @enable.
+  /// No description provided for @imtithal.
   ///
-  /// In en, this message translates to:
-  /// **'Enable'**
-  String get enable;
+  /// In ar, this message translates to:
+  /// **'امتثال'**
+  String get imtithal;
 
-  /// No description provided for @basketEmptyTitle.
+  /// No description provided for @invalidEmail.
   ///
-  /// In en, this message translates to:
-  /// **'Your Basket is Empty'**
-  String get basketEmptyTitle;
+  /// In ar, this message translates to:
+  /// **'بريد إلكتروني غير صالح'**
+  String get invalidEmail;
 
-  /// No description provided for @basketEmptyBody.
+  /// No description provided for @invalidNumber.
   ///
-  /// In en, this message translates to:
-  /// **'Start adding items to your basket by exploring our collection. Once you find something you like, simply tap \'Add to Basket\' to begin your shopping journey. Happy shopping!'**
-  String get basketEmptyBody;
+  /// In ar, this message translates to:
+  /// **'رقم غير صالح'**
+  String get invalidNumber;
 
-  /// No description provided for @contShipping.
+  /// No description provided for @passwordTooShort.
   ///
-  /// In en, this message translates to:
-  /// **'Continue shopping'**
-  String get contShipping;
+  /// In ar, this message translates to:
+  /// **'يجب أن يكون على الأقل 6 أحرف'**
+  String get passwordTooShort;
 
-  /// No description provided for @cont.
+  /// No description provided for @passwordNotMatch.
   ///
-  /// In en, this message translates to:
-  /// **'Continue'**
-  String get cont;
+  /// In ar, this message translates to:
+  /// **'كلمة المرور غير متطابقة'**
+  String get passwordNotMatch;
 
-  /// No description provided for @deliveryInfo.
+  /// No description provided for @lostYourPassword.
   ///
-  /// In en, this message translates to:
-  /// **'Delivery arrives in 30-40 minutes.'**
-  String get deliveryInfo;
+  /// In ar, this message translates to:
+  /// **'هل فقدت كلمة المرور ؟ سهلة'**
+  String get lostYourPassword;
 
-  /// No description provided for @shoppingBasket.
+  /// No description provided for @youCanRecoverIt.
   ///
-  /// In en, this message translates to:
-  /// **'Shopping Basket'**
-  String get shoppingBasket;
+  /// In ar, this message translates to:
+  /// **'يمكنك استعادتها بخطوات بسيطة'**
+  String get youCanRecoverIt;
 
-  /// No description provided for @explore.
+  /// No description provided for @enterEmailToRecoverPass.
   ///
-  /// In en, this message translates to:
-  /// **'Explore'**
-  String get explore;
+  /// In ar, this message translates to:
+  /// **'يرجى ادخال بريدك الإلكتروني لإستعادة كلمة المرور.'**
+  String get enterEmailToRecoverPass;
 
-  /// No description provided for @basket.
+  /// No description provided for @home.
   ///
-  /// In en, this message translates to:
-  /// **'Basket'**
-  String get basket;
+  /// In ar, this message translates to:
+  /// **'الصفحة الرئيسية'**
+  String get home;
 
-  /// No description provided for @mealAdded.
+  /// No description provided for @hello.
   ///
-  /// In en, this message translates to:
-  /// **'Meal Added'**
-  String get mealAdded;
+  /// In ar, this message translates to:
+  /// **'السلام عليكم'**
+  String get hello;
 
-  /// No description provided for @itemNotAvailableMsg.
+  /// No description provided for @facilityCompliance.
   ///
-  /// In en, this message translates to:
-  /// **'Item no longer available'**
-  String get itemNotAvailableMsg;
+  /// In ar, this message translates to:
+  /// **'إمتثال المنشأة'**
+  String get facilityCompliance;
 
-  /// No description provided for @note.
+  /// No description provided for @todayImtithalSummary.
   ///
-  /// In en, this message translates to:
-  /// **'Note'**
-  String get note;
+  /// In ar, this message translates to:
+  /// **'ملخص إمتثال اليوم'**
+  String get todayImtithalSummary;
 
-  /// No description provided for @confirm.
+  /// No description provided for @more.
   ///
-  /// In en, this message translates to:
-  /// **'Confirm'**
-  String get confirm;
+  /// In ar, this message translates to:
+  /// **'المزيد'**
+  String get more;
 
-  /// No description provided for @cancel.
+  /// No description provided for @incomplete.
   ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
+  /// In ar, this message translates to:
+  /// **'غير مكتملة'**
+  String get incomplete;
 
-  /// No description provided for @itemDeleteTitle.
+  /// No description provided for @complete.
   ///
-  /// In en, this message translates to:
-  /// **'Delete Item'**
-  String get itemDeleteTitle;
+  /// In ar, this message translates to:
+  /// **'مكتملة'**
+  String get complete;
 
-  /// No description provided for @itemBasketDeleteBody.
+  /// No description provided for @late.
   ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete the item from basket ?'**
-  String get itemBasketDeleteBody;
+  /// In ar, this message translates to:
+  /// **'متأخرة'**
+  String get late;
 
-  /// No description provided for @addedSuccessfully.
+  /// No description provided for @nonCompliant.
   ///
-  /// In en, this message translates to:
-  /// **'Added Successfully'**
-  String get addedSuccessfully;
+  /// In ar, this message translates to:
+  /// **'مخالفة'**
+  String get nonCompliant;
 
-  /// No description provided for @successfullyUpdated.
+  /// No description provided for @searchTaskEmployee.
   ///
-  /// In en, this message translates to:
-  /// **'Successfully Updated'**
-  String get successfullyUpdated;
+  /// In ar, this message translates to:
+  /// **'ابحث عن مهمة ، موظف'**
+  String get searchTaskEmployee;
 
-  /// No description provided for @deliveryAddress.
+  /// No description provided for @topTasks.
   ///
-  /// In en, this message translates to:
-  /// **'Delivery Addresses'**
-  String get deliveryAddress;
+  /// In ar, this message translates to:
+  /// **'ابرز المهام'**
+  String get topTasks;
 
-  /// No description provided for @firstName.
+  /// No description provided for @dailyTask.
   ///
-  /// In en, this message translates to:
-  /// **'First Name'**
-  String get firstName;
+  /// In ar, this message translates to:
+  /// **'مهمة يومية'**
+  String get dailyTask;
 
-  /// No description provided for @lastName.
+  /// No description provided for @calendar.
   ///
-  /// In en, this message translates to:
-  /// **'Last Name'**
-  String get lastName;
+  /// In ar, this message translates to:
+  /// **'التقويم'**
+  String get calendar;
 
-  /// No description provided for @email.
+  /// No description provided for @addNewTask.
   ///
-  /// In en, this message translates to:
-  /// **'Email'**
-  String get email;
+  /// In ar, this message translates to:
+  /// **'اضافة مهمة جديدة'**
+  String get addNewTask;
 
-  /// No description provided for @fullName.
+  /// No description provided for @monitorViolation.
   ///
-  /// In en, this message translates to:
-  /// **'Full name'**
-  String get fullName;
+  /// In ar, this message translates to:
+  /// **'رصد مخالفة'**
+  String get monitorViolation;
 
-  /// No description provided for @managingHajjOperations.
+  /// No description provided for @facilityManagement.
   ///
-  /// In en, this message translates to:
-  /// **'Managing Hajj Warehouse Operations'**
-  String get managingHajjOperations;
+  /// In ar, this message translates to:
+  /// **'إدارة المنشأة'**
+  String get facilityManagement;
 
-  /// No description provided for @emailAlreadyInUse.
+  /// No description provided for @addNewEmployee.
   ///
-  /// In en, this message translates to:
-  /// **'This email is already registered.'**
-  String get emailAlreadyInUse;
+  /// In ar, this message translates to:
+  /// **'اضافة موظف جديد'**
+  String get addNewEmployee;
 
-  /// No description provided for @emailNotFount.
+  /// No description provided for @addNewCompliance.
   ///
-  /// In en, this message translates to:
-  /// **'No user found with this email.'**
-  String get emailNotFount;
+  /// In ar, this message translates to:
+  /// **'اضافة امتثال جديد'**
+  String get addNewCompliance;
 
-  /// No description provided for @wrongPassword.
+  /// No description provided for @addNewDepartment.
   ///
-  /// In en, this message translates to:
-  /// **'Incorrect password for this email.'**
-  String get wrongPassword;
+  /// In ar, this message translates to:
+  /// **'اضافة قسم جديد'**
+  String get addNewDepartment;
 
-  /// No description provided for @khaled.
+  /// No description provided for @sendNewNotification.
   ///
-  /// In en, this message translates to:
-  /// **'Khaled'**
-  String get khaled;
+  /// In ar, this message translates to:
+  /// **'ارسال اشعار جديد'**
+  String get sendNewNotification;
 
-  /// No description provided for @searchCountryOrCode.
+  /// No description provided for @leavesAndHolidays.
   ///
-  /// In en, this message translates to:
-  /// **'إبحث عن اسم البلد او الرمز'**
-  String get searchCountryOrCode;
+  /// In ar, this message translates to:
+  /// **'الإجازات والعطلات'**
+  String get leavesAndHolidays;
 
-  /// No description provided for @faris.
+  /// No description provided for @lawsAndRegulations.
   ///
-  /// In en, this message translates to:
-  /// **'Faris'**
-  String get faris;
+  /// In ar, this message translates to:
+  /// **'القوانين والأنظمة'**
+  String get lawsAndRegulations;
 
-  /// No description provided for @termsOfUse.
+  /// No description provided for @violations.
   ///
-  /// In en, this message translates to:
-  /// **'Terms of use'**
-  String get termsOfUse;
+  /// In ar, this message translates to:
+  /// **'المخالفات'**
+  String get violations;
+
+  /// No description provided for @reports.
+  ///
+  /// In ar, this message translates to:
+  /// **'التقارير'**
+  String get reports;
+
+  /// No description provided for @searchDepartmentEmployee.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث عن قسم ، موظف'**
+  String get searchDepartmentEmployee;
+
+  /// No description provided for @facilityDepartments.
+  ///
+  /// In ar, this message translates to:
+  /// **'اقسام المنشأة'**
+  String get facilityDepartments;
+
+  /// No description provided for @employee.
+  ///
+  /// In ar, this message translates to:
+  /// **'موظف'**
+  String get employee;
+
+  /// No description provided for @responsibleManager.
+  ///
+  /// In ar, this message translates to:
+  /// **'المدير المسؤول'**
+  String get responsibleManager;
+
+  /// No description provided for @personalAccount.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحساب الشخصي'**
+  String get personalAccount;
+
+  /// No description provided for @system.
+  ///
+  /// In ar, this message translates to:
+  /// **'النظام'**
+  String get system;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In ar, this message translates to:
+  /// **'تغيير اللغة'**
+  String get changeLanguage;
 
   /// No description provided for @privacyPolicy.
   ///
-  /// In en, this message translates to:
-  /// **'privacyPolicy'**
+  /// In ar, this message translates to:
+  /// **'سياسة الخصوصية'**
   String get privacyPolicy;
+
+  /// No description provided for @sendComplaintOrReport.
+  ///
+  /// In ar, this message translates to:
+  /// **'ارسال شكوى او بلاغ للإدارة'**
+  String get sendComplaintOrReport;
+
+  /// No description provided for @account.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحساب'**
+  String get account;
+
+  /// No description provided for @changePassword.
+  ///
+  /// In ar, this message translates to:
+  /// **'تغيير كلمة المرور'**
+  String get changePassword;
+
+  /// No description provided for @logOut.
+  ///
+  /// In ar, this message translates to:
+  /// **'تسجيل الخروج'**
+  String get logOut;
+
+  /// No description provided for @send.
+  ///
+  /// In ar, this message translates to:
+  /// **'ارسال'**
+  String get send;
+
+  /// No description provided for @notifications.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإشعارات'**
+  String get notifications;
+
+  /// No description provided for @addNewLeave.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضافة اجازة جديدة'**
+  String get addNewLeave;
+
+  /// No description provided for @leaveNote.
+  ///
+  /// In ar, this message translates to:
+  /// **'يمكنك ادخال ايام اجازة او عطلات لإعفاء الموظفين جميعاً من مهام الإمتثال خلال ايام الإجازة'**
+  String get leaveNote;
+
+  /// No description provided for @leaveNo.
+  ///
+  /// In ar, this message translates to:
+  /// **'اجازة رقم'**
+  String get leaveNo;
+
+  /// No description provided for @leaveSetFromDate.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم تحديد الإجازة من تاريخ'**
+  String get leaveSetFromDate;
+
+  /// No description provided for @toDate.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلى تاريخ'**
+  String get toDate;
+
+  /// No description provided for @monitoredViolations.
+  ///
+  /// In ar, this message translates to:
+  /// **'مخالفات مرصودة'**
+  String get monitoredViolations;
+
+  /// No description provided for @searchViolationEmployee.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث عن مخالفة ، باسم الموظف'**
+  String get searchViolationEmployee;
+
+  /// No description provided for @lastResponseBy.
+  ///
+  /// In ar, this message translates to:
+  /// **'اخر رد من خلال'**
+  String get lastResponseBy;
+
+  /// No description provided for @leaveTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'عنوان الإجازة'**
+  String get leaveTitle;
+
+  /// No description provided for @taskTitleToComplyWith.
+  ///
+  /// In ar, this message translates to:
+  /// **'عنوان المهمة المطلوب الإمتثال لها'**
+  String get taskTitleToComplyWith;
+
+  /// No description provided for @leaveDescription.
+  ///
+  /// In ar, this message translates to:
+  /// **'وصف الإجازة'**
+  String get leaveDescription;
+
+  /// No description provided for @requiredTaskDescription.
+  ///
+  /// In ar, this message translates to:
+  /// **'وصف المهمة المطلوبة'**
+  String get requiredTaskDescription;
+
+  /// No description provided for @fromDate.
+  ///
+  /// In ar, this message translates to:
+  /// **'من تاريخ'**
+  String get fromDate;
+
+  /// No description provided for @doYouHaveComplaintReport.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل لديك شكوى او بلاغ ؟'**
+  String get doYouHaveComplaintReport;
+
+  /// No description provided for @complaintNote.
+  ///
+  /// In ar, this message translates to:
+  /// **'ارسله للإدارة بكل خصوصية وسرية وسيتم العمل عليه لأجل المصلحة العامة للمنشأة بجدية'**
+  String get complaintNote;
+
+  /// No description provided for @yourMessage.
+  ///
+  /// In ar, this message translates to:
+  /// **'رسالتك'**
+  String get yourMessage;
+
+  /// No description provided for @attachFilesImages.
+  ///
+  /// In ar, this message translates to:
+  /// **'إرفاق ملفات ، صور'**
+  String get attachFilesImages;
+
+  /// No description provided for @department.
+  ///
+  /// In ar, this message translates to:
+  /// **'قسم'**
+  String get department;
+
+  /// No description provided for @thisMonthComplianceAssessment.
+  ///
+  /// In ar, this message translates to:
+  /// **'تقييم الإمتثال هذا الشهر'**
+  String get thisMonthComplianceAssessment;
+
+  /// No description provided for @since.
+  ///
+  /// In ar, this message translates to:
+  /// **'منذ'**
+  String get since;
+
+  /// No description provided for @toDay.
+  ///
+  /// In ar, this message translates to:
+  /// **'الى اليوم'**
+  String get toDay;
+
+  /// No description provided for @departmentComplianceAssessment.
+  ///
+  /// In ar, this message translates to:
+  /// **'تقييم امتثال القسم'**
+  String get departmentComplianceAssessment;
+
+  /// No description provided for @mostCompliantEmployee.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموظف الأكثر امتثالاً'**
+  String get mostCompliantEmployee;
+
+  /// No description provided for @leastCompliantEmployee.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموظف الأقل امتثالاً'**
+  String get leastCompliantEmployee;
+
+  /// No description provided for @searchForEmployee.
+  ///
+  /// In ar, this message translates to:
+  /// **'ابحث عن موظف'**
+  String get searchForEmployee;
+
+  /// No description provided for @departmentEmployees.
+  ///
+  /// In ar, this message translates to:
+  /// **'موظفين القسم'**
+  String get departmentEmployees;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

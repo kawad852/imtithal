@@ -1,29 +1,35 @@
 import 'package:shared/shared.dart';
 
-class HolidayCard extends StatelessWidget {
-  const HolidayCard({super.key});
+class EmployeeCard extends StatelessWidget {
+  const EmployeeCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 87,
-      padding: const EdgeInsets.symmetric(horizontal: 11),
+      height: 80,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         color: context.colorPalette.greyF5F,
         borderRadius: BorderRadius.circular(kRadiusSecondary),
       ),
       child: Row(
         children: [
-          VerticalLine(height: 67, color: context.colorPalette.primary),
-          const SizedBox(width: 10),
+          VerticalLine(height: 60, color: context.colorPalette.yellowE7B),
+          const BaseNetworkImage(
+            "",
+            width: 60,
+            height: 60,
+            shape: BoxShape.circle,
+            margin: EdgeInsets.symmetric(horizontal: 10),
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "اجازة رقم 21#",
+                  "المدير المسؤول",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.grey8B8,
@@ -32,9 +38,9 @@ class HolidayCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Text(
-                    "اجازة رسمية - العيد الوطني",
+                    "محمد احمد",
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: context.colorPalette.black252,
@@ -44,7 +50,7 @@ class HolidayCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "تم تحديد الإجازة من تاريخ 01.05.2025 إلى تاريخ 03.05.2025",
+                  "85% امتثال جيد جداً",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.grey8B8,
@@ -55,7 +61,10 @@ class HolidayCard extends StatelessWidget {
               ],
             ),
           ),
-          const Icon(Icons.arrow_forward_ios_rounded),
+          Icon(
+            Icons.arrow_forward_ios_rounded,
+            color: context.colorPalette.grey8B8,
+          ),
         ],
       ),
     );

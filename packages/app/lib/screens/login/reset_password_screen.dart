@@ -13,7 +13,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     return Scaffold(
       appBar: AppBar(),
       bottomNavigationBar: BottomButton(
-        text: "استعادة كلمة المرور",
+        text: context.appLocalization.resetPassword,
         onPressed: () {},
       ),
       body: Padding(
@@ -23,7 +23,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           children: [
             SizedBox(width: context.mediaQuery.width),
             Text(
-              "هل فقدت كلمة المرور ؟ سهلة ",
+              context.appLocalization.lostYourPassword,
               style: TextStyle(
                 color: context.colorPalette.black252,
                 fontSize: 16,
@@ -31,7 +31,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               ),
             ),
             Text(
-              "يمكنك استعادتها بخطوات بسيطة",
+              context.appLocalization.youCanRecoverIt,
               style: TextStyle(
                 color: context.colorPalette.black252,
                 fontSize: 16,
@@ -41,7 +41,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                "يرجى ادخال بريدك الإلكتروني لإستعادة كلمة المرور.",
+                context.appLocalization.enterEmailToRecoverPass,
                 style: TextStyle(
                   color: context.colorPalette.grey8B8,
                   fontSize: 14,

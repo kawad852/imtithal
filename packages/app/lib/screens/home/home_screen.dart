@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: Container(),
         leadingWidth: 0,
         title: Text(
-          "الصفحة الرئيسية",
+          context.appLocalization.home,
           style: TextStyle(
             color: context.colorPalette.primary,
             fontSize: 16,
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Expanded(
                 child: Text(
-                  "ملخص إمتثال اليوم",
+                  context.appLocalization.todayImtithalSummary,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.primary,
@@ -71,11 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
           TextEditor(
             onChanged: (value) {},
             required: false,
-            hintText: "ابحث عن مهمة ، موظف",
-            prefixIcon: const IconButton(
-              onPressed: null,
-              icon: CustomSvg(MyIcons.search),
-            ),
+            hintText: context.appLocalization.searchTaskEmployee,
+            prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 13),
@@ -83,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: Text(
-                    "ابرز المهام",
+                    context.appLocalization.topTasks,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: context.colorPalette.primary,

@@ -78,7 +78,7 @@ class ViolationsCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "اخر رد من خلال : ",
+                      "${context.appLocalization.lastResponseBy} : ",
                       style: TextStyle(
                         color: context.colorPalette.grey8B8,
                         fontSize: 12,

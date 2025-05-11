@@ -1,4 +1,3 @@
-import 'package:app/screens/home/home_screen.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -25,7 +24,6 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => AppProvider()),
-        ChangeNotifierProvider(create: (context) => InventoryProvider()),
       ],
       child: const MyApp(),
     ),

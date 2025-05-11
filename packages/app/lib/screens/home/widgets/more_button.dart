@@ -11,7 +11,7 @@ class MoreButton extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            "المزيد",
+            context.appLocalization.more,
             style: TextStyle(
               color: context.colorPalette.grey8B8,
               fontSize: 14,

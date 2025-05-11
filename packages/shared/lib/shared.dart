@@ -85,7 +85,6 @@ export 'network/my_queries.dart';
 export 'notifications/cloud_messaging_service.dart';
 //providers
 export 'providers/app_provider.dart';
-export 'providers/inventory_provider.dart';
 export 'providers/user_provider.dart';
 export 'utils/app_constants.dart';
 export 'utils/color_palette.dart';
@@ -98,17 +97,17 @@ export 'utils/my_theme.dart';
 export 'utils/providers_extension.dart';
 //utils
 export 'utils/shared_pref.dart';
-
-//widgets
-export 'widgets/stretch_button.dart';
+export 'widgets/base_network_image.dart';
 export 'widgets/bottom_button.dart';
-export 'widgets/custom_svg.dart';
-export 'widgets/titled_textfield.dart';
 export 'widgets/custom_back.dart';
+export 'widgets/custom_svg.dart';
 export 'widgets/editors/base_editor.dart';
+export 'widgets/editors/email_editor.dart';
 export 'widgets/editors/password_editor.dart';
 export 'widgets/editors/text_editor.dart';
-export 'widgets/editors/email_editor.dart';
-export 'widgets/base_network_image.dart';
+//widgets
+export 'widgets/stretch_button.dart';
 export 'widgets/task_card.dart';
 export 'widgets/vertical_line.dart';
+export 'widgets/titled_textfield.dart';
+export 'widgets/task_bubble.dart';
