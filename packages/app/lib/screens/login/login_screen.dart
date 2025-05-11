@@ -12,7 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomButton(text: "تسجيل الدخول", onPressed: () {}),
+      bottomNavigationBar: BottomButton(text: context.appLocalization.login, onPressed: () {}),
       body: Column(
         children: [
           SizedBox(width: context.mediaQuery.width, height: 100),
@@ -57,19 +57,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   title: "اسم المستخدم / البريد الألكتروني",
                   child: TextEditor(
                     onChanged: (value) {},
-                    prefixIcon: const IconButton(
-                      onPressed: null,
-                      icon: CustomSvg(MyIcons.user),
-                    ),
+                    prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.user)),
                   ),
                 ),
                 const SizedBox(height: 10),
                 TitledTextField(
                   title: "كلمة المرور",
-                  child: PasswordEditor(
-                    onChanged: (value) {},
-                    initialValue: null,
-                  ),
+                  child: PasswordEditor(onChanged: (value) {}, initialValue: null),
                 ),
                 Row(
                   children: [

@@ -15,19 +15,15 @@ class _HomeScreenState extends State<HomeScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          "الصفحة الرئيسية",
+          // "الصفحة الرئيسية",
+          context.appLocalization.login,
           style: TextStyle(
             color: context.colorPalette.primary,
             fontSize: 16,
             fontWeight: FontWeight.w700,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const CustomSvg(MyIcons.notification),
-          ),
-        ],
+        actions: [IconButton(onPressed: () {}, icon: const CustomSvg(MyIcons.notification))],
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -68,10 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onChanged: (value) {},
             required: false,
             hintText: "ابحث عن مهمة ، موظف",
-            prefixIcon: const IconButton(
-              onPressed: null,
-              icon: CustomSvg(MyIcons.search),
-            ),
+            prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 13),
