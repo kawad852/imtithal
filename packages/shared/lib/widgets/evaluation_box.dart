@@ -1,10 +1,10 @@
 import 'package:shared/shared.dart';
 
-class DepartmentInfo extends StatelessWidget {
+class EvaluationBox extends StatelessWidget {
   final String title, subTitle, value;
   final Color color;
   final bool isEmployee;
-  const DepartmentInfo({
+  const EvaluationBox({
     super.key,
     required this.title,
     required this.subTitle,

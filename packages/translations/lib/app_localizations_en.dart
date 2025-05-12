@@ -256,4 +256,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get departmentEmployees => 'Department Employees';
+
+  @override
+  String get complianceAssessment => 'Compliance assessment';
+
+  @override
+  String get employeeNo => 'Employee No';
+
+  @override
+  String get tasks => 'Tasks';
+
+  @override
+  String get lateTasks => 'Late tasks';
+
+  @override
+  String get completedTasks => 'Completed tasks';
+
+  @override
+  String get incompleteTasks => 'Incomplete tasks';
 }

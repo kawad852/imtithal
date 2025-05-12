@@ -81,5 +81,11 @@
   "mostCompliantEmployee":"الموظف الأكثر امتثالاً",
   "leastCompliantEmployee":"الموظف الأقل امتثالاً",
   "searchForEmployee":"ابحث عن موظف",
-  "departmentEmployees":"موظفين القسم"
+  "departmentEmployees":"موظفين القسم",
+  "complianceAssessment":"تقييم الإمتثال",
+  "employeeNo":"رقم الموظف",
+  "tasks":"المهام",
+  "lateTasks":"مهام متأخرة",
+  "completedTasks":"مهام مكتملة",
+  "incompleteTasks":"مهام غير مكتملة"
 }

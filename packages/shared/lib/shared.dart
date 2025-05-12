@@ -111,3 +111,5 @@ export 'widgets/task_card.dart';
 export 'widgets/vertical_line.dart';
 export 'widgets/titled_textfield.dart';
 export 'widgets/task_bubble.dart';
+export 'widgets/evaluation_box.dart';
+export 'widgets/month_calender.dart';

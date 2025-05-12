@@ -592,6 +592,42 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'موظفين القسم'**
   String get departmentEmployees;
+
+  /// No description provided for @complianceAssessment.
+  ///
+  /// In ar, this message translates to:
+  /// **'تقييم الإمتثال'**
+  String get complianceAssessment;
+
+  /// No description provided for @employeeNo.
+  ///
+  /// In ar, this message translates to:
+  /// **'رقم الموظف'**
+  String get employeeNo;
+
+  /// No description provided for @tasks.
+  ///
+  /// In ar, this message translates to:
+  /// **'المهام'**
+  String get tasks;
+
+  /// No description provided for @lateTasks.
+  ///
+  /// In ar, this message translates to:
+  /// **'مهام متأخرة'**
+  String get lateTasks;
+
+  /// No description provided for @completedTasks.
+  ///
+  /// In ar, this message translates to:
+  /// **'مهام مكتملة'**
+  String get completedTasks;
+
+  /// No description provided for @incompleteTasks.
+  ///
+  /// In ar, this message translates to:
+  /// **'مهام غير مكتملة'**
+  String get incompleteTasks;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

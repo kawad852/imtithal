@@ -1,3 +1,4 @@
+import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class NavSheet extends StatelessWidget {
@@ -21,7 +22,9 @@ class NavSheet extends StatelessWidget {
         children: [
           Expanded(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.push((context) => const TaskInputScreen());
+              },
               child: Container(
                 width: double.infinity,
                 height: 48,

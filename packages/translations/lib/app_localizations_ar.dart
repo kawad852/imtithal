@@ -256,4 +256,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get departmentEmployees => 'موظفين القسم';
+
+  @override
+  String get complianceAssessment => 'تقييم الإمتثال';
+
+  @override
+  String get employeeNo => 'رقم الموظف';
+
+  @override
+  String get tasks => 'المهام';
+
+  @override
+  String get lateTasks => 'مهام متأخرة';
+
+  @override
+  String get completedTasks => 'مهام مكتملة';
+
+  @override
+  String get incompleteTasks => 'مهام غير مكتملة';
 }

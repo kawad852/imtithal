@@ -81,5 +81,11 @@
   "mostCompliantEmployee":"Most Compliant Employee",
   "leastCompliantEmployee":"Least Compliant Employee",
   "searchForEmployee":"Search for Employee",
-  "departmentEmployees":"Department Employees"
+  "departmentEmployees":"Department Employees",
+  "complianceAssessment":"Compliance assessment",
+  "employeeNo":"Employee No",
+  "tasks":"Tasks",
+  "lateTasks":"Late tasks",
+  "completedTasks":"Completed tasks",
+  "incompleteTasks":"Incomplete tasks"
 }

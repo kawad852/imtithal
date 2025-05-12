@@ -1,7 +1,15 @@
 import 'package:shared/shared.dart';
 
 class TaskCard extends StatelessWidget {
-  const TaskCard({super.key});
+  final Color? colorTask;
+  final bool isEmployee;
+  final bool isPrivate;
+  const TaskCard({
+    super.key,
+    this.isEmployee = false,
+    this.isPrivate = false,
+    this.colorTask,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +23,7 @@ class TaskCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          VerticalLine(
-            height: 67,
-            color: context.colorPalette.primary, //TODO : yellowE7B , redD62 This color used,
-          ),
+          VerticalLine(height: 67, color: colorTask ?? context.colorPalette.primary),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -37,6 +42,34 @@ class TaskCard extends StatelessWidget {
                         ),
                       ),
                     ),
+                    if (isPrivate)
+                      Container(
+                        height: 20,
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        margin: const EdgeInsetsDirectional.only(end: 4),
+                        decoration: BoxDecoration(
+                          color: context.colorPalette.greyECE,
+                          borderRadius: BorderRadius.circular(kRadiusPrimary),
+                        ),
+                        child: Row(
+                          children: [
+                            CustomSvg(
+                              MyIcons.calendar,
+                              width: 14,
+                              color: context.colorPalette.grey8B8,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              "01.05.2025",
+                              style: TextStyle(
+                                color: context.colorPalette.grey8B8,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     Container(
                       height: 20,
                       padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -86,27 +119,28 @@ class TaskCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                      child: ListView.builder(
-                        itemCount: 7,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.zero,
-                        itemBuilder: (context, index) {
-                          return const Align(
-                            widthFactor: 0.5,
-                            child: BaseNetworkImage(
-                              "",
-                              width: 20,
-                              height: 20,
-                              shape: BoxShape.circle,
-                            ),
-                          );
-                        },
+                    if (!isEmployee)
+                      SizedBox(
+                        height: 20,
+                        child: ListView.builder(
+                          itemCount: 7,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.zero,
+                          itemBuilder: (context, index) {
+                            return const Align(
+                              widthFactor: 0.5,
+                              child: BaseNetworkImage(
+                                "",
+                                width: 20,
+                                height: 20,
+                                shape: BoxShape.circle,
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ],

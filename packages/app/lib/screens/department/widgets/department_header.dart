@@ -1,4 +1,3 @@
-import 'package:app/screens_exports.dart' show DepartmentInfo;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as sv;
 import 'package:shared/shared.dart';
 
@@ -67,14 +66,14 @@ class DepartmentHeader extends StatelessWidget {
           ),
           Row(
             children: [
-              DepartmentInfo(
+              EvaluationBox(
                 title: context.appLocalization.departmentComplianceAssessment,
                 subTitle: "امتثال ممتاز",
                 value: "59",
                 color: context.colorPalette.primary,
               ),
               const SizedBox(width: 10),
-              DepartmentInfo(
+              EvaluationBox(
                 title: context.appLocalization.mostCompliantEmployee,
                 isEmployee: true,
                 subTitle: "احمد محمد",
@@ -86,14 +85,14 @@ class DepartmentHeader extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              DepartmentInfo(
+              EvaluationBox(
                 title: context.appLocalization.departmentComplianceAssessment,
                 subTitle: context.appLocalization.monitoredViolations,
                 value: "96",
                 color: context.colorPalette.redD62,
               ),
               const SizedBox(width: 10),
-              DepartmentInfo(
+              EvaluationBox(
                 title: context.appLocalization.leastCompliantEmployee,
                 isEmployee: true,
                 subTitle: "عبدالله احمد",
