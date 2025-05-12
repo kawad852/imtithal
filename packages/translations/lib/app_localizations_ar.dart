@@ -274,4 +274,73 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get incompleteTasks => 'مهام غير مكتملة';
+
+  @override
+  String get taskTitle => 'عنوان المهمة';
+
+  @override
+  String get taskDescription => 'وصف المهمة';
+
+  @override
+  String get deliveryTime => 'وقت التسليم';
+
+  @override
+  String get gracePeriod => 'مدة السماح';
+
+  @override
+  String get taskRepetition => 'تكرار المهمة';
+
+  @override
+  String get daily => 'يومياً';
+
+  @override
+  String get weekly => 'اسبوعياً';
+
+  @override
+  String get monthly => 'شهرياً';
+
+  @override
+  String get noRepetition => 'بدون تكرار';
+
+  @override
+  String get specifyTheDayForTaskRepetition => 'حدد اليوم المخصص لتكرار المهمة';
+
+  @override
+  String get saturday => 'السبت';
+
+  @override
+  String get sunday => 'الأحد';
+
+  @override
+  String get monday => 'الإثنين';
+
+  @override
+  String get tuesday => 'الثلاثاء';
+
+  @override
+  String get wednesday => 'الأربعاء';
+
+  @override
+  String get thursday => 'الخميس';
+
+  @override
+  String get friday => 'الجمعة';
+
+  @override
+  String get notesAboutTheTask => 'ملاحظات حول المهمة';
+
+  @override
+  String get notesAboutTheTaskExecutionMechanism => 'ملاحظات حول الية تنفيذ المهمة';
+
+  @override
+  String get penaltyForNonCompliance => 'عقوبة عدم الإمتثال';
+
+  @override
+  String get descriptionPenaltyForNonCompliance => 'وصف عقوبة عدم الإمتثال';
+
+  @override
+  String get attachFiles => 'إرفاق ملفات';
+
+  @override
+  String get create => 'انشاء';
 }

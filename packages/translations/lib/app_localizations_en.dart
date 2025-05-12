@@ -274,4 +274,73 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get incompleteTasks => 'Incomplete tasks';
+
+  @override
+  String get taskTitle => 'Task title';
+
+  @override
+  String get taskDescription => 'Task description';
+
+  @override
+  String get deliveryTime => 'Delivery time';
+
+  @override
+  String get gracePeriod => 'Grace period';
+
+  @override
+  String get taskRepetition => 'Task repetition';
+
+  @override
+  String get daily => 'Daily';
+
+  @override
+  String get weekly => 'Weekly';
+
+  @override
+  String get monthly => 'Monthly';
+
+  @override
+  String get noRepetition => 'No repetition';
+
+  @override
+  String get specifyTheDayForTaskRepetition => 'Specify the day for task repetition';
+
+  @override
+  String get saturday => 'Saturday';
+
+  @override
+  String get sunday => 'Sunday';
+
+  @override
+  String get monday => 'Monday';
+
+  @override
+  String get tuesday => 'Tuesday';
+
+  @override
+  String get wednesday => 'Wednesday';
+
+  @override
+  String get thursday => 'Thursday';
+
+  @override
+  String get friday => 'Friday';
+
+  @override
+  String get notesAboutTheTask => 'Notes about the task';
+
+  @override
+  String get notesAboutTheTaskExecutionMechanism => 'Notes about the task execution mechanism';
+
+  @override
+  String get penaltyForNonCompliance => 'Penalty for non-compliance';
+
+  @override
+  String get descriptionPenaltyForNonCompliance => 'Description of the penalty for non-compliance';
+
+  @override
+  String get attachFiles => 'Attach files';
+
+  @override
+  String get create => 'Create';
 }

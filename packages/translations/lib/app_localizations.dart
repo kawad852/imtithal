@@ -628,6 +628,144 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'مهام غير مكتملة'**
   String get incompleteTasks;
+
+  /// No description provided for @taskTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'عنوان المهمة'**
+  String get taskTitle;
+
+  /// No description provided for @taskDescription.
+  ///
+  /// In ar, this message translates to:
+  /// **'وصف المهمة'**
+  String get taskDescription;
+
+  /// No description provided for @deliveryTime.
+  ///
+  /// In ar, this message translates to:
+  /// **'وقت التسليم'**
+  String get deliveryTime;
+
+  /// No description provided for @gracePeriod.
+  ///
+  /// In ar, this message translates to:
+  /// **'مدة السماح'**
+  String get gracePeriod;
+
+  /// No description provided for @taskRepetition.
+  ///
+  /// In ar, this message translates to:
+  /// **'تكرار المهمة'**
+  String get taskRepetition;
+
+  /// No description provided for @daily.
+  ///
+  /// In ar, this message translates to:
+  /// **'يومياً'**
+  String get daily;
+
+  /// No description provided for @weekly.
+  ///
+  /// In ar, this message translates to:
+  /// **'اسبوعياً'**
+  String get weekly;
+
+  /// No description provided for @monthly.
+  ///
+  /// In ar, this message translates to:
+  /// **'شهرياً'**
+  String get monthly;
+
+  /// No description provided for @noRepetition.
+  ///
+  /// In ar, this message translates to:
+  /// **'بدون تكرار'**
+  String get noRepetition;
+
+  /// No description provided for @specifyTheDayForTaskRepetition.
+  ///
+  /// In ar, this message translates to:
+  /// **'حدد اليوم المخصص لتكرار المهمة'**
+  String get specifyTheDayForTaskRepetition;
+
+  /// No description provided for @saturday.
+  ///
+  /// In ar, this message translates to:
+  /// **'السبت'**
+  String get saturday;
+
+  /// No description provided for @sunday.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأحد'**
+  String get sunday;
+
+  /// No description provided for @monday.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإثنين'**
+  String get monday;
+
+  /// No description provided for @tuesday.
+  ///
+  /// In ar, this message translates to:
+  /// **'الثلاثاء'**
+  String get tuesday;
+
+  /// No description provided for @wednesday.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأربعاء'**
+  String get wednesday;
+
+  /// No description provided for @thursday.
+  ///
+  /// In ar, this message translates to:
+  /// **'الخميس'**
+  String get thursday;
+
+  /// No description provided for @friday.
+  ///
+  /// In ar, this message translates to:
+  /// **'الجمعة'**
+  String get friday;
+
+  /// No description provided for @notesAboutTheTask.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملاحظات حول المهمة'**
+  String get notesAboutTheTask;
+
+  /// No description provided for @notesAboutTheTaskExecutionMechanism.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملاحظات حول الية تنفيذ المهمة'**
+  String get notesAboutTheTaskExecutionMechanism;
+
+  /// No description provided for @penaltyForNonCompliance.
+  ///
+  /// In ar, this message translates to:
+  /// **'عقوبة عدم الإمتثال'**
+  String get penaltyForNonCompliance;
+
+  /// No description provided for @descriptionPenaltyForNonCompliance.
+  ///
+  /// In ar, this message translates to:
+  /// **'وصف عقوبة عدم الإمتثال'**
+  String get descriptionPenaltyForNonCompliance;
+
+  /// No description provided for @attachFiles.
+  ///
+  /// In ar, this message translates to:
+  /// **'إرفاق ملفات'**
+  String get attachFiles;
+
+  /// No description provided for @create.
+  ///
+  /// In ar, this message translates to:
+  /// **'انشاء'**
+  String get create;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

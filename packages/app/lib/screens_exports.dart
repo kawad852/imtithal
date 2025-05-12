@@ -30,3 +30,4 @@ export 'screens/employee/employee_screen.dart';
 export 'screens/employee/widgets/employee_header.dart';
 export 'screens/task/task_type_screen.dart';
 export 'screens/task/task_input_screen.dart';
+export 'screens/task/widgets/day_bubble.dart';
