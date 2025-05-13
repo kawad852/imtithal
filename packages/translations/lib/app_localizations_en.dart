@@ -367,4 +367,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deliveryDateTime => 'Delivery date and time';
+
+  @override
+  String get takingActionOnTask => 'Taking action on a task';
+
+  @override
+  String get addRemoveEmployee => 'Add / Remove employee';
+
+  @override
+  String get modifyTask => 'Modify task';
+
+  @override
+  String get responsibleDepartment => 'Responsible department';
+
+  @override
+  String get responsibleEmployees => 'Responsible employees';
 }

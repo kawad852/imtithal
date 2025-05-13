@@ -33,4 +33,7 @@ class MyIcons {
   static const String filter = '${_path}filter.svg';
   static const String employeeBackground = '${_path}employee_background.svg';
   static const String setting = '${_path}setting.svg';
+  static const String check = '${_path}check.svg';
+  static const String messageEdit = '${_path}message_edit.svg';
+  static const String userEdit = '${_path}user_edit.svg';
 }

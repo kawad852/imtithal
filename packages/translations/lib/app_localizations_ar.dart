@@ -367,4 +367,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get deliveryDateTime => 'تاريخ ووقت التسليم';
+
+  @override
+  String get takingActionOnTask => 'اتخاذ اجراء في مهمة';
+
+  @override
+  String get addRemoveEmployee => 'اضافة / ازالة موظف';
+
+  @override
+  String get modifyTask => 'تعديل المهمة';
+
+  @override
+  String get responsibleDepartment => 'القسم المسؤول';
+
+  @override
+  String get responsibleEmployees => 'الموظفين المسؤولين';
 }

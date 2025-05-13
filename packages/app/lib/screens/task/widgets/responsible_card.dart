@@ -1,3 +1,4 @@
+import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class ResponsibleCard extends StatelessWidget {
@@ -67,7 +68,9 @@ class ResponsibleCard extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.push((context) => const TaskActionScreen());
+                      },
                       child: Container(
                         width: 32,
                         height: 32,

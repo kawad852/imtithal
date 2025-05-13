@@ -814,6 +814,36 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تاريخ ووقت التسليم'**
   String get deliveryDateTime;
+
+  /// No description provided for @takingActionOnTask.
+  ///
+  /// In ar, this message translates to:
+  /// **'اتخاذ اجراء في مهمة'**
+  String get takingActionOnTask;
+
+  /// No description provided for @addRemoveEmployee.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضافة / ازالة موظف'**
+  String get addRemoveEmployee;
+
+  /// No description provided for @modifyTask.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعديل المهمة'**
+  String get modifyTask;
+
+  /// No description provided for @responsibleDepartment.
+  ///
+  /// In ar, this message translates to:
+  /// **'القسم المسؤول'**
+  String get responsibleDepartment;
+
+  /// No description provided for @responsibleEmployees.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموظفين المسؤولين'**
+  String get responsibleEmployees;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

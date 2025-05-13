@@ -119,5 +119,10 @@
   "hour":"ساعة",
   "day":"يوم",
   "responsibleParties":"المسؤولين",
-  "deliveryDateTime":"تاريخ ووقت التسليم"
+  "deliveryDateTime":"تاريخ ووقت التسليم",
+  "takingActionOnTask":"اتخاذ اجراء في مهمة",
+  "addRemoveEmployee":"اضافة / ازالة موظف",
+  "modifyTask":"تعديل المهمة",
+  "responsibleDepartment":"القسم المسؤول",
+  "responsibleEmployees":"الموظفين المسؤولين"
 }
