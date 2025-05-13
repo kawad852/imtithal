@@ -31,3 +31,6 @@ export 'screens/employee/widgets/employee_header.dart';
 export 'screens/task/task_type_screen.dart';
 export 'screens/task/task_input_screen.dart';
 export 'screens/task/widgets/day_bubble.dart';
+export 'screens/task/task_detalis_screen.dart';
+export 'screens/task/widgets/time_card.dart';
+export 'screens/task/widgets/responsible_card.dart';

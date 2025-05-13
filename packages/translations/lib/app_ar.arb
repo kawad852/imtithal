@@ -110,5 +110,14 @@
   "penaltyForNonCompliance":"عقوبة عدم الإمتثال",
   "descriptionPenaltyForNonCompliance":"وصف عقوبة عدم الإمتثال",
   "attachFiles":"إرفاق ملفات",
-  "create":"انشاء"
+  "create":"انشاء",
+  "attachedFiles":"الملفات المرفقة",
+  "penaltyForNonCompliance":"عقوبة عدم الإمتثال",
+  "timeRemainingUntilDeadline":"الوقت المتبقي على موعد التسليم",
+  "second":"ثانية",
+  "minute":"دقيقة",
+  "hour":"ساعة",
+  "day":"يوم",
+  "responsibleParties":"المسؤولين",
+  "deliveryDateTime":"تاريخ ووقت التسليم"
 }

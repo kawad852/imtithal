@@ -343,4 +343,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get create => 'Create';
+
+  @override
+  String get attachedFiles => 'Attached files';
+
+  @override
+  String get timeRemainingUntilDeadline => 'Time remaining until the deadline';
+
+  @override
+  String get second => 'Second';
+
+  @override
+  String get minute => 'Minute';
+
+  @override
+  String get hour => 'Hour';
+
+  @override
+  String get day => 'Day';
+
+  @override
+  String get responsibleParties => 'Responsible parties';
+
+  @override
+  String get deliveryDateTime => 'Delivery date and time';
 }

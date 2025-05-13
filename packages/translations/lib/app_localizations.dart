@@ -766,6 +766,54 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'انشاء'**
   String get create;
+
+  /// No description provided for @attachedFiles.
+  ///
+  /// In ar, this message translates to:
+  /// **'الملفات المرفقة'**
+  String get attachedFiles;
+
+  /// No description provided for @timeRemainingUntilDeadline.
+  ///
+  /// In ar, this message translates to:
+  /// **'الوقت المتبقي على موعد التسليم'**
+  String get timeRemainingUntilDeadline;
+
+  /// No description provided for @second.
+  ///
+  /// In ar, this message translates to:
+  /// **'ثانية'**
+  String get second;
+
+  /// No description provided for @minute.
+  ///
+  /// In ar, this message translates to:
+  /// **'دقيقة'**
+  String get minute;
+
+  /// No description provided for @hour.
+  ///
+  /// In ar, this message translates to:
+  /// **'ساعة'**
+  String get hour;
+
+  /// No description provided for @day.
+  ///
+  /// In ar, this message translates to:
+  /// **'يوم'**
+  String get day;
+
+  /// No description provided for @responsibleParties.
+  ///
+  /// In ar, this message translates to:
+  /// **'المسؤولين'**
+  String get responsibleParties;
+
+  /// No description provided for @deliveryDateTime.
+  ///
+  /// In ar, this message translates to:
+  /// **'تاريخ ووقت التسليم'**
+  String get deliveryDateTime;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

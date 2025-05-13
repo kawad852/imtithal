@@ -343,4 +343,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get create => 'انشاء';
+
+  @override
+  String get attachedFiles => 'الملفات المرفقة';
+
+  @override
+  String get timeRemainingUntilDeadline => 'الوقت المتبقي على موعد التسليم';
+
+  @override
+  String get second => 'ثانية';
+
+  @override
+  String get minute => 'دقيقة';
+
+  @override
+  String get hour => 'ساعة';
+
+  @override
+  String get day => 'يوم';
+
+  @override
+  String get responsibleParties => 'المسؤولين';
+
+  @override
+  String get deliveryDateTime => 'تاريخ ووقت التسليم';
 }

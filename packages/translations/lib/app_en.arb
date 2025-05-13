@@ -110,5 +110,14 @@
   "penaltyForNonCompliance":"Penalty for non-compliance",
   "descriptionPenaltyForNonCompliance":"Description of the penalty for non-compliance",
   "attachFiles":"Attach files",
-  "create":"Create"
+  "create":"Create",
+  "attachedFiles":"Attached files",
+  "penaltyForNonCompliance":"Penalty for non-compliance",
+  "timeRemainingUntilDeadline":"Time remaining until the deadline",
+  "second":"Second",
+  "minute":"Minute",
+  "hour":"Hour",
+  "day":"Day",
+  "responsibleParties":"Responsible parties",
+  "deliveryDateTime":"Delivery date and time"
 }
