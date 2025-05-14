@@ -90,7 +90,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get late => 'متأخرة';
 
   @override
-  String get nonCompliant => 'مخالفة';
+  String get violation => 'مخالفة';
 
   @override
   String get searchTaskEmployee => 'ابحث عن مهمة ، موظف';
@@ -382,4 +382,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get responsibleEmployees => 'الموظفين المسؤولين';
+
+  @override
+  String get violationDetectedInTask => 'رصد مخالفة في مهمة';
+
+  @override
+  String get typeOfViolation => 'نوع المخالفة';
+
+  @override
+  String get nonCompliance => 'عدم امتثال';
+
+  @override
+  String get rejected => 'مرفوضة';
+
+  @override
+  String get complianceOfficerNotesExplanations => 'ملاحظات وشروحات موظف الأمتثال';
+
+  @override
+  String get violationObservedInTask => 'مخالفة مرصودة في مهمة';
+
+  @override
+  String get theViolationWasDetectedAgainst => 'تم رصد المخالفة بحق';
+
+  @override
+  String get dateAndTimeOfViolation => 'تاريخ ووقت المخالفة';
+
+  @override
+  String get finalAdministrativeDecision => 'القرار الإداري النهائي';
+
+  @override
+  String get addReply => 'اضافة رد';
+
+  @override
+  String get managementDecision => 'قرار الإدارة';
+
+  @override
+  String get cancelPenalty => 'إلغاء العقوبة';
+
+  @override
+  String get confirmPenalty => 'تأكيد العقوبة';
 }

@@ -26,7 +26,7 @@
   "incomplete":"Incomplete",
   "complete":"Complete",
   "late":"Late",
-  "nonCompliant":"Non-compliant",
+  "violation":"violation",
   "searchTaskEmployee":"Search for task, employee",
   "topTasks":"Top tasks",
   "dailyTask":"Daily task",
@@ -124,5 +124,18 @@
   "addRemoveEmployee":"Add / Remove employee",
   "modifyTask":"Modify task",
   "responsibleDepartment":"Responsible department",
-  "responsibleEmployees":"Responsible employees"
+  "responsibleEmployees":"Responsible employees",
+  "violationDetectedInTask":"Violation detected in a task",
+  "typeOfViolation":"Type of violation",
+  "nonCompliance":"Non-compliance",
+  "rejected":"Rejected",
+  "complianceOfficerNotesExplanations":"Compliance officer's notes and explanations",
+  "violationObservedInTask":"Violation observed in a task",
+  "theViolationWasDetectedAgainst":"The violation was detected against",
+  "dateAndTimeOfViolation":"Date and time of violation",
+  "finalAdministrativeDecision":"Final administrative decision",
+  "addReply":"Add reply",
+  "managementDecision":"Management decision",
+  "cancelPenalty":"Cancel penalty",
+  "confirmPenalty":"Confirm penalty"
 }

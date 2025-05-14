@@ -257,11 +257,11 @@ abstract class AppLocalizations {
   /// **'متأخرة'**
   String get late;
 
-  /// No description provided for @nonCompliant.
+  /// No description provided for @violation.
   ///
   /// In ar, this message translates to:
   /// **'مخالفة'**
-  String get nonCompliant;
+  String get violation;
 
   /// No description provided for @searchTaskEmployee.
   ///
@@ -844,6 +844,84 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الموظفين المسؤولين'**
   String get responsibleEmployees;
+
+  /// No description provided for @violationDetectedInTask.
+  ///
+  /// In ar, this message translates to:
+  /// **'رصد مخالفة في مهمة'**
+  String get violationDetectedInTask;
+
+  /// No description provided for @typeOfViolation.
+  ///
+  /// In ar, this message translates to:
+  /// **'نوع المخالفة'**
+  String get typeOfViolation;
+
+  /// No description provided for @nonCompliance.
+  ///
+  /// In ar, this message translates to:
+  /// **'عدم امتثال'**
+  String get nonCompliance;
+
+  /// No description provided for @rejected.
+  ///
+  /// In ar, this message translates to:
+  /// **'مرفوضة'**
+  String get rejected;
+
+  /// No description provided for @complianceOfficerNotesExplanations.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملاحظات وشروحات موظف الأمتثال'**
+  String get complianceOfficerNotesExplanations;
+
+  /// No description provided for @violationObservedInTask.
+  ///
+  /// In ar, this message translates to:
+  /// **'مخالفة مرصودة في مهمة'**
+  String get violationObservedInTask;
+
+  /// No description provided for @theViolationWasDetectedAgainst.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم رصد المخالفة بحق'**
+  String get theViolationWasDetectedAgainst;
+
+  /// No description provided for @dateAndTimeOfViolation.
+  ///
+  /// In ar, this message translates to:
+  /// **'تاريخ ووقت المخالفة'**
+  String get dateAndTimeOfViolation;
+
+  /// No description provided for @finalAdministrativeDecision.
+  ///
+  /// In ar, this message translates to:
+  /// **'القرار الإداري النهائي'**
+  String get finalAdministrativeDecision;
+
+  /// No description provided for @addReply.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضافة رد'**
+  String get addReply;
+
+  /// No description provided for @managementDecision.
+  ///
+  /// In ar, this message translates to:
+  /// **'قرار الإدارة'**
+  String get managementDecision;
+
+  /// No description provided for @cancelPenalty.
+  ///
+  /// In ar, this message translates to:
+  /// **'إلغاء العقوبة'**
+  String get cancelPenalty;
+
+  /// No description provided for @confirmPenalty.
+  ///
+  /// In ar, this message translates to:
+  /// **'تأكيد العقوبة'**
+  String get confirmPenalty;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

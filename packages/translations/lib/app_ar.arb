@@ -26,7 +26,7 @@
   "incomplete":"غير مكتملة",
   "complete":"مكتملة",
   "late":"متأخرة",
-  "nonCompliant":"مخالفة",
+  "violation":"مخالفة",
   "searchTaskEmployee":"ابحث عن مهمة ، موظف",
   "topTasks":"ابرز المهام",
   "dailyTask":"مهمة يومية",
@@ -124,5 +124,18 @@
   "addRemoveEmployee":"اضافة / ازالة موظف",
   "modifyTask":"تعديل المهمة",
   "responsibleDepartment":"القسم المسؤول",
-  "responsibleEmployees":"الموظفين المسؤولين"
+  "responsibleEmployees":"الموظفين المسؤولين",
+  "violationDetectedInTask":"رصد مخالفة في مهمة",
+  "typeOfViolation":"نوع المخالفة",
+  "nonCompliance":"عدم امتثال",
+  "rejected":"مرفوضة",
+  "complianceOfficerNotesExplanations":"ملاحظات وشروحات موظف الأمتثال",
+  "violationObservedInTask":"مخالفة مرصودة في مهمة",
+  "theViolationWasDetectedAgainst":"تم رصد المخالفة بحق",
+  "dateAndTimeOfViolation":"تاريخ ووقت المخالفة",
+  "finalAdministrativeDecision":"القرار الإداري النهائي",
+  "addReply":"اضافة رد",
+  "managementDecision":"قرار الإدارة",
+  "cancelPenalty":"إلغاء العقوبة",
+  "confirmPenalty":"تأكيد العقوبة"
 }

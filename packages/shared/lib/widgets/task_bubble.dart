@@ -28,7 +28,7 @@ class TaskBubble extends StatelessWidget {
         );
       case TaskTypeEnum.infringement:
         return (
-          context.appLocalization.nonCompliant,
+          context.appLocalization.violation,
           context.colorPalette.redF7D,
           context.colorPalette.redD62,
         );

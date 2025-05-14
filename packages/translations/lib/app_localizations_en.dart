@@ -90,7 +90,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get late => 'Late';
 
   @override
-  String get nonCompliant => 'Non-compliant';
+  String get violation => 'violation';
 
   @override
   String get searchTaskEmployee => 'Search for task, employee';
@@ -382,4 +382,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get responsibleEmployees => 'Responsible employees';
+
+  @override
+  String get violationDetectedInTask => 'Violation detected in a task';
+
+  @override
+  String get typeOfViolation => 'Type of violation';
+
+  @override
+  String get nonCompliance => 'Non-compliance';
+
+  @override
+  String get rejected => 'Rejected';
+
+  @override
+  String get complianceOfficerNotesExplanations => 'Compliance officer\'s notes and explanations';
+
+  @override
+  String get violationObservedInTask => 'Violation observed in a task';
+
+  @override
+  String get theViolationWasDetectedAgainst => 'The violation was detected against';
+
+  @override
+  String get dateAndTimeOfViolation => 'Date and time of violation';
+
+  @override
+  String get finalAdministrativeDecision => 'Final administrative decision';
+
+  @override
+  String get addReply => 'Add reply';
+
+  @override
+  String get managementDecision => 'Management decision';
+
+  @override
+  String get cancelPenalty => 'Cancel penalty';
+
+  @override
+  String get confirmPenalty => 'Confirm penalty';
 }

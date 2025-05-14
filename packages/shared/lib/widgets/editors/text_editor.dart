@@ -18,6 +18,8 @@ class TextEditor extends StatelessWidget {
   final bool nullable;
   final List<TextInputFormatter>? inputFormatters;
   final bool readOnly;
+  final bool? filled;
+  final Color? fillColor;
 
   const TextEditor({
     super.key,
@@ -37,6 +39,8 @@ class TextEditor extends StatelessWidget {
     this.nullable = false,
     this.inputFormatters,
     this.readOnly = false,
+    this.fillColor,
+    this.filled,
   });
 
   @override
@@ -45,6 +49,8 @@ class TextEditor extends StatelessWidget {
       initialValue: initialValue,
       hintText: hintText,
       hintStyle: hintStyle,
+      filled: filled,
+      fillColor: fillColor,
       required: required,
       textAlign: textAlign,
       enabledBorder: enabledBorder,

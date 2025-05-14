@@ -57,7 +57,9 @@ class NavSheet extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.push((context) => const TaskViolationInputScreen());
+              },
               child: Container(
                 width: double.infinity,
                 height: 48,
