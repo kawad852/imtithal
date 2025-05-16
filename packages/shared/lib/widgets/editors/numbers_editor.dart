@@ -51,6 +51,7 @@ class NumbersEditor extends StatelessWidget {
       textAlign: textAlign,
       style: textStyle,
       autofocus: autofocus,
+
       suffixIcon: suffixIcon,
       suffixIconConstraints: const BoxConstraints(maxWidth: 60),
       keyboardType: TextInputType.number,
@@ -65,7 +66,7 @@ class NumbersEditor extends StatelessWidget {
         }
       },
       validator: (value) {
-        if (required && (value == null || value.isEmpty)) {
+        if (!required && (value == null || value.isEmpty)) {
           return null;
         }
         return ValidationHelper.numberInt(context, value);

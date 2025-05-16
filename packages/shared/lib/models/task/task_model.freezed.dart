@@ -35,6 +35,8 @@ mixin _$TaskModel {
   set allowedDurationInMinutes(int value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
+  String get companyId => throw _privateConstructorUsedError;
+  set companyId(String value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   set title(String value) => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -75,6 +77,7 @@ abstract class $TaskModelCopyWith<$Res> {
     String deliveryTime,
     int allowedDurationInMinutes,
     String id,
+    String companyId,
     String title,
     String description,
     String status,
@@ -107,6 +110,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? deliveryTime = null,
     Object? allowedDurationInMinutes = null,
     Object? id = null,
+    Object? companyId = null,
     Object? title = null,
     Object? description = null,
     Object? status = null,
@@ -143,6 +147,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                 null == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            companyId:
+                null == companyId
+                    ? _value.companyId
+                    : companyId // ignore: cast_nullable_to_non_nullable
                         as String,
             title:
                 null == title
@@ -210,6 +219,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String deliveryTime,
     int allowedDurationInMinutes,
     String id,
+    String companyId,
     String title,
     String description,
     String status,
@@ -241,6 +251,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? deliveryTime = null,
     Object? allowedDurationInMinutes = null,
     Object? id = null,
+    Object? companyId = null,
     Object? title = null,
     Object? description = null,
     Object? status = null,
@@ -277,6 +288,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
             null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        companyId:
+            null == companyId
+                ? _value.companyId
+                : companyId // ignore: cast_nullable_to_non_nullable
                     as String,
         title:
             null == title
@@ -338,6 +354,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.deliveryTime = "",
     this.allowedDurationInMinutes = 0,
     this.id = "",
+    required this.companyId,
     this.title = "",
     this.description = "",
     this.status = "",
@@ -368,6 +385,8 @@ class _$TaskModelImpl extends _TaskModel {
   @JsonKey()
   String id;
   @override
+  String companyId;
+  @override
   @JsonKey()
   String title;
   @override
@@ -394,7 +413,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays)';
   }
 
   /// Create a copy of TaskModel
@@ -418,6 +437,7 @@ abstract class _TaskModel extends TaskModel {
     String deliveryTime,
     int allowedDurationInMinutes,
     String id,
+    required String companyId,
     String title,
     String description,
     String status,
@@ -452,6 +472,9 @@ abstract class _TaskModel extends TaskModel {
   @override
   String get id;
   set id(String value);
+  @override
+  String get companyId;
+  set companyId(String value);
   @override
   String get title;
   set title(String value);

@@ -104,6 +104,7 @@ export 'widgets/editors/password_editor.dart';
 export 'widgets/editors/text_editor.dart';
 export 'widgets/editors/username_editor.dart';
 export 'widgets/evaluation_box.dart';
+export 'widgets/images_attacher.dart';
 export 'widgets/month_calender.dart';
 //widgets
 export 'widgets/stretch_button.dart';

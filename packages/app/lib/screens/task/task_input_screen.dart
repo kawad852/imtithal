@@ -11,6 +11,7 @@ class TaskInputScreen extends StatefulWidget {
 class _TaskInputScreenState extends State<TaskInputScreen> {
   late TaskModel _task;
   final _formKey = GlobalKey<FormState>();
+  final List<XFile> _files = [];
 
   Future<void> _onSubmit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
@@ -21,7 +22,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
   @override
   void initState() {
     super.initState();
-    _task = TaskModel(attachments: [], repeatDays: []);
+    _task = TaskModel(companyId: '', attachments: [], repeatDays: []);
   }
 
   @override
@@ -68,6 +69,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                 ),
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: TitledTextField(
@@ -83,6 +85,14 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                     child: TitledTextField(
                       title: context.appLocalization.gracePeriod,
                       child: NumbersEditor(
+                        suffixIcon: Text(
+                          "   ${context.appLocalization.minute}   ",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: context.colorPalette.primary,
+                          ),
+                        ),
                         onChanged: (value) => _task.allowedDurationInMinutes = value!,
                         textAlign: TextAlign.center,
                       ),
@@ -166,22 +176,10 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                 ),
               ),
               const SizedBox(height: 15),
-              GestureDetector(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    const CustomSvg(MyIcons.attachSquare),
-                    const SizedBox(width: 11),
-                    Text(
-                      context.appLocalization.attachFiles,
-                      style: TextStyle(
-                        color: context.colorPalette.black252,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
+              ImagesAttacher(
+                onChanged: (files) {
+                  _files.addAll(files);
+                },
               ),
             ],
           ),

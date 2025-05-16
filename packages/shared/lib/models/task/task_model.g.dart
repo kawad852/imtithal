@@ -15,6 +15,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
   allowedDurationInMinutes:
       (json['allowedDurationInMinutes'] as num?)?.toInt() ?? 0,
   id: json['id'] as String? ?? "",
+  companyId: json['companyId'] as String,
   title: json['title'] as String? ?? "",
   description: json['description'] as String? ?? "",
   status: json['status'] as String? ?? "",
@@ -35,6 +36,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'deliveryTime': instance.deliveryTime,
       'allowedDurationInMinutes': instance.allowedDurationInMinutes,
       'id': instance.id,
+      'companyId': instance.companyId,
       'title': instance.title,
       'description': instance.description,
       'status': instance.status,

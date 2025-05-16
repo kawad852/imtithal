@@ -13,6 +13,7 @@ class TaskModel with _$TaskModel {
     @Default("") String deliveryTime,
     @Default(0) int allowedDurationInMinutes,
     @Default("") String id,
+    required String companyId,
     @Default("") String title,
     @Default("") String description,
     @Default("") String status,
