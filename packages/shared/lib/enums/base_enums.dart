@@ -18,12 +18,14 @@ class AuthProviders {
 enum ActionType { add, edit, delete }
 
 enum RoleEnum {
-  admin('ADMIN'),
-  manager('MANAGER');
+  admin('ADMIN'), //admin@gmail.com
+  emtithalManager('EMTITHAL-MANAGER'), //khaled@gmail.com
+  departmentManager('DEPARTMENT-MANAGER'), //faris@gmail.com
+  employee('EMPLOYEE'); //osama@gmail.com
 
   final String value;
 
   const RoleEnum(this.value);
 }
 
-enum PolicyEnum { policy, laws}
+enum PolicyEnum { policy, laws }

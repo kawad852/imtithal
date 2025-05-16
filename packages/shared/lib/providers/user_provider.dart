@@ -54,36 +54,55 @@ class UserProvider extends ChangeNotifier {
     onGuestRegistration = callBack;
   }
 
-  Future<void> login(BuildContext context, UserCredential auth) async {
+  Future<void> login(
+    BuildContext context, {
+    required String username,
+    required String password,
+    bool portalLogin = false,
+  }) async {
     await ApiService.fetch(
       context,
       callBack: () async {
         // final user = UserModel();
 
+        final auth = await _firebaseAuth.signInWithEmailAndPassword(
+          email: "$username$kEmtithalDomain",
+          password: password,
+        );
+
         final userDocument = await _firebaseFirestore.users.doc(auth.user!.uid).get();
-        late UserModel user;
+        final user = userDocument.data()!;
 
         if (userDocument.exists) {
-          if (context.mounted && userDocument.data()!.blocked) {
+          if (context.mounted && user.blocked) {
             context.showSnackBar(context.appLocalization.authFailed);
             return;
           }
 
-          MySharedPreferences.user = userDocument.data()!;
+          MySharedPreferences.user = user;
         } else {
           if (context.mounted) {
             context.showSnackBar(context.appLocalization.authFailed);
           }
         }
 
+        // if (portalLogin && context.mounted) {
+        //   if (user.roleId == null) {
+        //     Fluttertoast.showToast(msg: context.appLocalization.authFailed);
+        //   } else {
+        //     await context.portalProvider.initRole(context);
+        //     if (context.mounted) {
+        //       notifyListeners();
+        //       GoRouter.of(context).go(context.portalProvider.role!.initialLocation!);
+        //     }
+        //   }
+        //   return;
+        // }
+
         notifyListeners();
 
         if (context.mounted) {
-          if (MySharedPreferences.user?.role == RoleEnum.admin.value) {
-            context.pushAndRemoveUntil((context) => const Placeholder());
-          } else {
-            context.goToNavBar();
-          }
+          context.goToNavBar();
         }
       },
     );

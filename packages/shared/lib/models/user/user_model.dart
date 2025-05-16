@@ -9,7 +9,6 @@ class UserModel with _$UserModel {
   @JsonSerializable(explicitToJson: true)
   factory UserModel({
     @TimestampSerializer() DateTime? createdAt,
-    @TimestampSerializer() DateTime? workStartDate,
     String? id,
     @Default('') String displayName,
     @Default('') String email,
@@ -18,11 +17,8 @@ class UserModel with _$UserModel {
     String? languageCode,
     String? profilePhoto,
     @Default(false) bool blocked,
-    String? phoneCountryCode,
-    String? phoneNum,
     @Default('') String password,
     @Default('') String jobTitle,
-    List<String>? images,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

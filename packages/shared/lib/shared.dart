@@ -105,11 +105,12 @@ export 'widgets/editors/base_editor.dart';
 export 'widgets/editors/email_editor.dart';
 export 'widgets/editors/password_editor.dart';
 export 'widgets/editors/text_editor.dart';
-//widgets
-export 'widgets/stretch_button.dart';
-export 'widgets/task_card.dart';
-export 'widgets/vertical_line.dart';
-export 'widgets/titled_textfield.dart';
-export 'widgets/task_bubble.dart';
+export 'widgets/editors/username_editor.dart';
 export 'widgets/evaluation_box.dart';
 export 'widgets/month_calender.dart';
+//widgets
+export 'widgets/stretch_button.dart';
+export 'widgets/task_bubble.dart';
+export 'widgets/task_card.dart';
+export 'widgets/titled_textfield.dart';
+export 'widgets/vertical_line.dart';

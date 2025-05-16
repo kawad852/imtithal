@@ -1,3 +1,4 @@
+import 'package:app/screens/base/app_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 extension NavigationExtension on BuildContext {
@@ -25,7 +26,7 @@ extension NavigationExtension on BuildContext {
       this,
       MaterialPageRoute(
         builder: (context) {
-          return const Placeholder();
+          return const AppNavBar();
         },
       ),
       (route) => false,
