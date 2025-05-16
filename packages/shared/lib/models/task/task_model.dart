@@ -17,8 +17,11 @@ class TaskModel with _$TaskModel {
     @Default("") String description,
     @Default("") String status,
     @Default("") String departmentId,
+    @Default("") String penaltyDescription,
+    String? repeatType,
     @Default(false) bool markedAsLate,
-    List<String>? attachments,
+    required List<String> attachments,
+    required List<String> repeatDays,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
 

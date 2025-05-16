@@ -5,6 +5,7 @@ class DayBubble extends StatelessWidget {
   final String title;
   final bool isSelected;
   final Color backgroundColor;
+
   const DayBubble({
     super.key,
     required this.onTap,
@@ -32,10 +33,7 @@ class DayBubble extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                color:
-                    isSelected
-                        ? context.colorPalette.white
-                        : context.colorPalette.black,
+                color: isSelected ? context.colorPalette.white : context.colorPalette.black,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),

@@ -12,7 +12,6 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _username;
   var _password = '';
   final _formKey = GlobalKey<FormState>();
-  FirebaseAuth get _firebaseAuth => FirebaseAuth.instance;
 
   Future<void> _login(BuildContext context) async {
     if (_formKey.currentState!.validate()) {

@@ -6,24 +6,27 @@ part of 'task_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TaskModelImpl _$$TaskModelImplFromJson(Map<String, dynamic> json) =>
-    _$TaskModelImpl(
-      createdAt: const TimestampSerializer().fromJson(json['createdAt']),
-      deliveryDate: const TimestampSerializer().fromJson(json['deliveryDate']),
-      deliveryTime: json['deliveryTime'] as String? ?? "",
-      allowedDurationInMinutes:
-          (json['allowedDurationInMinutes'] as num?)?.toInt() ?? 0,
-      id: json['id'] as String? ?? "",
-      title: json['title'] as String? ?? "",
-      description: json['description'] as String? ?? "",
-      status: json['status'] as String? ?? "",
-      departmentId: json['departmentId'] as String? ?? "",
-      markedAsLate: json['markedAsLate'] as bool? ?? false,
-      attachments:
-          (json['attachments'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-    );
+_$TaskModelImpl _$$TaskModelImplFromJson(
+  Map<String, dynamic> json,
+) => _$TaskModelImpl(
+  createdAt: const TimestampSerializer().fromJson(json['createdAt']),
+  deliveryDate: const TimestampSerializer().fromJson(json['deliveryDate']),
+  deliveryTime: json['deliveryTime'] as String? ?? "",
+  allowedDurationInMinutes:
+      (json['allowedDurationInMinutes'] as num?)?.toInt() ?? 0,
+  id: json['id'] as String? ?? "",
+  title: json['title'] as String? ?? "",
+  description: json['description'] as String? ?? "",
+  status: json['status'] as String? ?? "",
+  departmentId: json['departmentId'] as String? ?? "",
+  penaltyDescription: json['penaltyDescription'] as String? ?? "",
+  repeatType: json['repeatType'] as String?,
+  markedAsLate: json['markedAsLate'] as bool? ?? false,
+  attachments:
+      (json['attachments'] as List<dynamic>).map((e) => e as String).toList(),
+  repeatDays:
+      (json['repeatDays'] as List<dynamic>).map((e) => e as String).toList(),
+);
 
 Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
     <String, dynamic>{
@@ -36,6 +39,9 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'description': instance.description,
       'status': instance.status,
       'departmentId': instance.departmentId,
+      'penaltyDescription': instance.penaltyDescription,
+      'repeatType': instance.repeatType,
       'markedAsLate': instance.markedAsLate,
       'attachments': instance.attachments,
+      'repeatDays': instance.repeatDays,
     };

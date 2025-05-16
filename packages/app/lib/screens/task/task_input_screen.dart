@@ -9,27 +9,19 @@ class TaskInputScreen extends StatefulWidget {
 }
 
 class _TaskInputScreenState extends State<TaskInputScreen> {
-  int _repetitionTaskIndex = 0;
-  int _dayIndex = 0;
-  List<String> taskRepetition() {
-    return [
-      context.appLocalization.daily,
-      context.appLocalization.weekly,
-      context.appLocalization.monthly,
-      context.appLocalization.noRepetition,
-    ];
+  late TaskModel _task;
+  final _formKey = GlobalKey<FormState>();
+
+  Future<void> _onSubmit(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      context.unFocusKeyboard();
+    }
   }
 
-  List<String> dayWeek() {
-    return [
-      context.appLocalization.saturday,
-      context.appLocalization.sunday,
-      context.appLocalization.monday,
-      context.appLocalization.tuesday,
-      context.appLocalization.wednesday,
-      context.appLocalization.thursday,
-      context.appLocalization.friday,
-    ];
+  @override
+  void initState() {
+    super.initState();
+    _task = TaskModel(attachments: [], repeatDays: []);
   }
 
   @override
@@ -37,142 +29,163 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
     return Scaffold(
       appBar: AppBar(),
       bottomNavigationBar: BottomButton(
-        onPressed: () {},
+        onPressed: () {
+          _onSubmit(context);
+        },
         text: context.appLocalization.create,
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-        children: [
-          Text(
-            context.appLocalization.addNewTask,
-            style: TextStyle(
-              color: context.colorPalette.black252,
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 15),
-          TitledTextField(
-            title: context.appLocalization.taskTitle,
-            child: TextEditor(
-              onChanged: (value) {},
-              hintText: context.appLocalization.taskTitleToComplyWith,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: TitledTextField(
-              title: context.appLocalization.taskDescription,
-              child: TextEditor(
-                onChanged: (value) {},
-                hintText: context.appLocalization.requiredTaskDescription,
-              ),
-            ),
-          ),
-          Row(
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
+              Text(
+                context.appLocalization.addNewTask,
+                style: TextStyle(
+                  color: context.colorPalette.black252,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 15),
+              TitledTextField(
+                title: context.appLocalization.taskTitle,
+                child: TextEditor(
+                  onChanged: (value) => _task.title = value!,
+                  hintText: context.appLocalization.taskTitleToComplyWith,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TitledTextField(
-                  title: context.appLocalization.deliveryTime,
+                  title: context.appLocalization.taskDescription,
                   child: TextEditor(
-                    onChanged: (value) {},
-                    textAlign: TextAlign.center,
+                    onChanged: (value) => _task.description = value!,
+                    hintText: context.appLocalization.requiredTaskDescription,
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
-              Expanded(
+              Row(
+                children: [
+                  Expanded(
+                    child: TitledTextField(
+                      title: context.appLocalization.deliveryTime,
+                      child: DayTimeEditor(
+                        initialValue: null,
+                        onChanged: (value) => _task.deliveryTime = value,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: TitledTextField(
+                      title: context.appLocalization.gracePeriod,
+                      child: NumbersEditor(
+                        onChanged: (value) => _task.allowedDurationInMinutes = value!,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TitledTextField(
-                  title: context.appLocalization.gracePeriod,
+                  title: context.appLocalization.taskRepetition,
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    children:
+                        RepeatType.values.map((e) {
+                          final isSelected = _task.repeatType == e.value;
+                          return DayBubble(
+                            onTap: () {
+                              if (_task.repeatType != e.value) {
+                                setState(() {
+                                  _task.repeatType = e.value;
+                                  _task.repeatDays.clear();
+                                });
+                              }
+                            },
+                            title: RepeatType.getLabel(e.value, context),
+                            isSelected: isSelected,
+                            backgroundColor:
+                                isSelected
+                                    ? context.colorPalette.primary
+                                    : context.colorPalette.greyF5F,
+                          );
+                        }).toList(),
+                  ),
+                ),
+              ),
+              if (_task.repeatType == RepeatType.weekly.value)
+                TitledTextField(
+                  title: context.appLocalization.specifyTheDayForTaskRepetition,
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    children:
+                        TaskDaysEnum.values.map((day) {
+                          final e = day.value;
+                          final isSelected = _task.repeatDays.contains(e);
+                          return DayBubble(
+                            onTap: () {
+                              setState(() {
+                                if (_task.repeatDays.contains(e)) {
+                                  _task.repeatDays.remove(e);
+                                } else {
+                                  _task.repeatDays.add(e);
+                                }
+                              });
+                            },
+                            title: TaskDaysEnum.getLabel(e, context),
+                            isSelected: isSelected,
+                            backgroundColor:
+                                isSelected
+                                    ? context.colorPalette.black252
+                                    : context.colorPalette.greyF5F,
+                          );
+                        }).toList(),
+                  ),
+                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: TitledTextField(
+                  title: context.appLocalization.notesAboutTheTask,
                   child: TextEditor(
                     onChanged: (value) {},
-                    textAlign: TextAlign.center,
+                    hintText: context.appLocalization.notesAboutTheTaskExecutionMechanism,
                   ),
+                ),
+              ),
+              TitledTextField(
+                title: context.appLocalization.penaltyForNonCompliance,
+                child: TextEditor(
+                  onChanged: (value) {},
+                  hintText: context.appLocalization.descriptionPenaltyForNonCompliance,
+                ),
+              ),
+              const SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {},
+                child: Row(
+                  children: [
+                    const CustomSvg(MyIcons.attachSquare),
+                    const SizedBox(width: 11),
+                    Text(
+                      context.appLocalization.attachFiles,
+                      style: TextStyle(
+                        color: context.colorPalette.black252,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: TitledTextField(
-              title: context.appLocalization.taskRepetition,
-              child: Wrap(
-                direction: Axis.horizontal,
-                children:
-                    taskRepetition().map((item) {
-                      return DayBubble(
-                        onTap: () {
-                          setState(() {
-                            _repetitionTaskIndex = taskRepetition().indexOf(item);
-                          });
-                        },
-                        title: item,
-                        isSelected: _repetitionTaskIndex == taskRepetition().indexOf(item),
-                        backgroundColor: _repetitionTaskIndex == taskRepetition().indexOf(item)
-                                ? context.colorPalette.primary
-                                : context.colorPalette.greyF5F,
-                      );
-                    }).toList(),
-              ),
-            ),
-          ),
-          TitledTextField(
-            title: context.appLocalization.specifyTheDayForTaskRepetition,
-            child: Wrap(
-              direction: Axis.horizontal,
-              children:
-                  dayWeek().map((item) {
-                    return DayBubble(
-                      onTap: () {
-                        setState(() {
-                          _dayIndex = dayWeek().indexOf(item);
-                        });
-                      },
-                      title: item,
-                      isSelected: _dayIndex == dayWeek().indexOf(item),
-                      backgroundColor: _dayIndex == dayWeek().indexOf(item)
-                              ? context.colorPalette.black252
-                              : context.colorPalette.greyF5F,
-                    );
-                  }).toList(),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: TitledTextField(
-              title: context.appLocalization.notesAboutTheTask,
-              child: TextEditor(
-                onChanged: (value) {},
-                hintText: context.appLocalization.notesAboutTheTaskExecutionMechanism,
-              ),
-            ),
-          ),
-          TitledTextField(
-            title: context.appLocalization.penaltyForNonCompliance,
-            child: TextEditor(
-              onChanged: (value) {},
-              hintText: context.appLocalization.descriptionPenaltyForNonCompliance,
-            ),
-          ),
-          const SizedBox(height: 15),
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                const CustomSvg(MyIcons.attachSquare),
-                const SizedBox(width: 11),
-                Text(
-                  context.appLocalization.attachFiles,
-                  style: TextStyle(
-                    color: context.colorPalette.black252,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

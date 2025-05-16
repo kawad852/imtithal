@@ -43,10 +43,16 @@ mixin _$TaskModel {
   set status(String value) => throw _privateConstructorUsedError;
   String get departmentId => throw _privateConstructorUsedError;
   set departmentId(String value) => throw _privateConstructorUsedError;
+  String get penaltyDescription => throw _privateConstructorUsedError;
+  set penaltyDescription(String value) => throw _privateConstructorUsedError;
+  String? get repeatType => throw _privateConstructorUsedError;
+  set repeatType(String? value) => throw _privateConstructorUsedError;
   bool get markedAsLate => throw _privateConstructorUsedError;
   set markedAsLate(bool value) => throw _privateConstructorUsedError;
-  List<String>? get attachments => throw _privateConstructorUsedError;
-  set attachments(List<String>? value) => throw _privateConstructorUsedError;
+  List<String> get attachments => throw _privateConstructorUsedError;
+  set attachments(List<String> value) => throw _privateConstructorUsedError;
+  List<String> get repeatDays => throw _privateConstructorUsedError;
+  set repeatDays(List<String> value) => throw _privateConstructorUsedError;
 
   /// Serializes this TaskModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -73,8 +79,11 @@ abstract class $TaskModelCopyWith<$Res> {
     String description,
     String status,
     String departmentId,
+    String penaltyDescription,
+    String? repeatType,
     bool markedAsLate,
-    List<String>? attachments,
+    List<String> attachments,
+    List<String> repeatDays,
   });
 }
 
@@ -102,8 +111,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? description = null,
     Object? status = null,
     Object? departmentId = null,
+    Object? penaltyDescription = null,
+    Object? repeatType = freezed,
     Object? markedAsLate = null,
-    Object? attachments = freezed,
+    Object? attachments = null,
+    Object? repeatDays = null,
   }) {
     return _then(
       _value.copyWith(
@@ -152,16 +164,31 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.departmentId
                     : departmentId // ignore: cast_nullable_to_non_nullable
                         as String,
+            penaltyDescription:
+                null == penaltyDescription
+                    ? _value.penaltyDescription
+                    : penaltyDescription // ignore: cast_nullable_to_non_nullable
+                        as String,
+            repeatType:
+                freezed == repeatType
+                    ? _value.repeatType
+                    : repeatType // ignore: cast_nullable_to_non_nullable
+                        as String?,
             markedAsLate:
                 null == markedAsLate
                     ? _value.markedAsLate
                     : markedAsLate // ignore: cast_nullable_to_non_nullable
                         as bool,
             attachments:
-                freezed == attachments
+                null == attachments
                     ? _value.attachments
                     : attachments // ignore: cast_nullable_to_non_nullable
-                        as List<String>?,
+                        as List<String>,
+            repeatDays:
+                null == repeatDays
+                    ? _value.repeatDays
+                    : repeatDays // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
           )
           as $Val,
     );
@@ -187,8 +214,11 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String description,
     String status,
     String departmentId,
+    String penaltyDescription,
+    String? repeatType,
     bool markedAsLate,
-    List<String>? attachments,
+    List<String> attachments,
+    List<String> repeatDays,
   });
 }
 
@@ -215,8 +245,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? description = null,
     Object? status = null,
     Object? departmentId = null,
+    Object? penaltyDescription = null,
+    Object? repeatType = freezed,
     Object? markedAsLate = null,
-    Object? attachments = freezed,
+    Object? attachments = null,
+    Object? repeatDays = null,
   }) {
     return _then(
       _$TaskModelImpl(
@@ -265,16 +298,31 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.departmentId
                 : departmentId // ignore: cast_nullable_to_non_nullable
                     as String,
+        penaltyDescription:
+            null == penaltyDescription
+                ? _value.penaltyDescription
+                : penaltyDescription // ignore: cast_nullable_to_non_nullable
+                    as String,
+        repeatType:
+            freezed == repeatType
+                ? _value.repeatType
+                : repeatType // ignore: cast_nullable_to_non_nullable
+                    as String?,
         markedAsLate:
             null == markedAsLate
                 ? _value.markedAsLate
                 : markedAsLate // ignore: cast_nullable_to_non_nullable
                     as bool,
         attachments:
-            freezed == attachments
+            null == attachments
                 ? _value.attachments
                 : attachments // ignore: cast_nullable_to_non_nullable
-                    as List<String>?,
+                    as List<String>,
+        repeatDays:
+            null == repeatDays
+                ? _value.repeatDays
+                : repeatDays // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
       ),
     );
   }
@@ -294,8 +342,11 @@ class _$TaskModelImpl extends _TaskModel {
     this.description = "",
     this.status = "",
     this.departmentId = "",
+    this.penaltyDescription = "",
+    this.repeatType,
     this.markedAsLate = false,
-    this.attachments,
+    required this.attachments,
+    required this.repeatDays,
   }) : super._();
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -330,13 +381,20 @@ class _$TaskModelImpl extends _TaskModel {
   String departmentId;
   @override
   @JsonKey()
+  String penaltyDescription;
+  @override
+  String? repeatType;
+  @override
+  @JsonKey()
   bool markedAsLate;
   @override
-  List<String>? attachments;
+  List<String> attachments;
+  @override
+  List<String> repeatDays;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, title: $title, description: $description, status: $status, departmentId: $departmentId, markedAsLate: $markedAsLate, attachments: $attachments)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays)';
   }
 
   /// Create a copy of TaskModel
@@ -364,8 +422,11 @@ abstract class _TaskModel extends TaskModel {
     String description,
     String status,
     String departmentId,
+    String penaltyDescription,
+    String? repeatType,
     bool markedAsLate,
-    List<String>? attachments,
+    required List<String> attachments,
+    required List<String> repeatDays,
   }) = _$TaskModelImpl;
   _TaskModel._() : super._();
 
@@ -404,11 +465,20 @@ abstract class _TaskModel extends TaskModel {
   String get departmentId;
   set departmentId(String value);
   @override
+  String get penaltyDescription;
+  set penaltyDescription(String value);
+  @override
+  String? get repeatType;
+  set repeatType(String? value);
+  @override
   bool get markedAsLate;
   set markedAsLate(bool value);
   @override
-  List<String>? get attachments;
-  set attachments(List<String>? value);
+  List<String> get attachments;
+  set attachments(List<String> value);
+  @override
+  List<String> get repeatDays;
+  set repeatDays(List<String> value);
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.

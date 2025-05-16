@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:shared/helper/translation_extension.dart';
+
 enum TaskStatusEnum {
   pending('PENDING'),
   inReview('IN-REVIEW'),
@@ -19,4 +22,52 @@ enum RepeatType {
   final String value;
 
   const RepeatType(this.value);
+
+  static String getLabel(String type, BuildContext context) {
+    final value = RepeatType.values.firstWhere((e) => e.value == type);
+    if (value == once) {
+      return context.appLocalization.noRepetition;
+    } else if (value == daily) {
+      return context.appLocalization.daily;
+    } else if (value == weekly) {
+      return context.appLocalization.weekly;
+    } else if (value == monthly) {
+      return context.appLocalization.monthly;
+    }
+    return '';
+  }
+}
+
+enum TaskDaysEnum {
+  sunday('sunday'),
+  monday('monday'),
+  tuesday('tuesday'),
+  wednesday('wednesday'),
+  thursday('thursday'),
+  friday('friday'),
+  saturday('saturday');
+
+  final String value;
+
+  const TaskDaysEnum(this.value);
+
+  static String getLabel(String type, BuildContext context) {
+    final value = TaskDaysEnum.values.firstWhere((e) => e.value == type);
+    if (value == sunday) {
+      return context.appLocalization.sunday;
+    } else if (value == monday) {
+      return context.appLocalization.monday;
+    } else if (value == tuesday) {
+      return context.appLocalization.tuesday;
+    } else if (value == wednesday) {
+      return context.appLocalization.wednesday;
+    } else if (value == thursday) {
+      return context.appLocalization.thursday;
+    } else if (value == friday) {
+      return context.appLocalization.friday;
+    } else if (value == saturday) {
+      return context.appLocalization.saturday;
+    }
+    return '';
+  }
 }
