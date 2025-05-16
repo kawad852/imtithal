@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'branch_model.dart';
+part of 'department_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-BranchModel _$BranchModelFromJson(Map<String, dynamic> json) {
-  return _BranchModel.fromJson(json);
+DepartmentModel _$DepartmentModelFromJson(Map<String, dynamic> json) {
+  return _DepartmentModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BranchModel {
+mixin _$DepartmentModel {
   @TimestampSerializer()
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @TimestampSerializer()
@@ -29,45 +29,42 @@ mixin _$BranchModel {
   set id(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
-  double get balance => throw _privateConstructorUsedError;
-  set balance(double value) => throw _privateConstructorUsedError;
 
-  /// Serializes this BranchModel to a JSON map.
+  /// Serializes this DepartmentModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of BranchModel
+  /// Create a copy of DepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $BranchModelCopyWith<BranchModel> get copyWith =>
+  $DepartmentModelCopyWith<DepartmentModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BranchModelCopyWith<$Res> {
-  factory $BranchModelCopyWith(
-    BranchModel value,
-    $Res Function(BranchModel) then,
-  ) = _$BranchModelCopyWithImpl<$Res, BranchModel>;
+abstract class $DepartmentModelCopyWith<$Res> {
+  factory $DepartmentModelCopyWith(
+    DepartmentModel value,
+    $Res Function(DepartmentModel) then,
+  ) = _$DepartmentModelCopyWithImpl<$Res, DepartmentModel>;
   @useResult
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
-    double balance,
   });
 }
 
 /// @nodoc
-class _$BranchModelCopyWithImpl<$Res, $Val extends BranchModel>
-    implements $BranchModelCopyWith<$Res> {
-  _$BranchModelCopyWithImpl(this._value, this._then);
+class _$DepartmentModelCopyWithImpl<$Res, $Val extends DepartmentModel>
+    implements $DepartmentModelCopyWith<$Res> {
+  _$DepartmentModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BranchModel
+  /// Create a copy of DepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -75,7 +72,6 @@ class _$BranchModelCopyWithImpl<$Res, $Val extends BranchModel>
     Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
-    Object? balance = null,
   }) {
     return _then(
       _value.copyWith(
@@ -94,11 +90,6 @@ class _$BranchModelCopyWithImpl<$Res, $Val extends BranchModel>
                     ? _value.name
                     : name // ignore: cast_nullable_to_non_nullable
                         as String,
-            balance:
-                null == balance
-                    ? _value.balance
-                    : balance // ignore: cast_nullable_to_non_nullable
-                        as double,
           )
           as $Val,
     );
@@ -106,32 +97,31 @@ class _$BranchModelCopyWithImpl<$Res, $Val extends BranchModel>
 }
 
 /// @nodoc
-abstract class _$$BranchModelImplCopyWith<$Res>
-    implements $BranchModelCopyWith<$Res> {
-  factory _$$BranchModelImplCopyWith(
-    _$BranchModelImpl value,
-    $Res Function(_$BranchModelImpl) then,
-  ) = __$$BranchModelImplCopyWithImpl<$Res>;
+abstract class _$$DepartmentModelImplCopyWith<$Res>
+    implements $DepartmentModelCopyWith<$Res> {
+  factory _$$DepartmentModelImplCopyWith(
+    _$DepartmentModelImpl value,
+    $Res Function(_$DepartmentModelImpl) then,
+  ) = __$$DepartmentModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
-    double balance,
   });
 }
 
 /// @nodoc
-class __$$BranchModelImplCopyWithImpl<$Res>
-    extends _$BranchModelCopyWithImpl<$Res, _$BranchModelImpl>
-    implements _$$BranchModelImplCopyWith<$Res> {
-  __$$BranchModelImplCopyWithImpl(
-    _$BranchModelImpl _value,
-    $Res Function(_$BranchModelImpl) _then,
+class __$$DepartmentModelImplCopyWithImpl<$Res>
+    extends _$DepartmentModelCopyWithImpl<$Res, _$DepartmentModelImpl>
+    implements _$$DepartmentModelImplCopyWith<$Res> {
+  __$$DepartmentModelImplCopyWithImpl(
+    _$DepartmentModelImpl _value,
+    $Res Function(_$DepartmentModelImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of BranchModel
+  /// Create a copy of DepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -139,10 +129,9 @@ class __$$BranchModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? id = null,
     Object? name = null,
-    Object? balance = null,
   }) {
     return _then(
-      _$BranchModelImpl(
+      _$DepartmentModelImpl(
         createdAt:
             freezed == createdAt
                 ? _value.createdAt
@@ -158,11 +147,6 @@ class __$$BranchModelImplCopyWithImpl<$Res>
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
                     as String,
-        balance:
-            null == balance
-                ? _value.balance
-                : balance // ignore: cast_nullable_to_non_nullable
-                    as double,
       ),
     );
   }
@@ -171,16 +155,15 @@ class __$$BranchModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$BranchModelImpl implements _BranchModel {
-  _$BranchModelImpl({
+class _$DepartmentModelImpl implements _DepartmentModel {
+  _$DepartmentModelImpl({
     @TimestampSerializer() this.createdAt,
     this.id = '',
     this.name = '',
-    this.balance = 0.0,
   });
 
-  factory _$BranchModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BranchModelImplFromJson(json);
+  factory _$DepartmentModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DepartmentModelImplFromJson(json);
 
   @override
   @TimestampSerializer()
@@ -191,39 +174,38 @@ class _$BranchModelImpl implements _BranchModel {
   @override
   @JsonKey()
   String name;
-  @override
-  @JsonKey()
-  double balance;
 
   @override
   String toString() {
-    return 'BranchModel(createdAt: $createdAt, id: $id, name: $name, balance: $balance)';
+    return 'DepartmentModel(createdAt: $createdAt, id: $id, name: $name)';
   }
 
-  /// Create a copy of BranchModel
+  /// Create a copy of DepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$BranchModelImplCopyWith<_$BranchModelImpl> get copyWith =>
-      __$$BranchModelImplCopyWithImpl<_$BranchModelImpl>(this, _$identity);
+  _$$DepartmentModelImplCopyWith<_$DepartmentModelImpl> get copyWith =>
+      __$$DepartmentModelImplCopyWithImpl<_$DepartmentModelImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BranchModelImplToJson(this);
+    return _$$DepartmentModelImplToJson(this);
   }
 }
 
-abstract class _BranchModel implements BranchModel {
-  factory _BranchModel({
+abstract class _DepartmentModel implements DepartmentModel {
+  factory _DepartmentModel({
     @TimestampSerializer() DateTime? createdAt,
     String id,
     String name,
-    double balance,
-  }) = _$BranchModelImpl;
+  }) = _$DepartmentModelImpl;
 
-  factory _BranchModel.fromJson(Map<String, dynamic> json) =
-      _$BranchModelImpl.fromJson;
+  factory _DepartmentModel.fromJson(Map<String, dynamic> json) =
+      _$DepartmentModelImpl.fromJson;
 
   @override
   @TimestampSerializer()
@@ -236,60 +218,60 @@ abstract class _BranchModel implements BranchModel {
   @override
   String get name;
   set name(String value);
-  @override
-  double get balance;
-  set balance(double value);
 
-  /// Create a copy of BranchModel
+  /// Create a copy of DepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BranchModelImplCopyWith<_$BranchModelImpl> get copyWith =>
+  _$$DepartmentModelImplCopyWith<_$DepartmentModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-LightBranchModel _$LightBranchModelFromJson(Map<String, dynamic> json) {
-  return _LightBranchModel.fromJson(json);
+LightDepartmentModel _$LightDepartmentModelFromJson(Map<String, dynamic> json) {
+  return _LightDepartmentModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$LightBranchModel {
+mixin _$LightDepartmentModel {
   String? get id => throw _privateConstructorUsedError;
   set id(String? value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
 
-  /// Serializes this LightBranchModel to a JSON map.
+  /// Serializes this LightDepartmentModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of LightBranchModel
+  /// Create a copy of LightDepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $LightBranchModelCopyWith<LightBranchModel> get copyWith =>
+  $LightDepartmentModelCopyWith<LightDepartmentModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LightBranchModelCopyWith<$Res> {
-  factory $LightBranchModelCopyWith(
-    LightBranchModel value,
-    $Res Function(LightBranchModel) then,
-  ) = _$LightBranchModelCopyWithImpl<$Res, LightBranchModel>;
+abstract class $LightDepartmentModelCopyWith<$Res> {
+  factory $LightDepartmentModelCopyWith(
+    LightDepartmentModel value,
+    $Res Function(LightDepartmentModel) then,
+  ) = _$LightDepartmentModelCopyWithImpl<$Res, LightDepartmentModel>;
   @useResult
   $Res call({String? id, String name});
 }
 
 /// @nodoc
-class _$LightBranchModelCopyWithImpl<$Res, $Val extends LightBranchModel>
-    implements $LightBranchModelCopyWith<$Res> {
-  _$LightBranchModelCopyWithImpl(this._value, this._then);
+class _$LightDepartmentModelCopyWithImpl<
+  $Res,
+  $Val extends LightDepartmentModel
+>
+    implements $LightDepartmentModelCopyWith<$Res> {
+  _$LightDepartmentModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LightBranchModel
+  /// Create a copy of LightDepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -313,33 +295,33 @@ class _$LightBranchModelCopyWithImpl<$Res, $Val extends LightBranchModel>
 }
 
 /// @nodoc
-abstract class _$$LightBranchModelImplCopyWith<$Res>
-    implements $LightBranchModelCopyWith<$Res> {
-  factory _$$LightBranchModelImplCopyWith(
-    _$LightBranchModelImpl value,
-    $Res Function(_$LightBranchModelImpl) then,
-  ) = __$$LightBranchModelImplCopyWithImpl<$Res>;
+abstract class _$$LightDepartmentModelImplCopyWith<$Res>
+    implements $LightDepartmentModelCopyWith<$Res> {
+  factory _$$LightDepartmentModelImplCopyWith(
+    _$LightDepartmentModelImpl value,
+    $Res Function(_$LightDepartmentModelImpl) then,
+  ) = __$$LightDepartmentModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String name});
 }
 
 /// @nodoc
-class __$$LightBranchModelImplCopyWithImpl<$Res>
-    extends _$LightBranchModelCopyWithImpl<$Res, _$LightBranchModelImpl>
-    implements _$$LightBranchModelImplCopyWith<$Res> {
-  __$$LightBranchModelImplCopyWithImpl(
-    _$LightBranchModelImpl _value,
-    $Res Function(_$LightBranchModelImpl) _then,
+class __$$LightDepartmentModelImplCopyWithImpl<$Res>
+    extends _$LightDepartmentModelCopyWithImpl<$Res, _$LightDepartmentModelImpl>
+    implements _$$LightDepartmentModelImplCopyWith<$Res> {
+  __$$LightDepartmentModelImplCopyWithImpl(
+    _$LightDepartmentModelImpl _value,
+    $Res Function(_$LightDepartmentModelImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of LightBranchModel
+  /// Create a copy of LightDepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({Object? id = freezed, Object? name = null}) {
     return _then(
-      _$LightBranchModelImpl(
+      _$LightDepartmentModelImpl(
         id:
             freezed == id
                 ? _value.id
@@ -358,11 +340,11 @@ class __$$LightBranchModelImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$LightBranchModelImpl implements _LightBranchModel {
-  _$LightBranchModelImpl({this.id, this.name = ''});
+class _$LightDepartmentModelImpl implements _LightDepartmentModel {
+  _$LightDepartmentModelImpl({this.id, this.name = ''});
 
-  factory _$LightBranchModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LightBranchModelImplFromJson(json);
+  factory _$LightDepartmentModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LightDepartmentModelImplFromJson(json);
 
   @override
   String? id;
@@ -372,31 +354,33 @@ class _$LightBranchModelImpl implements _LightBranchModel {
 
   @override
   String toString() {
-    return 'LightBranchModel(id: $id, name: $name)';
+    return 'LightDepartmentModel(id: $id, name: $name)';
   }
 
-  /// Create a copy of LightBranchModel
+  /// Create a copy of LightDepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LightBranchModelImplCopyWith<_$LightBranchModelImpl> get copyWith =>
-      __$$LightBranchModelImplCopyWithImpl<_$LightBranchModelImpl>(
+  _$$LightDepartmentModelImplCopyWith<_$LightDepartmentModelImpl>
+  get copyWith =>
+      __$$LightDepartmentModelImplCopyWithImpl<_$LightDepartmentModelImpl>(
         this,
         _$identity,
       );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LightBranchModelImplToJson(this);
+    return _$$LightDepartmentModelImplToJson(this);
   }
 }
 
-abstract class _LightBranchModel implements LightBranchModel {
-  factory _LightBranchModel({String? id, String name}) = _$LightBranchModelImpl;
+abstract class _LightDepartmentModel implements LightDepartmentModel {
+  factory _LightDepartmentModel({String? id, String name}) =
+      _$LightDepartmentModelImpl;
 
-  factory _LightBranchModel.fromJson(Map<String, dynamic> json) =
-      _$LightBranchModelImpl.fromJson;
+  factory _LightDepartmentModel.fromJson(Map<String, dynamic> json) =
+      _$LightDepartmentModelImpl.fromJson;
 
   @override
   String? get id;
@@ -405,10 +389,10 @@ abstract class _LightBranchModel implements LightBranchModel {
   String get name;
   set name(String value);
 
-  /// Create a copy of LightBranchModel
+  /// Create a copy of LightDepartmentModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LightBranchModelImplCopyWith<_$LightBranchModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LightDepartmentModelImplCopyWith<_$LightDepartmentModelImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }

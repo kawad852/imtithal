@@ -1,7 +1,6 @@
 import 'package:shared/shared.dart';
 
 import '../models/country/country_model.dart';
-import '../models/policy/policy_model.dart';
 import '../models/promo_code/promo_code_model.dart';
 import '../models/store/store_model.dart';
 
@@ -30,12 +29,6 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 
-  CollectionReference<ItemModel> get items =>
-      collection(MyCollections.items).withConverter<ItemModel>(
-        fromFirestore: (snapshot, _) => ItemModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
   CollectionReference<PromoCodeModel> get promoCodes =>
       collection(MyCollections.promoCodes).withConverter<PromoCodeModel>(
         fromFirestore: (snapshot, _) => PromoCodeModel.fromJson(snapshot.data()!),
@@ -53,12 +46,6 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         );
   }
 
-  CollectionReference<OrderModel> get orders =>
-      collection(MyCollections.orders).withConverter<OrderModel>(
-        fromFirestore: (snapshot, _) => OrderModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
   CollectionReference<ProductModel> get products =>
       collection(MyCollections.products).withConverter<ProductModel>(
         fromFirestore: (snapshot, _) => ProductModel.fromJson(snapshot.data()!),
@@ -68,30 +55,6 @@ extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<PolicyModel> get policies =>
       collection(MyCollections.policies).withConverter<PolicyModel>(
         fromFirestore: (snapshot, _) => PolicyModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
-  CollectionReference<ItemModel> get itemSuggestions =>
-      collection(MyCollections.itemSuggestions).withConverter<ItemModel>(
-        fromFirestore: (snapshot, _) => ItemModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
-  CollectionReference<InventoryOperationModel> get inventoryOperations =>
-      collection(MyCollections.inventoryOperations).withConverter<InventoryOperationModel>(
-        fromFirestore: (snapshot, _) => InventoryOperationModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
-  CollectionReference<BranchModel> get branches =>
-      collection(MyCollections.branches).withConverter<BranchModel>(
-        fromFirestore: (snapshot, _) => BranchModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
-  CollectionReference<TransactionModel> get transactions =>
-      collection(MyCollections.transactions).withConverter<TransactionModel>(
-        fromFirestore: (snapshot, _) => TransactionModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 }

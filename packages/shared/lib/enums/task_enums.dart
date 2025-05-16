@@ -1,6 +1,6 @@
 enum TaskStatusEnum {
-  notStarted('NOT-STARTED'),
-  inProgress('IN-PROGRESS'),
+  pending('PENDING'),
+  inReview('IN-REVIEW'),
   completed('COMPLETED');
 
   final String value;
@@ -8,9 +8,15 @@ enum TaskStatusEnum {
   const TaskStatusEnum(this.value);
 }
 
-enum TaskTypeEnum {
-  incomplete,
-  complete,
-  late,
-  infringement,
+enum TaskTypeEnum { incomplete, complete, late, infringement }
+
+enum TaskRepation {
+  daily('DAILY'),
+  weekly('WEEKLY'),
+  monthly('MONTHLY'),
+  non('NON');
+
+  final String value;
+
+  const TaskRepation(this.value);
 }
