@@ -82,7 +82,6 @@ class UserProvider extends ChangeNotifier {
           if (MySharedPreferences.user?.role == RoleEnum.admin.value) {
             context.pushAndRemoveUntil((context) => const Placeholder());
           } else {
-            MySharedPreferences.branch = MySharedPreferences.user!.branch!;
             context.goToNavBar();
           }
         }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1063729292121",
+    "project_id": "imtithal-app",
+    "storage_bucket": "imtithal-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063729292121:android:e5d99db08e7046b2826248",
+        "android_client_info": {
+          "package_name": "com.imtethal.wecan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXTGxtq3npm8rU9fbyHd-XNBdyhnMEvVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

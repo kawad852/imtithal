@@ -1,6 +1,8 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
+import 'firebase_options.dart';
+
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey(debugLabel: "Main Navigator");
 
 // dart pub global activate melos
@@ -17,7 +19,7 @@ Future<void> _logout() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MySharedPreferences.init();
-  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // await _logout();
   runApp(
     MultiProvider(
@@ -38,28 +40,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  get _outOfStockStream {
-    final filter = Filter.and(
-      Filter(MyFields.idBranch, isEqualTo: kSelectedBranchId),
-      Filter(MyFields.status, isNotEqualTo: ItemStatusEnum.inStock.value),
-    );
-    return kFirebaseInstant.items
-        .where(filter)
-        .orderByDesc
-        .snapshots()
-        .map((e) => e.docs.map((e) => e.data()).toList());
+  Widget _toggleScreen(BuildContext context) {
+    if (MySharedPreferences.user?.id != null) {
+      return const AppNavBar();
+    } else {
+      return const LoginScreen();
+    }
   }
-
-  get _branchStream =>
-      kFirebaseInstant.branches.doc(kSelectedBranchId).snapshots().map((e) => e.data()!);
-
-  // Widget _toggleScreen(BuildContext context) {
-  //   if (MySharedPreferences.user?.id != null && MySharedPreferences.branch?.id != null) {
-  //     return const AppNavBar();
-  //   } else {
-  //     return const LoginScreen();
-  //   }
-  // }
 
   @override
   void initState() {
@@ -133,7 +120,8 @@ class _MyAppState extends State<MyApp> {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: appProvider.appLocale,
             theme: MyTheme().materialTheme(context, colorScheme),
-            home: const AppNavBar(),
+            // home: const AppNavBar(),
+            home: _toggleScreen(context),
           ),
         );
       },

@@ -11,7 +11,6 @@ class MySharedPreferences {
 
   static void clearStorage() {
     user = null;
-    branch = null;
   }
 
   static UserModel? get user {
@@ -40,17 +39,4 @@ class MySharedPreferences {
   static String get countryCode =>
       _sharedPreferences.getString('countryCode') ?? kFallBackCountryCode;
   static set countryCode(String value) => _sharedPreferences.setString('countryCode', value);
-
-  static LightBranchModel? get branch {
-    String? value = _sharedPreferences.getString('branch');
-    LightBranchModel? branch;
-    if (value != null && value.isNotEmpty && value != 'null') {
-      branch = LightBranchModel.fromJson(jsonDecode(value));
-    }
-    return branch;
-  }
-
-  static set branch(LightBranchModel? value) {
-    _sharedPreferences.setString('branch', jsonEncode(value?.toJson()));
-  }
 }

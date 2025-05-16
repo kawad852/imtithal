@@ -33,12 +33,10 @@ mixin _$UserModel {
   set id(String? value) => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   set displayName(String value) => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
-  set email(String? value) => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  set email(String value) => throw _privateConstructorUsedError;
   String? get deviceToken => throw _privateConstructorUsedError;
   set deviceToken(String? value) => throw _privateConstructorUsedError;
-  LightBranchModel? get branch => throw _privateConstructorUsedError;
-  set branch(LightBranchModel? value) => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   set role(String? value) => throw _privateConstructorUsedError;
   String? get languageCode => throw _privateConstructorUsedError;
@@ -47,8 +45,6 @@ mixin _$UserModel {
   set profilePhoto(String? value) => throw _privateConstructorUsedError;
   bool get blocked => throw _privateConstructorUsedError;
   set blocked(bool value) => throw _privateConstructorUsedError;
-  bool get canAccessApp => throw _privateConstructorUsedError;
-  set canAccessApp(bool value) => throw _privateConstructorUsedError;
   String? get phoneCountryCode => throw _privateConstructorUsedError;
   set phoneCountryCode(String? value) => throw _privateConstructorUsedError;
   String? get phoneNum => throw _privateConstructorUsedError;
@@ -57,14 +53,6 @@ mixin _$UserModel {
   set password(String value) => throw _privateConstructorUsedError;
   String get jobTitle => throw _privateConstructorUsedError;
   set jobTitle(String value) => throw _privateConstructorUsedError;
-  String get nationalNumber => throw _privateConstructorUsedError;
-  set nationalNumber(String value) => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
-  set address(String value) => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  set username(String value) => throw _privateConstructorUsedError;
-  double get salary => throw _privateConstructorUsedError;
-  set salary(double value) => throw _privateConstructorUsedError;
   List<String>? get images => throw _privateConstructorUsedError;
   set images(List<String>? value) => throw _privateConstructorUsedError;
 
@@ -88,26 +76,18 @@ abstract class $UserModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? workStartDate,
     String? id,
     String displayName,
-    String? email,
+    String email,
     String? deviceToken,
-    LightBranchModel? branch,
     String? role,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
-    bool canAccessApp,
     String? phoneCountryCode,
     String? phoneNum,
     String password,
     String jobTitle,
-    String nationalNumber,
-    String address,
-    String username,
-    double salary,
     List<String>? images,
   });
-
-  $LightBranchModelCopyWith<$Res>? get branch;
 }
 
 /// @nodoc
@@ -129,22 +109,16 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? workStartDate = freezed,
     Object? id = freezed,
     Object? displayName = null,
-    Object? email = freezed,
+    Object? email = null,
     Object? deviceToken = freezed,
-    Object? branch = freezed,
     Object? role = freezed,
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
-    Object? canAccessApp = null,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
     Object? password = null,
     Object? jobTitle = null,
-    Object? nationalNumber = null,
-    Object? address = null,
-    Object? username = null,
-    Object? salary = null,
     Object? images = freezed,
   }) {
     return _then(
@@ -170,20 +144,15 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     : displayName // ignore: cast_nullable_to_non_nullable
                         as String,
             email:
-                freezed == email
+                null == email
                     ? _value.email
                     : email // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as String,
             deviceToken:
                 freezed == deviceToken
                     ? _value.deviceToken
                     : deviceToken // ignore: cast_nullable_to_non_nullable
                         as String?,
-            branch:
-                freezed == branch
-                    ? _value.branch
-                    : branch // ignore: cast_nullable_to_non_nullable
-                        as LightBranchModel?,
             role:
                 freezed == role
                     ? _value.role
@@ -203,11 +172,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 null == blocked
                     ? _value.blocked
                     : blocked // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            canAccessApp:
-                null == canAccessApp
-                    ? _value.canAccessApp
-                    : canAccessApp // ignore: cast_nullable_to_non_nullable
                         as bool,
             phoneCountryCode:
                 freezed == phoneCountryCode
@@ -229,26 +193,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.jobTitle
                     : jobTitle // ignore: cast_nullable_to_non_nullable
                         as String,
-            nationalNumber:
-                null == nationalNumber
-                    ? _value.nationalNumber
-                    : nationalNumber // ignore: cast_nullable_to_non_nullable
-                        as String,
-            address:
-                null == address
-                    ? _value.address
-                    : address // ignore: cast_nullable_to_non_nullable
-                        as String,
-            username:
-                null == username
-                    ? _value.username
-                    : username // ignore: cast_nullable_to_non_nullable
-                        as String,
-            salary:
-                null == salary
-                    ? _value.salary
-                    : salary // ignore: cast_nullable_to_non_nullable
-                        as double,
             images:
                 freezed == images
                     ? _value.images
@@ -257,20 +201,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           )
           as $Val,
     );
-  }
-
-  /// Create a copy of UserModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $LightBranchModelCopyWith<$Res>? get branch {
-    if (_value.branch == null) {
-      return null;
-    }
-
-    return $LightBranchModelCopyWith<$Res>(_value.branch!, (value) {
-      return _then(_value.copyWith(branch: value) as $Val);
-    });
   }
 }
 
@@ -288,27 +218,18 @@ abstract class _$$UserModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? workStartDate,
     String? id,
     String displayName,
-    String? email,
+    String email,
     String? deviceToken,
-    LightBranchModel? branch,
     String? role,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
-    bool canAccessApp,
     String? phoneCountryCode,
     String? phoneNum,
     String password,
     String jobTitle,
-    String nationalNumber,
-    String address,
-    String username,
-    double salary,
     List<String>? images,
   });
-
-  @override
-  $LightBranchModelCopyWith<$Res>? get branch;
 }
 
 /// @nodoc
@@ -329,22 +250,16 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? workStartDate = freezed,
     Object? id = freezed,
     Object? displayName = null,
-    Object? email = freezed,
+    Object? email = null,
     Object? deviceToken = freezed,
-    Object? branch = freezed,
     Object? role = freezed,
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
-    Object? canAccessApp = null,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
     Object? password = null,
     Object? jobTitle = null,
-    Object? nationalNumber = null,
-    Object? address = null,
-    Object? username = null,
-    Object? salary = null,
     Object? images = freezed,
   }) {
     return _then(
@@ -370,20 +285,15 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 : displayName // ignore: cast_nullable_to_non_nullable
                     as String,
         email:
-            freezed == email
+            null == email
                 ? _value.email
                 : email // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as String,
         deviceToken:
             freezed == deviceToken
                 ? _value.deviceToken
                 : deviceToken // ignore: cast_nullable_to_non_nullable
                     as String?,
-        branch:
-            freezed == branch
-                ? _value.branch
-                : branch // ignore: cast_nullable_to_non_nullable
-                    as LightBranchModel?,
         role:
             freezed == role
                 ? _value.role
@@ -403,11 +313,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
             null == blocked
                 ? _value.blocked
                 : blocked // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        canAccessApp:
-            null == canAccessApp
-                ? _value.canAccessApp
-                : canAccessApp // ignore: cast_nullable_to_non_nullable
                     as bool,
         phoneCountryCode:
             freezed == phoneCountryCode
@@ -429,26 +334,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.jobTitle
                 : jobTitle // ignore: cast_nullable_to_non_nullable
                     as String,
-        nationalNumber:
-            null == nationalNumber
-                ? _value.nationalNumber
-                : nationalNumber // ignore: cast_nullable_to_non_nullable
-                    as String,
-        address:
-            null == address
-                ? _value.address
-                : address // ignore: cast_nullable_to_non_nullable
-                    as String,
-        username:
-            null == username
-                ? _value.username
-                : username // ignore: cast_nullable_to_non_nullable
-                    as String,
-        salary:
-            null == salary
-                ? _value.salary
-                : salary // ignore: cast_nullable_to_non_nullable
-                    as double,
         images:
             freezed == images
                 ? _value.images
@@ -468,22 +353,16 @@ class _$UserModelImpl implements _UserModel {
     @TimestampSerializer() this.workStartDate,
     this.id,
     this.displayName = '',
-    this.email,
+    this.email = '',
     this.deviceToken,
-    this.branch,
     this.role,
     this.languageCode,
     this.profilePhoto,
     this.blocked = false,
-    this.canAccessApp = false,
     this.phoneCountryCode,
     this.phoneNum,
     this.password = '',
     this.jobTitle = '',
-    this.nationalNumber = '',
-    this.address = '',
-    this.username = '',
-    this.salary = 0.0,
     this.images,
   });
 
@@ -502,11 +381,10 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   String displayName;
   @override
-  String? email;
+  @JsonKey()
+  String email;
   @override
   String? deviceToken;
-  @override
-  LightBranchModel? branch;
   @override
   String? role;
   @override
@@ -516,9 +394,6 @@ class _$UserModelImpl implements _UserModel {
   @override
   @JsonKey()
   bool blocked;
-  @override
-  @JsonKey()
-  bool canAccessApp;
   @override
   String? phoneCountryCode;
   @override
@@ -530,23 +405,11 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   String jobTitle;
   @override
-  @JsonKey()
-  String nationalNumber;
-  @override
-  @JsonKey()
-  String address;
-  @override
-  @JsonKey()
-  String username;
-  @override
-  @JsonKey()
-  double salary;
-  @override
   List<String>? images;
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, branch: $branch, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, canAccessApp: $canAccessApp, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, nationalNumber: $nationalNumber, address: $address, username: $username, salary: $salary, images: $images)';
+    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, password: $password, jobTitle: $jobTitle, images: $images)';
   }
 
   /// Create a copy of UserModel
@@ -569,22 +432,16 @@ abstract class _UserModel implements UserModel {
     @TimestampSerializer() DateTime? workStartDate,
     String? id,
     String displayName,
-    String? email,
+    String email,
     String? deviceToken,
-    LightBranchModel? branch,
     String? role,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
-    bool canAccessApp,
     String? phoneCountryCode,
     String? phoneNum,
     String password,
     String jobTitle,
-    String nationalNumber,
-    String address,
-    String username,
-    double salary,
     List<String>? images,
   }) = _$UserModelImpl;
 
@@ -608,14 +465,11 @@ abstract class _UserModel implements UserModel {
   String get displayName;
   set displayName(String value);
   @override
-  String? get email;
-  set email(String? value);
+  String get email;
+  set email(String value);
   @override
   String? get deviceToken;
   set deviceToken(String? value);
-  @override
-  LightBranchModel? get branch;
-  set branch(LightBranchModel? value);
   @override
   String? get role;
   set role(String? value);
@@ -629,9 +483,6 @@ abstract class _UserModel implements UserModel {
   bool get blocked;
   set blocked(bool value);
   @override
-  bool get canAccessApp;
-  set canAccessApp(bool value);
-  @override
   String? get phoneCountryCode;
   set phoneCountryCode(String? value);
   @override
@@ -643,18 +494,6 @@ abstract class _UserModel implements UserModel {
   @override
   String get jobTitle;
   set jobTitle(String value);
-  @override
-  String get nationalNumber;
-  set nationalNumber(String value);
-  @override
-  String get address;
-  set address(String value);
-  @override
-  String get username;
-  set username(String value);
-  @override
-  double get salary;
-  set salary(double value);
   @override
   List<String>? get images;
   set images(List<String>? value);
