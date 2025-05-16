@@ -12,25 +12,13 @@ class _TaskTypeScreenState extends State<TaskTypeScreen> {
   (String, Color) _getTaskInfo(BuildContext context) {
     switch (widget.taskType) {
       case TaskTypeEnum.incomplete:
-        return (
-          context.appLocalization.incompleteTasks,
-          context.colorPalette.greyDAD,
-        );
+        return (context.appLocalization.incompleteTasks, context.colorPalette.greyDAD);
       case TaskTypeEnum.complete:
-        return (
-          context.appLocalization.completedTasks,
-          context.colorPalette.green04B,
-        );
+        return (context.appLocalization.completedTasks, context.colorPalette.green04B);
       case TaskTypeEnum.late:
-        return (
-          context.appLocalization.lateTasks,
-          context.colorPalette.yellowE7B,
-        );
+        return (context.appLocalization.lateTasks, context.colorPalette.yellowE7B);
       case TaskTypeEnum.infringement:
-        return (
-          context.appLocalization.monitoredViolations,
-          context.colorPalette.redD62,
-        );
+        return (context.appLocalization.monitoredViolations, context.colorPalette.redD62);
     }
   }
 
@@ -63,6 +51,7 @@ class _TaskTypeScreenState extends State<TaskTypeScreen> {
                     colorTask: task.$2,
                     isEmployee: true,
                     isPrivate: true,
+                    task: TaskModel(repeatDays: [], attachments: [], companyId: ''),
                   );
                 },
               ),

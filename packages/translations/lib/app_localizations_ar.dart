@@ -451,4 +451,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get completedStatus => 'مكتملة';
+
+  @override
+  String get task => 'مهمة';
 }

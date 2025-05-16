@@ -9,13 +9,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late Query<TaskModel> _tasksQuery;
+
+  void _initialize() {
+    _tasksQuery = context.taskProvider.tasksMainQuery.orderByDesc;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: Container(),
-        leadingWidth: 0,
         title: Text(
           context.appLocalization.home,
           style: TextStyle(
@@ -74,33 +84,48 @@ class _HomeScreenState extends State<HomeScreen> {
             hintText: context.appLocalization.searchTaskEmployee,
             prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 13),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    context.appLocalization.topTasks,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: context.colorPalette.primary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
+          CustomFirestoreQueryBuilder(
+            query: _tasksQuery,
+            onComplete: (context, snapshot) {
+              final tasks = snapshot.docs;
+              if (tasks.isEmpty) {
+                return const SizedBox.shrink();
+              }
+              print("length:: ${tasks.length}");
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 13),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            context.appLocalization.topTasks,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: context.colorPalette.primary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        MoreButton(onTap: () {}),
+                      ],
                     ),
                   ),
-                ),
-                MoreButton(onTap: () {}),
-              ],
-            ),
-          ),
-          ListView.separated(
-            separatorBuilder: (context, index) => const SizedBox(height: 10),
-            itemCount: 10,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.zero,
-            itemBuilder: (context, index) {
-              return const TaskCard();
+                  ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(height: 10),
+                    itemCount: tasks.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      final task = tasks[index].data();
+                      return TaskCard(task: task);
+                    },
+                  ),
+                ],
+              );
             },
           ),
         ],

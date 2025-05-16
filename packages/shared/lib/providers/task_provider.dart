@@ -30,7 +30,7 @@ class TaskProvider extends ChangeNotifier {
     );
   }
 
-  void addTaskTOEmployees(BuildContext context, TaskModel task) async {
+  void addTaskToEmployees(BuildContext context, TaskModel task) async {
     ApiService.fetch(
       context,
       callBack: () async {

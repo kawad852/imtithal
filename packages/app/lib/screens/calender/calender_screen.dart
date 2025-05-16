@@ -24,10 +24,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
         ),
         actions: [
           IconButton(onPressed: () {}, icon: const CustomSvg(MyIcons.search)),
-          IconButton(
-            onPressed: () {},
-            icon: const CustomSvg(MyIcons.calendarSearch),
-          ),
+          IconButton(onPressed: () {}, icon: const CustomSvg(MyIcons.calendarSearch)),
         ],
       ),
       body: Column(
@@ -53,7 +50,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               itemBuilder: (context, index) {
-                return const TaskCard();
+                return TaskCard(task: TaskModel(repeatDays: [], attachments: [], companyId: ''));
               },
             ),
           ),

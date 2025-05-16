@@ -147,5 +147,6 @@
   "retry": "إعادة المحاولة",
   "pendingStatus": "بإنتظار التنفيذ",
   "inReviewStatus": "بإنتظار المراجعة",
-  "completedStatus": "مكتملة"
+  "completedStatus": "مكتملة",
+  "task": "مهمة"
 }

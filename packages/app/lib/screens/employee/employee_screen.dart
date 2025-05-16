@@ -19,16 +19,10 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: CustomSvg(
-              MyIcons.calendarSearch,
-              color: context.colorPalette.white,
-            ),
+            icon: CustomSvg(MyIcons.calendarSearch, color: context.colorPalette.white),
           ),
         ],
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(260),
-          child: EmployeeHeader(),
-        ),
+        bottom: const PreferredSize(preferredSize: Size.fromHeight(260), child: EmployeeHeader()),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -73,7 +67,10 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
             physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 15),
             itemBuilder: (context, index) {
-              return const TaskCard(isEmployee: true);
+              return TaskCard(
+                isEmployee: true,
+                task: TaskModel(repeatDays: [], attachments: [], companyId: ''),
+              );
             },
           ),
         ],

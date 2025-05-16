@@ -451,4 +451,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get completedStatus => 'Completed';
+
+  @override
+  String get task => 'task';
 }

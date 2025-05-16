@@ -982,6 +982,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'مكتملة'**
   String get completedStatus;
+
+  /// No description provided for @task.
+  ///
+  /// In ar, this message translates to:
+  /// **'مهمة'**
+  String get task;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

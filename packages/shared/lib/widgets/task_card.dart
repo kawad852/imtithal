@@ -1,16 +1,25 @@
+import 'package:app/screens/task/task_details_screen.dart';
 import 'package:shared/shared.dart';
 
 class TaskCard extends StatelessWidget {
   final Color? colorTask;
   final bool isEmployee;
   final bool isPrivate;
-  const TaskCard({super.key, this.isEmployee = false, this.isPrivate = false, this.colorTask});
+  final TaskModel task;
+
+  const TaskCard({
+    super.key,
+    this.isEmployee = false,
+    this.isPrivate = false,
+    this.colorTask,
+    required this.task,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // context.push((context) => const TaskDetailsScreen());
+        context.push((context) => TaskDetailsScreen(task: task));
       },
       child: Container(
         width: double.infinity,
@@ -32,7 +41,7 @@ class TaskCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          context.appLocalization.dailyTask,
+                          RepeatType.getLabel(task.repeatType!, context),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: context.colorPalette.grey8B8,
@@ -96,7 +105,7 @@ class TaskCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 3),
                     child: Text(
-                      "تقارير المحاميين للعمل الميداني",
+                      task.title,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: context.colorPalette.black252,
@@ -109,7 +118,7 @@ class TaskCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          "ادخال ملفات القضايا على برنامج زهو وابلاغ المسؤلين بها ...",
+                          task.description,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: context.colorPalette.grey8B8,
