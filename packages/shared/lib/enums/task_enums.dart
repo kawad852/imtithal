@@ -10,13 +10,13 @@ enum TaskStatusEnum {
 
 enum TaskTypeEnum { incomplete, complete, late, infringement }
 
-enum TaskRepation {
+enum RepeatType {
+  once('ONCE'),
   daily('DAILY'),
   weekly('WEEKLY'),
-  monthly('MONTHLY'),
-  non('NON');
+  monthly('MONTHLY');
 
   final String value;
 
-  const TaskRepation(this.value);
+  const RepeatType(this.value);
 }
