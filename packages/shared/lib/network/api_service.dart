@@ -9,6 +9,8 @@ import '../../algolia_exports.dart';
 FirebaseFirestore get kFirebaseInstant => FirebaseFirestore.instance;
 DateTime get kNowDate => DateTime.now();
 String get kUUID => const Uuid().v1().replaceAll('-', '');
+UserModel get kUser => MySharedPreferences.user!;
+String get kCompanyId => kUser.companyId;
 SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
 LightUserModel get kCurrentLightUser => LightUserModel(

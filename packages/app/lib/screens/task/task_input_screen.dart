@@ -11,18 +11,24 @@ class TaskInputScreen extends StatefulWidget {
 class _TaskInputScreenState extends State<TaskInputScreen> {
   late TaskModel _task;
   final _formKey = GlobalKey<FormState>();
-  final List<XFile> _files = [];
 
   Future<void> _onSubmit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       context.unFocusKeyboard();
+      context.taskProvider.createTask(context, _task);
     }
   }
 
   @override
   void initState() {
     super.initState();
-    _task = TaskModel(companyId: '', attachments: [], repeatDays: []);
+    _task = TaskModel(
+      status: TaskStatusEnum.pending.value,
+      companyId: kCompanyId,
+      attachments: [],
+      repeatDays: [],
+      files: [],
+    );
   }
 
   @override
@@ -163,7 +169,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                 child: TitledTextField(
                   title: context.appLocalization.notesAboutTheTask,
                   child: TextEditor(
-                    onChanged: (value) {},
+                    onChanged: (value) => _task.notes = value!,
                     hintText: context.appLocalization.notesAboutTheTaskExecutionMechanism,
                   ),
                 ),
@@ -171,14 +177,14 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
               TitledTextField(
                 title: context.appLocalization.penaltyForNonCompliance,
                 child: TextEditor(
-                  onChanged: (value) {},
+                  onChanged: (value) => _task.penaltyDescription = value!,
                   hintText: context.appLocalization.descriptionPenaltyForNonCompliance,
                 ),
               ),
               const SizedBox(height: 15),
               ImagesAttacher(
                 onChanged: (files) {
-                  _files.addAll(files);
+                  _task.files!.addAll(files);
                 },
               ),
             ],

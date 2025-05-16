@@ -5,11 +5,9 @@ import '../models/promo_code/promo_code_model.dart';
 import '../models/store/store_model.dart';
 
 extension CollectionReferenceExtension on FirebaseFirestore {
-  CollectionReference<UserModel> get users =>
-      collection(MyCollections.users).withConverter<UserModel>(
-        fromFirestore: (snapshot, _) => UserModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
+  CollectionReference<TaskModel> get tasks => collection(MyCollections.tasks).taskConvertor;
+
+  CollectionReference<UserModel> get users => collection(MyCollections.users).userConvertor;
 
   CollectionReference<StoreModel> get foodStores =>
       collection(MyCollections.foodStores).withConverter<StoreModel>(

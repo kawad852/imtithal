@@ -922,6 +922,66 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تأكيد العقوبة'**
   String get confirmPenalty;
+
+  /// No description provided for @generalErrorTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'حدث خطأ ما'**
+  String get generalErrorTitle;
+
+  /// No description provided for @generalErrorBody.
+  ///
+  /// In ar, this message translates to:
+  /// **'حدث خطأ غير متوقع. الرجاء المحاولة مرة أخرى لاحقًا أو الاتصال بالدعم.'**
+  String get generalErrorBody;
+
+  /// No description provided for @connectionErrorTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'خطأ في الاتصال'**
+  String get connectionErrorTitle;
+
+  /// No description provided for @connectionErrorBody.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذر الوصول إلى الخادم. الرجاء التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.'**
+  String get connectionErrorBody;
+
+  /// No description provided for @serverErrorTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'البيانات غير متاحة'**
+  String get serverErrorTitle;
+
+  /// No description provided for @serverErrorBody.
+  ///
+  /// In ar, this message translates to:
+  /// **'نواجه حاليًا صعوبة في استرداد البيانات من الخادم. الرجاء المحاولة مرة أخرى لاحقًا.'**
+  String get serverErrorBody;
+
+  /// No description provided for @retry.
+  ///
+  /// In ar, this message translates to:
+  /// **'إعادة المحاولة'**
+  String get retry;
+
+  /// No description provided for @pendingStatus.
+  ///
+  /// In ar, this message translates to:
+  /// **'بإنتظار التنفيذ'**
+  String get pendingStatus;
+
+  /// No description provided for @inReviewStatus.
+  ///
+  /// In ar, this message translates to:
+  /// **'بإنتظار المراجعة'**
+  String get inReviewStatus;
+
+  /// No description provided for @completedStatus.
+  ///
+  /// In ar, this message translates to:
+  /// **'مكتملة'**
+  String get completedStatus;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

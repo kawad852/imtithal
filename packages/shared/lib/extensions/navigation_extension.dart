@@ -13,6 +13,21 @@ extension NavigationExtension on BuildContext {
     ).then((value) => value);
   }
 
+  Future<T?> pushReplacement<T>(
+    WidgetBuilder builder, {
+    bool fullscreenDialog = false,
+    String? name,
+  }) {
+    return Navigator.pushReplacement<T?, T?>(
+      this,
+      MaterialPageRoute(
+        builder: builder,
+        fullscreenDialog: fullscreenDialog,
+        settings: RouteSettings(name: name),
+      ),
+    ).then((value) => value);
+  }
+
   Future<T?> pushAndRemoveUntil<T>(WidgetBuilder builder) {
     return Navigator.pushAndRemoveUntil<T?>(
       this,

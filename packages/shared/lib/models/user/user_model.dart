@@ -19,6 +19,7 @@ class UserModel with _$UserModel {
     @Default(false) bool blocked,
     @Default('') String password,
     @Default('') String jobTitle,
+    @Default('') String companyId,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

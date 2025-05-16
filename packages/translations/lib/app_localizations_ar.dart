@@ -421,4 +421,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get confirmPenalty => 'تأكيد العقوبة';
+
+  @override
+  String get generalErrorTitle => 'حدث خطأ ما';
+
+  @override
+  String get generalErrorBody => 'حدث خطأ غير متوقع. الرجاء المحاولة مرة أخرى لاحقًا أو الاتصال بالدعم.';
+
+  @override
+  String get connectionErrorTitle => 'خطأ في الاتصال';
+
+  @override
+  String get connectionErrorBody => 'تعذر الوصول إلى الخادم. الرجاء التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.';
+
+  @override
+  String get serverErrorTitle => 'البيانات غير متاحة';
+
+  @override
+  String get serverErrorBody => 'نواجه حاليًا صعوبة في استرداد البيانات من الخادم. الرجاء المحاولة مرة أخرى لاحقًا.';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get pendingStatus => 'بإنتظار التنفيذ';
+
+  @override
+  String get inReviewStatus => 'بإنتظار المراجعة';
+
+  @override
+  String get completedStatus => 'مكتملة';
 }

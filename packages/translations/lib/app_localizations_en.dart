@@ -421,4 +421,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmPenalty => 'Confirm penalty';
+
+  @override
+  String get generalErrorTitle => 'Something went wrong';
+
+  @override
+  String get generalErrorBody => 'An unexpected error occurred. Please try again later or contact support.';
+
+  @override
+  String get connectionErrorTitle => 'Connection error';
+
+  @override
+  String get connectionErrorBody => 'Unable to reach the server. Please check your internet connection and try again.';
+
+  @override
+  String get serverErrorTitle => 'Data unavailable';
+
+  @override
+  String get serverErrorBody => 'We are currently having difficulty retrieving data from the server. Please try again later.';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get pendingStatus => 'Pending';
+
+  @override
+  String get inReviewStatus => 'In Review';
+
+  @override
+  String get completedStatus => 'Completed';
 }

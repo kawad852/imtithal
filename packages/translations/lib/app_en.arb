@@ -137,5 +137,15 @@
   "addReply":"Add reply",
   "managementDecision":"Management decision",
   "cancelPenalty":"Cancel penalty",
-  "confirmPenalty":"Confirm penalty"
+  "confirmPenalty":"Confirm penalty",
+  "generalErrorTitle": "Something went wrong",
+  "generalErrorBody": "An unexpected error occurred. Please try again later or contact support.",
+  "connectionErrorTitle": "Connection error",
+  "connectionErrorBody": "Unable to reach the server. Please check your internet connection and try again.",
+  "serverErrorTitle": "Data unavailable",
+  "serverErrorBody": "We are currently having difficulty retrieving data from the server. Please try again later.",
+  "retry": "Retry",
+  "pendingStatus": "Pending",
+  "inReviewStatus": "In Review",
+  "completedStatus": "Completed"
 }

@@ -137,5 +137,15 @@
   "addReply":"اضافة رد",
   "managementDecision":"قرار الإدارة",
   "cancelPenalty":"إلغاء العقوبة",
-  "confirmPenalty":"تأكيد العقوبة"
+  "confirmPenalty":"تأكيد العقوبة",
+  "generalErrorTitle": "حدث خطأ ما",
+  "generalErrorBody": "حدث خطأ غير متوقع. الرجاء المحاولة مرة أخرى لاحقًا أو الاتصال بالدعم.",
+  "connectionErrorTitle": "خطأ في الاتصال",
+  "connectionErrorBody": "تعذر الوصول إلى الخادم. الرجاء التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
+  "serverErrorTitle": "البيانات غير متاحة",
+  "serverErrorBody": "نواجه حاليًا صعوبة في استرداد البيانات من الخادم. الرجاء المحاولة مرة أخرى لاحقًا.",
+  "retry": "إعادة المحاولة",
+  "pendingStatus": "بإنتظار التنفيذ",
+  "inReviewStatus": "بإنتظار المراجعة",
+  "completedStatus": "مكتملة"
 }

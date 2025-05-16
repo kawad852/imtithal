@@ -1,4 +1,5 @@
 import 'package:app/screens_exports.dart';
+import 'package:shared/providers/task_provider.dart';
 import 'package:shared/shared.dart';
 
 import 'firebase_options.dart';
@@ -26,6 +27,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => AppProvider()),
+        ChangeNotifierProvider(create: (context) => TaskProvider()),
       ],
       child: const MyApp(),
     ),

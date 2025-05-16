@@ -106,6 +106,8 @@ export 'widgets/editors/username_editor.dart';
 export 'widgets/evaluation_box.dart';
 export 'widgets/images_attacher.dart';
 export 'widgets/month_calender.dart';
+export 'widgets/stream_builders/big_stream_builder.dart';
+export 'widgets/stream_builders/impeded_stream_builder.dart';
 //widgets
 export 'widgets/stretch_button.dart';
 export 'widgets/task_bubble.dart';

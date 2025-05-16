@@ -82,7 +82,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             title: context.appLocalization.changePassword,
           ),
           ProfileCard(
-            onTap: () {},
+            onTap: () {
+              context.userProvider.logout(context);
+            },
             icon: MyIcons.logout,
             backgroundColor: context.colorPalette.redD623,
             title: context.appLocalization.logOut,

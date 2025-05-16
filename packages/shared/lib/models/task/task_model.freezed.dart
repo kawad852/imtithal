@@ -47,6 +47,8 @@ mixin _$TaskModel {
   set departmentId(String value) => throw _privateConstructorUsedError;
   String get penaltyDescription => throw _privateConstructorUsedError;
   set penaltyDescription(String value) => throw _privateConstructorUsedError;
+  String get notes => throw _privateConstructorUsedError;
+  set notes(String value) => throw _privateConstructorUsedError;
   String? get repeatType => throw _privateConstructorUsedError;
   set repeatType(String? value) => throw _privateConstructorUsedError;
   bool get markedAsLate => throw _privateConstructorUsedError;
@@ -55,6 +57,10 @@ mixin _$TaskModel {
   set attachments(List<String> value) => throw _privateConstructorUsedError;
   List<String> get repeatDays => throw _privateConstructorUsedError;
   set repeatDays(List<String> value) => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  List<XFile>? get files => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set files(List<XFile>? value) => throw _privateConstructorUsedError;
 
   /// Serializes this TaskModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -83,10 +89,12 @@ abstract class $TaskModelCopyWith<$Res> {
     String status,
     String departmentId,
     String penaltyDescription,
+    String notes,
     String? repeatType,
     bool markedAsLate,
     List<String> attachments,
     List<String> repeatDays,
+    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
 }
 
@@ -116,10 +124,12 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? status = null,
     Object? departmentId = null,
     Object? penaltyDescription = null,
+    Object? notes = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
     Object? attachments = null,
     Object? repeatDays = null,
+    Object? files = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -178,6 +188,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.penaltyDescription
                     : penaltyDescription // ignore: cast_nullable_to_non_nullable
                         as String,
+            notes:
+                null == notes
+                    ? _value.notes
+                    : notes // ignore: cast_nullable_to_non_nullable
+                        as String,
             repeatType:
                 freezed == repeatType
                     ? _value.repeatType
@@ -198,6 +213,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.repeatDays
                     : repeatDays // ignore: cast_nullable_to_non_nullable
                         as List<String>,
+            files:
+                freezed == files
+                    ? _value.files
+                    : files // ignore: cast_nullable_to_non_nullable
+                        as List<XFile>?,
           )
           as $Val,
     );
@@ -225,10 +245,12 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String status,
     String departmentId,
     String penaltyDescription,
+    String notes,
     String? repeatType,
     bool markedAsLate,
     List<String> attachments,
     List<String> repeatDays,
+    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
 }
 
@@ -257,10 +279,12 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? departmentId = null,
     Object? penaltyDescription = null,
+    Object? notes = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
     Object? attachments = null,
     Object? repeatDays = null,
+    Object? files = freezed,
   }) {
     return _then(
       _$TaskModelImpl(
@@ -319,6 +343,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.penaltyDescription
                 : penaltyDescription // ignore: cast_nullable_to_non_nullable
                     as String,
+        notes:
+            null == notes
+                ? _value.notes
+                : notes // ignore: cast_nullable_to_non_nullable
+                    as String,
         repeatType:
             freezed == repeatType
                 ? _value.repeatType
@@ -339,6 +368,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.repeatDays
                 : repeatDays // ignore: cast_nullable_to_non_nullable
                     as List<String>,
+        files:
+            freezed == files
+                ? _value.files
+                : files // ignore: cast_nullable_to_non_nullable
+                    as List<XFile>?,
       ),
     );
   }
@@ -360,10 +394,12 @@ class _$TaskModelImpl extends _TaskModel {
     this.status = "",
     this.departmentId = "",
     this.penaltyDescription = "",
+    this.notes = "",
     this.repeatType,
     this.markedAsLate = false,
     required this.attachments,
     required this.repeatDays,
+    @JsonKey(includeToJson: false, includeFromJson: false) this.files,
   }) : super._();
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -402,6 +438,9 @@ class _$TaskModelImpl extends _TaskModel {
   @JsonKey()
   String penaltyDescription;
   @override
+  @JsonKey()
+  String notes;
+  @override
   String? repeatType;
   @override
   @JsonKey()
@@ -410,10 +449,13 @@ class _$TaskModelImpl extends _TaskModel {
   List<String> attachments;
   @override
   List<String> repeatDays;
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  List<XFile>? files;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays, files: $files)';
   }
 
   /// Create a copy of TaskModel
@@ -443,10 +485,12 @@ abstract class _TaskModel extends TaskModel {
     String status,
     String departmentId,
     String penaltyDescription,
+    String notes,
     String? repeatType,
     bool markedAsLate,
     required List<String> attachments,
     required List<String> repeatDays,
+    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _$TaskModelImpl;
   _TaskModel._() : super._();
 
@@ -491,6 +535,9 @@ abstract class _TaskModel extends TaskModel {
   String get penaltyDescription;
   set penaltyDescription(String value);
   @override
+  String get notes;
+  set notes(String value);
+  @override
   String? get repeatType;
   set repeatType(String? value);
   @override
@@ -502,6 +549,11 @@ abstract class _TaskModel extends TaskModel {
   @override
   List<String> get repeatDays;
   set repeatDays(List<String> value);
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  List<XFile>? get files;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set files(List<XFile>? value);
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.

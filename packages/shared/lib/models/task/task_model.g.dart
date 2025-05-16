@@ -21,6 +21,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
   status: json['status'] as String? ?? "",
   departmentId: json['departmentId'] as String? ?? "",
   penaltyDescription: json['penaltyDescription'] as String? ?? "",
+  notes: json['notes'] as String? ?? "",
   repeatType: json['repeatType'] as String?,
   markedAsLate: json['markedAsLate'] as bool? ?? false,
   attachments:
@@ -42,6 +43,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'status': instance.status,
       'departmentId': instance.departmentId,
       'penaltyDescription': instance.penaltyDescription,
+      'notes': instance.notes,
       'repeatType': instance.repeatType,
       'markedAsLate': instance.markedAsLate,
       'attachments': instance.attachments,

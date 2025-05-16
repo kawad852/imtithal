@@ -19,6 +19,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       blocked: json['blocked'] as bool? ?? false,
       password: json['password'] as String? ?? '',
       jobTitle: json['jobTitle'] as String? ?? '',
+      companyId: json['companyId'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -34,6 +35,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'blocked': instance.blocked,
       'password': instance.password,
       'jobTitle': instance.jobTitle,
+      'companyId': instance.companyId,
     };
 
 _$LightUserModelImpl _$$LightUserModelImplFromJson(Map<String, dynamic> json) =>

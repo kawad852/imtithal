@@ -9,6 +9,18 @@ enum TaskStatusEnum {
   final String value;
 
   const TaskStatusEnum(this.value);
+
+  static String getLabel(String status, BuildContext context) {
+    final value = TaskStatusEnum.values.firstWhere((e) => e.value == status);
+    if (value == pending) {
+      return context.appLocalization.pendingStatus;
+    } else if (value == inReview) {
+      return context.appLocalization.inReviewStatus;
+    } else if (value == completed) {
+      return context.appLocalization.completedStatus;
+    }
+    return '';
+  }
 }
 
 enum TaskTypeEnum { incomplete, complete, late, infringement }

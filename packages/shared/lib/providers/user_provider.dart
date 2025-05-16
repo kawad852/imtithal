@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/screens/login/login_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared/shared.dart';
 
@@ -146,7 +147,7 @@ class UserProvider extends ChangeNotifier {
         notifyListeners();
         if (context.mounted) {
           context.pushAndRemoveUntil((context) {
-            return const Placeholder();
+            return const LoginScreen();
           });
         }
       },

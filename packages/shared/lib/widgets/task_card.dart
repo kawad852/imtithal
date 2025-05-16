@@ -1,22 +1,16 @@
-import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class TaskCard extends StatelessWidget {
   final Color? colorTask;
   final bool isEmployee;
   final bool isPrivate;
-  const TaskCard({
-    super.key,
-    this.isEmployee = false,
-    this.isPrivate = false,
-    this.colorTask,
-  });
+  const TaskCard({super.key, this.isEmployee = false, this.isPrivate = false, this.colorTask});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push((context) => const TaskDetalisScreen());
+        // context.push((context) => const TaskDetailsScreen());
       },
       child: Container(
         width: double.infinity,

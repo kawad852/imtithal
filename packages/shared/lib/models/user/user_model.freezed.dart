@@ -45,6 +45,8 @@ mixin _$UserModel {
   set password(String value) => throw _privateConstructorUsedError;
   String get jobTitle => throw _privateConstructorUsedError;
   set jobTitle(String value) => throw _privateConstructorUsedError;
+  String get companyId => throw _privateConstructorUsedError;
+  set companyId(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -73,6 +75,7 @@ abstract class $UserModelCopyWith<$Res> {
     bool blocked,
     String password,
     String jobTitle,
+    String companyId,
   });
 }
 
@@ -102,6 +105,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? blocked = null,
     Object? password = null,
     Object? jobTitle = null,
+    Object? companyId = null,
   }) {
     return _then(
       _value.copyWith(
@@ -160,6 +164,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.jobTitle
                     : jobTitle // ignore: cast_nullable_to_non_nullable
                         as String,
+            companyId:
+                null == companyId
+                    ? _value.companyId
+                    : companyId // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -187,6 +196,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     bool blocked,
     String password,
     String jobTitle,
+    String companyId,
   });
 }
 
@@ -215,6 +225,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? blocked = null,
     Object? password = null,
     Object? jobTitle = null,
+    Object? companyId = null,
   }) {
     return _then(
       _$UserModelImpl(
@@ -273,6 +284,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.jobTitle
                 : jobTitle // ignore: cast_nullable_to_non_nullable
                     as String,
+        companyId:
+            null == companyId
+                ? _value.companyId
+                : companyId // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -294,6 +310,7 @@ class _$UserModelImpl implements _UserModel {
     this.blocked = false,
     this.password = '',
     this.jobTitle = '',
+    this.companyId = '',
   });
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -327,10 +344,13 @@ class _$UserModelImpl implements _UserModel {
   @override
   @JsonKey()
   String jobTitle;
+  @override
+  @JsonKey()
+  String companyId;
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, password: $password, jobTitle: $jobTitle)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, password: $password, jobTitle: $jobTitle, companyId: $companyId)';
   }
 
   /// Create a copy of UserModel
@@ -360,6 +380,7 @@ abstract class _UserModel implements UserModel {
     bool blocked,
     String password,
     String jobTitle,
+    String companyId,
   }) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -400,6 +421,9 @@ abstract class _UserModel implements UserModel {
   @override
   String get jobTitle;
   set jobTitle(String value);
+  @override
+  String get companyId;
+  set companyId(String value);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
