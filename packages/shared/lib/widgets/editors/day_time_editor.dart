@@ -1,10 +1,4 @@
-import 'dart:math' as math;
-
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../helper/validation_helper.dart';
-import 'base_editor.dart';
+import 'package:shared/shared.dart';
 
 class DayTimeEditor extends StatefulWidget {
   final String? initialValue;
@@ -21,24 +15,6 @@ class _DayTimeEditorState extends State<DayTimeEditor> {
   TimeOfDay? _timeOfDay;
 
   String? get _initialValue => widget.initialValue;
-
-  TimeOfDay? _convertStringToTimeOfDay(String? timeString) {
-    try {
-      if (timeString == null) {
-        return null;
-      }
-      final parts = timeString.split(':');
-      final hour = int.parse(parts[0].trim());
-      final minute = int.parse(parts[1].trim().split(' ')[0]);
-
-      final isPm = parts[1].trim().endsWith('PM');
-      final adjustedHour = isPm ? hour + 12 : math.min(hour, 12);
-
-      return TimeOfDay(hour: adjustedHour, minute: minute);
-    } catch (e) {
-      return null;
-    }
-  }
 
   Future<void> _showTimePicker(BuildContext context) async {
     final TimeOfDay? time = await showTimePicker(
@@ -78,7 +54,7 @@ class _DayTimeEditorState extends State<DayTimeEditor> {
   @override
   Widget build(BuildContext context) {
     if (_timeOfDay == null) {
-      _timeOfDay = _convertStringToTimeOfDay(_initialValue);
+      _timeOfDay = _initialValue?.convertStringToTimeOfDay;
       // _timeOfDay = _sToTime(_initialValue);
       _controller = TextEditingController(text: _timeOfDay?.format(context));
     }

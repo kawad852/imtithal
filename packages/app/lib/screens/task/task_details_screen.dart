@@ -138,7 +138,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   ),
                 ),
               ),
-              Text("انذار خطي وخصم 1%", style: style),
+              Text(task.penaltyDescription, style: style),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
@@ -160,7 +160,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   TimeCard(title: context.appLocalization.day, value: "02"),
                 ],
               ),
-              const ResponsibleCard(),
+              ResponsibleCard(task: task),
               const Row(
                 children: [
                   TaskBubble(taskType: TaskTypeEnum.incomplete, value: "11"),

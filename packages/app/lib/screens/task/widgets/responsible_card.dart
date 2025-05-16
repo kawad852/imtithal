@@ -2,7 +2,9 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class ResponsibleCard extends StatelessWidget {
-  const ResponsibleCard({super.key});
+  final TaskModel task;
+
+  const ResponsibleCard({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -87,11 +89,7 @@ class ResponsibleCard extends StatelessWidget {
               ],
             ),
           ),
-          VerticalDivider(
-            color: context.colorPalette.grey8B8,
-            indent: 12,
-            endIndent: 12,
-          ),
+          VerticalDivider(color: context.colorPalette.grey8B8, indent: 12, endIndent: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,14 +108,10 @@ class ResponsibleCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CustomSvg(
-                        MyIcons.clock,
-                        color: context.colorPalette.grey8B8,
-                        width: 16,
-                      ),
+                      CustomSvg(MyIcons.clock, color: context.colorPalette.grey8B8, width: 16),
                       const SizedBox(width: 10),
                       Text(
-                        "03:30 مساءً",
+                        task.deliveryTime.convertStringToTimeOfDay.format(context),
                         style: TextStyle(
                           color: context.colorPalette.grey8B8,
                           fontSize: 12,
@@ -130,11 +124,7 @@ class ResponsibleCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomSvg(
-                      MyIcons.calendar,
-                      color: context.colorPalette.grey8B8,
-                      width: 16,
-                    ),
+                    CustomSvg(MyIcons.calendar, color: context.colorPalette.grey8B8, width: 16),
                     const SizedBox(width: 10),
                     Text(
                       "01.05.2025",
