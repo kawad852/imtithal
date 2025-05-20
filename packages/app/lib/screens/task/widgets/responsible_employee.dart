@@ -22,7 +22,8 @@ class ResponsibleEmployee extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: CustomSvg(MyIcons.check),
           ),
-          const BaseNetworkImage("", width: 40, height: 40, shape: BoxShape.circle),
+          UserPhoto(url: user.profilePhoto, displayName: user.displayName),
+          // BaseNetworkImage(user.profilePhoto!, width: 40, height: 40, shape: BoxShape.circle),
           const SizedBox(width: 5),
           Expanded(
             child: Column(
@@ -30,7 +31,7 @@ class ResponsibleEmployee extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "المدير المسؤول",
+                  user.jobTitle,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.grey8B8,
