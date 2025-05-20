@@ -36,7 +36,7 @@ export 'screens/task/widgets/action_button.dart';
 export 'screens/task/widgets/day_bubble.dart';
 export 'screens/task/widgets/responsible_card.dart';
 export 'screens/task/widgets/responsible_department.dart';
-export 'screens/task/widgets/responsible_emoloyee.dart';
+export 'screens/task/widgets/responsible_employee.dart';
 export 'screens/task/widgets/time_card.dart';
 export 'screens/violations/violation_single_screen.dart';
 export 'screens/violations/violations_screen.dart';

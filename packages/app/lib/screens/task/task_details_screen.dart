@@ -12,14 +12,27 @@ class TaskDetailsScreen extends StatefulWidget {
 }
 
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
-  late Stream<TaskModel> _taskStream;
+  late Stream<List<dynamic>> _streams;
+
+  String get _taskId => widget.id ?? widget.task!.id;
 
   void _initialize() {
+    late Stream<TaskModel> taskStream;
+
     if (widget.task != null) {
-      _taskStream = Stream.value(widget.task!);
+      taskStream = Stream.value(widget.task!);
     } else {
-      _taskStream = kFirebaseInstant.tasks.doc(widget.id).snapshots().map((e) => e.data()!);
+      taskStream = kFirebaseInstant.tasks.doc(widget.id).snapshots().map((e) => e.data()!);
     }
+    final usersStream = context.taskProvider.getTaskUsers(_taskId);
+
+    _streams = Rx.combineLatest2<TaskModel, List<UserModel>, List<dynamic>>(
+      taskStream,
+      usersStream,
+      (s1, s2) {
+        return [s1, s2];
+      },
+    );
   }
 
   @override
@@ -36,9 +49,10 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       fontWeight: FontWeight.w400,
     );
     return BigStreamBuilder(
-      stream: _taskStream,
+      stream: _streams,
       onComplete: (context, snapshot) {
-        final task = snapshot.data!;
+        final task = snapshot.data![0] as TaskModel;
+        final users = snapshot.data![1] as List<UserModel>;
         return Scaffold(
           appBar: AppBar(),
           body: ListView(
@@ -160,7 +174,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   TimeCard(title: context.appLocalization.day, value: "02"),
                 ],
               ),
-              ResponsibleCard(task: task),
+              ResponsibleCard(task: task, users: users),
               const Row(
                 children: [
                   TaskBubble(taskType: TaskTypeEnum.incomplete, value: "11"),

@@ -20,6 +20,8 @@ class UserModel with _$UserModel {
     @Default('') String password,
     @Default('') String jobTitle,
     @Default('') String companyId,
+    @Default([]) List<String> taskIds,
+    @JsonKey(includeToJson: false, includeFromJson: false) @Default(false) bool selected,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

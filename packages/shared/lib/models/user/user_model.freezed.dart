@@ -47,6 +47,12 @@ mixin _$UserModel {
   set jobTitle(String value) => throw _privateConstructorUsedError;
   String get companyId => throw _privateConstructorUsedError;
   set companyId(String value) => throw _privateConstructorUsedError;
+  List<String> get taskIds => throw _privateConstructorUsedError;
+  set taskIds(List<String> value) => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  bool get selected => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set selected(bool value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -76,6 +82,8 @@ abstract class $UserModelCopyWith<$Res> {
     String password,
     String jobTitle,
     String companyId,
+    List<String> taskIds,
+    @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
   });
 }
 
@@ -106,6 +114,8 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? password = null,
     Object? jobTitle = null,
     Object? companyId = null,
+    Object? taskIds = null,
+    Object? selected = null,
   }) {
     return _then(
       _value.copyWith(
@@ -169,6 +179,16 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.companyId
                     : companyId // ignore: cast_nullable_to_non_nullable
                         as String,
+            taskIds:
+                null == taskIds
+                    ? _value.taskIds
+                    : taskIds // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            selected:
+                null == selected
+                    ? _value.selected
+                    : selected // ignore: cast_nullable_to_non_nullable
+                        as bool,
           )
           as $Val,
     );
@@ -197,6 +217,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String password,
     String jobTitle,
     String companyId,
+    List<String> taskIds,
+    @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
   });
 }
 
@@ -226,6 +248,8 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? password = null,
     Object? jobTitle = null,
     Object? companyId = null,
+    Object? taskIds = null,
+    Object? selected = null,
   }) {
     return _then(
       _$UserModelImpl(
@@ -289,6 +313,16 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.companyId
                 : companyId // ignore: cast_nullable_to_non_nullable
                     as String,
+        taskIds:
+            null == taskIds
+                ? _value.taskIds
+                : taskIds // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        selected:
+            null == selected
+                ? _value.selected
+                : selected // ignore: cast_nullable_to_non_nullable
+                    as bool,
       ),
     );
   }
@@ -311,6 +345,9 @@ class _$UserModelImpl implements _UserModel {
     this.password = '',
     this.jobTitle = '',
     this.companyId = '',
+    this.taskIds = const [],
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    this.selected = false,
   });
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -347,10 +384,16 @@ class _$UserModelImpl implements _UserModel {
   @override
   @JsonKey()
   String companyId;
+  @override
+  @JsonKey()
+  List<String> taskIds;
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  bool selected;
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, password: $password, jobTitle: $jobTitle, companyId: $companyId)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, password: $password, jobTitle: $jobTitle, companyId: $companyId, taskIds: $taskIds, selected: $selected)';
   }
 
   /// Create a copy of UserModel
@@ -381,6 +424,8 @@ abstract class _UserModel implements UserModel {
     String password,
     String jobTitle,
     String companyId,
+    List<String> taskIds,
+    @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
   }) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -424,6 +469,14 @@ abstract class _UserModel implements UserModel {
   @override
   String get companyId;
   set companyId(String value);
+  @override
+  List<String> get taskIds;
+  set taskIds(List<String> value);
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  bool get selected;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set selected(bool value);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

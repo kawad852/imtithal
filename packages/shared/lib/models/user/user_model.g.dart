@@ -20,6 +20,11 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       password: json['password'] as String? ?? '',
       jobTitle: json['jobTitle'] as String? ?? '',
       companyId: json['companyId'] as String? ?? '',
+      taskIds:
+          (json['taskIds'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -36,6 +41,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'password': instance.password,
       'jobTitle': instance.jobTitle,
       'companyId': instance.companyId,
+      'taskIds': instance.taskIds,
     };
 
 _$LightUserModelImpl _$$LightUserModelImplFromJson(Map<String, dynamic> json) =>

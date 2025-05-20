@@ -1,7 +1,9 @@
 import 'package:shared/shared.dart';
 
-class ResponsibleEmoloyee extends StatelessWidget {
-  const ResponsibleEmoloyee({super.key});
+class ResponsibleEmployee extends StatelessWidget {
+  final UserModel user;
+
+  const ResponsibleEmployee({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,7 @@ class ResponsibleEmoloyee extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: CustomSvg(MyIcons.check),
           ),
-          const BaseNetworkImage(
-            "",
-            width: 40,
-            height: 40,
-            shape: BoxShape.circle,
-          ),
+          const BaseNetworkImage("", width: 40, height: 40, shape: BoxShape.circle),
           const SizedBox(width: 5),
           Expanded(
             child: Column(
@@ -43,7 +40,7 @@ class ResponsibleEmoloyee extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "محمد احمد",
+                  user.displayName,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.black252,

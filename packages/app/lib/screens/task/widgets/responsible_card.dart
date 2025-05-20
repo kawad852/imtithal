@@ -3,8 +3,9 @@ import 'package:shared/shared.dart';
 
 class ResponsibleCard extends StatelessWidget {
   final TaskModel task;
+  final List<UserModel> users;
 
-  const ResponsibleCard({super.key, required this.task});
+  const ResponsibleCard({super.key, required this.task, required this.users});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class ResponsibleCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "(12)",
+                      "(${users.length})",
                       style: TextStyle(
                         color: context.colorPalette.primary,
                         fontSize: 14,
@@ -43,48 +44,53 @@ class ResponsibleCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: 32,
-                        child: ListView.builder(
-                          itemCount: 5,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                          itemBuilder: (context, index) {
-                            return const Align(
-                              widthFactor: 0.5,
-                              child: BaseNetworkImage(
-                                "",
-                                width: 32,
-                                height: 32,
-                                shape: BoxShape.circle,
-                              ),
-                            );
-                          },
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    children: [
+                      if (users.isNotEmpty)
+                        Expanded(
+                          child: SizedBox(
+                            height: 32,
+                            child: ListView.builder(
+                              itemCount: users.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.zero,
+                              itemBuilder: (context, index) {
+                                final user = users[index];
+                                return Align(
+                                  widthFactor: 0.5,
+                                  child: BaseNetworkImage(
+                                    user.profilePhoto ?? '',
+                                    width: 32,
+                                    height: 32,
+                                    shape: BoxShape.circle,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      GestureDetector(
+                        onTap: () {
+                          context.push((context) => TaskActionScreen(task: task));
+                        },
+                        child: Container(
+                          width: 32,
+                          height: 32,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: context.colorPalette.primary,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const CustomSvg(MyIcons.setting),
                         ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        context.push((context) => const TaskActionScreen());
-                      },
-                      child: Container(
-                        width: 32,
-                        height: 32,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: context.colorPalette.primary,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const CustomSvg(MyIcons.setting),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

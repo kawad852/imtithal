@@ -1,7 +1,10 @@
 import 'package:shared/shared.dart';
 
 class ResponsibleDepartment extends StatelessWidget {
-  const ResponsibleDepartment({super.key});
+  final TaskModel task;
+  final List<UserModel> users;
+
+  const ResponsibleDepartment({super.key, required this.task, required this.users});
 
   @override
   Widget build(BuildContext context) {

@@ -16,6 +16,7 @@ export 'package:google_fonts/google_fonts.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:loading_animation_widget/loading_animation_widget.dart';
 export 'package:provider/provider.dart';
+export 'package:rxdart/rxdart.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:timelines_plus/timelines_plus.dart';
 
@@ -108,6 +109,7 @@ export 'widgets/editors/username_editor.dart';
 export 'widgets/evaluation_box.dart';
 export 'widgets/images_attacher.dart';
 export 'widgets/month_calender.dart';
+export 'widgets/search_app_bar.dart';
 export 'widgets/stream_builders/big_stream_builder.dart';
 export 'widgets/stream_builders/impeded_stream_builder.dart';
 //widgets

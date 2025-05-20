@@ -45,4 +45,11 @@ class TaskProvider extends ChangeNotifier {
       },
     );
   }
+
+  Stream<List<UserModel>> getTaskUsers(String taskId) {
+    return kFirebaseInstant.users
+        .where(MyFields.taskIds, arrayContains: taskId)
+        .snapshots()
+        .map((e) => e.docs.map((e) => e.data()).toList());
+  }
 }
