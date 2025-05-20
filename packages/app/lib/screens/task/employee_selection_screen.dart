@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:shared/shared.dart';
 
 class EmployeeSelectionScreen extends StatefulWidget {
-  final Stream<List<UserModel>> usersStream;
+  final List<UserModel> initialValue;
+  final String taskId;
 
-  const EmployeeSelectionScreen({super.key, required this.usersStream});
+  const EmployeeSelectionScreen({super.key, required this.initialValue, required this.taskId});
 
   @override
   State<EmployeeSelectionScreen> createState() => _EmployeeSelectionScreenState();
@@ -15,6 +16,15 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
   String query = '';
   Timer? _debounce;
   List<String> _selectedIds = [];
+  late Stream<List<UserModel>> _usersStream;
+
+  void _initialize() {
+    _usersStream = kFirebaseInstant.users.whereMyCompany.snapshots().map((e) {
+      final users = e.docs.map((e) => e.data()).toList();
+      users.removeWhere((e) => e.id == kUser.id);
+      return users;
+    });
+  }
 
   _onSearchChanged(String query) {
     if (query.isEmpty) {
@@ -37,11 +47,18 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: ImpededStreamBuilder(
-        stream: widget.usersStream,
+        stream: _usersStream,
+        initialData: widget.initialValue,
         onComplete: (context, snapshot) {
           return ListView.builder(
             itemCount: snapshot.data!.length,

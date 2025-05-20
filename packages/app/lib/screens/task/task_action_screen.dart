@@ -61,7 +61,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                   ActionButton(
                     onTap: () {
                       context.push((context) {
-                        return EmployeeSelectionScreen(usersStream: _usersStream);
+                        return EmployeeSelectionScreen(initialValue: users, taskId: _task.id);
                       });
                     },
                     icon: MyIcons.userEdit,
