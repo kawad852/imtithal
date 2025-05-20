@@ -4,9 +4,9 @@ import 'package:shared/shared.dart';
 
 class EmployeeSelectionScreen extends StatefulWidget {
   final List<UserModel> initialValue;
-  final String taskId;
+  final TaskModel task;
 
-  const EmployeeSelectionScreen({super.key, required this.initialValue, required this.taskId});
+  const EmployeeSelectionScreen({super.key, required this.initialValue, required this.task});
 
   @override
   State<EmployeeSelectionScreen> createState() => _EmployeeSelectionScreenState();
@@ -17,6 +17,8 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
   Timer? _debounce;
   List<String> _selectedIds = [];
   late Stream<List<UserModel>> _usersStream;
+
+  TaskModel get _task => widget.task;
 
   void _initialize() {
     _usersStream = kFirebaseInstant.users.whereMyCompany.snapshots().map((e) {
@@ -46,6 +48,32 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
     });
   }
 
+  void _onSubmit(BuildContext context) {
+    ApiService.fetch(
+      context,
+      callBack: () async {
+        final batch = kFirebaseInstant.batch();
+        for (var e in _selectedIds) {
+          final taskDocRef = kFirebaseInstant.users
+              .doc(e)
+              .collection(MyCollections.tasks)
+              .taskConvertor
+              .doc(_task.id);
+          final userDocRef = kFirebaseInstant.users.doc(e);
+          batch.set(taskDocRef, _task);
+          batch.update(userDocRef, {
+            MyFields.taskIds: FieldValue.arrayUnion([_task.id]),
+          });
+        }
+        await batch.commit();
+        if (context.mounted) {
+          Navigator.pop(context);
+          context.showSnackBar(context.appLocalization.savedSuccessfully);
+        }
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -56,6 +84,15 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      bottomNavigationBar: BottomButton(
+        text: context.appLocalization.save,
+        onPressed:
+            _selectedIds.isNotEmpty
+                ? () {
+                  _onSubmit(context);
+                }
+                : null,
+      ),
       body: ImpededStreamBuilder(
         stream: _usersStream,
         initialData: widget.initialValue,

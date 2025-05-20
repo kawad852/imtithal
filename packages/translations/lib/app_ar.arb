@@ -148,5 +148,7 @@
   "pendingStatus": "بإنتظار التنفيذ",
   "inReviewStatus": "بإنتظار المراجعة",
   "completedStatus": "مكتملة",
-  "task": "مهمة"
+  "task": "مهمة",
+  "save": "حفظ",
+  "savedSuccessfully": "تم الحفظ"
 }

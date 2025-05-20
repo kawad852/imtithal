@@ -454,4 +454,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get task => 'مهمة';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get savedSuccessfully => 'تم الحفظ';
 }

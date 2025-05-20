@@ -988,6 +988,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'مهمة'**
   String get task;
+
+  /// No description provided for @save.
+  ///
+  /// In ar, this message translates to:
+  /// **'حفظ'**
+  String get save;
+
+  /// No description provided for @savedSuccessfully.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم الحفظ'**
+  String get savedSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

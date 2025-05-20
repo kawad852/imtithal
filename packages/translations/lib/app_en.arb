@@ -148,5 +148,7 @@
   "pendingStatus": "Pending",
   "inReviewStatus": "In Review",
   "completedStatus": "Completed",
-  "task": "task"
+  "task": "task",
+  "save": "Save",
+  "savedSuccessfully": "Saved Successfully"
 }
