@@ -61,12 +61,14 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
             profilePhoto: e.profilePhoto,
             jobTitle: e.jobTitle,
           );
-          final taskDocRef = kFirebaseInstant.users
+          final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
+          final assignedTaskDocRef = kFirebaseInstant.users
               .doc(e.id)
               .collection(MyCollections.assignedTasks)
               .taskConvertor
               .doc(_task.id);
-          batch.set(taskDocRef, _task);
+          batch.set(assignedTaskDocRef, _task);
+          batch.update(taskDocRef, {MyFields.totalAssignedUsers: FieldValue.increment(1)});
         }
         await batch.commit();
         if (context.mounted) {

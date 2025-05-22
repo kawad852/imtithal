@@ -32,5 +32,5 @@ class MyFields {
   static const String subTasks = 'subTasks';
   static const String branch = 'branch';
   static const String companyId = 'companyId';
-  // static const String taskIds = 'taskIds';
+  static const String totalAssignedUsers = 'totalAssignedUsers';
 }

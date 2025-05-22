@@ -14,7 +14,7 @@ class _AssignedListBuilderState extends State<AssignedListBuilder> {
   late Stream<QuerySnapshot<TaskModel>> _query;
 
   void _initialize() {
-    _query = context.taskProvider.getAssignedTasksQuery(widget.taskId).limit(10).snapshots();
+    _query = context.taskProvider.getAssignedTasksQuery(widget.taskId).limit(5).snapshots();
   }
 
   @override
