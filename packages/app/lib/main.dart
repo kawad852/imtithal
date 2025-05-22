@@ -68,27 +68,27 @@ class _MyAppState extends State<MyApp> {
         return MultiProvider(
           // key: ValueKey(userProvider.isAuthenticated),
           providers: [
-            // StreamProvider<UserModel>.value(
-            //   key: ValueKey(userProvider.isAuthenticated),
-            //   value:
-            //       userProvider.isAuthenticated
-            //           ? userProvider.userDocRef.snapshots().map(
-            //             (event) => event.data() ?? UserModel(),
-            //           )
-            //           : Stream.value(UserModel()),
-            //   initialData: MySharedPreferences.user ?? UserModel(),
-            //   updateShouldNotify: (initialValue, value) {
-            //     MySharedPreferences.user = value;
-            //     Future.microtask(() {
-            //       if (userProvider.isAuthenticated && (value.id == null || value.blocked)) {
-            //         Fluttertoast.showToast(msg: "Authorization Failed");
-            //         // ignore: use_build_context_synchronously
-            //         userProvider.logout(rootNavigatorKey.currentContext!);
-            //       }
-            //     });
-            //     return true;
-            //   },
-            // ),
+            StreamProvider<UserModel>.value(
+              key: ValueKey(userProvider.isAuthenticated),
+              value:
+                  userProvider.isAuthenticated
+                      ? userProvider.userDocRef.snapshots().map(
+                        (event) => event.data() ?? UserModel(),
+                      )
+                      : Stream.value(UserModel()),
+              initialData: MySharedPreferences.user ?? UserModel(),
+              updateShouldNotify: (initialValue, value) {
+                MySharedPreferences.user = value;
+                Future.microtask(() {
+                  if (userProvider.isAuthenticated && (value.id == null || value.blocked)) {
+                    Fluttertoast.showToast(msg: "Authorization Failed");
+                    // ignore: use_build_context_synchronously
+                    userProvider.logout(rootNavigatorKey.currentContext!);
+                  }
+                });
+                return true;
+              },
+            ),
             // StreamProvider<List<ItemModel>>.value(
             //   key: ValueKey(userProvider.isAuthenticated),
             //   value:

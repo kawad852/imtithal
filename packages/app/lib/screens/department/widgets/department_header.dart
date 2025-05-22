@@ -11,10 +11,7 @@ class DepartmentHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       alignment: Alignment.bottomCenter,
       decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: sv.Svg(MyIcons.departmentBackground),
-          fit: BoxFit.fill,
-        ),
+        image: DecorationImage(image: sv.Svg(MyIcons.departmentBackground), fit: BoxFit.fill),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -101,28 +98,15 @@ class DepartmentHeader extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              children: [
-                TaskBubble(taskType: TaskTypeEnum.incomplete, value: "11"),
-                SizedBox(width: 10),
-                TaskBubble(taskType: TaskTypeEnum.complete, value: "13"),
-                SizedBox(width: 10),
-                TaskBubble(taskType: TaskTypeEnum.late, value: "15"),
-                SizedBox(width: 10),
-                TaskBubble(taskType: TaskTypeEnum.infringement, value: "16"),
-              ],
-            ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: EmtithalSummery(user: UserModel()),
           ),
           TextEditor(
             onChanged: (value) {},
             required: false,
             hintText: context.appLocalization.searchForEmployee,
-            prefixIcon: const IconButton(
-              onPressed: null,
-              icon: CustomSvg(MyIcons.search),
-            ),
+            prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
           ),
         ],
       ),

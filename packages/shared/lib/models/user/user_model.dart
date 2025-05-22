@@ -21,6 +21,10 @@ class UserModel with _$UserModel {
     @Default('') String jobTitle,
     @Default('') String companyId,
     @Default([]) List<String> taskIds,
+    @Default(0) int inCompletedTasksCount,
+    @Default(0) int completedTasksCount,
+    @Default(0) int lateTasksCount,
+    @Default(0) int penaltyTasksCount,
     @JsonKey(includeToJson: false, includeFromJson: false) @Default(false) bool selected,
   }) = _UserModel;
 

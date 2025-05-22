@@ -64,18 +64,12 @@ class _HomeScreenState extends State<HomeScreen> {
               MoreButton(onTap: () {}),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 13),
-            child: Row(
-              children: [
-                TaskBubble(taskType: TaskTypeEnum.incomplete, value: "11"),
-                SizedBox(width: 10),
-                TaskBubble(taskType: TaskTypeEnum.complete, value: "13"),
-                SizedBox(width: 10),
-                TaskBubble(taskType: TaskTypeEnum.late, value: "15"),
-                SizedBox(width: 10),
-                TaskBubble(taskType: TaskTypeEnum.infringement, value: "16"),
-              ],
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 13),
+            child: UserSelector(
+              builder: (context, user) {
+                return EmtithalSummery(user: user);
+              },
             ),
           ),
           TextEditor(

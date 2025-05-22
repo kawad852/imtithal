@@ -175,17 +175,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 ],
               ),
               ResponsibleCard(task: task, users: users),
-              const Row(
-                children: [
-                  TaskBubble(taskType: TaskTypeEnum.incomplete, value: "11"),
-                  SizedBox(width: 10),
-                  TaskBubble(taskType: TaskTypeEnum.complete, value: "13"),
-                  SizedBox(width: 10),
-                  TaskBubble(taskType: TaskTypeEnum.late, value: "15"),
-                  SizedBox(width: 10),
-                  TaskBubble(taskType: TaskTypeEnum.infringement, value: "16"),
-                ],
-              ),
+              EmtithalSummery(user: users.first),
             ],
           ),
         );

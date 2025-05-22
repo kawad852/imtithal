@@ -3,7 +3,7 @@ import 'package:shared/shared.dart';
 
 class TaskBubble extends StatelessWidget {
   final TaskTypeEnum taskType;
-  final String value;
+  final int value;
   const TaskBubble({super.key, required this.taskType, required this.value});
 
   (String, Color, Color) _getTaskInfo(BuildContext context) {
@@ -76,7 +76,7 @@ class TaskBubble extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                value,
+                value.toString(),
                 style: TextStyle(
                   color: context.colorPalette.black252,
                   fontSize: 22,

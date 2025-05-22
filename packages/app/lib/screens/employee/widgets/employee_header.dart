@@ -11,10 +11,7 @@ class EmployeeHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       alignment: Alignment.bottomCenter,
       decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: sv.Svg(MyIcons.employeeBackground),
-          fit: BoxFit.fill,
-        ),
+        image: DecorationImage(image: sv.Svg(MyIcons.employeeBackground), fit: BoxFit.fill),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -22,12 +19,7 @@ class EmployeeHeader extends StatelessWidget {
         children: [
           Row(
             children: [
-              const BaseNetworkImage(
-                "",
-                width: 70,
-                height: 70,
-                shape: BoxShape.circle,
-              ),
+              const BaseNetworkImage("", width: 70, height: 70, shape: BoxShape.circle),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
@@ -99,17 +91,7 @@ class EmployeeHeader extends StatelessWidget {
               ],
             ),
           ),
-          const Row(
-            children: [
-              TaskBubble(taskType: TaskTypeEnum.incomplete, value: "11"),
-              SizedBox(width: 10),
-              TaskBubble(taskType: TaskTypeEnum.complete, value: "13"),
-              SizedBox(width: 10),
-              TaskBubble(taskType: TaskTypeEnum.late, value: "15"),
-              SizedBox(width: 10),
-              TaskBubble(taskType: TaskTypeEnum.infringement, value: "16"),
-            ],
-          ),
+          EmtithalSummery(user: UserModel()),
         ],
       ),
     );

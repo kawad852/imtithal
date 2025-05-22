@@ -49,6 +49,14 @@ mixin _$UserModel {
   set companyId(String value) => throw _privateConstructorUsedError;
   List<String> get taskIds => throw _privateConstructorUsedError;
   set taskIds(List<String> value) => throw _privateConstructorUsedError;
+  int get inCompletedTasksCount => throw _privateConstructorUsedError;
+  set inCompletedTasksCount(int value) => throw _privateConstructorUsedError;
+  int get completedTasksCount => throw _privateConstructorUsedError;
+  set completedTasksCount(int value) => throw _privateConstructorUsedError;
+  int get lateTasksCount => throw _privateConstructorUsedError;
+  set lateTasksCount(int value) => throw _privateConstructorUsedError;
+  int get penaltyTasksCount => throw _privateConstructorUsedError;
+  set penaltyTasksCount(int value) => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get selected => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
@@ -83,6 +91,10 @@ abstract class $UserModelCopyWith<$Res> {
     String jobTitle,
     String companyId,
     List<String> taskIds,
+    int inCompletedTasksCount,
+    int completedTasksCount,
+    int lateTasksCount,
+    int penaltyTasksCount,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
   });
 }
@@ -115,6 +127,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? jobTitle = null,
     Object? companyId = null,
     Object? taskIds = null,
+    Object? inCompletedTasksCount = null,
+    Object? completedTasksCount = null,
+    Object? lateTasksCount = null,
+    Object? penaltyTasksCount = null,
     Object? selected = null,
   }) {
     return _then(
@@ -184,6 +200,26 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.taskIds
                     : taskIds // ignore: cast_nullable_to_non_nullable
                         as List<String>,
+            inCompletedTasksCount:
+                null == inCompletedTasksCount
+                    ? _value.inCompletedTasksCount
+                    : inCompletedTasksCount // ignore: cast_nullable_to_non_nullable
+                        as int,
+            completedTasksCount:
+                null == completedTasksCount
+                    ? _value.completedTasksCount
+                    : completedTasksCount // ignore: cast_nullable_to_non_nullable
+                        as int,
+            lateTasksCount:
+                null == lateTasksCount
+                    ? _value.lateTasksCount
+                    : lateTasksCount // ignore: cast_nullable_to_non_nullable
+                        as int,
+            penaltyTasksCount:
+                null == penaltyTasksCount
+                    ? _value.penaltyTasksCount
+                    : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
+                        as int,
             selected:
                 null == selected
                     ? _value.selected
@@ -218,6 +254,10 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String jobTitle,
     String companyId,
     List<String> taskIds,
+    int inCompletedTasksCount,
+    int completedTasksCount,
+    int lateTasksCount,
+    int penaltyTasksCount,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
   });
 }
@@ -249,6 +289,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? jobTitle = null,
     Object? companyId = null,
     Object? taskIds = null,
+    Object? inCompletedTasksCount = null,
+    Object? completedTasksCount = null,
+    Object? lateTasksCount = null,
+    Object? penaltyTasksCount = null,
     Object? selected = null,
   }) {
     return _then(
@@ -318,6 +362,26 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.taskIds
                 : taskIds // ignore: cast_nullable_to_non_nullable
                     as List<String>,
+        inCompletedTasksCount:
+            null == inCompletedTasksCount
+                ? _value.inCompletedTasksCount
+                : inCompletedTasksCount // ignore: cast_nullable_to_non_nullable
+                    as int,
+        completedTasksCount:
+            null == completedTasksCount
+                ? _value.completedTasksCount
+                : completedTasksCount // ignore: cast_nullable_to_non_nullable
+                    as int,
+        lateTasksCount:
+            null == lateTasksCount
+                ? _value.lateTasksCount
+                : lateTasksCount // ignore: cast_nullable_to_non_nullable
+                    as int,
+        penaltyTasksCount:
+            null == penaltyTasksCount
+                ? _value.penaltyTasksCount
+                : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
+                    as int,
         selected:
             null == selected
                 ? _value.selected
@@ -346,6 +410,10 @@ class _$UserModelImpl implements _UserModel {
     this.jobTitle = '',
     this.companyId = '',
     this.taskIds = const [],
+    this.inCompletedTasksCount = 0,
+    this.completedTasksCount = 0,
+    this.lateTasksCount = 0,
+    this.penaltyTasksCount = 0,
     @JsonKey(includeToJson: false, includeFromJson: false)
     this.selected = false,
   });
@@ -388,12 +456,24 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   List<String> taskIds;
   @override
+  @JsonKey()
+  int inCompletedTasksCount;
+  @override
+  @JsonKey()
+  int completedTasksCount;
+  @override
+  @JsonKey()
+  int lateTasksCount;
+  @override
+  @JsonKey()
+  int penaltyTasksCount;
+  @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool selected;
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, password: $password, jobTitle: $jobTitle, companyId: $companyId, taskIds: $taskIds, selected: $selected)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, password: $password, jobTitle: $jobTitle, companyId: $companyId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, selected: $selected)';
   }
 
   /// Create a copy of UserModel
@@ -425,6 +505,10 @@ abstract class _UserModel implements UserModel {
     String jobTitle,
     String companyId,
     List<String> taskIds,
+    int inCompletedTasksCount,
+    int completedTasksCount,
+    int lateTasksCount,
+    int penaltyTasksCount,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
   }) = _$UserModelImpl;
 
@@ -472,6 +556,18 @@ abstract class _UserModel implements UserModel {
   @override
   List<String> get taskIds;
   set taskIds(List<String> value);
+  @override
+  int get inCompletedTasksCount;
+  set inCompletedTasksCount(int value);
+  @override
+  int get completedTasksCount;
+  set completedTasksCount(int value);
+  @override
+  int get lateTasksCount;
+  set lateTasksCount(int value);
+  @override
+  int get penaltyTasksCount;
+  set penaltyTasksCount(int value);
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get selected;
