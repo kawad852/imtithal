@@ -90,7 +90,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                     child: TitledTextField(
                       title: context.appLocalization.deliveryTime,
                       child: DayTimeEditor(
-                        initialValue: _task.deliveryTime,
+                        initialValue: _task.deliveryTime.isNotEmpty ? _task.deliveryTime : null,
                         onChanged: (value) => _task.deliveryTime = value,
                       ),
                     ),

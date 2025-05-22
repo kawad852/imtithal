@@ -1,12 +1,13 @@
 import 'package:shared/shared.dart';
 
 class ResponsibleEmployee extends StatelessWidget {
-  final UserModel user;
+  final TaskModel assignedTask;
 
-  const ResponsibleEmployee({super.key, required this.user});
+  const ResponsibleEmployee({super.key, required this.assignedTask});
 
   @override
   Widget build(BuildContext context) {
+    final user = assignedTask.user!;
     return Container(
       width: double.infinity,
       height: 60,

@@ -10,14 +10,18 @@ FirebaseFirestore get kFirebaseInstant => FirebaseFirestore.instance;
 DateTime get kNowDate => DateTime.now();
 String get kUUID => const Uuid().v1().replaceAll('-', '');
 UserModel get kUser => MySharedPreferences.user!;
+String get kUserId => MySharedPreferences.user!.id!;
 String get kCompanyId => kUser.companyId;
 SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
 LightUserModel get kCurrentLightUser => LightUserModel(
-  id: MySharedPreferences.user?.id,
-  displayName: MySharedPreferences.user?.displayName,
+  id: MySharedPreferences.user!.id!,
+  displayName: MySharedPreferences.user!.displayName,
+  profilePhoto: MySharedPreferences.user!.profilePhoto,
 );
 bool get kIsAdmin => MySharedPreferences.user?.role == RoleEnum.admin.value;
+bool get kIsEmployee => MySharedPreferences.user?.role == RoleEnum.employee.value;
+bool get kIsEmtithalManager => MySharedPreferences.user?.role == RoleEnum.emtithalManager.value;
 
 class ApiService {
   static const String socketException = 'socket-exception';

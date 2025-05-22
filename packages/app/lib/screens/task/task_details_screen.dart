@@ -17,22 +17,16 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   String get _taskId => widget.id ?? widget.task!.id;
 
   void _initialize() {
-    late Stream<TaskModel> taskStream;
-
-    if (widget.task != null) {
-      taskStream = Stream.value(widget.task!);
-    } else {
-      taskStream = kFirebaseInstant.tasks.doc(widget.id).snapshots().map((e) => e.data()!);
-    }
-    final usersStream = context.taskProvider.getTaskUsers(_taskId);
-
-    _streams = Rx.combineLatest2<TaskModel, List<UserModel>, List<dynamic>>(
-      taskStream,
-      usersStream,
-      (s1, s2) {
-        return [s1, s2];
-      },
-    );
+    final taskQuery = context.taskProvider.getTaskDocRef(_taskId);
+    var assignedTasksQuery = context.taskProvider.getAssignedTasksQuery(_taskId).limit(10);
+    _streams =
+        Rx.combineLatest2<DocumentSnapshot<TaskModel>, QuerySnapshot<TaskModel>, List<dynamic>>(
+          taskQuery.snapshots(),
+          assignedTasksQuery.snapshots(),
+          (s1, s2) {
+            return [s1, s2];
+          },
+        );
   }
 
   @override
@@ -51,8 +45,10 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     return BigStreamBuilder(
       stream: _streams,
       onComplete: (context, snapshot) {
-        final task = snapshot.data![0] as TaskModel;
-        final users = snapshot.data![1] as List<UserModel>;
+        final taskQuerySnapshot = snapshot.data![0] as DocumentSnapshot<TaskModel>;
+        final assignedTasksQuerySnapshot = snapshot.data![1] as QuerySnapshot<TaskModel>;
+        final task = taskQuerySnapshot.data()!;
+        final assignedTasks = assignedTasksQuerySnapshot.docs;
         return Scaffold(
           appBar: AppBar(),
           body: ListView(
@@ -174,13 +170,13 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   TimeCard(title: context.appLocalization.day, value: "02"),
                 ],
               ),
-              ResponsibleCard(task: task, users: users),
+              ResponsibleCard(task: task, assignedTasks: assignedTasksQuerySnapshot),
               EmtithalSummery(
                 user: UserModel(
-                  inCompletedTasksCount: users.fold(0, (s, item) => s + item.inCompletedTasksCount),
-                  completedTasksCount: users.fold(0, (s, item) => s + item.completedTasksCount),
-                  lateTasksCount: users.fold(0, (s, item) => s + item.lateTasksCount),
-                  penaltyTasksCount: users.fold(0, (s, item) => s + item.penaltyTasksCount),
+                  inCompletedTasksCount: task.inCompletedTasksCount,
+                  completedTasksCount: task.completedTasksCount,
+                  lateTasksCount: task.lateTasksCount,
+                  penaltyTasksCount: task.penaltyTasksCount,
                 ),
               ),
             ],

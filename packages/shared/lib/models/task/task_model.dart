@@ -24,6 +24,12 @@ class TaskModel with _$TaskModel {
     @Default(false) bool markedAsLate,
     required List<String> attachments,
     required List<String> repeatDays,
+    LightUserModel? user,
+    @Default(0) int inCompletedTasksCount,
+    @Default(0) int completedTasksCount,
+    @Default(0) int lateTasksCount,
+    @Default(0) int penaltyTasksCount,
+    @Default(0) int totalAssignedUsers,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);

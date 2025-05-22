@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:shared/shared.dart';
 
 class EmployeeSelectionScreen extends StatefulWidget {
-  final List<UserModel> initialValue;
   final TaskModel task;
 
-  const EmployeeSelectionScreen({super.key, required this.initialValue, required this.task});
+  const EmployeeSelectionScreen({super.key, required this.task});
 
   @override
   State<EmployeeSelectionScreen> createState() => _EmployeeSelectionScreenState();
@@ -15,8 +14,10 @@ class EmployeeSelectionScreen extends StatefulWidget {
 class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
   String query = '';
   Timer? _debounce;
-  List<String> _selectedIds = [];
+  List<UserModel> _selectedUsers = [];
   late Stream<List<UserModel>> _usersStream;
+
+  List<String> get _userIds => _selectedUsers.map((e) => e.id!).toList();
 
   TaskModel get _task => widget.task;
 
@@ -53,17 +54,19 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
       context,
       callBack: () async {
         final batch = kFirebaseInstant.batch();
-        for (var e in _selectedIds) {
+        for (var e in _selectedUsers) {
+          _task.user = LightUserModel(
+            id: e.id!,
+            displayName: e.displayName,
+            profilePhoto: e.profilePhoto,
+            jobTitle: e.jobTitle,
+          );
           final taskDocRef = kFirebaseInstant.users
-              .doc(e)
-              .collection(MyCollections.tasks)
+              .doc(e.id)
+              .collection(MyCollections.assignedTasks)
               .taskConvertor
               .doc(_task.id);
-          final userDocRef = kFirebaseInstant.users.doc(e);
           batch.set(taskDocRef, _task);
-          batch.update(userDocRef, {
-            MyFields.taskIds: FieldValue.arrayUnion([_task.id]),
-          });
         }
         await batch.commit();
         if (context.mounted) {
@@ -87,7 +90,7 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
       bottomNavigationBar: BottomButton(
         text: context.appLocalization.save,
         onPressed:
-            _selectedIds.isNotEmpty
+            _selectedUsers.isNotEmpty
                 ? () {
                   _onSubmit(context);
                 }
@@ -95,23 +98,22 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
       ),
       body: ImpededStreamBuilder(
         stream: _usersStream,
-        initialData: widget.initialValue,
         onComplete: (context, snapshot) {
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               final user = snapshot.data![index];
               final id = user.id;
-              final selected = _selectedIds.contains(id);
+              final selected = _userIds.contains(id);
               return CheckboxListTile(
                 title: Text(user.displayName),
                 value: selected,
                 onChanged: (value) {
                   setState(() {
                     if (selected) {
-                      _selectedIds.remove(id);
+                      _selectedUsers.remove(user);
                     } else {
-                      _selectedIds.add(id!);
+                      _selectedUsers.add(user);
                     }
                   });
                 },

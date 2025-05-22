@@ -9,10 +9,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Query<TaskModel> _tasksQuery;
+  late Query<TaskModel> _assignedTasksQuery;
 
   void _initialize() {
-    _tasksQuery = context.taskProvider.tasksMainQuery.orderByDesc;
+    _assignedTasksQuery = context.taskProvider.tasksQuery;
   }
 
   @override
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
           ),
           CustomFirestoreQueryBuilder(
-            query: _tasksQuery,
+            query: _assignedTasksQuery,
             onComplete: (context, snapshot) {
               final tasks = snapshot.docs;
               if (tasks.isEmpty) {

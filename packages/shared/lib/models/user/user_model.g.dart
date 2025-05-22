@@ -55,10 +55,17 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
 
 _$LightUserModelImpl _$$LightUserModelImplFromJson(Map<String, dynamic> json) =>
     _$LightUserModelImpl(
-      id: json['id'] as String?,
-      displayName: json['displayName'] as String?,
+      id: json['id'] as String? ?? '',
+      displayName: json['displayName'] as String? ?? '',
+      jobTitle: json['jobTitle'] as String? ?? '',
+      profilePhoto: json['profilePhoto'] as String?,
     );
 
 Map<String, dynamic> _$$LightUserModelImplToJson(
   _$LightUserModelImpl instance,
-) => <String, dynamic>{'id': instance.id, 'displayName': instance.displayName};
+) => <String, dynamic>{
+  'id': instance.id,
+  'displayName': instance.displayName,
+  'jobTitle': instance.jobTitle,
+  'profilePhoto': instance.profilePhoto,
+};

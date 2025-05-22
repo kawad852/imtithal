@@ -6,9 +6,9 @@ class TaskProvider extends ChangeNotifier {
 
   FirebaseFirestore get _firebaseInstance => kFirebaseInstant;
 
-  ///Queries
-  Query<TaskModel> get tasksMainQuery => _firebaseInstance.tasks.whereMyCompany;
-  Query<UserModel> get userTaskQuery => _firebaseInstance.users.whereMyCompany;
+  // ///Queries
+  // Query<TaskModel> get tasksMainQuery => _firebaseInstance.tasks.whereMyCompany;
+  // Query<UserModel> get assignedTasksQuery => _firebaseInstance.users.whereMyCompany;
 
   void createTask(BuildContext context, TaskModel task) async {
     ApiService.fetch(
@@ -38,40 +38,23 @@ class TaskProvider extends ChangeNotifier {
     );
   }
 
-  void addTaskToEmployees(BuildContext context, TaskModel task) async {
-    ApiService.fetch(
-      context,
-      callBack: () async {
-        final usersQuerySnapshot = await userTaskQuery.get();
-        for (var user in usersQuerySnapshot.docs) {
-          final userTaskDocRef = user.reference
-              .collection(MyCollections.tasks)
-              .taskConvertor
-              .doc(task.id);
-          userTaskDocRef.set(task);
-        }
-      },
-    );
+  DocumentReference<TaskModel> getTaskDocRef(String id) {
+    return kFirebaseInstant.tasks.doc(id);
   }
 
-  Stream<List<UserModel>> getTaskUsers(String taskId) {
-    return kFirebaseInstant.users
-        .where(MyFields.taskIds, arrayContains: taskId)
-        .snapshots()
-        .map((e) => e.docs.map((e) => e.data()).toList());
+  Query<TaskModel> getAssignedTasksQuery(String id) {
+    return kFirebaseInstant.assignedTasks.orderByDesc.where(MyFields.id, isEqualTo: id);
   }
 
-  Stream<List<dynamic>> getTaskAndUsers(String id) {
-    late Stream<TaskModel> taskStream;
-
-    taskStream = kFirebaseInstant.tasks.doc(id).snapshots().map((e) => e.data()!);
-    final usersStream = getTaskUsers(id);
-
-    return Rx.combineLatest2<TaskModel, List<UserModel>, List<dynamic>>(taskStream, usersStream, (
-      s1,
-      s2,
-    ) {
-      return [s1, s2];
-    });
+  Query<TaskModel> get tasksQuery {
+    if (kIsEmployee) {
+      return kFirebaseInstant.users
+          .doc(kUserId)
+          .collection(MyCollections.assignedTasks)
+          .orderByDesc
+          .taskConvertor;
+    } else {
+      return kFirebaseInstant.tasks.orderByDesc.whereMyCompany;
+    }
   }
 }

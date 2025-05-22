@@ -3,9 +3,9 @@ import 'package:shared/shared.dart';
 
 class ResponsibleCard extends StatelessWidget {
   final TaskModel task;
-  final List<UserModel> users;
+  final QuerySnapshot<TaskModel> assignedTasks;
 
-  const ResponsibleCard({super.key, required this.task, required this.users});
+  const ResponsibleCard({super.key, required this.task, required this.assignedTasks});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class ResponsibleCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "(${users.length})",
+                      "(${task.totalAssignedUsers})",
                       style: TextStyle(
                         color: context.colorPalette.primary,
                         fontSize: 14,
@@ -49,18 +49,19 @@ class ResponsibleCard extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10),
                   child: Row(
                     children: [
-                      if (users.isNotEmpty)
+                      if (assignedTasks.docs.isNotEmpty)
                         Expanded(
                           child: SizedBox(
                             height: 32,
                             child: ListView.builder(
-                              itemCount: users.length,
+                              itemCount: assignedTasks.docs.length,
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               physics: const NeverScrollableScrollPhysics(),
                               padding: EdgeInsets.zero,
                               itemBuilder: (context, index) {
-                                final user = users[index];
+                                final userQuerySnapshot = assignedTasks.docs[index];
+                                final user = userQuerySnapshot.data().user!;
                                 return Align(
                                   widthFactor: 0.5,
                                   child: UserPhoto(
@@ -74,7 +75,9 @@ class ResponsibleCard extends StatelessWidget {
                         ),
                       GestureDetector(
                         onTap: () {
-                          context.push((context) => TaskActionScreen(task: task, users: users));
+                          context.push(
+                            (context) => TaskActionScreen(task: task, assignedTasks: assignedTasks),
+                          );
                         },
                         child: Container(
                           width: 32,

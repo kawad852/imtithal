@@ -28,6 +28,15 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
       (json['attachments'] as List<dynamic>).map((e) => e as String).toList(),
   repeatDays:
       (json['repeatDays'] as List<dynamic>).map((e) => e as String).toList(),
+  user:
+      json['user'] == null
+          ? null
+          : LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
+  inCompletedTasksCount: (json['inCompletedTasksCount'] as num?)?.toInt() ?? 0,
+  completedTasksCount: (json['completedTasksCount'] as num?)?.toInt() ?? 0,
+  lateTasksCount: (json['lateTasksCount'] as num?)?.toInt() ?? 0,
+  penaltyTasksCount: (json['penaltyTasksCount'] as num?)?.toInt() ?? 0,
+  totalAssignedUsers: (json['totalAssignedUsers'] as num?)?.toInt() ?? 0,
 );
 
 Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
@@ -48,4 +57,10 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'markedAsLate': instance.markedAsLate,
       'attachments': instance.attachments,
       'repeatDays': instance.repeatDays,
+      'user': instance.user?.toJson(),
+      'inCompletedTasksCount': instance.inCompletedTasksCount,
+      'completedTasksCount': instance.completedTasksCount,
+      'lateTasksCount': instance.lateTasksCount,
+      'penaltyTasksCount': instance.penaltyTasksCount,
+      'totalAssignedUsers': instance.totalAssignedUsers,
     };

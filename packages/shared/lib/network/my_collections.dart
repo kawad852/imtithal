@@ -18,6 +18,6 @@ class MyCollections {
   static const String transactions = 'transactions';
   static const String orderHistory = 'orderHistory';
   static const String tasks = 'tasks';
-  static const String subTasks = 'subTasks';
+  static const String assignedTasks = 'assignedTasks';
   static const String messages = 'messages';
 }

@@ -4,19 +4,24 @@ import 'package:shared/shared.dart';
 
 class TaskActionScreen extends StatefulWidget {
   final TaskModel task;
-  final List<UserModel> users;
+  final QuerySnapshot<TaskModel> assignedTasks;
 
-  const TaskActionScreen({super.key, required this.task, required this.users});
+  const TaskActionScreen({super.key, required this.task, required this.assignedTasks});
 
   @override
   State<TaskActionScreen> createState() => _TaskActionScreenState();
 }
 
 class _TaskActionScreenState extends State<TaskActionScreen> {
-  late Stream<List<dynamic>> _streams;
+  late Stream<DocumentSnapshot<TaskModel>> _taskStream;
+  late Query<TaskModel> _assignedTasksQuery;
+
+  TaskModel get _task => widget.task;
+  String get _taskId => _task.id;
 
   void _initialize() {
-    _streams = context.taskProvider.getTaskAndUsers(widget.task.id);
+    _taskStream = context.taskProvider.getTaskDocRef(_taskId).snapshots();
+    _assignedTasksQuery = context.taskProvider.getAssignedTasksQuery(_taskId);
   }
 
   @override
@@ -28,11 +33,10 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   @override
   Widget build(BuildContext context) {
     return BigStreamBuilder(
-      stream: _streams,
-      initialData: [widget.task, widget.users],
+      stream: _taskStream,
       onComplete: (context, snapshot) {
-        final task = snapshot.data![0] as TaskModel;
-        final users = snapshot.data![1] as List<UserModel>;
+        final taskQuerySnapshot = snapshot.data!;
+        final task = taskQuerySnapshot.data()!;
         return Scaffold(
           appBar: AppBar(),
           body: ListView(
@@ -62,7 +66,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                   ActionButton(
                     onTap: () {
                       context.push((context) {
-                        return EmployeeSelectionScreen(initialValue: users, task: task);
+                        return EmployeeSelectionScreen(task: task);
                       });
                     },
                     icon: MyIcons.userEdit,
@@ -92,29 +96,38 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
               //   ),
               // ),
               // ResponsibleDepartment(task: _task, users: users),
-              if (users.isNotEmpty) ...[
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    context.appLocalization.responsibleEmployees,
-                    style: TextStyle(
-                      color: context.colorPalette.primary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                ListView.separated(
-                  separatorBuilder: (context, index) => const SizedBox(height: 10),
-                  itemCount: users.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final user = users[index];
-                    return ResponsibleEmployee(user: user);
-                  },
-                ),
-              ],
+              CustomFirestoreQueryBuilder(
+                query: _assignedTasksQuery,
+                onComplete: (context, snapshot) {
+                  final assignedTasks = snapshot.docs;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text(
+                          context.appLocalization.responsibleEmployees,
+                          style: TextStyle(
+                            color: context.colorPalette.primary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      ListView.separated(
+                        separatorBuilder: (context, index) => const SizedBox(height: 10),
+                        itemCount: assignedTasks.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final assignedTask = assignedTasks[index];
+                          return ResponsibleEmployee(assignedTask: assignedTask.data());
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
             ],
           ),
         );

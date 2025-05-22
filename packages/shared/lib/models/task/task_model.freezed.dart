@@ -57,6 +57,18 @@ mixin _$TaskModel {
   set attachments(List<String> value) => throw _privateConstructorUsedError;
   List<String> get repeatDays => throw _privateConstructorUsedError;
   set repeatDays(List<String> value) => throw _privateConstructorUsedError;
+  LightUserModel? get user => throw _privateConstructorUsedError;
+  set user(LightUserModel? value) => throw _privateConstructorUsedError;
+  int get inCompletedTasksCount => throw _privateConstructorUsedError;
+  set inCompletedTasksCount(int value) => throw _privateConstructorUsedError;
+  int get completedTasksCount => throw _privateConstructorUsedError;
+  set completedTasksCount(int value) => throw _privateConstructorUsedError;
+  int get lateTasksCount => throw _privateConstructorUsedError;
+  set lateTasksCount(int value) => throw _privateConstructorUsedError;
+  int get penaltyTasksCount => throw _privateConstructorUsedError;
+  set penaltyTasksCount(int value) => throw _privateConstructorUsedError;
+  int get totalAssignedUsers => throw _privateConstructorUsedError;
+  set totalAssignedUsers(int value) => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? get files => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
@@ -94,8 +106,16 @@ abstract class $TaskModelCopyWith<$Res> {
     bool markedAsLate,
     List<String> attachments,
     List<String> repeatDays,
+    LightUserModel? user,
+    int inCompletedTasksCount,
+    int completedTasksCount,
+    int lateTasksCount,
+    int penaltyTasksCount,
+    int totalAssignedUsers,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
+
+  $LightUserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -129,6 +149,12 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? markedAsLate = null,
     Object? attachments = null,
     Object? repeatDays = null,
+    Object? user = freezed,
+    Object? inCompletedTasksCount = null,
+    Object? completedTasksCount = null,
+    Object? lateTasksCount = null,
+    Object? penaltyTasksCount = null,
+    Object? totalAssignedUsers = null,
     Object? files = freezed,
   }) {
     return _then(
@@ -213,6 +239,36 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.repeatDays
                     : repeatDays // ignore: cast_nullable_to_non_nullable
                         as List<String>,
+            user:
+                freezed == user
+                    ? _value.user
+                    : user // ignore: cast_nullable_to_non_nullable
+                        as LightUserModel?,
+            inCompletedTasksCount:
+                null == inCompletedTasksCount
+                    ? _value.inCompletedTasksCount
+                    : inCompletedTasksCount // ignore: cast_nullable_to_non_nullable
+                        as int,
+            completedTasksCount:
+                null == completedTasksCount
+                    ? _value.completedTasksCount
+                    : completedTasksCount // ignore: cast_nullable_to_non_nullable
+                        as int,
+            lateTasksCount:
+                null == lateTasksCount
+                    ? _value.lateTasksCount
+                    : lateTasksCount // ignore: cast_nullable_to_non_nullable
+                        as int,
+            penaltyTasksCount:
+                null == penaltyTasksCount
+                    ? _value.penaltyTasksCount
+                    : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
+                        as int,
+            totalAssignedUsers:
+                null == totalAssignedUsers
+                    ? _value.totalAssignedUsers
+                    : totalAssignedUsers // ignore: cast_nullable_to_non_nullable
+                        as int,
             files:
                 freezed == files
                     ? _value.files
@@ -221,6 +277,20 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of TaskModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightUserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $LightUserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -250,8 +320,17 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     bool markedAsLate,
     List<String> attachments,
     List<String> repeatDays,
+    LightUserModel? user,
+    int inCompletedTasksCount,
+    int completedTasksCount,
+    int lateTasksCount,
+    int penaltyTasksCount,
+    int totalAssignedUsers,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
+
+  @override
+  $LightUserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -284,6 +363,12 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? markedAsLate = null,
     Object? attachments = null,
     Object? repeatDays = null,
+    Object? user = freezed,
+    Object? inCompletedTasksCount = null,
+    Object? completedTasksCount = null,
+    Object? lateTasksCount = null,
+    Object? penaltyTasksCount = null,
+    Object? totalAssignedUsers = null,
     Object? files = freezed,
   }) {
     return _then(
@@ -368,6 +453,36 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.repeatDays
                 : repeatDays // ignore: cast_nullable_to_non_nullable
                     as List<String>,
+        user:
+            freezed == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as LightUserModel?,
+        inCompletedTasksCount:
+            null == inCompletedTasksCount
+                ? _value.inCompletedTasksCount
+                : inCompletedTasksCount // ignore: cast_nullable_to_non_nullable
+                    as int,
+        completedTasksCount:
+            null == completedTasksCount
+                ? _value.completedTasksCount
+                : completedTasksCount // ignore: cast_nullable_to_non_nullable
+                    as int,
+        lateTasksCount:
+            null == lateTasksCount
+                ? _value.lateTasksCount
+                : lateTasksCount // ignore: cast_nullable_to_non_nullable
+                    as int,
+        penaltyTasksCount:
+            null == penaltyTasksCount
+                ? _value.penaltyTasksCount
+                : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
+                    as int,
+        totalAssignedUsers:
+            null == totalAssignedUsers
+                ? _value.totalAssignedUsers
+                : totalAssignedUsers // ignore: cast_nullable_to_non_nullable
+                    as int,
         files:
             freezed == files
                 ? _value.files
@@ -399,6 +514,12 @@ class _$TaskModelImpl extends _TaskModel {
     this.markedAsLate = false,
     required this.attachments,
     required this.repeatDays,
+    this.user,
+    this.inCompletedTasksCount = 0,
+    this.completedTasksCount = 0,
+    this.lateTasksCount = 0,
+    this.penaltyTasksCount = 0,
+    this.totalAssignedUsers = 0,
     @JsonKey(includeToJson: false, includeFromJson: false) this.files,
   }) : super._();
 
@@ -450,12 +571,29 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   List<String> repeatDays;
   @override
+  LightUserModel? user;
+  @override
+  @JsonKey()
+  int inCompletedTasksCount;
+  @override
+  @JsonKey()
+  int completedTasksCount;
+  @override
+  @JsonKey()
+  int lateTasksCount;
+  @override
+  @JsonKey()
+  int penaltyTasksCount;
+  @override
+  @JsonKey()
+  int totalAssignedUsers;
+  @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? files;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays, files: $files)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, totalAssignedUsers: $totalAssignedUsers, files: $files)';
   }
 
   /// Create a copy of TaskModel
@@ -490,6 +628,12 @@ abstract class _TaskModel extends TaskModel {
     bool markedAsLate,
     required List<String> attachments,
     required List<String> repeatDays,
+    LightUserModel? user,
+    int inCompletedTasksCount,
+    int completedTasksCount,
+    int lateTasksCount,
+    int penaltyTasksCount,
+    int totalAssignedUsers,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _$TaskModelImpl;
   _TaskModel._() : super._();
@@ -549,6 +693,24 @@ abstract class _TaskModel extends TaskModel {
   @override
   List<String> get repeatDays;
   set repeatDays(List<String> value);
+  @override
+  LightUserModel? get user;
+  set user(LightUserModel? value);
+  @override
+  int get inCompletedTasksCount;
+  set inCompletedTasksCount(int value);
+  @override
+  int get completedTasksCount;
+  set completedTasksCount(int value);
+  @override
+  int get lateTasksCount;
+  set lateTasksCount(int value);
+  @override
+  int get penaltyTasksCount;
+  set penaltyTasksCount(int value);
+  @override
+  int get totalAssignedUsers;
+  set totalAssignedUsers(int value);
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? get files;

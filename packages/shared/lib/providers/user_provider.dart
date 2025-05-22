@@ -21,36 +21,6 @@ class UserProvider extends ChangeNotifier {
 
   Stream<DocumentSnapshot<UserModel>> get userStream => userDocRef.snapshots();
 
-  CollectionReference<BasketModel> get userBasketCollectionRef => userDocRef
-      .collection(MyCollections.basket)
-      .withConverter<BasketModel>(
-        fromFirestore: (snapshot, _) => BasketModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
-  CollectionReference<MessageModel> get messagesCollectionRef => userDocRef
-      .collection(MyCollections.messages)
-      .withConverter<MessageModel>(
-        fromFirestore: (snapshot, _) => MessageModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
-  Stream<QuerySnapshot<BasketModel>> get userBasketStream => userBasketCollectionRef.snapshots();
-  CollectionReference<Map<String, dynamic>> get addressesCollectionRef =>
-      userDocRef.collection(MyCollections.addresses);
-  CollectionReference<AddressModel> get addressesCollectionRefConverted => userDocRef
-      .collection(MyCollections.addresses)
-      .withConverter<AddressModel>(
-        fromFirestore: (snapshot, _) => AddressModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) {
-          final data = snapshot.toJson();
-          if (snapshot.createdAt == null) {
-            data['createdAt'] = FieldValue.serverTimestamp();
-          }
-          return data;
-        },
-      );
-
   void onGuestRoute(Function() callBack) {
     onGuestRegistration = callBack;
   }
