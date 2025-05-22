@@ -4,20 +4,19 @@ import 'package:shared/shared.dart';
 
 class TaskActionScreen extends StatefulWidget {
   final TaskModel task;
+  final List<UserModel> users;
 
-  const TaskActionScreen({super.key, required this.task});
+  const TaskActionScreen({super.key, required this.task, required this.users});
 
   @override
   State<TaskActionScreen> createState() => _TaskActionScreenState();
 }
 
 class _TaskActionScreenState extends State<TaskActionScreen> {
-  late Stream<List<UserModel>> _usersStream;
-
-  TaskModel get _task => widget.task;
+  late Stream<List<dynamic>> _streams;
 
   void _initialize() {
-    _usersStream = context.taskProvider.getTaskUsers(_task.id);
+    _streams = context.taskProvider.getTaskAndUsers(widget.task.id);
   }
 
   @override
@@ -29,9 +28,11 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   @override
   Widget build(BuildContext context) {
     return BigStreamBuilder(
-      stream: _usersStream,
+      stream: _streams,
+      initialData: [widget.task, widget.users],
       onComplete: (context, snapshot) {
-        final users = snapshot.data!;
+        final task = snapshot.data![0] as TaskModel;
+        final users = snapshot.data![1] as List<UserModel>;
         return Scaffold(
           appBar: AppBar(),
           body: ListView(
@@ -61,7 +62,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                   ActionButton(
                     onTap: () {
                       context.push((context) {
-                        return EmployeeSelectionScreen(initialValue: users, task: _task);
+                        return EmployeeSelectionScreen(initialValue: users, task: task);
                       });
                     },
                     icon: MyIcons.userEdit,
@@ -69,7 +70,11 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                   ),
                   const SizedBox(width: 10),
                   ActionButton(
-                    onTap: () {},
+                    onTap: () {
+                      context.push((context) {
+                        return TaskInputScreen(task: task);
+                      });
+                    },
                     icon: MyIcons.messageEdit,
                     title: context.appLocalization.modifyTask,
                   ),

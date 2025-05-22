@@ -2,7 +2,9 @@ import 'package:app/screens_exports.dart' show DayBubble;
 import 'package:shared/shared.dart';
 
 class TaskInputScreen extends StatefulWidget {
-  const TaskInputScreen({super.key});
+  final TaskModel? task;
+
+  const TaskInputScreen({super.key, this.task});
 
   @override
   State<TaskInputScreen> createState() => _TaskInputScreenState();
@@ -11,6 +13,8 @@ class TaskInputScreen extends StatefulWidget {
 class _TaskInputScreenState extends State<TaskInputScreen> {
   late TaskModel _task;
   final _formKey = GlobalKey<FormState>();
+
+  bool get _isEdit => widget.task != null;
 
   Future<void> _onSubmit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
@@ -22,12 +26,15 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
   @override
   void initState() {
     super.initState();
-    _task = TaskModel(
-      status: TaskStatusEnum.pending.value,
-      companyId: kCompanyId,
-      attachments: [],
-      repeatDays: [],
-      files: [],
+    _task = TaskModel.fromJson(
+      widget.task?.toJson() ??
+          TaskModel(
+            status: TaskStatusEnum.pending.value,
+            companyId: kCompanyId,
+            attachments: [],
+            repeatDays: [],
+            files: [],
+          ).toJson(),
     );
   }
 
@@ -39,7 +46,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
         onPressed: () {
           _onSubmit(context);
         },
-        text: context.appLocalization.create,
+        text: _isEdit ? context.appLocalization.save : context.appLocalization.create,
       ),
       body: Form(
         key: _formKey,
@@ -60,6 +67,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
               TitledTextField(
                 title: context.appLocalization.taskTitle,
                 child: TextEditor(
+                  initialValue: _task.title,
                   onChanged: (value) => _task.title = value!,
                   hintText: context.appLocalization.taskTitleToComplyWith,
                 ),
@@ -69,6 +77,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                 child: TitledTextField(
                   title: context.appLocalization.taskDescription,
                   child: TextEditor(
+                    initialValue: _task.description,
                     onChanged: (value) => _task.description = value!,
                     hintText: context.appLocalization.requiredTaskDescription,
                   ),
@@ -81,7 +90,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                     child: TitledTextField(
                       title: context.appLocalization.deliveryTime,
                       child: DayTimeEditor(
-                        initialValue: null,
+                        initialValue: _task.deliveryTime,
                         onChanged: (value) => _task.deliveryTime = value,
                       ),
                     ),
@@ -99,6 +108,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                             color: context.colorPalette.primary,
                           ),
                         ),
+                        initialValue: _task.allowedDurationInMinutes,
                         onChanged: (value) => _task.allowedDurationInMinutes = value!,
                         textAlign: TextAlign.center,
                       ),
@@ -169,6 +179,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                 child: TitledTextField(
                   title: context.appLocalization.notesAboutTheTask,
                   child: TextEditor(
+                    initialValue: _task.notes,
                     onChanged: (value) => _task.notes = value!,
                     hintText: context.appLocalization.notesAboutTheTaskExecutionMechanism,
                   ),
@@ -177,6 +188,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
               TitledTextField(
                 title: context.appLocalization.penaltyForNonCompliance,
                 child: TextEditor(
+                  initialValue: _task.penaltyDescription,
                   onChanged: (value) => _task.penaltyDescription = value!,
                   hintText: context.appLocalization.descriptionPenaltyForNonCompliance,
                 ),

@@ -63,11 +63,9 @@ class ResponsibleCard extends StatelessWidget {
                                 final user = users[index];
                                 return Align(
                                   widthFactor: 0.5,
-                                  child: BaseNetworkImage(
-                                    user.profilePhoto ?? '',
-                                    width: 32,
-                                    height: 32,
-                                    shape: BoxShape.circle,
+                                  child: UserPhoto(
+                                    url: user.profilePhoto,
+                                    displayName: user.displayName,
                                   ),
                                 );
                               },
@@ -76,7 +74,7 @@ class ResponsibleCard extends StatelessWidget {
                         ),
                       GestureDetector(
                         onTap: () {
-                          context.push((context) => TaskActionScreen(task: task));
+                          context.push((context) => TaskActionScreen(task: task, users: users));
                         },
                         child: Container(
                           width: 32,

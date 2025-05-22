@@ -14,17 +14,25 @@ class TaskProvider extends ChangeNotifier {
     ApiService.fetch(
       context,
       callBack: () async {
-        task.id = await RowIdHelper().getTaskId();
+        final isAdd = task.id.isEmpty;
+        if (isAdd) {
+          task.id = await RowIdHelper().getTaskId();
+          task.createdAt = kNowDate;
+        }
         final taskDocRef = _firebaseInstance.tasks.doc(task.id);
-        task.createdAt = kNowDate;
         if (task.files != null) {
           task.attachments = await _storageService.uploadFiles(MyCollections.tasks, task.files!);
         }
         taskDocRef.set(task);
         if (context.mounted) {
-          context.pushReplacement((context) {
-            return TaskDetailsScreen(task: task);
-          });
+          if (isAdd) {
+            context.pushReplacement((context) {
+              return TaskDetailsScreen(task: task);
+            });
+          } else {
+            Navigator.pop(context);
+            Fluttertoast.showToast(msg: context.appLocalization.savedSuccessfully);
+          }
         }
       },
     );
@@ -51,5 +59,19 @@ class TaskProvider extends ChangeNotifier {
         .where(MyFields.taskIds, arrayContains: taskId)
         .snapshots()
         .map((e) => e.docs.map((e) => e.data()).toList());
+  }
+
+  Stream<List<dynamic>> getTaskAndUsers(String id) {
+    late Stream<TaskModel> taskStream;
+
+    taskStream = kFirebaseInstant.tasks.doc(id).snapshots().map((e) => e.data()!);
+    final usersStream = getTaskUsers(id);
+
+    return Rx.combineLatest2<TaskModel, List<UserModel>, List<dynamic>>(taskStream, usersStream, (
+      s1,
+      s2,
+    ) {
+      return [s1, s2];
+    });
   }
 }
