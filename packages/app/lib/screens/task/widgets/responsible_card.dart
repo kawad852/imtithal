@@ -1,3 +1,4 @@
+import 'package:app/screens/task/widgets/assigned_list.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -50,29 +51,7 @@ class ResponsibleCard extends StatelessWidget {
                   child: Row(
                     children: [
                       if (assignedTasks.docs.isNotEmpty)
-                        Expanded(
-                          child: SizedBox(
-                            height: 32,
-                            child: ListView.builder(
-                              itemCount: assignedTasks.docs.length,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              physics: const NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                final userQuerySnapshot = assignedTasks.docs[index];
-                                final user = userQuerySnapshot.data().user!;
-                                return Align(
-                                  widthFactor: 0.5,
-                                  child: UserPhoto(
-                                    url: user.profilePhoto,
-                                    displayName: user.displayName,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
+                        Expanded(child: AssignedList(assignedTasks: assignedTasks, height: 32)),
                       GestureDetector(
                         onTap: () {
                           context.push(

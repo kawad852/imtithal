@@ -1,3 +1,4 @@
+import 'package:app/screens/task/widgets/task_card.dart';
 import 'package:shared/shared.dart';
 
 class TaskTypeScreen extends StatefulWidget {

@@ -1,6 +1,8 @@
 import 'package:app/screens/task/task_details_screen.dart';
 import 'package:shared/shared.dart';
 
+import 'assigned_list_builder.dart';
+
 class TaskCard extends StatelessWidget {
   final TaskModel task;
 
@@ -118,28 +120,7 @@ class TaskCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (!kIsEmployee)
-                        SizedBox(
-                          height: 20,
-                          child: ListView.builder(
-                            itemCount: 7,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.zero,
-                            itemBuilder: (context, index) {
-                              return const Align(
-                                widthFactor: 0.5,
-                                child: BaseNetworkImage(
-                                  "",
-                                  width: 20,
-                                  height: 20,
-                                  shape: BoxShape.circle,
-                                ),
-                              );
-                            },
-                          ),
-                        ),
+                      if (!kIsEmployee) AssignedListBuilder(taskId: task.id),
                     ],
                   ),
                 ],

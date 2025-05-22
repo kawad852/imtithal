@@ -1,6 +1,8 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
+import '../task/widgets/task_card.dart';
+
 class EmployeeScreen extends StatefulWidget {
   const EmployeeScreen({super.key});
 
