@@ -175,7 +175,14 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 ],
               ),
               ResponsibleCard(task: task, users: users),
-              EmtithalSummery(user: users.first),
+              EmtithalSummery(
+                user: UserModel(
+                  inCompletedTasksCount: users.fold(0, (s, item) => s + item.inCompletedTasksCount),
+                  completedTasksCount: users.fold(0, (s, item) => s + item.completedTasksCount),
+                  lateTasksCount: users.fold(0, (s, item) => s + item.lateTasksCount),
+                  penaltyTasksCount: users.fold(0, (s, item) => s + item.penaltyTasksCount),
+                ),
+              ),
             ],
           ),
         );
