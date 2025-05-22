@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
 
+import '../penalty/penalty_model.dart';
+
 part 'task_model.freezed.dart';
 part 'task_model.g.dart';
 
@@ -30,16 +32,36 @@ class TaskModel with _$TaskModel {
     @Default(0) int lateTasksCount,
     @Default(0) int penaltyTasksCount,
     @Default(0) int totalAssignedUsers,
+    PenaltyModel? penalty,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
 
   TaskModel._();
 
+  Color indicatorColor(BuildContext context) {
+    if (markedAsLate) {
+      return context.colorPalette.yellowF5E;
+    } else if (penalty != null) {
+      return context.colorPalette.redD62;
+    } else {
+      final statusEnum = TaskStatusEnum.values.firstWhere((e) => e.value == status);
+      switch (statusEnum) {
+        case TaskStatusEnum.inReview:
+          return context.colorPalette.grey8B8;
+        case TaskStatusEnum.completed:
+          return context.colorPalette.primary;
+        default:
+          return context.colorPalette.grey8B8;
+      }
+    }
+  }
+
   // (Color cardColor, Color indicatorColor) getStatusColors(BuildContext context) {
   //   final primaryColor = context.colorPalette.primary;
   //   final greyLightColor = context.colorPalette.greyF2F;
   //   final greyDarkColor = context.colorPalette.greyC4C;
+  //   final yellowF5E = context.colorPalette.yellowF5E;
   //   if (markedAsLate) {
   //     return (
   //       status == TaskStatusEnum.completed.value ? context.colorPalette.greyE2E : greyLightColor,
@@ -51,6 +73,7 @@ class TaskModel with _$TaskModel {
   //     return (greyLightColor, greyDarkColor);
   //   }
   // }
+
   //
   // (String, List<String>) get values {
   //   var images = <String>[];

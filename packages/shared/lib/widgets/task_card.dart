@@ -2,18 +2,9 @@ import 'package:app/screens/task/task_details_screen.dart';
 import 'package:shared/shared.dart';
 
 class TaskCard extends StatelessWidget {
-  final Color? colorTask;
-  final bool isEmployee;
-  final bool isPrivate;
   final TaskModel task;
 
-  const TaskCard({
-    super.key,
-    this.isEmployee = false,
-    this.isPrivate = false,
-    this.colorTask,
-    required this.task,
-  });
+  const TaskCard({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +22,7 @@ class TaskCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            VerticalLine(height: 67, color: colorTask ?? context.colorPalette.primary),
+            VerticalLine(height: 67, color: task.indicatorColor(context)),
             const SizedBox(width: 10),
             Expanded(
               child: Column(
@@ -50,34 +41,34 @@ class TaskCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (isPrivate)
-                        Container(
-                          height: 20,
-                          padding: const EdgeInsets.symmetric(horizontal: 4),
-                          margin: const EdgeInsetsDirectional.only(end: 4),
-                          decoration: BoxDecoration(
-                            color: context.colorPalette.greyECE,
-                            borderRadius: BorderRadius.circular(kRadiusPrimary),
-                          ),
-                          child: Row(
-                            children: [
-                              CustomSvg(
-                                MyIcons.calendar,
-                                width: 14,
-                                color: context.colorPalette.grey8B8,
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                "01.05.2025",
-                                style: TextStyle(
-                                  color: context.colorPalette.grey8B8,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
+                      // if (isPrivate)
+                      Container(
+                        height: 20,
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        margin: const EdgeInsetsDirectional.only(end: 4),
+                        decoration: BoxDecoration(
+                          color: context.colorPalette.greyECE,
+                          borderRadius: BorderRadius.circular(kRadiusPrimary),
                         ),
+                        child: Row(
+                          children: [
+                            CustomSvg(
+                              MyIcons.calendar,
+                              width: 14,
+                              color: context.colorPalette.grey8B8,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              "01.05.2025",
+                              style: TextStyle(
+                                color: context.colorPalette.grey8B8,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Container(
                         height: 20,
                         padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -127,7 +118,7 @@ class TaskCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (!isEmployee)
+                      if (!kIsEmployee)
                         SizedBox(
                           height: 20,
                           child: ListView.builder(

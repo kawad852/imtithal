@@ -70,7 +70,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
-                      color: context.colorPalette.primary,
+                      color: task.indicatorColor(context),
                       borderRadius: BorderRadius.circular(kRadiusSecondary),
                     ),
                     child: Text(
@@ -84,7 +84,6 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   ),
                 ],
               ),
-              Text(task.status, style: style),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
@@ -170,15 +169,17 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   TimeCard(title: context.appLocalization.day, value: "02"),
                 ],
               ),
-              ResponsibleCard(task: task, assignedTasks: assignedTasksQuerySnapshot),
-              EmtithalSummery(
-                user: UserModel(
-                  inCompletedTasksCount: task.inCompletedTasksCount,
-                  completedTasksCount: task.completedTasksCount,
-                  lateTasksCount: task.lateTasksCount,
-                  penaltyTasksCount: task.penaltyTasksCount,
+              if (!kIsEmployee) ...[
+                ResponsibleCard(task: task, assignedTasks: assignedTasksQuerySnapshot),
+                EmtithalSummery(
+                  user: UserModel(
+                    inCompletedTasksCount: task.inCompletedTasksCount,
+                    completedTasksCount: task.completedTasksCount,
+                    lateTasksCount: task.lateTasksCount,
+                    penaltyTasksCount: task.penaltyTasksCount,
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
         );

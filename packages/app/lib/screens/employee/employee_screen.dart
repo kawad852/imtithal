@@ -67,10 +67,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
             physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 15),
             itemBuilder: (context, index) {
-              return TaskCard(
-                isEmployee: true,
-                task: TaskModel(repeatDays: [], attachments: [], companyId: ''),
-              );
+              return TaskCard(task: TaskModel(repeatDays: [], attachments: [], companyId: ''));
             },
           ),
         ],

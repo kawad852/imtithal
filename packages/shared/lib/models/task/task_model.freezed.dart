@@ -69,6 +69,8 @@ mixin _$TaskModel {
   set penaltyTasksCount(int value) => throw _privateConstructorUsedError;
   int get totalAssignedUsers => throw _privateConstructorUsedError;
   set totalAssignedUsers(int value) => throw _privateConstructorUsedError;
+  PenaltyModel? get penalty => throw _privateConstructorUsedError;
+  set penalty(PenaltyModel? value) => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? get files => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
@@ -112,10 +114,12 @@ abstract class $TaskModelCopyWith<$Res> {
     int lateTasksCount,
     int penaltyTasksCount,
     int totalAssignedUsers,
+    PenaltyModel? penalty,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
 
   $LightUserModelCopyWith<$Res>? get user;
+  $PenaltyModelCopyWith<$Res>? get penalty;
 }
 
 /// @nodoc
@@ -155,6 +159,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? lateTasksCount = null,
     Object? penaltyTasksCount = null,
     Object? totalAssignedUsers = null,
+    Object? penalty = freezed,
     Object? files = freezed,
   }) {
     return _then(
@@ -269,6 +274,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.totalAssignedUsers
                     : totalAssignedUsers // ignore: cast_nullable_to_non_nullable
                         as int,
+            penalty:
+                freezed == penalty
+                    ? _value.penalty
+                    : penalty // ignore: cast_nullable_to_non_nullable
+                        as PenaltyModel?,
             files:
                 freezed == files
                     ? _value.files
@@ -290,6 +300,20 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
 
     return $LightUserModelCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TaskModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PenaltyModelCopyWith<$Res>? get penalty {
+    if (_value.penalty == null) {
+      return null;
+    }
+
+    return $PenaltyModelCopyWith<$Res>(_value.penalty!, (value) {
+      return _then(_value.copyWith(penalty: value) as $Val);
     });
   }
 }
@@ -326,11 +350,14 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     int lateTasksCount,
     int penaltyTasksCount,
     int totalAssignedUsers,
+    PenaltyModel? penalty,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
 
   @override
   $LightUserModelCopyWith<$Res>? get user;
+  @override
+  $PenaltyModelCopyWith<$Res>? get penalty;
 }
 
 /// @nodoc
@@ -369,6 +396,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? lateTasksCount = null,
     Object? penaltyTasksCount = null,
     Object? totalAssignedUsers = null,
+    Object? penalty = freezed,
     Object? files = freezed,
   }) {
     return _then(
@@ -483,6 +511,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.totalAssignedUsers
                 : totalAssignedUsers // ignore: cast_nullable_to_non_nullable
                     as int,
+        penalty:
+            freezed == penalty
+                ? _value.penalty
+                : penalty // ignore: cast_nullable_to_non_nullable
+                    as PenaltyModel?,
         files:
             freezed == files
                 ? _value.files
@@ -520,6 +553,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.lateTasksCount = 0,
     this.penaltyTasksCount = 0,
     this.totalAssignedUsers = 0,
+    this.penalty,
     @JsonKey(includeToJson: false, includeFromJson: false) this.files,
   }) : super._();
 
@@ -588,12 +622,14 @@ class _$TaskModelImpl extends _TaskModel {
   @JsonKey()
   int totalAssignedUsers;
   @override
+  PenaltyModel? penalty;
+  @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? files;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, totalAssignedUsers: $totalAssignedUsers, files: $files)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, totalAssignedUsers: $totalAssignedUsers, penalty: $penalty, files: $files)';
   }
 
   /// Create a copy of TaskModel
@@ -634,6 +670,7 @@ abstract class _TaskModel extends TaskModel {
     int lateTasksCount,
     int penaltyTasksCount,
     int totalAssignedUsers,
+    PenaltyModel? penalty,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _$TaskModelImpl;
   _TaskModel._() : super._();
@@ -711,6 +748,9 @@ abstract class _TaskModel extends TaskModel {
   @override
   int get totalAssignedUsers;
   set totalAssignedUsers(int value);
+  @override
+  PenaltyModel? get penalty;
+  set penalty(PenaltyModel? value);
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? get files;

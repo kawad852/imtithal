@@ -47,12 +47,7 @@ class _TaskTypeScreenState extends State<TaskTypeScreen> {
                 shrinkWrap: true,
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 itemBuilder: (context, index) {
-                  return TaskCard(
-                    colorTask: task.$2,
-                    isEmployee: true,
-                    isPrivate: true,
-                    task: TaskModel(repeatDays: [], attachments: [], companyId: ''),
-                  );
+                  return TaskCard(task: TaskModel(repeatDays: [], attachments: [], companyId: ''));
                 },
               ),
             ),
