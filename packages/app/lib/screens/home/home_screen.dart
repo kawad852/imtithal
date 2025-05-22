@@ -85,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
               if (tasks.isEmpty) {
                 return const SizedBox.shrink();
               }
-              print("length:: ${tasks.length}");
               return Column(
                 children: [
                   Padding(

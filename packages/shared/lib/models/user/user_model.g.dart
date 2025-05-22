@@ -21,6 +21,7 @@ _$UserModelImpl _$$UserModelImplFromJson(
   password: json['password'] as String? ?? '',
   jobTitle: json['jobTitle'] as String? ?? '',
   companyId: json['companyId'] as String? ?? '',
+  departmentId: json['departmentId'] as String? ?? '',
   taskIds:
       (json['taskIds'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
@@ -44,6 +45,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'password': instance.password,
       'jobTitle': instance.jobTitle,
       'companyId': instance.companyId,
+      'departmentId': instance.departmentId,
       'taskIds': instance.taskIds,
       'inCompletedTasksCount': instance.inCompletedTasksCount,
       'completedTasksCount': instance.completedTasksCount,

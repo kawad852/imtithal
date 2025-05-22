@@ -47,6 +47,8 @@ mixin _$UserModel {
   set jobTitle(String value) => throw _privateConstructorUsedError;
   String get companyId => throw _privateConstructorUsedError;
   set companyId(String value) => throw _privateConstructorUsedError;
+  String get departmentId => throw _privateConstructorUsedError;
+  set departmentId(String value) => throw _privateConstructorUsedError;
   List<String> get taskIds => throw _privateConstructorUsedError;
   set taskIds(List<String> value) => throw _privateConstructorUsedError;
   int get inCompletedTasksCount => throw _privateConstructorUsedError;
@@ -90,6 +92,7 @@ abstract class $UserModelCopyWith<$Res> {
     String password,
     String jobTitle,
     String companyId,
+    String departmentId,
     List<String> taskIds,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -126,6 +129,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? password = null,
     Object? jobTitle = null,
     Object? companyId = null,
+    Object? departmentId = null,
     Object? taskIds = null,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
@@ -195,6 +199,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.companyId
                     : companyId // ignore: cast_nullable_to_non_nullable
                         as String,
+            departmentId:
+                null == departmentId
+                    ? _value.departmentId
+                    : departmentId // ignore: cast_nullable_to_non_nullable
+                        as String,
             taskIds:
                 null == taskIds
                     ? _value.taskIds
@@ -253,6 +262,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String password,
     String jobTitle,
     String companyId,
+    String departmentId,
     List<String> taskIds,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -288,6 +298,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? password = null,
     Object? jobTitle = null,
     Object? companyId = null,
+    Object? departmentId = null,
     Object? taskIds = null,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
@@ -357,6 +368,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.companyId
                 : companyId // ignore: cast_nullable_to_non_nullable
                     as String,
+        departmentId:
+            null == departmentId
+                ? _value.departmentId
+                : departmentId // ignore: cast_nullable_to_non_nullable
+                    as String,
         taskIds:
             null == taskIds
                 ? _value.taskIds
@@ -409,6 +425,7 @@ class _$UserModelImpl implements _UserModel {
     this.password = '',
     this.jobTitle = '',
     this.companyId = '',
+    this.departmentId = '',
     this.taskIds = const [],
     this.inCompletedTasksCount = 0,
     this.completedTasksCount = 0,
@@ -454,6 +471,9 @@ class _$UserModelImpl implements _UserModel {
   String companyId;
   @override
   @JsonKey()
+  String departmentId;
+  @override
+  @JsonKey()
   List<String> taskIds;
   @override
   @JsonKey()
@@ -473,7 +493,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, password: $password, jobTitle: $jobTitle, companyId: $companyId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, selected: $selected)';
+    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, password: $password, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, selected: $selected)';
   }
 
   /// Create a copy of UserModel
@@ -504,6 +524,7 @@ abstract class _UserModel implements UserModel {
     String password,
     String jobTitle,
     String companyId,
+    String departmentId,
     List<String> taskIds,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -553,6 +574,9 @@ abstract class _UserModel implements UserModel {
   @override
   String get companyId;
   set companyId(String value);
+  @override
+  String get departmentId;
+  set departmentId(String value);
   @override
   List<String> get taskIds;
   set taskIds(List<String> value);
