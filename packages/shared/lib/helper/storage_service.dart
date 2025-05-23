@@ -1,5 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared/models/attachment/attachment_model.dart';
 
 class StorageService {
   FirebaseStorage get _firebaseStorage => FirebaseStorage.instance;
@@ -16,18 +17,19 @@ class StorageService {
     return url;
   }
 
-  Future<List<String>> uploadFiles(String collection, List<Object> files) async {
-    List<String> images = [];
+  Future<List<AttachmentModel>> uploadFiles(String collection, List<Object> files) async {
+    List<AttachmentModel> attachments = [];
     for (var element in files) {
-      if (element is String) {
-        images.add(element);
-      }
+      // if (element is String) {
+      //   images.add(element);
+      // }
       if (element is XFile) {
-        final image = await uploadFile(collection: collection, file: element);
-        images.add(image);
+        final url = await uploadFile(collection: collection, file: element);
+        final attachment = AttachmentModel(url: url, name: element.name);
+        attachments.add(attachment);
       }
     }
-    return images;
+    return attachments;
   }
 
   Future<void> deleteFiles({required List<dynamic> files}) async {

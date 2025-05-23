@@ -96,11 +96,11 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 ),
               ),
               Text(task.notes, style: style),
-              if (task.attachments.isNotEmpty) ...[
+              if (task.attachments != null) ...[
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    "${context.appLocalization.attachedFiles} (${task.attachments.length})",
+                    "${context.appLocalization.attachedFiles} (${task.attachments!.length})",
                     style: style.copyWith(
                       color: context.colorPalette.primary,
                       fontWeight: FontWeight.w600,
@@ -111,11 +111,11 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   height: 40,
                   child: ListView.separated(
                     separatorBuilder: (context, index) => const SizedBox(width: 10),
-                    itemCount: task.attachments.length,
+                    itemCount: task.attachments!.length,
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final attachment = task.attachments[index];
+                      final attachment = task.attachments![index];
                       return Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6),
                         height: 40,
@@ -125,7 +125,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                           borderRadius: BorderRadius.circular(kRadiusSecondary),
                         ),
                         child: Text(
-                          attachment,
+                          attachment.name,
                           style: TextStyle(
                             color: context.colorPalette.grey8B8,
                             fontSize: 14,

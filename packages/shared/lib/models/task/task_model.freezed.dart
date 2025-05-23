@@ -53,8 +53,9 @@ mixin _$TaskModel {
   set repeatType(String? value) => throw _privateConstructorUsedError;
   bool get markedAsLate => throw _privateConstructorUsedError;
   set markedAsLate(bool value) => throw _privateConstructorUsedError;
-  List<String> get attachments => throw _privateConstructorUsedError;
-  set attachments(List<String> value) => throw _privateConstructorUsedError;
+  List<AttachmentModel>? get attachments => throw _privateConstructorUsedError;
+  set attachments(List<AttachmentModel>? value) =>
+      throw _privateConstructorUsedError;
   List<String> get repeatDays => throw _privateConstructorUsedError;
   set repeatDays(List<String> value) => throw _privateConstructorUsedError;
   LightUserModel? get user => throw _privateConstructorUsedError;
@@ -74,10 +75,6 @@ mixin _$TaskModel {
       throw _privateConstructorUsedError;
   String get createdById => throw _privateConstructorUsedError;
   set createdById(String value) => throw _privateConstructorUsedError;
-  @JsonKey(includeToJson: false, includeFromJson: false)
-  List<XFile>? get files => throw _privateConstructorUsedError;
-  @JsonKey(includeToJson: false, includeFromJson: false)
-  set files(List<XFile>? value) => throw _privateConstructorUsedError;
 
   /// Serializes this TaskModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -109,7 +106,7 @@ abstract class $TaskModelCopyWith<$Res> {
     String notes,
     String? repeatType,
     bool markedAsLate,
-    List<String> attachments,
+    List<AttachmentModel>? attachments,
     List<String> repeatDays,
     LightUserModel? user,
     int inCompletedTasksCount,
@@ -119,7 +116,6 @@ abstract class $TaskModelCopyWith<$Res> {
     int totalAssignedUsers,
     LightViolationModel? violation,
     String createdById,
-    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
 
   $LightUserModelCopyWith<$Res>? get user;
@@ -155,7 +151,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? notes = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
-    Object? attachments = null,
+    Object? attachments = freezed,
     Object? repeatDays = null,
     Object? user = freezed,
     Object? inCompletedTasksCount = null,
@@ -165,7 +161,6 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
     Object? createdById = null,
-    Object? files = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -240,10 +235,10 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     : markedAsLate // ignore: cast_nullable_to_non_nullable
                         as bool,
             attachments:
-                null == attachments
+                freezed == attachments
                     ? _value.attachments
                     : attachments // ignore: cast_nullable_to_non_nullable
-                        as List<String>,
+                        as List<AttachmentModel>?,
             repeatDays:
                 null == repeatDays
                     ? _value.repeatDays
@@ -289,11 +284,6 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.createdById
                     : createdById // ignore: cast_nullable_to_non_nullable
                         as String,
-            files:
-                freezed == files
-                    ? _value.files
-                    : files // ignore: cast_nullable_to_non_nullable
-                        as List<XFile>?,
           )
           as $Val,
     );
@@ -352,7 +342,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String notes,
     String? repeatType,
     bool markedAsLate,
-    List<String> attachments,
+    List<AttachmentModel>? attachments,
     List<String> repeatDays,
     LightUserModel? user,
     int inCompletedTasksCount,
@@ -362,7 +352,6 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     int totalAssignedUsers,
     LightViolationModel? violation,
     String createdById,
-    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
 
   @override
@@ -399,7 +388,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? notes = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
-    Object? attachments = null,
+    Object? attachments = freezed,
     Object? repeatDays = null,
     Object? user = freezed,
     Object? inCompletedTasksCount = null,
@@ -409,7 +398,6 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
     Object? createdById = null,
-    Object? files = freezed,
   }) {
     return _then(
       _$TaskModelImpl(
@@ -484,10 +472,10 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 : markedAsLate // ignore: cast_nullable_to_non_nullable
                     as bool,
         attachments:
-            null == attachments
+            freezed == attachments
                 ? _value.attachments
                 : attachments // ignore: cast_nullable_to_non_nullable
-                    as List<String>,
+                    as List<AttachmentModel>?,
         repeatDays:
             null == repeatDays
                 ? _value.repeatDays
@@ -533,11 +521,6 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.createdById
                 : createdById // ignore: cast_nullable_to_non_nullable
                     as String,
-        files:
-            freezed == files
-                ? _value.files
-                : files // ignore: cast_nullable_to_non_nullable
-                    as List<XFile>?,
       ),
     );
   }
@@ -562,7 +545,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.notes = "",
     this.repeatType,
     this.markedAsLate = false,
-    required this.attachments,
+    this.attachments,
     required this.repeatDays,
     this.user,
     this.inCompletedTasksCount = 0,
@@ -572,7 +555,6 @@ class _$TaskModelImpl extends _TaskModel {
     this.totalAssignedUsers = 0,
     this.violation,
     required this.createdById,
-    @JsonKey(includeToJson: false, includeFromJson: false) this.files,
   }) : super._();
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -619,7 +601,7 @@ class _$TaskModelImpl extends _TaskModel {
   @JsonKey()
   bool markedAsLate;
   @override
-  List<String> attachments;
+  List<AttachmentModel>? attachments;
   @override
   List<String> repeatDays;
   @override
@@ -643,13 +625,10 @@ class _$TaskModelImpl extends _TaskModel {
   LightViolationModel? violation;
   @override
   String createdById;
-  @override
-  @JsonKey(includeToJson: false, includeFromJson: false)
-  List<XFile>? files;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById, files: $files)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById)';
   }
 
   /// Create a copy of TaskModel
@@ -682,7 +661,7 @@ abstract class _TaskModel extends TaskModel {
     String notes,
     String? repeatType,
     bool markedAsLate,
-    required List<String> attachments,
+    List<AttachmentModel>? attachments,
     required List<String> repeatDays,
     LightUserModel? user,
     int inCompletedTasksCount,
@@ -692,7 +671,6 @@ abstract class _TaskModel extends TaskModel {
     int totalAssignedUsers,
     LightViolationModel? violation,
     required String createdById,
-    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _$TaskModelImpl;
   _TaskModel._() : super._();
 
@@ -746,8 +724,8 @@ abstract class _TaskModel extends TaskModel {
   bool get markedAsLate;
   set markedAsLate(bool value);
   @override
-  List<String> get attachments;
-  set attachments(List<String> value);
+  List<AttachmentModel>? get attachments;
+  set attachments(List<AttachmentModel>? value);
   @override
   List<String> get repeatDays;
   set repeatDays(List<String> value);
@@ -775,11 +753,6 @@ abstract class _TaskModel extends TaskModel {
   @override
   String get createdById;
   set createdById(String value);
-  @override
-  @JsonKey(includeToJson: false, includeFromJson: false)
-  List<XFile>? get files;
-  @JsonKey(includeToJson: false, includeFromJson: false)
-  set files(List<XFile>? value);
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app/screens_exports.dart' show DayBubble;
 import 'package:shared/shared.dart';
 
@@ -13,13 +15,14 @@ class TaskInputScreen extends StatefulWidget {
 class _TaskInputScreenState extends State<TaskInputScreen> {
   late TaskModel _task;
   final _formKey = GlobalKey<FormState>();
+  final List<Object> _files = [];
 
   bool get _isEdit => widget.task != null;
 
   Future<void> _onSubmit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       context.unFocusKeyboard();
-      context.taskProvider.createTask(context, _task);
+      context.taskProvider.createTask(context, _task, files: _files);
     }
   }
 
@@ -33,10 +36,12 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
             companyId: kCompanyId,
             attachments: [],
             repeatDays: [],
-            files: [],
             createdById: kUserId,
           ).toJson(),
     );
+    if (_task.attachments != null) {
+      _files.addAll(_task.attachments!.map((e) => e.url));
+    }
   }
 
   @override
@@ -146,6 +151,14 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                   ),
                 ),
               ),
+              if (_task.repeatType == RepeatType.once.value)
+                TitledTextField(
+                  title: context.appLocalization.deliveryDate,
+                  child: DatePickerEditor(
+                    value: _task.deliveryDate,
+                    onChanged: (value) => _task.deliveryDate = value,
+                  ),
+                ),
               if (_task.repeatType == RepeatType.weekly.value)
                 TitledTextField(
                   title: context.appLocalization.specifyTheDayForTaskRepetition,
@@ -197,9 +210,36 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
               const SizedBox(height: 15),
               ImagesAttacher(
                 onChanged: (files) {
-                  _task.files!.addAll(files);
+                  _files.addAll(files);
                 },
               ),
+              if (_files.isNotEmpty)
+                SizedBox(
+                  height: 90,
+                  child: SingleChildScrollView(
+                    child: Row(
+                      children:
+                          _files
+                              .map((e) {
+                                if (e is XFile) {
+                                  return ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.file(
+                                      File(e.path),
+                                      height: 90,
+                                      width: 90,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                } else {
+                                  return BaseNetworkImage(e as String, height: 90, width: 90);
+                                }
+                              })
+                              .separator(const SizedBox(width: 10))
+                              .toList(),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),

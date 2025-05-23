@@ -25,7 +25,9 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
   repeatType: json['repeatType'] as String?,
   markedAsLate: json['markedAsLate'] as bool? ?? false,
   attachments:
-      (json['attachments'] as List<dynamic>).map((e) => e as String).toList(),
+      (json['attachments'] as List<dynamic>?)
+          ?.map((e) => AttachmentModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
   repeatDays:
       (json['repeatDays'] as List<dynamic>).map((e) => e as String).toList(),
   user:
@@ -62,7 +64,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'notes': instance.notes,
       'repeatType': instance.repeatType,
       'markedAsLate': instance.markedAsLate,
-      'attachments': instance.attachments,
+      'attachments': instance.attachments?.map((e) => e.toJson()).toList(),
       'repeatDays': instance.repeatDays,
       'user': instance.user?.toJson(),
       'inCompletedTasksCount': instance.inCompletedTasksCount,

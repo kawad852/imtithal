@@ -1006,6 +1006,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'سلامة عامة'**
   String get generalSafety;
+
+  /// No description provided for @deliveryDate.
+  ///
+  /// In ar, this message translates to:
+  /// **'تاريخ التسليم'**
+  String get deliveryDate;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

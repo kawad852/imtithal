@@ -463,4 +463,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get generalSafety => 'General Safety';
+
+  @override
+  String get deliveryDate => 'Delivery Date';
 }

@@ -10,7 +10,7 @@ class TaskProvider extends ChangeNotifier {
   // Query<TaskModel> get tasksMainQuery => _firebaseInstance.tasks.whereMyCompany;
   // Query<UserModel> get assignedTasksQuery => _firebaseInstance.users.whereMyCompany;
 
-  void createTask(BuildContext context, TaskModel task) async {
+  void createTask(BuildContext context, TaskModel task, {required List<Object> files}) async {
     ApiService.fetch(
       context,
       callBack: () async {
@@ -20,8 +20,8 @@ class TaskProvider extends ChangeNotifier {
           task.createdAt = kNowDate;
         }
         final taskDocRef = _firebaseInstance.tasks.doc(task.id);
-        if (task.files != null) {
-          task.attachments = await _storageService.uploadFiles(MyCollections.tasks, task.files!);
+        if (files.isNotEmpty) {
+          task.attachments = await _storageService.uploadFiles(MyCollections.tasks, files);
         }
         taskDocRef.set(task);
         if (context.mounted) {

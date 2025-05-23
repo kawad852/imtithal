@@ -100,6 +100,7 @@ export 'widgets/custom_firestore_query_builder.dart';
 export 'widgets/custom_svg.dart';
 export 'widgets/debug_button.dart';
 export 'widgets/editors/base_editor.dart';
+export 'widgets/editors/date_picker_editor.dart';
 export 'widgets/editors/day_time_editor.dart';
 export 'widgets/editors/email_editor.dart';
 export 'widgets/editors/numbers_editor.dart';

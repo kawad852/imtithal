@@ -463,4 +463,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get generalSafety => 'سلامة عامة';
+
+  @override
+  String get deliveryDate => 'تاريخ التسليم';
 }

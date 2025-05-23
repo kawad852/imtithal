@@ -151,5 +151,6 @@
   "task": "مهمة",
   "save": "حفظ",
   "savedSuccessfully": "تم الحفظ",
-  "generalSafety": "سلامة عامة"
+  "generalSafety": "سلامة عامة",
+  "deliveryDate": "تاريخ التسليم"
 }

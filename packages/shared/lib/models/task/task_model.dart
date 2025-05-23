@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
 
+import '../attachment/attachment_model.dart';
 import '../violation/violation_model.dart';
 
 part 'task_model.freezed.dart';
@@ -24,7 +25,7 @@ class TaskModel with _$TaskModel {
     @Default("") String notes,
     String? repeatType,
     @Default(false) bool markedAsLate,
-    required List<String> attachments,
+    List<AttachmentModel>? attachments,
     required List<String> repeatDays,
     LightUserModel? user,
     @Default(0) int inCompletedTasksCount,
@@ -34,7 +35,6 @@ class TaskModel with _$TaskModel {
     @Default(0) int totalAssignedUsers,
     LightViolationModel? violation,
     required String createdById,
-    @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
 
