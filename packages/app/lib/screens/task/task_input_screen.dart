@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:app/screens_exports.dart' show DayBubble;
+import 'package:app/screens_exports.dart' show DayBubble, TaskDetailsScreen;
 import 'package:shared/shared.dart';
 
 class TaskInputScreen extends StatefulWidget {
@@ -16,13 +16,44 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
   late TaskModel _task;
   final _formKey = GlobalKey<FormState>();
   final List<Object> _files = [];
+  final _storageService = StorageService();
 
   bool get _isEdit => widget.task != null;
 
   Future<void> _onSubmit(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       context.unFocusKeyboard();
-      context.taskProvider.createTask(context, _task, files: _files);
+      ApiService.fetch(
+        context,
+        callBack: () async {
+          final isAdd = _task.id.isEmpty;
+          if (isAdd) {
+            _task.id = await RowIdHelper().getTaskId();
+            _task.createdAt = kNowDate;
+          }
+          final time = _task.deliveryTime.convertStringToTimeOfDay;
+          _task.deliveryDate = _task.deliveryDate!.copyWith(
+            hour: time.hour,
+            minute: time.minute,
+            second: 0,
+          );
+          final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
+          if (_files.whereType<XFile>().isNotEmpty) {
+            _task.attachments = await _storageService.uploadFiles(MyCollections.tasks, _files);
+          }
+          taskDocRef.set(_task);
+          if (context.mounted) {
+            if (isAdd) {
+              context.pushReplacement((context) {
+                return TaskDetailsScreen(task: _task);
+              });
+            } else {
+              Navigator.pop(context);
+              Fluttertoast.showToast(msg: context.appLocalization.savedSuccessfully);
+            }
+          }
+        },
+      );
     }
   }
 
