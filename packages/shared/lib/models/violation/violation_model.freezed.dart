@@ -33,6 +33,8 @@ mixin _$ViolationModel {
   set notes(String value) => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   set description(String value) => throw _privateConstructorUsedError;
+  String get createdById => throw _privateConstructorUsedError;
+  set createdById(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this ViolationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,6 +59,7 @@ abstract class $ViolationModelCopyWith<$Res> {
     String type,
     String notes,
     String description,
+    String createdById,
   });
 }
 
@@ -80,6 +83,7 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
     Object? type = null,
     Object? notes = null,
     Object? description = null,
+    Object? createdById = null,
   }) {
     return _then(
       _value.copyWith(
@@ -108,6 +112,11 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
                     ? _value.description
                     : description // ignore: cast_nullable_to_non_nullable
                         as String,
+            createdById:
+                null == createdById
+                    ? _value.createdById
+                    : createdById // ignore: cast_nullable_to_non_nullable
+                        as String,
           )
           as $Val,
     );
@@ -129,6 +138,7 @@ abstract class _$$ViolationModelImplCopyWith<$Res>
     String type,
     String notes,
     String description,
+    String createdById,
   });
 }
 
@@ -151,6 +161,7 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
     Object? type = null,
     Object? notes = null,
     Object? description = null,
+    Object? createdById = null,
   }) {
     return _then(
       _$ViolationModelImpl(
@@ -179,6 +190,11 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
                 ? _value.description
                 : description // ignore: cast_nullable_to_non_nullable
                     as String,
+        createdById:
+            null == createdById
+                ? _value.createdById
+                : createdById // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -193,6 +209,7 @@ class _$ViolationModelImpl implements _ViolationModel {
     this.type = '',
     this.notes = '',
     this.description = '',
+    required this.createdById,
   });
 
   factory _$ViolationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -213,10 +230,12 @@ class _$ViolationModelImpl implements _ViolationModel {
   @override
   @JsonKey()
   String description;
+  @override
+  String createdById;
 
   @override
   String toString() {
-    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description)';
+    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, createdById: $createdById)';
   }
 
   /// Create a copy of ViolationModel
@@ -243,6 +262,7 @@ abstract class _ViolationModel implements ViolationModel {
     String type,
     String notes,
     String description,
+    required String createdById,
   }) = _$ViolationModelImpl;
 
   factory _ViolationModel.fromJson(Map<String, dynamic> json) =
@@ -265,6 +285,9 @@ abstract class _ViolationModel implements ViolationModel {
   @override
   String get description;
   set description(String value);
+  @override
+  String get createdById;
+  set createdById(String value);
 
   /// Create a copy of ViolationModel
   /// with the given fields replaced by the non-null parameter values.

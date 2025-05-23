@@ -52,7 +52,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
   @override
   void initState() {
     super.initState();
-    _violation = ViolationModel();
+    _violation = ViolationModel(createdById: kUserId);
   }
 
   @override

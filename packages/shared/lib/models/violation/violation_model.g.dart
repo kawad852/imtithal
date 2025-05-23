@@ -13,6 +13,7 @@ _$ViolationModelImpl _$$ViolationModelImplFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String? ?? '',
       notes: json['notes'] as String? ?? '',
       description: json['description'] as String? ?? '',
+      createdById: json['createdById'] as String,
     );
 
 Map<String, dynamic> _$$ViolationModelImplToJson(
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$ViolationModelImplToJson(
   'type': instance.type,
   'notes': instance.notes,
   'description': instance.description,
+  'createdById': instance.createdById,
 };
 
 _$LightViolationModelImpl _$$LightViolationModelImplFromJson(

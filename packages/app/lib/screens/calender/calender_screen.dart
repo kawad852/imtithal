@@ -52,7 +52,9 @@ class _CalenderScreenState extends State<CalenderScreen> {
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               itemBuilder: (context, index) {
-                return TaskCard(task: TaskModel(repeatDays: [], attachments: [], companyId: ''));
+                return TaskCard(
+                  task: TaskModel(repeatDays: [], attachments: [], companyId: '', createdById: ''),
+                );
               },
             ),
           ),

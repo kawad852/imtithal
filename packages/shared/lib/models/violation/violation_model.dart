@@ -13,6 +13,7 @@ class ViolationModel with _$ViolationModel {
     @Default('') String type,
     @Default('') String notes,
     @Default('') String description,
+    required String createdById,
   }) = _ViolationModel;
 
   factory ViolationModel.fromJson(Map<String, dynamic> json) => _$ViolationModelFromJson(json);

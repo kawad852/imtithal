@@ -73,10 +73,10 @@ class _MyAppState extends State<MyApp> {
               value:
                   userProvider.isAuthenticated
                       ? userProvider.userDocRef.snapshots().map(
-                        (event) => event.data() ?? UserModel(),
+                        (event) => event.data() ?? UserModel(createdById: ''),
                       )
-                      : Stream.value(UserModel()),
-              initialData: MySharedPreferences.user ?? UserModel(),
+                      : Stream.value(UserModel(createdById: '')),
+              initialData: MySharedPreferences.user ?? UserModel(createdById: ''),
               updateShouldNotify: (initialValue, value) {
                 MySharedPreferences.user = value;
                 Future.microtask(() {

@@ -72,6 +72,8 @@ mixin _$TaskModel {
   LightViolationModel? get violation => throw _privateConstructorUsedError;
   set violation(LightViolationModel? value) =>
       throw _privateConstructorUsedError;
+  String get createdById => throw _privateConstructorUsedError;
+  set createdById(String value) => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? get files => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
@@ -116,6 +118,7 @@ abstract class $TaskModelCopyWith<$Res> {
     int penaltyTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
+    String createdById,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
 
@@ -161,6 +164,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? penaltyTasksCount = null,
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
+    Object? createdById = null,
     Object? files = freezed,
   }) {
     return _then(
@@ -280,6 +284,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.violation
                     : violation // ignore: cast_nullable_to_non_nullable
                         as LightViolationModel?,
+            createdById:
+                null == createdById
+                    ? _value.createdById
+                    : createdById // ignore: cast_nullable_to_non_nullable
+                        as String,
             files:
                 freezed == files
                     ? _value.files
@@ -352,6 +361,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     int penaltyTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
+    String createdById,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   });
 
@@ -398,6 +408,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? penaltyTasksCount = null,
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
+    Object? createdById = null,
     Object? files = freezed,
   }) {
     return _then(
@@ -517,6 +528,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.violation
                 : violation // ignore: cast_nullable_to_non_nullable
                     as LightViolationModel?,
+        createdById:
+            null == createdById
+                ? _value.createdById
+                : createdById // ignore: cast_nullable_to_non_nullable
+                    as String,
         files:
             freezed == files
                 ? _value.files
@@ -555,6 +571,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.penaltyTasksCount = 0,
     this.totalAssignedUsers = 0,
     this.violation,
+    required this.createdById,
     @JsonKey(includeToJson: false, includeFromJson: false) this.files,
   }) : super._();
 
@@ -625,12 +642,14 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   LightViolationModel? violation;
   @override
+  String createdById;
+  @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? files;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, files: $files)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById, files: $files)';
   }
 
   /// Create a copy of TaskModel
@@ -672,6 +691,7 @@ abstract class _TaskModel extends TaskModel {
     int penaltyTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
+    required String createdById,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _$TaskModelImpl;
   _TaskModel._() : super._();
@@ -752,6 +772,9 @@ abstract class _TaskModel extends TaskModel {
   @override
   LightViolationModel? get violation;
   set violation(LightViolationModel? value);
+  @override
+  String get createdById;
+  set createdById(String value);
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   List<XFile>? get files;

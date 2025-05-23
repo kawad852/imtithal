@@ -177,6 +177,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                     completedTasksCount: task.completedTasksCount,
                     lateTasksCount: task.lateTasksCount,
                     penaltyTasksCount: task.penaltyTasksCount,
+                    createdById: kUserId,
                   ),
                 ),
               ],

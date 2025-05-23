@@ -34,6 +34,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
             attachments: [],
             repeatDays: [],
             files: [],
+            createdById: kUserId,
           ).toJson(),
     );
   }

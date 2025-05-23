@@ -29,6 +29,7 @@ _$UserModelImpl _$$UserModelImplFromJson(
   completedTasksCount: (json['completedTasksCount'] as num?)?.toInt() ?? 0,
   lateTasksCount: (json['lateTasksCount'] as num?)?.toInt() ?? 0,
   penaltyTasksCount: (json['penaltyTasksCount'] as num?)?.toInt() ?? 0,
+  createdById: json['createdById'] as String,
 );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -51,6 +52,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'completedTasksCount': instance.completedTasksCount,
       'lateTasksCount': instance.lateTasksCount,
       'penaltyTasksCount': instance.penaltyTasksCount,
+      'createdById': instance.createdById,
     };
 
 _$LightUserModelImpl _$$LightUserModelImplFromJson(Map<String, dynamic> json) =>

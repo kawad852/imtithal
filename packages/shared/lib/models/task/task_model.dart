@@ -33,6 +33,7 @@ class TaskModel with _$TaskModel {
     @Default(0) int penaltyTasksCount,
     @Default(0) int totalAssignedUsers,
     LightViolationModel? violation,
+    required String createdById,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);

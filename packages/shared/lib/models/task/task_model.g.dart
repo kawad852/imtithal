@@ -43,6 +43,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
           : LightViolationModel.fromJson(
             json['violation'] as Map<String, dynamic>,
           ),
+  createdById: json['createdById'] as String,
 );
 
 Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
@@ -70,4 +71,5 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'penaltyTasksCount': instance.penaltyTasksCount,
       'totalAssignedUsers': instance.totalAssignedUsers,
       'violation': instance.violation?.toJson(),
+      'createdById': instance.createdById,
     };
