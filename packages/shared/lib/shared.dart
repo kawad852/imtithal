@@ -112,6 +112,8 @@ export 'widgets/evaluation_box.dart';
 export 'widgets/images_attacher.dart';
 export 'widgets/month_calender.dart';
 export 'widgets/search_app_bar.dart';
+export 'widgets/selectors/user_selector.dart';
+export 'widgets/selectors/users_selector.dart';
 export 'widgets/stream_builders/big_stream_builder.dart';
 export 'widgets/stream_builders/impeded_stream_builder.dart';
 //widgets
@@ -119,5 +121,4 @@ export 'widgets/stretch_button.dart';
 export 'widgets/task_bubble.dart';
 export 'widgets/titled_textfield.dart';
 export 'widgets/user_photo.dart';
-export 'widgets/user_selector.dart';
 export 'widgets/vertical_line.dart';

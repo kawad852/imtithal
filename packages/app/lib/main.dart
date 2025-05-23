@@ -89,17 +89,16 @@ class _MyAppState extends State<MyApp> {
                 return true;
               },
             ),
-            // StreamProvider<List<ItemModel>>.value(
-            //   key: ValueKey(userProvider.isAuthenticated),
-            //   value:
-            //       userProvider.isAuthenticated && kBranch != null
-            //           ? _outOfStockStream
-            //           : Stream.value([]),
-            //   initialData: const [],
-            //   updateShouldNotify: (initialValue, value) {
-            //     return true;
-            //   },
-            // ),
+            StreamProvider<List<UserModel>>.value(
+              key: ValueKey(userProvider.isAuthenticated),
+              value: kFirebaseInstant.users.whereMyCompany.snapshots().map(
+                (e) => e.docs.map((e) => e.data()).toList(),
+              ),
+              initialData: const [],
+              updateShouldNotify: (initialValue, value) {
+                return true;
+              },
+            ),
             // StreamProvider<BranchModel>.value(
             //   key: ValueKey(userProvider.isAuthenticated),
             //   value:

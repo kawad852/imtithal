@@ -34,4 +34,5 @@ class MyFields {
   static const String companyId = 'companyId';
   static const String totalAssignedUsers = 'totalAssignedUsers';
   static const String violation = 'violation';
+  static const String assignedUserIds = 'assignedUserIds';
 }

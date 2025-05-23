@@ -26,6 +26,7 @@ class TaskModel with _$TaskModel {
     String? repeatType,
     @Default(false) bool markedAsLate,
     List<AttachmentModel>? attachments,
+    @Default([]) List<String> assignedUserIds,
     required List<String> repeatDays,
     LightUserModel? user,
     @Default(0) int inCompletedTasksCount,
