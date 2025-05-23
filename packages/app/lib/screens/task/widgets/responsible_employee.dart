@@ -1,13 +1,17 @@
 import 'package:shared/shared.dart';
 
-class ResponsibleEmployee extends StatelessWidget {
-  final TaskModel assignedTask;
+import '../../violation/violation_input_screen.dart';
 
-  const ResponsibleEmployee({super.key, required this.assignedTask});
+class ResponsibleEmployee extends StatelessWidget {
+  final QueryDocumentSnapshot<TaskModel> assignedTaskQuerySnapshot;
+
+  const ResponsibleEmployee({super.key, required this.assignedTaskQuerySnapshot});
 
   @override
   Widget build(BuildContext context) {
+    final assignedTask = assignedTaskQuerySnapshot.data();
     final user = assignedTask.user!;
+    final indicatorColor = assignedTask.indicatorColor(context);
     return Container(
       width: double.infinity,
       height: 60,
@@ -18,13 +22,12 @@ class ResponsibleEmployee extends StatelessWidget {
       ),
       child: Row(
         children: [
-          VerticalLine(height: 40, color: context.colorPalette.primary),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: CustomSvg(MyIcons.check),
+          VerticalLine(height: 40, color: indicatorColor),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: CustomSvg(MyIcons.check, color: indicatorColor),
           ),
           UserPhoto(url: user.profilePhoto, displayName: user.displayName),
-          // BaseNetworkImage(user.profilePhoto!, width: 40, height: 40, shape: BoxShape.circle),
           const SizedBox(width: 5),
           Expanded(
             child: Column(
@@ -53,27 +56,47 @@ class ResponsibleEmployee extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            height: 30,
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(
-              color: context.colorPalette.yellowE7B6,
-              borderRadius: BorderRadius.circular(kRadiusPrimary),
-            ),
-            child: Row(
-              children: [
-                const CustomSvg(MyIcons.danger, width: 20),
-                Text(
-                  "عدم امتثال",
-                  style: TextStyle(
-                    color: context.colorPalette.black,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
+          PopupMenuButton(
+            icon: const CustomSvg(MyIcons.moreCircle),
+            onSelected: (value) {
+              if (value) {
+                assignedTaskQuerySnapshot.reference.update({
+                  MyFields.status: TaskStatusEnum.completed.value,
+                });
+              } else {
+                context.push((context) {
+                  return ViolationInputScreen(task: assignedTask);
+                });
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(value: true, child: Text(context.appLocalization.imtithal)),
+                PopupMenuItem(value: false, child: Text(context.appLocalization.nonCompliance)),
+              ];
+            },
           ),
+          // Container(
+          //   height: 30,
+          //   padding: const EdgeInsets.symmetric(horizontal: 5),
+          //   decoration: BoxDecoration(
+          //     color: context.colorPalette.yellowE7B6,
+          //     borderRadius: BorderRadius.circular(kRadiusPrimary),
+          //   ),
+          //   child: Row(
+          //     children: [
+          //       const CustomSvg(MyIcons.danger, width: 20),
+          //       Text(
+          //         "عدم امتثال",
+          //         style: TextStyle(
+          //           color: context.colorPalette.black,
+          //           fontSize: 12,
+          //           fontWeight: FontWeight.w400,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

@@ -150,5 +150,6 @@
   "completedStatus": "مكتملة",
   "task": "مهمة",
   "save": "حفظ",
-  "savedSuccessfully": "تم الحفظ"
+  "savedSuccessfully": "تم الحفظ",
+  "generalSafety": "سلامة عامة"
 }

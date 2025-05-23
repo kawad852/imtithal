@@ -121,7 +121,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           final assignedTask = assignedTasks[index];
-                          return ResponsibleEmployee(assignedTask: assignedTask.data());
+                          return ResponsibleEmployee(assignedTaskQuerySnapshot: assignedTask);
                         },
                       ),
                     ],

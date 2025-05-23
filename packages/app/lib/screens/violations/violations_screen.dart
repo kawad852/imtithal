@@ -32,10 +32,7 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
                 onChanged: (value) {},
                 required: false,
                 hintText: context.appLocalization.searchViolationEmployee,
-                prefixIcon: const IconButton(
-                  onPressed: null,
-                  icon: CustomSvg(MyIcons.search),
-                ),
+                prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
               ),
             ),
             Expanded(

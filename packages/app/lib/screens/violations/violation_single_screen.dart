@@ -17,7 +17,7 @@ class _ViolationSingleScreenState extends State<ViolationSingleScreen> {
         onPressed: () {
           context.showBottomSheet(
             context,
-            maxHeight: 401, 
+            maxHeight: 401,
             builder: (context) {
               return const ReplySheet();
             },
@@ -75,11 +75,7 @@ class _ViolationSingleScreenState extends State<ViolationSingleScreen> {
                       const SizedBox(height: 5),
                       Row(
                         children: [
-                          CustomSvg(
-                            MyIcons.clock,
-                            color: context.colorPalette.grey8B8,
-                            width: 16,
-                          ),
+                          CustomSvg(MyIcons.clock, color: context.colorPalette.grey8B8, width: 16),
                           const SizedBox(width: 10),
                           Text(
                             "03:30 مساءً",
@@ -109,7 +105,7 @@ class _ViolationSingleScreenState extends State<ViolationSingleScreen> {
                     ],
                   ),
                 ),
-                ViolationType(
+                ViolationTypeWidget(
                   title: "تم الإلغاء",
                   backgroundColor: context.colorPalette.primary,
                 ),
@@ -122,7 +118,7 @@ class _ViolationSingleScreenState extends State<ViolationSingleScreen> {
               title: context.appLocalization.typeOfViolation,
               child: Row(
                 children: [
-                  ViolationType(
+                  ViolationTypeWidget(
                     title: "عدم امتثال",
                     backgroundColor: context.colorPalette.redD62,
                   ),

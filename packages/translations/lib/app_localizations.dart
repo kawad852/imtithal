@@ -1000,6 +1000,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تم الحفظ'**
   String get savedSuccessfully;
+
+  /// No description provided for @generalSafety.
+  ///
+  /// In ar, this message translates to:
+  /// **'سلامة عامة'**
+  String get generalSafety;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

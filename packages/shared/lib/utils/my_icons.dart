@@ -8,7 +8,7 @@ class MyIcons {
   static const String add = '${_path}add.svg';
   static const String home = '${_path}home.svg';
   static const String profile = '${_path}profile.svg';
-  static const String calendar= '${_path}calendar.svg';
+  static const String calendar = '${_path}calendar.svg';
   static const String building = '${_path}building.svg';
   static const String clock = '${_path}clock.svg';
   static const String notification = '${_path}notification.svg';
@@ -36,4 +36,5 @@ class MyIcons {
   static const String check = '${_path}check.svg';
   static const String messageEdit = '${_path}message_edit.svg';
   static const String userEdit = '${_path}user_edit.svg';
+  static const String moreCircle = '${_path}more-circle.svg';
 }

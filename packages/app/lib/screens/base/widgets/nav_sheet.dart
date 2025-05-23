@@ -1,6 +1,8 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
+import '../../violation/violation_input_screen.dart';
+
 class NavSheet extends StatelessWidget {
   const NavSheet({super.key});
 
@@ -58,7 +60,7 @@ class NavSheet extends StatelessWidget {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                context.push((context) => const TaskViolationInputScreen());
+                context.push((context) => const ViolationInputScreen(task: null));
               },
               child: Container(
                 width: double.infinity,

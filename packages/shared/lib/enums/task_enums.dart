@@ -4,6 +4,7 @@ import 'package:shared/helper/translation_extension.dart';
 enum TaskStatusEnum {
   pending('PENDING'),
   inReview('IN-REVIEW'),
+  violation('VIOLATION'),
   completed('COMPLETED');
 
   final String value;
@@ -79,6 +80,31 @@ enum TaskDaysEnum {
       return context.appLocalization.friday;
     } else if (value == saturday) {
       return context.appLocalization.saturday;
+    }
+    return '';
+  }
+}
+
+enum ViolationType {
+  nonCompliance('NON_COMPLIANCE'),
+  rejected('REJECTED'),
+  late('LATE'),
+  generalSafety('GENERAL-SAFETY');
+
+  final String value;
+
+  const ViolationType(this.value);
+
+  static String getLabel(String status, BuildContext context) {
+    final value = ViolationType.values.firstWhere((e) => e.value == status);
+    if (value == nonCompliance) {
+      return context.appLocalization.nonCompliance;
+    } else if (value == rejected) {
+      return context.appLocalization.rejected;
+    } else if (value == late) {
+      return context.appLocalization.late;
+    } else if (value == generalSafety) {
+      return context.appLocalization.generalSafety;
     }
     return '';
   }

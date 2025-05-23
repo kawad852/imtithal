@@ -1,9 +1,9 @@
 import 'package:shared/shared.dart';
 
-class ViolationType extends StatelessWidget {
+class ViolationTypeWidget extends StatelessWidget {
   final String title;
   final Color backgroundColor;
-  const ViolationType({super.key, required this.title, required this.backgroundColor});
+  const ViolationTypeWidget({super.key, required this.title, required this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {

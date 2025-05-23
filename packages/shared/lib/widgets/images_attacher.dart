@@ -4,8 +4,9 @@ import 'package:shared/shared.dart';
 
 class ImagesAttacher extends StatefulWidget {
   final void Function(List<XFile> files) onChanged;
+  final String? title;
 
-  const ImagesAttacher({super.key, required this.onChanged});
+  const ImagesAttacher({super.key, required this.onChanged, this.title});
 
   @override
   State<ImagesAttacher> createState() => _ImagesAttacherState();
@@ -41,7 +42,7 @@ class _ImagesAttacherState extends State<ImagesAttacher> {
               const CustomSvg(MyIcons.attachSquare),
               const SizedBox(width: 11),
               Text(
-                context.appLocalization.attachFiles,
+                widget.title ?? context.appLocalization.attachFiles,
                 style: TextStyle(
                   color: context.colorPalette.black252,
                   fontSize: 14,

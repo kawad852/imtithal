@@ -460,4 +460,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get savedSuccessfully => 'تم الحفظ';
+
+  @override
+  String get generalSafety => 'سلامة عامة';
 }

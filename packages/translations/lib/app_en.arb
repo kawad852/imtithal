@@ -150,5 +150,6 @@
   "completedStatus": "Completed",
   "task": "task",
   "save": "Save",
-  "savedSuccessfully": "Saved Successfully"
+  "savedSuccessfully": "Saved Successfully",
+  "generalSafety": "General Safety"
 }

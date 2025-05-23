@@ -460,4 +460,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get savedSuccessfully => 'Saved Successfully';
+
+  @override
+  String get generalSafety => 'General Safety';
 }

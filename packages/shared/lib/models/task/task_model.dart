@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
 
-import '../penalty/penalty_model.dart';
-
 part 'task_model.freezed.dart';
 part 'task_model.g.dart';
 
@@ -32,7 +30,6 @@ class TaskModel with _$TaskModel {
     @Default(0) int lateTasksCount,
     @Default(0) int penaltyTasksCount,
     @Default(0) int totalAssignedUsers,
-    PenaltyModel? penalty,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
@@ -42,8 +39,6 @@ class TaskModel with _$TaskModel {
   Color indicatorColor(BuildContext context) {
     if (markedAsLate) {
       return context.colorPalette.yellowF5E;
-    } else if (penalty != null) {
-      return context.colorPalette.redD62;
     } else {
       final statusEnum = TaskStatusEnum.values.firstWhere((e) => e.value == status);
       switch (statusEnum) {
@@ -51,6 +46,8 @@ class TaskModel with _$TaskModel {
           return context.colorPalette.grey8B8;
         case TaskStatusEnum.completed:
           return context.colorPalette.primary;
+        case TaskStatusEnum.violation:
+          return context.colorPalette.redD62;
         default:
           return context.colorPalette.grey8B8;
       }

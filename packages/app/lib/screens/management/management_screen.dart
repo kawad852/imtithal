@@ -84,8 +84,9 @@ class _ManagementScreenState extends State<ManagementScreen> {
               children: [
                 ManageButton(
                   onTap: () {
-                    context.push((context) => const ViolationsScreen());
+                    context.push((context) => ViolationsScreen());
                   },
+
                   icon: MyIcons.danger,
                   backgroundColor: context.colorPalette.yellowE7B6,
                   title: context.appLocalization.violations,
@@ -103,10 +104,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
             onChanged: (value) {},
             required: false,
             hintText: context.appLocalization.searchDepartmentEmployee,
-            prefixIcon: const IconButton(
-              onPressed: null,
-              icon: CustomSvg(MyIcons.search),
-            ),
+            prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
