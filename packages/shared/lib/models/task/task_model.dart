@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/shared.dart';
 
+import '../violation/violation_model.dart';
+
 part 'task_model.freezed.dart';
 part 'task_model.g.dart';
 
@@ -30,6 +32,7 @@ class TaskModel with _$TaskModel {
     @Default(0) int lateTasksCount,
     @Default(0) int penaltyTasksCount,
     @Default(0) int totalAssignedUsers,
+    LightViolationModel? violation,
     @JsonKey(includeToJson: false, includeFromJson: false) List<XFile>? files,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);

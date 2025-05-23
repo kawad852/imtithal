@@ -46,13 +46,12 @@ class TaskProvider extends ChangeNotifier {
     return kFirebaseInstant.assignedTasks.orderByDesc.where(MyFields.id, isEqualTo: id);
   }
 
+  CollectionReference<TaskModel> assignedTaskQuery(String userId) =>
+      kFirebaseInstant.users.doc(userId).collection(MyCollections.assignedTasks).taskConvertor;
+
   Query<TaskModel> get tasksQuery {
     if (kIsEmployee) {
-      return kFirebaseInstant.users
-          .doc(kUserId)
-          .collection(MyCollections.assignedTasks)
-          .orderByDesc
-          .taskConvertor;
+      return assignedTaskQuery(kUserId).orderByDesc;
     } else {
       return kFirebaseInstant.tasks.orderByDesc.whereMyCompany;
     }

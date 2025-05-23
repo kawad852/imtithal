@@ -8,7 +8,7 @@ part of 'violation_model.dart';
 
 _$ViolationModelImpl _$$ViolationModelImplFromJson(Map<String, dynamic> json) =>
     _$ViolationModelImpl(
-      createTime: const TimestampSerializer().fromJson(json['createTime']),
+      createdAt: const TimestampSerializer().fromJson(json['createdAt']),
       id: json['id'] as String? ?? '',
       type: json['type'] as String? ?? '',
       notes: json['notes'] as String? ?? '',
@@ -18,9 +18,20 @@ _$ViolationModelImpl _$$ViolationModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ViolationModelImplToJson(
   _$ViolationModelImpl instance,
 ) => <String, dynamic>{
-  'createTime': const TimestampSerializer().toJson(instance.createTime),
+  'createdAt': const TimestampSerializer().toJson(instance.createdAt),
   'id': instance.id,
   'type': instance.type,
   'notes': instance.notes,
   'description': instance.description,
 };
+
+_$LightViolationModelImpl _$$LightViolationModelImplFromJson(
+  Map<String, dynamic> json,
+) => _$LightViolationModelImpl(
+  id: json['id'] as String? ?? '',
+  type: json['type'] as String? ?? '',
+);
+
+Map<String, dynamic> _$$LightViolationModelImplToJson(
+  _$LightViolationModelImpl instance,
+) => <String, dynamic>{'id': instance.id, 'type': instance.type};

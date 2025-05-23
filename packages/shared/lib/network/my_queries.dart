@@ -1,3 +1,4 @@
+import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
 import '../models/country/country_model.dart';
@@ -9,6 +10,11 @@ extension CollectionReferenceExtension on FirebaseFirestore {
   Query<TaskModel> get assignedTasks => collectionGroup(MyCollections.assignedTasks).taskConvertor;
 
   CollectionReference<UserModel> get users => collection(MyCollections.users).userConvertor;
+
+  CollectionReference<ViolationModel> userViolations(String userId) =>
+      users.doc(userId).collection(MyCollections.violations).violationConvertor;
+  CollectionReference<TaskModel> userAssignedTasks(String userId) =>
+      users.doc(userId).collection(MyCollections.assignedTasks).taskConvertor;
 
   CollectionReference<StoreModel> get foodStores =>
       collection(MyCollections.foodStores).withConverter<StoreModel>(

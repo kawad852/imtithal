@@ -37,6 +37,12 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
   lateTasksCount: (json['lateTasksCount'] as num?)?.toInt() ?? 0,
   penaltyTasksCount: (json['penaltyTasksCount'] as num?)?.toInt() ?? 0,
   totalAssignedUsers: (json['totalAssignedUsers'] as num?)?.toInt() ?? 0,
+  violation:
+      json['violation'] == null
+          ? null
+          : LightViolationModel.fromJson(
+            json['violation'] as Map<String, dynamic>,
+          ),
 );
 
 Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
@@ -63,4 +69,5 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'lateTasksCount': instance.lateTasksCount,
       'penaltyTasksCount': instance.penaltyTasksCount,
       'totalAssignedUsers': instance.totalAssignedUsers,
+      'violation': instance.violation?.toJson(),
     };
