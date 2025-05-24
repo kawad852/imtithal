@@ -14,18 +14,12 @@ class _AppNavBarState extends State<AppNavBar> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   PersistentBottomSheetController? controller;
 
-  final items = [
-    MyIcons.home,
-    MyIcons.calendar,
-    MyIcons.add,
-    MyIcons.building,
-    MyIcons.profile,
-  ];
+  final items = [MyIcons.home, MyIcons.calendar, MyIcons.add, MyIcons.building, MyIcons.profile];
 
   final screens = [
     const HomeScreen(),
     const CalenderScreen(),
-    Container(),
+    const SizedBox.shrink(),
     const ManagementScreen(),
     const ProfileScreen(),
   ];
@@ -96,10 +90,7 @@ class _AppNavBarState extends State<AppNavBar> {
                     _onSelect(index);
                   },
                   isSelected: _currentIndex == index,
-                  icon:
-                      controller != null && index == 2
-                          ? MyIcons.close
-                          : items[index],
+                  icon: controller != null && index == 2 ? MyIcons.close : items[index],
                 );
               }).toList(),
         ),

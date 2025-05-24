@@ -1,3 +1,4 @@
+import 'package:app/screens/user/user_input_screen.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -31,7 +32,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
           Row(
             children: [
               ManageButton(
-                onTap: () {},
+                onTap: () {
+                  context.push((context) {
+                    return const UserInputScreen();
+                  });
+                },
                 icon: MyIcons.addStaff,
                 title: context.appLocalization.addNewEmployee,
               ),
