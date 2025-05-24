@@ -91,7 +91,12 @@ class EmployeeHeader extends StatelessWidget {
               ],
             ),
           ),
-          EmtithalSummery(user: UserModel(createdById: '')),
+          const EmtithalSummery(
+            inCompletedTasksCount: 0,
+            completedTasksCount: 0,
+            lateTasksCount: 0,
+            violationTasksCount: 0,
+          ),
         ],
       ),
     );

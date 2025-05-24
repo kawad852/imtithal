@@ -178,13 +178,10 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               if (!kIsEmployee) ...[
                 ResponsibleCard(task: task, assignedTasks: assignedTasksQuerySnapshot),
                 EmtithalSummery(
-                  user: UserModel(
-                    inCompletedTasksCount: task.inCompletedTasksCount,
-                    completedTasksCount: task.completedTasksCount,
-                    lateTasksCount: task.lateTasksCount,
-                    penaltyTasksCount: task.violationTasksCount,
-                    createdById: kUserId,
-                  ),
+                  inCompletedTasksCount: task.inCompletedTasksCount,
+                  completedTasksCount: task.completedTasksCount,
+                  lateTasksCount: task.lateTasksCount,
+                  violationTasksCount: task.violationTasksCount,
                 ),
               ],
             ],

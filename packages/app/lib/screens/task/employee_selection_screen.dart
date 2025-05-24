@@ -68,7 +68,10 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
               .taskConvertor
               .doc(_task.id);
           batch.set(assignedTaskDocRef, _task);
-          batch.update(taskDocRef, {MyFields.assignedUserIds: FieldValue.arrayUnion(_userIds)});
+          batch.update(taskDocRef, {
+            MyFields.assignedUserIds: FieldValue.arrayUnion(_userIds),
+            MyFields.inCompletedTasksCount: FieldValue.increment(1),
+          });
         }
         await batch.commit();
         if (context.mounted) {

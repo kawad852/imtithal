@@ -98,9 +98,14 @@ class DepartmentHeader extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: EmtithalSummery(user: UserModel(createdById: '')),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: EmtithalSummery(
+              inCompletedTasksCount: 0,
+              completedTasksCount: 0,
+              lateTasksCount: 0,
+              violationTasksCount: 0,
+            ),
           ),
           TextEditor(
             onChanged: (value) {},

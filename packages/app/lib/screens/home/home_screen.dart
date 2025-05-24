@@ -66,12 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
               MoreButton(onTap: () {}),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 13),
-            child: UserSelector(
-              builder: (context, user) {
-                return EmtithalSummery(user: user);
-              },
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 13),
+            child: EmtithalSummery(
+              inCompletedTasksCount: 0,
+              completedTasksCount: 0,
+              lateTasksCount: 0,
+              violationTasksCount: 0,
             ),
           ),
           TextEditor(

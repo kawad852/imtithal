@@ -35,4 +35,5 @@ class MyFields {
   static const String totalAssignedUsers = 'totalAssignedUsers';
   static const String violation = 'violation';
   static const String assignedUserIds = 'assignedUserIds';
+  static const String inCompletedTasksCount = 'inCompletedTasksCount';
 }
