@@ -28,9 +28,11 @@ extension CollectionReferenceExtension on FirebaseFirestore {
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 
-  CollectionReference<CategoryModel> get categories =>
-      collection(MyCollections.categories).withConverter<CategoryModel>(
-        fromFirestore: (snapshot, _) => CategoryModel.fromJson(snapshot.data()!),
+  CollectionReference<DepartmentModel> get departments => collection(MyCollections.companies)
+      .doc(kCompanyId)
+      .collection(MyCollections.departments)
+      .withConverter<DepartmentModel>(
+        fromFirestore: (snapshot, _) => DepartmentModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 

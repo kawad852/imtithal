@@ -21,4 +21,6 @@ class MyCollections {
   static const String assignedTasks = 'assignedTasks';
   static const String messages = 'messages';
   static const String violations = 'violations';
+  static const String companies = 'companies';
+  static const String departments = 'departments';
 }

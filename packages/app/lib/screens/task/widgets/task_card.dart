@@ -123,27 +123,7 @@ class TaskCard extends StatelessWidget {
                           builder: (context, users) {
                             final assignedUsers =
                                 users.where((e) => task.assignedUserIds.contains(e.id)).toList();
-                            return SizedBox(
-                              height: 20,
-                              child: ListView.builder(
-                                itemCount: assignedUsers.length,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding: EdgeInsets.zero,
-                                itemBuilder: (context, index) {
-                                  final user = assignedUsers[index];
-                                  return Align(
-                                    widthFactor: 0.5,
-                                    child: UserPhoto(
-                                      url: user.profilePhoto,
-                                      displayName: user.displayName,
-                                      size: 10,
-                                    ),
-                                  );
-                                },
-                              ),
-                            );
+                            return UserPhotos(users: assignedUsers);
                           },
                         ),
                     ],

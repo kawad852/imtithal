@@ -520,4 +520,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get searchCountryOrCode => 'إبحث عن اسم البلد او الرمز';
+
+  @override
+  String get name => 'الإسم';
+
+  @override
+  String get addedSuccessfully => 'تم الإضافة بنجاح';
 }

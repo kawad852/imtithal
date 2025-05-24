@@ -2,6 +2,8 @@ import 'package:app/screens/user/user_input_screen.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
+import '../department/department_input_screen.dart';
+
 class ManagementScreen extends StatefulWidget {
   const ManagementScreen({super.key});
 
@@ -10,6 +12,18 @@ class ManagementScreen extends StatefulWidget {
 }
 
 class _ManagementScreenState extends State<ManagementScreen> {
+  late Query<DepartmentModel> _query;
+
+  void _initialize() {
+    _query = kFirebaseInstant.departments.orderByCreatedAtDesc;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +67,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
             child: Row(
               children: [
                 ManageButton(
-                  onTap: () {},
+                  onTap: () {
+                    context.push((context) {
+                      return const DepartmentInputScreen();
+                    });
+                  },
                   icon: MyIcons.add,
                   title: context.appLocalization.addNewDepartment,
                 ),
@@ -122,14 +140,20 @@ class _ManagementScreenState extends State<ManagementScreen> {
               ),
             ),
           ),
-          ListView.separated(
-            separatorBuilder: (context, index) => const SizedBox(height: 10),
-            itemCount: 10,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.zero,
-            itemBuilder: (context, index) {
-              return const DepartmentCard();
+          CustomFirestoreQueryBuilder(
+            query: _query,
+            onComplete: (context, snapshot) {
+              return ListView.separated(
+                separatorBuilder: (context, index) => const SizedBox(height: 10),
+                itemCount: snapshot.docs.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) {
+                  final department = snapshot.docs[index].data();
+                  return DepartmentCard(department: department);
+                },
+              );
             },
           ),
         ],

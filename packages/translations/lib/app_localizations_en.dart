@@ -520,4 +520,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchCountryOrCode => 'Search by country name or code';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get addedSuccessfully => 'Added Successfully';
 }

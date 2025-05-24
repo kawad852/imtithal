@@ -170,5 +170,7 @@
   "manager": "مدير",
   "emtithalManager": "مدير إمتثال",
   "departmentManager": "رئيس قسم",
-  "searchCountryOrCode": "إبحث عن اسم البلد او الرمز"
+  "searchCountryOrCode": "إبحث عن اسم البلد او الرمز",
+  "name": "الإسم",
+  "addedSuccessfully": "تم الإضافة بنجاح"
 }

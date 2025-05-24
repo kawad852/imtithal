@@ -59,8 +59,8 @@ export 'helper/validation_helper.dart';
 //models
 export 'models/address/address_model.dart';
 export 'models/basket/basket_model.dart';
-export 'models/category/category_model.dart';
 export 'models/country_code_model.dart';
+export 'models/department/department_model.dart';
 export 'models/expense_model.dart';
 export 'models/message/message_model.dart';
 export 'models/operation_info_model.dart';
@@ -127,4 +127,5 @@ export 'widgets/task_bubble.dart';
 export 'widgets/timer_builder.dart';
 export 'widgets/titled_textfield.dart';
 export 'widgets/user_photo.dart';
+export 'widgets/user_photos.dart';
 export 'widgets/vertical_line.dart';

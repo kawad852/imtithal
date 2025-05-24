@@ -2,88 +2,81 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class DepartmentCard extends StatelessWidget {
-  const DepartmentCard({super.key});
+  final DepartmentModel department;
+
+  const DepartmentCard({super.key, required this.department});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        context.push((context) => const DepartmentScreen());
-      },
-      child: Container(
-        width: double.infinity,
-        height: 65,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        decoration: BoxDecoration(
-          color: context.colorPalette.greyF5F,
-          borderRadius: BorderRadius.circular(kRadiusSecondary),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+    return UsersSelector(
+      builder: (context, values) {
+        final users = values.where((e) => e.departmentId == department.id);
+        final departmentManager = users.firstWhere(
+          (e) => e.role == RoleEnum.departmentManager.value,
+          orElse: () => UserModel(createdById: ''),
+        );
+        final hasManager = departmentManager.id != null;
+        return GestureDetector(
+          onTap: () {
+            context.push((context) => const DepartmentScreen());
+          },
+          child: Container(
+            width: double.infinity,
+            height: 65,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            decoration: BoxDecoration(
+              color: context.colorPalette.greyF5F,
+              borderRadius: BorderRadius.circular(kRadiusSecondary),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Text(
-                    "${context.appLocalization.department} المستشارين",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: context.colorPalette.black252,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                  child: ListView.builder(
-                    itemCount: 7,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    itemBuilder: (context, index) {
-                      return const Align(
-                        widthFactor: 0.5,
-                        child: BaseNetworkImage(
-                          "",
-                          width: 20,
-                          height: 20,
-                          shape: BoxShape.circle,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "${context.appLocalization.department} ${department.name}",
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: context.colorPalette.black252,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
                         ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Row(
-              children: [
-                Text(
-                  "12 ${context.appLocalization.employee} ، ${context.appLocalization.responsibleManager} : ",
-                  style: TextStyle(
-                    color: context.colorPalette.grey8B8,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    "محمد احمد",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: context.colorPalette.primary,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ),
+                    UserPhotos(users: []),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Text(
+                      "${users.length} ${context.appLocalization.employee}  ${hasManager ? "، ${context.appLocalization.responsibleManager} : " : ''}",
+                      style: TextStyle(
+                        color: context.colorPalette.grey8B8,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    if (hasManager)
+                      Expanded(
+                        child: Text(
+                          departmentManager.displayName,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: context.colorPalette.primary,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

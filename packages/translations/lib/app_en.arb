@@ -170,5 +170,7 @@
   "manager": "Manager",
   "emtithalManager": "Emtithal Manager",
   "departmentManager": "Department Manager",
-  "searchCountryOrCode": "Search by country name or code"
+  "searchCountryOrCode": "Search by country name or code",
+  "name": "Name",
+  "addedSuccessfully": "Added Successfully"
 }

@@ -22,5 +22,6 @@ class LightDepartmentModel with _$LightDepartmentModel {
   @JsonSerializable(explicitToJson: true)
   factory LightDepartmentModel({String? id, @Default('') String name}) = _LightDepartmentModel;
 
-  factory LightDepartmentModel.fromJson(Map<String, dynamic> json) => _$LightDepartmentModelFromJson(json);
+  factory LightDepartmentModel.fromJson(Map<String, dynamic> json) =>
+      _$LightDepartmentModelFromJson(json);
 }

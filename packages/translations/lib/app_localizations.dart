@@ -1120,6 +1120,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إبحث عن اسم البلد او الرمز'**
   String get searchCountryOrCode;
+
+  /// No description provided for @name.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإسم'**
+  String get name;
+
+  /// No description provided for @addedSuccessfully.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم الإضافة بنجاح'**
+  String get addedSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
