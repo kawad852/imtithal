@@ -25,12 +25,18 @@ mixin _$UserModel {
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @TimestampSerializer()
   set createdAt(DateTime? value) => throw _privateConstructorUsedError;
+  @TimestampSerializer()
+  DateTime? get workStartDate => throw _privateConstructorUsedError;
+  @TimestampSerializer()
+  set workStartDate(DateTime? value) => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   set id(String? value) => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   set displayName(String value) => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   set email(String value) => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  set username(String value) => throw _privateConstructorUsedError;
   String? get deviceToken => throw _privateConstructorUsedError;
   set deviceToken(String? value) => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
@@ -41,8 +47,12 @@ mixin _$UserModel {
   set profilePhoto(String? value) => throw _privateConstructorUsedError;
   bool get blocked => throw _privateConstructorUsedError;
   set blocked(bool value) => throw _privateConstructorUsedError;
+  double get salary => throw _privateConstructorUsedError;
+  set salary(double value) => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   set password(String value) => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  set address(String value) => throw _privateConstructorUsedError;
   String get jobTitle => throw _privateConstructorUsedError;
   set jobTitle(String value) => throw _privateConstructorUsedError;
   String get companyId => throw _privateConstructorUsedError;
@@ -61,6 +71,12 @@ mixin _$UserModel {
   set penaltyTasksCount(int value) => throw _privateConstructorUsedError;
   String get createdById => throw _privateConstructorUsedError;
   set createdById(String value) => throw _privateConstructorUsedError;
+  String? get phoneCountryCode => throw _privateConstructorUsedError;
+  set phoneCountryCode(String? value) => throw _privateConstructorUsedError;
+  String? get phoneNum => throw _privateConstructorUsedError;
+  set phoneNum(String? value) => throw _privateConstructorUsedError;
+  String get nationalNumber => throw _privateConstructorUsedError;
+  set nationalNumber(String value) => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get selected => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
@@ -83,15 +99,19 @@ abstract class $UserModelCopyWith<$Res> {
   @useResult
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
+    @TimestampSerializer() DateTime? workStartDate,
     String? id,
     String displayName,
     String email,
+    String username,
     String? deviceToken,
     String? role,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
+    double salary,
     String password,
+    String address,
     String jobTitle,
     String companyId,
     String departmentId,
@@ -101,6 +121,9 @@ abstract class $UserModelCopyWith<$Res> {
     int lateTasksCount,
     int penaltyTasksCount,
     String createdById,
+    String? phoneCountryCode,
+    String? phoneNum,
+    String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
   });
 }
@@ -121,15 +144,19 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? createdAt = freezed,
+    Object? workStartDate = freezed,
     Object? id = freezed,
     Object? displayName = null,
     Object? email = null,
+    Object? username = null,
     Object? deviceToken = freezed,
     Object? role = freezed,
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
+    Object? salary = null,
     Object? password = null,
+    Object? address = null,
     Object? jobTitle = null,
     Object? companyId = null,
     Object? departmentId = null,
@@ -139,6 +166,9 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? lateTasksCount = null,
     Object? penaltyTasksCount = null,
     Object? createdById = null,
+    Object? phoneCountryCode = freezed,
+    Object? phoneNum = freezed,
+    Object? nationalNumber = null,
     Object? selected = null,
   }) {
     return _then(
@@ -147,6 +177,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 freezed == createdAt
                     ? _value.createdAt
                     : createdAt // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            workStartDate:
+                freezed == workStartDate
+                    ? _value.workStartDate
+                    : workStartDate // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
             id:
                 freezed == id
@@ -162,6 +197,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 null == email
                     ? _value.email
                     : email // ignore: cast_nullable_to_non_nullable
+                        as String,
+            username:
+                null == username
+                    ? _value.username
+                    : username // ignore: cast_nullable_to_non_nullable
                         as String,
             deviceToken:
                 freezed == deviceToken
@@ -188,10 +228,20 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.blocked
                     : blocked // ignore: cast_nullable_to_non_nullable
                         as bool,
+            salary:
+                null == salary
+                    ? _value.salary
+                    : salary // ignore: cast_nullable_to_non_nullable
+                        as double,
             password:
                 null == password
                     ? _value.password
                     : password // ignore: cast_nullable_to_non_nullable
+                        as String,
+            address:
+                null == address
+                    ? _value.address
+                    : address // ignore: cast_nullable_to_non_nullable
                         as String,
             jobTitle:
                 null == jobTitle
@@ -238,6 +288,21 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.createdById
                     : createdById // ignore: cast_nullable_to_non_nullable
                         as String,
+            phoneCountryCode:
+                freezed == phoneCountryCode
+                    ? _value.phoneCountryCode
+                    : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            phoneNum:
+                freezed == phoneNum
+                    ? _value.phoneNum
+                    : phoneNum // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            nationalNumber:
+                null == nationalNumber
+                    ? _value.nationalNumber
+                    : nationalNumber // ignore: cast_nullable_to_non_nullable
+                        as String,
             selected:
                 null == selected
                     ? _value.selected
@@ -260,15 +325,19 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @useResult
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
+    @TimestampSerializer() DateTime? workStartDate,
     String? id,
     String displayName,
     String email,
+    String username,
     String? deviceToken,
     String? role,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
+    double salary,
     String password,
+    String address,
     String jobTitle,
     String companyId,
     String departmentId,
@@ -278,6 +347,9 @@ abstract class _$$UserModelImplCopyWith<$Res>
     int lateTasksCount,
     int penaltyTasksCount,
     String createdById,
+    String? phoneCountryCode,
+    String? phoneNum,
+    String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
   });
 }
@@ -297,15 +369,19 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? createdAt = freezed,
+    Object? workStartDate = freezed,
     Object? id = freezed,
     Object? displayName = null,
     Object? email = null,
+    Object? username = null,
     Object? deviceToken = freezed,
     Object? role = freezed,
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
+    Object? salary = null,
     Object? password = null,
+    Object? address = null,
     Object? jobTitle = null,
     Object? companyId = null,
     Object? departmentId = null,
@@ -315,6 +391,9 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? lateTasksCount = null,
     Object? penaltyTasksCount = null,
     Object? createdById = null,
+    Object? phoneCountryCode = freezed,
+    Object? phoneNum = freezed,
+    Object? nationalNumber = null,
     Object? selected = null,
   }) {
     return _then(
@@ -323,6 +402,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
             freezed == createdAt
                 ? _value.createdAt
                 : createdAt // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        workStartDate:
+            freezed == workStartDate
+                ? _value.workStartDate
+                : workStartDate // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
         id:
             freezed == id
@@ -338,6 +422,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
             null == email
                 ? _value.email
                 : email // ignore: cast_nullable_to_non_nullable
+                    as String,
+        username:
+            null == username
+                ? _value.username
+                : username // ignore: cast_nullable_to_non_nullable
                     as String,
         deviceToken:
             freezed == deviceToken
@@ -364,10 +453,20 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.blocked
                 : blocked // ignore: cast_nullable_to_non_nullable
                     as bool,
+        salary:
+            null == salary
+                ? _value.salary
+                : salary // ignore: cast_nullable_to_non_nullable
+                    as double,
         password:
             null == password
                 ? _value.password
                 : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+        address:
+            null == address
+                ? _value.address
+                : address // ignore: cast_nullable_to_non_nullable
                     as String,
         jobTitle:
             null == jobTitle
@@ -414,6 +513,21 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.createdById
                 : createdById // ignore: cast_nullable_to_non_nullable
                     as String,
+        phoneCountryCode:
+            freezed == phoneCountryCode
+                ? _value.phoneCountryCode
+                : phoneCountryCode // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        phoneNum:
+            freezed == phoneNum
+                ? _value.phoneNum
+                : phoneNum // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        nationalNumber:
+            null == nationalNumber
+                ? _value.nationalNumber
+                : nationalNumber // ignore: cast_nullable_to_non_nullable
+                    as String,
         selected:
             null == selected
                 ? _value.selected
@@ -430,15 +544,19 @@ class __$$UserModelImplCopyWithImpl<$Res>
 class _$UserModelImpl implements _UserModel {
   _$UserModelImpl({
     @TimestampSerializer() this.createdAt,
+    @TimestampSerializer() this.workStartDate,
     this.id,
     this.displayName = '',
     this.email = '',
+    this.username = '',
     this.deviceToken,
     this.role,
     this.languageCode,
     this.profilePhoto,
     this.blocked = false,
+    this.salary = 0.0,
     this.password = '',
+    this.address = '',
     this.jobTitle = '',
     this.companyId = '',
     this.departmentId = '',
@@ -448,6 +566,9 @@ class _$UserModelImpl implements _UserModel {
     this.lateTasksCount = 0,
     this.penaltyTasksCount = 0,
     required this.createdById,
+    this.phoneCountryCode,
+    this.phoneNum,
+    this.nationalNumber = '',
     @JsonKey(includeToJson: false, includeFromJson: false)
     this.selected = false,
   });
@@ -459,6 +580,9 @@ class _$UserModelImpl implements _UserModel {
   @TimestampSerializer()
   DateTime? createdAt;
   @override
+  @TimestampSerializer()
+  DateTime? workStartDate;
+  @override
   String? id;
   @override
   @JsonKey()
@@ -466,6 +590,9 @@ class _$UserModelImpl implements _UserModel {
   @override
   @JsonKey()
   String email;
+  @override
+  @JsonKey()
+  String username;
   @override
   String? deviceToken;
   @override
@@ -479,7 +606,13 @@ class _$UserModelImpl implements _UserModel {
   bool blocked;
   @override
   @JsonKey()
+  double salary;
+  @override
+  @JsonKey()
   String password;
+  @override
+  @JsonKey()
+  String address;
   @override
   @JsonKey()
   String jobTitle;
@@ -507,12 +640,19 @@ class _$UserModelImpl implements _UserModel {
   @override
   String createdById;
   @override
+  String? phoneCountryCode;
+  @override
+  String? phoneNum;
+  @override
+  @JsonKey()
+  String nationalNumber;
+  @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool selected;
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, password: $password, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, createdById: $createdById, selected: $selected)';
+    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, username: $username, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected)';
   }
 
   /// Create a copy of UserModel
@@ -532,15 +672,19 @@ class _$UserModelImpl implements _UserModel {
 abstract class _UserModel implements UserModel {
   factory _UserModel({
     @TimestampSerializer() DateTime? createdAt,
+    @TimestampSerializer() DateTime? workStartDate,
     String? id,
     String displayName,
     String email,
+    String username,
     String? deviceToken,
     String? role,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
+    double salary,
     String password,
+    String address,
     String jobTitle,
     String companyId,
     String departmentId,
@@ -550,6 +694,9 @@ abstract class _UserModel implements UserModel {
     int lateTasksCount,
     int penaltyTasksCount,
     required String createdById,
+    String? phoneCountryCode,
+    String? phoneNum,
+    String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
   }) = _$UserModelImpl;
 
@@ -562,6 +709,11 @@ abstract class _UserModel implements UserModel {
   @TimestampSerializer()
   set createdAt(DateTime? value);
   @override
+  @TimestampSerializer()
+  DateTime? get workStartDate;
+  @TimestampSerializer()
+  set workStartDate(DateTime? value);
+  @override
   String? get id;
   set id(String? value);
   @override
@@ -570,6 +722,9 @@ abstract class _UserModel implements UserModel {
   @override
   String get email;
   set email(String value);
+  @override
+  String get username;
+  set username(String value);
   @override
   String? get deviceToken;
   set deviceToken(String? value);
@@ -586,8 +741,14 @@ abstract class _UserModel implements UserModel {
   bool get blocked;
   set blocked(bool value);
   @override
+  double get salary;
+  set salary(double value);
+  @override
   String get password;
   set password(String value);
+  @override
+  String get address;
+  set address(String value);
   @override
   String get jobTitle;
   set jobTitle(String value);
@@ -615,6 +776,15 @@ abstract class _UserModel implements UserModel {
   @override
   String get createdById;
   set createdById(String value);
+  @override
+  String? get phoneCountryCode;
+  set phoneCountryCode(String? value);
+  @override
+  String? get phoneNum;
+  set phoneNum(String? value);
+  @override
+  String get nationalNumber;
+  set nationalNumber(String value);
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get selected;

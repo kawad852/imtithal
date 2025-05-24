@@ -466,4 +466,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deliveryDate => 'Delivery Date';
+
+  @override
+  String get personalPhotoRequired => 'Personal photo required';
+
+  @override
+  String get userName => 'Username';
+
+  @override
+  String get addEmployee => 'Add employee';
+
+  @override
+  String get add => 'Add';
+
+  @override
+  String get fullName => 'Full name';
+
+  @override
+  String get jobTitle => 'Job title';
+
+  @override
+  String get branch => 'Branch';
+
+  @override
+  String get nationalIDNumber => 'National ID number';
+
+  @override
+  String get phoneNumber => 'Phone number';
+
+  @override
+  String get salary => 'Salary';
+
+  @override
+  String get startDate => 'Start date';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get role => 'Role';
+
+  @override
+  String get admin => 'Admin';
+
+  @override
+  String get manager => 'Manager';
+
+  @override
+  String get emtithalManager => 'Emtithal Manager';
+
+  @override
+  String get departmentManager => 'Department Manager';
+
+  @override
+  String get searchCountryOrCode => 'Search by country name or code';
 }

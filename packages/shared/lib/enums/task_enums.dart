@@ -24,8 +24,6 @@ enum TaskStatusEnum {
   }
 }
 
-enum TaskTypeEnum { incomplete, complete, late, infringement }
-
 enum RepeatType {
   once('ONCE'),
   daily('DAILY'),

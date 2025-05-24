@@ -1,3 +1,5 @@
+import '../shared.dart';
+
 class LanguageEnum {
   static const String english = 'en';
   static const String arabic = 'ar';
@@ -26,6 +28,19 @@ enum RoleEnum {
   final String value;
 
   const RoleEnum(this.value);
+
+  static String getRoleLabel(BuildContext context, RoleEnum value) {
+    switch (value) {
+      case RoleEnum.admin:
+        return context.appLocalization.admin;
+      case RoleEnum.emtithalManager:
+        return context.appLocalization.manager;
+      case RoleEnum.departmentManager:
+        return context.appLocalization.manager;
+      case RoleEnum.employee:
+        return context.appLocalization.employee;
+    }
+  }
 }
 
 enum PolicyEnum { policy, laws }

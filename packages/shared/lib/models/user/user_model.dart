@@ -9,15 +9,19 @@ class UserModel with _$UserModel {
   @JsonSerializable(explicitToJson: true)
   factory UserModel({
     @TimestampSerializer() DateTime? createdAt,
+    @TimestampSerializer() DateTime? workStartDate,
     String? id,
     @Default('') String displayName,
     @Default('') String email,
+    @Default('') String username,
     String? deviceToken,
     String? role,
     String? languageCode,
     String? profilePhoto,
     @Default(false) bool blocked,
+    @Default(0.0) double salary,
     @Default('') String password,
+    @Default('') String address,
     @Default('') String jobTitle,
     @Default('') String companyId,
     @Default('') String departmentId,
@@ -27,6 +31,9 @@ class UserModel with _$UserModel {
     @Default(0) int lateTasksCount,
     @Default(0) int penaltyTasksCount,
     required String createdById,
+    String? phoneCountryCode,
+    String? phoneNum,
+    @Default('') String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) @Default(false) bool selected,
   }) = _UserModel;
 

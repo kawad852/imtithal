@@ -2,36 +2,41 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class TaskBubble extends StatelessWidget {
-  final TaskTypeEnum taskType;
+  final TaskStatusEnum status;
   final int value;
-  const TaskBubble({super.key, required this.taskType, required this.value});
+  final bool late;
+  const TaskBubble({super.key, required this.status, required this.value, this.late = false});
 
   (String, Color, Color) _getTaskInfo(BuildContext context) {
-    switch (taskType) {
-      case TaskTypeEnum.incomplete:
-        return (
-          context.appLocalization.incomplete,
-          context.colorPalette.greyF5F,
-          context.colorPalette.greyDAD,
-        );
-      case TaskTypeEnum.complete:
-        return (
-          context.appLocalization.complete,
-          context.colorPalette.greenC5E,
-          context.colorPalette.green04B,
-        );
-      case TaskTypeEnum.late:
-        return (
-          context.appLocalization.late,
-          context.colorPalette.yellowF5E,
-          context.colorPalette.yellowE7B,
-        );
-      case TaskTypeEnum.infringement:
-        return (
-          context.appLocalization.violation,
-          context.colorPalette.redF7D,
-          context.colorPalette.redD62,
-        );
+    if (late) {
+      return (
+        context.appLocalization.late,
+        context.colorPalette.yellowF5E,
+        context.colorPalette.yellowE7B,
+      );
+    } else {
+      switch (status) {
+        case TaskStatusEnum.pending:
+          return (
+            context.appLocalization.incomplete,
+            context.colorPalette.greyF5F,
+            context.colorPalette.greyDAD,
+          );
+        case TaskStatusEnum.completed:
+          return (
+            context.appLocalization.complete,
+            context.colorPalette.greenC5E,
+            context.colorPalette.green04B,
+          );
+        case TaskStatusEnum.violated:
+          return (
+            context.appLocalization.violation,
+            context.colorPalette.redF7D,
+            context.colorPalette.redD62,
+          );
+        case TaskStatusEnum.inReview:
+          throw UnimplementedError();
+      }
     }
   }
 
@@ -41,7 +46,7 @@ class TaskBubble extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          context.push((context) => TaskTypeScreen(taskType: taskType));
+          context.push((context) => TasksScreen(status: status, late: late));
         },
         child: Container(
           width: double.infinity,
@@ -66,7 +71,7 @@ class TaskBubble extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color:
-                        taskType == TaskTypeEnum.infringement
+                        status == TaskStatusEnum.violated
                             ? context.colorPalette.white
                             : context.colorPalette.black252,
                     fontSize: 12,

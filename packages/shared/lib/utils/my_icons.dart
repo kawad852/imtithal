@@ -37,4 +37,5 @@ class MyIcons {
   static const String messageEdit = '${_path}message_edit.svg';
   static const String userEdit = '${_path}user_edit.svg';
   static const String moreCircle = '${_path}more-circle.svg';
+  static const String currency = '${_path}currency.svg';
 }

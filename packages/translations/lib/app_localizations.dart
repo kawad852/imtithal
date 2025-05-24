@@ -1012,6 +1012,114 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تاريخ التسليم'**
   String get deliveryDate;
+
+  /// No description provided for @personalPhotoRequired.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصورة الشخصية مطلوبة'**
+  String get personalPhotoRequired;
+
+  /// No description provided for @userName.
+  ///
+  /// In ar, this message translates to:
+  /// **'اسم المستخدم'**
+  String get userName;
+
+  /// No description provided for @addEmployee.
+  ///
+  /// In ar, this message translates to:
+  /// **'اضافة موظف'**
+  String get addEmployee;
+
+  /// No description provided for @add.
+  ///
+  /// In ar, this message translates to:
+  /// **'إضافة'**
+  String get add;
+
+  /// No description provided for @fullName.
+  ///
+  /// In ar, this message translates to:
+  /// **'الاسم الكامل'**
+  String get fullName;
+
+  /// No description provided for @jobTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'المسمى الوظيفي'**
+  String get jobTitle;
+
+  /// No description provided for @branch.
+  ///
+  /// In ar, this message translates to:
+  /// **'الفرع'**
+  String get branch;
+
+  /// No description provided for @nationalIDNumber.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرقم الوطني'**
+  String get nationalIDNumber;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In ar, this message translates to:
+  /// **'رقم الهاتف'**
+  String get phoneNumber;
+
+  /// No description provided for @salary.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأجر'**
+  String get salary;
+
+  /// No description provided for @startDate.
+  ///
+  /// In ar, this message translates to:
+  /// **'تاريخ بدأ العمل'**
+  String get startDate;
+
+  /// No description provided for @address.
+  ///
+  /// In ar, this message translates to:
+  /// **'العنوان'**
+  String get address;
+
+  /// No description provided for @role.
+  ///
+  /// In ar, this message translates to:
+  /// **'الدور'**
+  String get role;
+
+  /// No description provided for @admin.
+  ///
+  /// In ar, this message translates to:
+  /// **'آدمن'**
+  String get admin;
+
+  /// No description provided for @manager.
+  ///
+  /// In ar, this message translates to:
+  /// **'مدير'**
+  String get manager;
+
+  /// No description provided for @emtithalManager.
+  ///
+  /// In ar, this message translates to:
+  /// **'مدير إمتثال'**
+  String get emtithalManager;
+
+  /// No description provided for @departmentManager.
+  ///
+  /// In ar, this message translates to:
+  /// **'رئيس قسم'**
+  String get departmentManager;
+
+  /// No description provided for @searchCountryOrCode.
+  ///
+  /// In ar, this message translates to:
+  /// **'إبحث عن اسم البلد او الرمز'**
+  String get searchCountryOrCode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

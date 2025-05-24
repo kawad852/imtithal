@@ -30,7 +30,7 @@ export 'screens/profile/widgets/user_card.dart';
 export 'screens/task/task_action_screen.dart';
 export 'screens/task/task_details_screen.dart';
 export 'screens/task/task_input_screen.dart';
-export 'screens/task/task_type_screen.dart';
+export 'screens/task/tasks_screen.dart';
 export 'screens/task/widgets/action_button.dart';
 export 'screens/task/widgets/day_bubble.dart';
 export 'screens/task/widgets/responsible_card.dart';

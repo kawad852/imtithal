@@ -22,10 +22,10 @@ class EmtithalSummery extends StatelessWidget {
     return Row(
       spacing: 10,
       children: [
-        TaskBubble(taskType: TaskTypeEnum.incomplete, value: inCompletedTasksCount),
-        TaskBubble(taskType: TaskTypeEnum.complete, value: completedTasksCount),
-        TaskBubble(taskType: TaskTypeEnum.late, value: lateTasksCount),
-        TaskBubble(taskType: TaskTypeEnum.infringement, value: violationTasksCount),
+        TaskBubble(status: TaskStatusEnum.pending, value: inCompletedTasksCount),
+        TaskBubble(status: TaskStatusEnum.completed, value: completedTasksCount),
+        TaskBubble(status: TaskStatusEnum.pending, value: lateTasksCount, late: true),
+        TaskBubble(status: TaskStatusEnum.violated, value: violationTasksCount),
       ],
     );
   }

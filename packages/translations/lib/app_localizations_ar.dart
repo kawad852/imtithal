@@ -466,4 +466,58 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get deliveryDate => 'تاريخ التسليم';
+
+  @override
+  String get personalPhotoRequired => 'الصورة الشخصية مطلوبة';
+
+  @override
+  String get userName => 'اسم المستخدم';
+
+  @override
+  String get addEmployee => 'اضافة موظف';
+
+  @override
+  String get add => 'إضافة';
+
+  @override
+  String get fullName => 'الاسم الكامل';
+
+  @override
+  String get jobTitle => 'المسمى الوظيفي';
+
+  @override
+  String get branch => 'الفرع';
+
+  @override
+  String get nationalIDNumber => 'الرقم الوطني';
+
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+
+  @override
+  String get salary => 'الأجر';
+
+  @override
+  String get startDate => 'تاريخ بدأ العمل';
+
+  @override
+  String get address => 'العنوان';
+
+  @override
+  String get role => 'الدور';
+
+  @override
+  String get admin => 'آدمن';
+
+  @override
+  String get manager => 'مدير';
+
+  @override
+  String get emtithalManager => 'مدير إمتثال';
+
+  @override
+  String get departmentManager => 'رئيس قسم';
+
+  @override
+  String get searchCountryOrCode => 'إبحث عن اسم البلد او الرمز';
 }

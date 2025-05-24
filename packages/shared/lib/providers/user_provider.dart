@@ -157,4 +157,22 @@ class UserProvider extends ChangeNotifier {
       // });
     }
   }
+
+  Future<String> createAuthUser(String email, String password, {bool admin = false}) async {
+    try {
+      HttpsCallable callable = FirebaseFunctions.instanceFor(
+        region: "europe-west3",
+      ).httpsCallable('createUser');
+      final results = await callable.call(<String, dynamic>{
+        'email': email,
+        'password': password,
+        "admin": admin,
+      });
+      final data = results.data as Map<String, dynamic>;
+      final uid = data['uid'];
+      return uid;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
