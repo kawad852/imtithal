@@ -63,7 +63,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              MoreButton(onTap: () {}),
+              MoreButton(
+                onTap: () {
+                  context.push((context) {
+                    return const CalenderScreen();
+                  });
+                },
+              ),
             ],
           ),
           const Padding(
