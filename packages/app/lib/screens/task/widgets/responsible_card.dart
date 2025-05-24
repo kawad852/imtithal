@@ -113,7 +113,7 @@ class ResponsibleCard extends StatelessWidget {
                     CustomSvg(MyIcons.calendar, color: context.colorPalette.grey8B8, width: 16),
                     const SizedBox(width: 10),
                     Text(
-                      "01.05.2025",
+                      task.deliveryDate!.getDefaultFormattedDate(context),
                       style: TextStyle(
                         color: context.colorPalette.grey8B8,
                         fontSize: 12,
