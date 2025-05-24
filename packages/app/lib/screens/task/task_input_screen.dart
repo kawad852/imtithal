@@ -233,8 +233,8 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
               TitledTextField(
                 title: context.appLocalization.penaltyForNonCompliance,
                 child: TextEditor(
-                  initialValue: _task.penaltyDescription,
-                  onChanged: (value) => _task.penaltyDescription = value!,
+                  initialValue: _task.violationDescription,
+                  onChanged: (value) => _task.violationDescription = value!,
                   hintText: context.appLocalization.descriptionPenaltyForNonCompliance,
                 ),
               ),

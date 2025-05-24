@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart' as intl;
 import 'package:shared/shared.dart';
 
 class DayTimeEditor extends StatefulWidget {
@@ -35,14 +36,17 @@ class _DayTimeEditorState extends State<DayTimeEditor> {
         final formattedTime = time.format(context);
         _timeOfDay = time;
         _controller.text = formattedTime;
-        widget.onChanged(formattedTime);
+
+        final englishTime = _formatTimeInEnglish(time);
+        widget.onChanged(englishTime);
       });
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
+  String _formatTimeInEnglish(TimeOfDay time) {
+    final now = DateTime.now();
+    final dateTime = DateTime(now.year, now.month, now.day, time.hour, time.minute);
+    return intl.DateFormat.jm('en').format(dateTime); // "2:00 PM"
   }
 
   @override

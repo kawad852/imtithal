@@ -45,8 +45,8 @@ mixin _$TaskModel {
   set status(String value) => throw _privateConstructorUsedError;
   String get departmentId => throw _privateConstructorUsedError;
   set departmentId(String value) => throw _privateConstructorUsedError;
-  String get penaltyDescription => throw _privateConstructorUsedError;
-  set penaltyDescription(String value) => throw _privateConstructorUsedError;
+  String get violationDescription => throw _privateConstructorUsedError;
+  set violationDescription(String value) => throw _privateConstructorUsedError;
   String get notes => throw _privateConstructorUsedError;
   set notes(String value) => throw _privateConstructorUsedError;
   String? get repeatType => throw _privateConstructorUsedError;
@@ -68,8 +68,8 @@ mixin _$TaskModel {
   set completedTasksCount(int value) => throw _privateConstructorUsedError;
   int get lateTasksCount => throw _privateConstructorUsedError;
   set lateTasksCount(int value) => throw _privateConstructorUsedError;
-  int get penaltyTasksCount => throw _privateConstructorUsedError;
-  set penaltyTasksCount(int value) => throw _privateConstructorUsedError;
+  int get violationTasksCount => throw _privateConstructorUsedError;
+  set violationTasksCount(int value) => throw _privateConstructorUsedError;
   int get totalAssignedUsers => throw _privateConstructorUsedError;
   set totalAssignedUsers(int value) => throw _privateConstructorUsedError;
   LightViolationModel? get violation => throw _privateConstructorUsedError;
@@ -104,7 +104,7 @@ abstract class $TaskModelCopyWith<$Res> {
     String description,
     String status,
     String departmentId,
-    String penaltyDescription,
+    String violationDescription,
     String notes,
     String? repeatType,
     bool markedAsLate,
@@ -115,7 +115,7 @@ abstract class $TaskModelCopyWith<$Res> {
     int inCompletedTasksCount,
     int completedTasksCount,
     int lateTasksCount,
-    int penaltyTasksCount,
+    int violationTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
     String createdById,
@@ -150,7 +150,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? description = null,
     Object? status = null,
     Object? departmentId = null,
-    Object? penaltyDescription = null,
+    Object? violationDescription = null,
     Object? notes = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
@@ -161,7 +161,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
     Object? lateTasksCount = null,
-    Object? penaltyTasksCount = null,
+    Object? violationTasksCount = null,
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
     Object? createdById = null,
@@ -218,10 +218,10 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.departmentId
                     : departmentId // ignore: cast_nullable_to_non_nullable
                         as String,
-            penaltyDescription:
-                null == penaltyDescription
-                    ? _value.penaltyDescription
-                    : penaltyDescription // ignore: cast_nullable_to_non_nullable
+            violationDescription:
+                null == violationDescription
+                    ? _value.violationDescription
+                    : violationDescription // ignore: cast_nullable_to_non_nullable
                         as String,
             notes:
                 null == notes
@@ -273,10 +273,10 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.lateTasksCount
                     : lateTasksCount // ignore: cast_nullable_to_non_nullable
                         as int,
-            penaltyTasksCount:
-                null == penaltyTasksCount
-                    ? _value.penaltyTasksCount
-                    : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
+            violationTasksCount:
+                null == violationTasksCount
+                    ? _value.violationTasksCount
+                    : violationTasksCount // ignore: cast_nullable_to_non_nullable
                         as int,
             totalAssignedUsers:
                 null == totalAssignedUsers
@@ -347,7 +347,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String description,
     String status,
     String departmentId,
-    String penaltyDescription,
+    String violationDescription,
     String notes,
     String? repeatType,
     bool markedAsLate,
@@ -358,7 +358,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     int inCompletedTasksCount,
     int completedTasksCount,
     int lateTasksCount,
-    int penaltyTasksCount,
+    int violationTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
     String createdById,
@@ -394,7 +394,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? description = null,
     Object? status = null,
     Object? departmentId = null,
-    Object? penaltyDescription = null,
+    Object? violationDescription = null,
     Object? notes = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
@@ -405,7 +405,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
     Object? lateTasksCount = null,
-    Object? penaltyTasksCount = null,
+    Object? violationTasksCount = null,
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
     Object? createdById = null,
@@ -462,10 +462,10 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.departmentId
                 : departmentId // ignore: cast_nullable_to_non_nullable
                     as String,
-        penaltyDescription:
-            null == penaltyDescription
-                ? _value.penaltyDescription
-                : penaltyDescription // ignore: cast_nullable_to_non_nullable
+        violationDescription:
+            null == violationDescription
+                ? _value.violationDescription
+                : violationDescription // ignore: cast_nullable_to_non_nullable
                     as String,
         notes:
             null == notes
@@ -517,10 +517,10 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.lateTasksCount
                 : lateTasksCount // ignore: cast_nullable_to_non_nullable
                     as int,
-        penaltyTasksCount:
-            null == penaltyTasksCount
-                ? _value.penaltyTasksCount
-                : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
+        violationTasksCount:
+            null == violationTasksCount
+                ? _value.violationTasksCount
+                : violationTasksCount // ignore: cast_nullable_to_non_nullable
                     as int,
         totalAssignedUsers:
             null == totalAssignedUsers
@@ -557,7 +557,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.description = "",
     this.status = "",
     this.departmentId = "",
-    this.penaltyDescription = "",
+    this.violationDescription = "",
     this.notes = "",
     this.repeatType,
     this.markedAsLate = false,
@@ -568,7 +568,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.inCompletedTasksCount = 0,
     this.completedTasksCount = 0,
     this.lateTasksCount = 0,
-    this.penaltyTasksCount = 0,
+    this.violationTasksCount = 0,
     this.totalAssignedUsers = 0,
     this.violation,
     required this.createdById,
@@ -608,7 +608,7 @@ class _$TaskModelImpl extends _TaskModel {
   String departmentId;
   @override
   @JsonKey()
-  String penaltyDescription;
+  String violationDescription;
   @override
   @JsonKey()
   String notes;
@@ -637,7 +637,7 @@ class _$TaskModelImpl extends _TaskModel {
   int lateTasksCount;
   @override
   @JsonKey()
-  int penaltyTasksCount;
+  int violationTasksCount;
   @override
   @JsonKey()
   int totalAssignedUsers;
@@ -648,7 +648,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, penaltyDescription: $penaltyDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, assignedUserIds: $assignedUserIds, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, assignedUserIds: $assignedUserIds, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById)';
   }
 
   /// Create a copy of TaskModel
@@ -677,7 +677,7 @@ abstract class _TaskModel extends TaskModel {
     String description,
     String status,
     String departmentId,
-    String penaltyDescription,
+    String violationDescription,
     String notes,
     String? repeatType,
     bool markedAsLate,
@@ -688,7 +688,7 @@ abstract class _TaskModel extends TaskModel {
     int inCompletedTasksCount,
     int completedTasksCount,
     int lateTasksCount,
-    int penaltyTasksCount,
+    int violationTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
     required String createdById,
@@ -733,8 +733,8 @@ abstract class _TaskModel extends TaskModel {
   String get departmentId;
   set departmentId(String value);
   @override
-  String get penaltyDescription;
-  set penaltyDescription(String value);
+  String get violationDescription;
+  set violationDescription(String value);
   @override
   String get notes;
   set notes(String value);
@@ -766,8 +766,8 @@ abstract class _TaskModel extends TaskModel {
   int get lateTasksCount;
   set lateTasksCount(int value);
   @override
-  int get penaltyTasksCount;
-  set penaltyTasksCount(int value);
+  int get violationTasksCount;
+  set violationTasksCount(int value);
   @override
   int get totalAssignedUsers;
   set totalAssignedUsers(int value);

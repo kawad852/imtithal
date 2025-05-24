@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:shared/shared.dart';
 
 import '../../object_box_exports.dart';
@@ -12,12 +10,19 @@ extension DatetimeExtension on DateTime {
 
 extension DayTimeExtension on String {
   TimeOfDay get convertStringToTimeOfDay {
+    final arabicPM = contains('م');
+    final arabicAM = contains('ص');
+    final isPm = contains('PM') || arabicPM;
     final parts = split(':');
     final hour = int.parse(parts[0].trim());
-    final minute = int.parse(parts[1].trim().split(' ')[0]);
+    final minute = int.parse(parts[1].replaceAll(RegExp(r'[^0-9]'), '').trim());
 
-    final isPm = parts[1].trim().endsWith('PM');
-    final adjustedHour = isPm ? hour + 12 : math.min(hour, 12);
+    int adjustedHour;
+    if (hour == 12) {
+      adjustedHour = isPm ? 12 : 0;
+    } else {
+      adjustedHour = isPm ? hour + 12 : hour;
+    }
 
     return TimeOfDay(hour: adjustedHour, minute: minute);
   }

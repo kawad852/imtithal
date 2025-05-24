@@ -62,12 +62,11 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Row(
-                children: [
-                  Container(
-                    height: 40,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+              if (kIsEmployee)
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
                       color: task.indicatorColor(context),
@@ -82,8 +81,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
@@ -119,6 +117,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       return Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6),
                         height: 40,
+                        constraints: const BoxConstraints(maxWidth: 150),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: context.colorPalette.greyF5F,
@@ -131,6 +130,8 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       );
                     },
@@ -147,7 +148,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   ),
                 ),
               ),
-              Text(task.penaltyDescription, style: style),
+              Text(task.violationDescription, style: style),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
@@ -176,7 +177,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                     inCompletedTasksCount: task.inCompletedTasksCount,
                     completedTasksCount: task.completedTasksCount,
                     lateTasksCount: task.lateTasksCount,
-                    penaltyTasksCount: task.penaltyTasksCount,
+                    penaltyTasksCount: task.violationTasksCount,
                     createdById: kUserId,
                   ),
                 ),
