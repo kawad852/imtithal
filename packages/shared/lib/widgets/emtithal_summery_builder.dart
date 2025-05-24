@@ -65,8 +65,8 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
       onComplete: (context, snapshot) {
         final inCompletedTasksCount = snapshot.data![0] as int;
         final completedTasksCount = snapshot.data![1] as int;
-        final lateTasksCount = snapshot.data![2] as int;
-        final violationTasksCount = snapshot.data![3] as int;
+        final violationTasksCount = snapshot.data![2] as int;
+        final lateTasksCount = snapshot.data![3] as int;
         return EmtithalSummery(
           inCompletedTasksCount: inCompletedTasksCount,
           completedTasksCount: completedTasksCount,
