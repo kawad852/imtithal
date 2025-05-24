@@ -33,7 +33,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
             final taskDocRef = kFirebaseInstant.userAssignedTasks(userId).doc(_task!.id);
             final violationDocRef = kFirebaseInstant.userViolations(userId).doc(_violation.id);
             batch.update(taskDocRef, {
-              MyFields.status: TaskStatusEnum.violation.value,
+              MyFields.status: TaskStatusEnum.violated.value,
               MyFields.violation:
                   LightViolationModel(id: _violation.id, type: _violation.type).toJson(),
             });

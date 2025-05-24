@@ -36,4 +36,6 @@ class MyFields {
   static const String violation = 'violation';
   static const String assignedUserIds = 'assignedUserIds';
   static const String inCompletedTasksCount = 'inCompletedTasksCount';
+  static const String markedAsLate = 'markedAsLate';
+  static const String deliveryDate = 'deliveryDate';
 }

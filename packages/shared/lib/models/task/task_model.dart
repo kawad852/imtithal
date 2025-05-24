@@ -51,7 +51,7 @@ class TaskModel with _$TaskModel {
           return context.colorPalette.grey8B8;
         case TaskStatusEnum.completed:
           return context.colorPalette.primary;
-        case TaskStatusEnum.violation:
+        case TaskStatusEnum.violated:
           return context.colorPalette.redD62;
         default:
           return context.colorPalette.grey8B8;

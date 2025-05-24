@@ -4,7 +4,7 @@ import 'package:shared/helper/translation_extension.dart';
 enum TaskStatusEnum {
   pending('PENDING'),
   inReview('IN-REVIEW'),
-  violation('VIOLATION'),
+  violated('VIOLATED'),
   completed('COMPLETED');
 
   final String value;
