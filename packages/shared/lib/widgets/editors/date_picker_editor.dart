@@ -12,6 +12,7 @@ class DatePickerEditor extends StatefulWidget {
   final DateTime? maxDateTime;
   final bool includeTime;
   final TextStyle? style;
+  final Widget Function(BuildContext context, VoidCallback onTap)? builder;
 
   const DatePickerEditor({
     super.key,
@@ -23,6 +24,7 @@ class DatePickerEditor extends StatefulWidget {
     this.maxDateTime,
     this.includeTime = false,
     this.style,
+    this.builder,
   });
 
   @override
@@ -76,6 +78,11 @@ class _DatePickerEditorState extends State<DatePickerEditor> {
     final date = DateFormat.yMMMd(context.languageCode);
     if (widget.includeTime) {
       date.add_jm();
+    }
+    if (widget.builder != null) {
+      return widget.builder!(context, () {
+        _showDatePicker(context);
+      });
     }
     return NavEditor(
       value: _value != null ? date.format(_value!) : null,

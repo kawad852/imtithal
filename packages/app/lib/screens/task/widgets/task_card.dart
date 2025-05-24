@@ -59,7 +59,7 @@ class TaskCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 4),
                             Text(
-                              "01.05.2025",
+                              task.deliveryDate!.getDefaultFormattedDate(context),
                               style: TextStyle(
                                 color: context.colorPalette.grey8B8,
                                 fontSize: 12,
@@ -81,7 +81,7 @@ class TaskCard extends StatelessWidget {
                             const CustomSvg(MyIcons.clock),
                             const SizedBox(width: 4),
                             Text(
-                              "04:30 مساءً",
+                              task.deliveryTime.convertStringToTimeOfDay.format(context),
                               style: TextStyle(
                                 color: context.colorPalette.grey8B8,
                                 fontSize: 12,

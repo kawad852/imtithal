@@ -14,7 +14,7 @@ class TaskProvider extends ChangeNotifier {
   }
 
   Query<TaskModel> getAssignedTasksQuery(String id) {
-    return kFirebaseInstant.assignedTasks.orderByDesc.where(MyFields.id, isEqualTo: id);
+    return kFirebaseInstant.assignedTasks.orderByCreatedAtDesc.where(MyFields.id, isEqualTo: id);
   }
 
   CollectionReference<TaskModel> assignedTaskQuery(String userId) =>
@@ -22,9 +22,9 @@ class TaskProvider extends ChangeNotifier {
 
   Query<TaskModel> get tasksQuery {
     if (kIsEmployee) {
-      return assignedTaskQuery(kUserId).orderByDesc;
+      return assignedTaskQuery(kUserId).orderByCreatedAtDesc;
     } else {
-      return kFirebaseInstant.tasks.orderByDesc.whereMyCompany;
+      return kFirebaseInstant.tasks.orderByCreatedAtDesc.whereMyCompany;
     }
   }
 }

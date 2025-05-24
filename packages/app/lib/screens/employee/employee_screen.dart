@@ -61,7 +61,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
               ],
             ),
           ),
-          const MonthCalender(),
+          MonthCalender(date: kNowDate, onChanged: (value) {}),
           ListView.separated(
             separatorBuilder: (context, index) => const SizedBox(height: 10),
             itemCount: 10,
