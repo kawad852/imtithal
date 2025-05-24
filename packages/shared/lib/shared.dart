@@ -117,6 +117,7 @@ export 'widgets/future_builders/impeded_future_builder.dart';
 export 'widgets/images_attacher.dart';
 export 'widgets/month_calender.dart';
 export 'widgets/search_app_bar.dart';
+export 'widgets/selectors/departments_selector.dart';
 export 'widgets/selectors/user_selector.dart';
 export 'widgets/selectors/users_selector.dart';
 export 'widgets/stream_builders/big_stream_builder.dart';

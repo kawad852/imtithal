@@ -167,12 +167,42 @@ class _UserInputScreenState extends State<UserInputScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: TitledTextField(
-                  title: context.appLocalization.fullName,
-                  child: TextEditor(
-                    initialValue: _user.displayName,
-                    onChanged: (value) => _user.displayName = value!,
-                  ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 10,
+                  children: [
+                    Expanded(
+                      child: TitledTextField(
+                        title: context.appLocalization.fullName,
+                        child: TextEditor(
+                          initialValue: _user.displayName,
+                          onChanged: (value) => _user.displayName = value!,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: TitledTextField(
+                        title: context.appLocalization.department,
+                        child: DepartmentsSelector(
+                          builder: (context, departments) {
+                            return DropDownEditor(
+                              value: _user.departmentId.isEmpty ? null : _user.departmentId,
+                              onChanged: (value) {
+                                setState(() {
+                                  _user.departmentId = value!;
+                                });
+                              },
+                              title: "",
+                              items:
+                                  departments.map((e) {
+                                    return DropdownMenuItem(value: e.id, child: Text(e.name));
+                                  }).toList(),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Row(

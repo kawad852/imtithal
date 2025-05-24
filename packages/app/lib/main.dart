@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
                 return true;
               },
             ),
-            if (userProvider.isAuthenticated)
+            if (userProvider.isAuthenticated) ...[
               StreamProvider<List<UserModel>>.value(
                 key: ValueKey(userProvider.isAuthenticated),
                 value: kFirebaseInstant.users.whereMyCompany.snapshots().map(
@@ -100,6 +100,18 @@ class _MyAppState extends State<MyApp> {
                   return true;
                 },
               ),
+              StreamProvider<List<DepartmentModel>>.value(
+                key: ValueKey(userProvider.isAuthenticated),
+                value: kFirebaseInstant.departments.snapshots().map(
+                  (e) => e.docs.map((e) => e.data()).toList(),
+                ),
+                initialData: const [],
+                updateShouldNotify: (initialValue, value) {
+                  return true;
+                },
+              ),
+            ],
+
             // StreamProvider<BranchModel>.value(
             //   key: ValueKey(userProvider.isAuthenticated),
             //   value:
