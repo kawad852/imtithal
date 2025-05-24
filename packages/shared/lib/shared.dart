@@ -119,6 +119,7 @@ export 'widgets/stream_builders/impeded_stream_builder.dart';
 //widgets
 export 'widgets/stretch_button.dart';
 export 'widgets/task_bubble.dart';
+export 'widgets/timer_builder.dart';
 export 'widgets/titled_textfield.dart';
 export 'widgets/user_photo.dart';
 export 'widgets/vertical_line.dart';

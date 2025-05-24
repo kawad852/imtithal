@@ -159,16 +159,21 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  TimeCard(title: context.appLocalization.second, value: "02"),
-                  const SizedBox(width: 10),
-                  TimeCard(title: context.appLocalization.minute, value: "02"),
-                  const SizedBox(width: 10),
-                  TimeCard(title: context.appLocalization.hour, value: "02"),
-                  const SizedBox(width: 10),
-                  TimeCard(title: context.appLocalization.day, value: "02"),
-                ],
+              TimerBuilder(
+                endDateTime: task.deliveryDate,
+                child: (context, duration) {
+                  return Row(
+                    children: [
+                      TimeCard(title: context.appLocalization.second, value: duration.$4),
+                      const SizedBox(width: 10),
+                      TimeCard(title: context.appLocalization.minute, value: duration.$3),
+                      const SizedBox(width: 10),
+                      TimeCard(title: context.appLocalization.hour, value: duration.$2),
+                      const SizedBox(width: 10),
+                      TimeCard(title: context.appLocalization.day, value: duration.$1),
+                    ],
+                  );
+                },
               ),
               if (!kIsEmployee) ...[
                 ResponsibleCard(task: task, assignedTasks: assignedTasksQuerySnapshot),

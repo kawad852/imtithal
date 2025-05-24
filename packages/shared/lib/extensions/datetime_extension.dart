@@ -11,7 +11,7 @@ extension DatetimeExtension on DateTime {
 extension DayTimeExtension on String {
   TimeOfDay get convertStringToTimeOfDay {
     final arabicPM = contains('م');
-    final arabicAM = contains('ص');
+    // final arabicAM = contains('ص');
     final isPm = contains('PM') || arabicPM;
     final parts = split(':');
     final hour = int.parse(parts[0].trim());
