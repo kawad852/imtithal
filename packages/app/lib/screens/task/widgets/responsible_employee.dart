@@ -59,9 +59,22 @@ class ResponsibleEmployee extends StatelessWidget {
             icon: const CustomSvg(MyIcons.moreCircle),
             onSelected: (value) {
               if (value) {
-                kFirebaseInstant.assignedTasks.doc(assignedTask.id).update({
+                kFirebaseInstant.userAssignedTasks(user.id!).doc(assignedTask.id).update({
                   MyFields.status: TaskStatusEnum.completed.value,
                 });
+                SendNotificationService.sendToUser(
+                  context,
+                  userId: user.id!,
+                  deviceToken: user.deviceToken,
+                  languageCode: user.languageCode,
+                  id: assignedTask.id,
+                  type: NotificationType.emtithal.value,
+                  titleEn: "✅ Task Complied Successfully",
+                  titleAr: "تم الإمتثال للمهمة بنجاح ✅",
+                  bodyEn:
+                      "You have successfully complied with the task requirements. Keep up the good work!",
+                  bodyAr: "لقد قمت بالإمتثال لمتطلبات المهمة بنجاح. استمر في الأداء الجيد",
+                );
               } else {
                 context.push((context) {
                   return ViolationInputScreen(task: assignedTask);

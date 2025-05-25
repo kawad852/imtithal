@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCXTGxtq3npm8rU9fbyHd-XNBdyhnMEvVc',
-    appId: '1:1063729292121:android:e5d99db08e7046b2826248',
+    appId: '1:1063729292121:android:b2c600a94302757f826248',
     messagingSenderId: '1063729292121',
     projectId: 'imtithal-app',
     storageBucket: 'imtithal-app.firebasestorage.app',
@@ -66,10 +66,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBPmqpxv-3hm2wKOrIX630DtBFYTZHJLss',
-    appId: '1:1063729292121:ios:0fd2854d97fbac17826248',
+    appId: '1:1063729292121:ios:40b39e9ed60d0419826248',
     messagingSenderId: '1063729292121',
     projectId: 'imtithal-app',
     storageBucket: 'imtithal-app.firebasestorage.app',
-    iosBundleId: 'com.imtethal.wecan',
+    iosBundleId: 'com.imtithal.wecan',
   );
+
 }

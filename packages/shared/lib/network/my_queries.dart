@@ -7,8 +7,7 @@ import '../models/store/store_model.dart';
 
 extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<TaskModel> get tasks => collection(MyCollections.tasks).taskConvertor;
-  CollectionReference<TaskModel> get assignedTasks =>
-      collectionGroup(MyCollections.assignedTasks).taskConvertor;
+  Query<TaskModel> get assignedTasks => collectionGroup(MyCollections.assignedTasks).taskConvertor;
   Query<TaskModel> get assignedTasksQuery =>
       collectionGroup(MyCollections.assignedTasks).taskConvertor;
 

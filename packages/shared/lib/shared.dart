@@ -30,6 +30,7 @@ export 'enums/base_enums.dart';
 export 'enums/filter_enums.dart';
 export 'enums/inventory_operation_enum.dart';
 export 'enums/item_enums.dart';
+export 'enums/notification_enum.dart';
 export 'enums/order_enums.dart';
 export 'enums/stores_enums.dart';
 export 'enums/task_enums.dart';
@@ -75,6 +76,7 @@ export 'network/my_fields.dart';
 export 'network/my_queries.dart'; //
 ///Notifications
 export 'notifications/cloud_messaging_service.dart';
+export 'notifications/send_notification_service.dart';
 //providers
 export 'providers/app_provider.dart';
 export 'providers/user_provider.dart';

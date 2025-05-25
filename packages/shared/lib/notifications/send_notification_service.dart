@@ -13,7 +13,8 @@ class SendNotificationService {
   static sendToUser(
     BuildContext context, {
     required String userId,
-    required String token,
+    required String? deviceToken,
+    required String? languageCode,
     required String id,
     required String type,
     required String titleEn,
@@ -21,20 +22,25 @@ class SendNotificationService {
     required String bodyEn,
     required String bodyAr,
   }) async {
+    if (deviceToken == null) {
+      return;
+    }
+
     // final filter = Filter(Filter(MyFields.idBranch, isEqualTo: kBranch?.id));
-    final userDocRef = await kFirebaseInstant.users.doc(userId).get();
-
-    final docRef = userDocRef.reference;
-    final user = userDocRef.data()!;
-    final token = user.deviceToken;
-    final languageCode = user.languageCode;
-
+    final docRef = kFirebaseInstant.users.doc(userId);
+    // final userDocSnapshot = await docRef.get();
+    //
+    // final docRef = userDocRef.reference;
+    // final user = userDocRef.data()!;
+    // final token = user.deviceToken;
+    // final languageCode = user.languageCode;
+    //
     final title = languageCode == LanguageEnum.english ? titleEn : titleAr;
     final body = languageCode == LanguageEnum.english ? bodyEn : bodyAr;
 
     final notificationModel = NotificationModel(
       notification: NotificationHeaderModel(title: title, body: body),
-      token: token,
+      token: deviceToken,
       data: NotificationDataModel(id: id, type: type),
     );
 
