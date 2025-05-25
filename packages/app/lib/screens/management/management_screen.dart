@@ -40,119 +40,126 @@ class _ManagementScreenState extends State<ManagementScreen> {
           ),
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-        children: [
-          Row(
-            children: [
-              ManageButton(
-                onTap: () {
-                  context.push((context) {
-                    return const UserInputScreen();
-                  });
-                },
-                icon: MyIcons.addStaff,
-                title: context.appLocalization.addNewEmployee,
-              ),
-              const SizedBox(width: 10),
-              ManageButton(
-                onTap: () {},
-                icon: MyIcons.add,
-                title: context.appLocalization.addNewCompliance,
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Row(
+      body: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            sliver: SliverList.list(
               children: [
-                ManageButton(
-                  onTap: () {
-                    context.push((context) {
-                      return const DepartmentInputScreen();
-                    });
-                  },
-                  icon: MyIcons.add,
-                  title: context.appLocalization.addNewDepartment,
+                Row(
+                  children: [
+                    ManageButton(
+                      onTap: () {
+                        context.push((context) {
+                          return const UserInputScreen();
+                        });
+                      },
+                      icon: MyIcons.addStaff,
+                      title: context.appLocalization.addNewEmployee,
+                    ),
+                    const SizedBox(width: 10),
+                    ManageButton(
+                      onTap: () {},
+                      icon: MyIcons.add,
+                      title: context.appLocalization.addNewCompliance,
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 10),
-                ManageButton(
-                  onTap: () {},
-                  icon: MyIcons.notificationSolid,
-                  title: context.appLocalization.sendNewNotification,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    children: [
+                      ManageButton(
+                        onTap: () {
+                          context.push((context) {
+                            return const DepartmentInputScreen();
+                          });
+                        },
+                        icon: MyIcons.add,
+                        title: context.appLocalization.addNewDepartment,
+                      ),
+                      const SizedBox(width: 10),
+                      ManageButton(
+                        onTap: () {},
+                        icon: MyIcons.notificationSolid,
+                        title: context.appLocalization.sendNewNotification,
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
-          Row(
-            children: [
-              ManageButton(
-                onTap: () {
-                  context.push((context) => const LeavesScreen());
-                },
-                icon: MyIcons.emoji,
-                title: context.appLocalization.leavesAndHolidays,
-              ),
-              const SizedBox(width: 10),
-              ManageButton(
-                onTap: () {},
-                icon: MyIcons.laws,
-                title: context.appLocalization.lawsAndRegulations,
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              children: [
-                ManageButton(
-                  onTap: () {
-                    context.push((context) => ViolationsScreen());
-                  },
+                Row(
+                  children: [
+                    ManageButton(
+                      onTap: () {
+                        context.push((context) => const LeavesScreen());
+                      },
+                      icon: MyIcons.emoji,
+                      title: context.appLocalization.leavesAndHolidays,
+                    ),
+                    const SizedBox(width: 10),
+                    ManageButton(
+                      onTap: () {},
+                      icon: MyIcons.laws,
+                      title: context.appLocalization.lawsAndRegulations,
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    children: [
+                      ManageButton(
+                        onTap: () {
+                          context.push((context) => ViolationsScreen());
+                        },
 
-                  icon: MyIcons.danger,
-                  backgroundColor: context.colorPalette.yellowE7B6,
-                  title: context.appLocalization.violations,
+                        icon: MyIcons.danger,
+                        backgroundColor: context.colorPalette.yellowE7B6,
+                        title: context.appLocalization.violations,
+                      ),
+                      const SizedBox(width: 10),
+                      ManageButton(
+                        onTap: () {},
+                        icon: MyIcons.report,
+                        title: context.appLocalization.reports,
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(width: 10),
-                ManageButton(
-                  onTap: () {},
-                  icon: MyIcons.report,
-                  title: context.appLocalization.reports,
+                TextEditor(
+                  onChanged: (value) {},
+                  required: false,
+                  hintText: context.appLocalization.searchDepartmentEmployee,
+                  prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child: Text(
+                    context.appLocalization.facilityDepartments,
+                    style: TextStyle(
+                      color: context.colorPalette.primary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                 ),
               ],
-            ),
-          ),
-          TextEditor(
-            onChanged: (value) {},
-            required: false,
-            hintText: context.appLocalization.searchDepartmentEmployee,
-            prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
-            child: Text(
-              context.appLocalization.facilityDepartments,
-              style: TextStyle(
-                color: context.colorPalette.primary,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
             ),
           ),
           CustomFirestoreQueryBuilder(
             query: _query,
+            isSliver: true,
             onComplete: (context, snapshot) {
-              return ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(height: 10),
-                itemCount: snapshot.docs.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.zero,
-                itemBuilder: (context, index) {
-                  final department = snapshot.docs[index].data();
-                  return DepartmentCard(department: department);
-                },
+              return SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                sliver: SliverList.separated(
+                  separatorBuilder: (context, index) => const SizedBox(height: 10),
+                  itemCount: snapshot.docs.length,
+                  itemBuilder: (context, index) {
+                    final department = snapshot.docs[index].data();
+                    return DepartmentCard(department: department);
+                  },
+                ),
               );
             },
           ),

@@ -26,100 +26,109 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Text(
-          context.appLocalization.home,
-          style: TextStyle(
-            color: context.colorPalette.primary,
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.push((context) => const NotificationScreen());
-            },
-            icon: const CustomSvg(MyIcons.notification),
-          ),
-        ],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        children: [
-          const UserInformation(),
-          const SizedBox(height: 17),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  context.appLocalization.todayImtithalSummary,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: context.colorPalette.primary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            title: Text(
+              context.appLocalization.home,
+              style: TextStyle(
+                color: context.colorPalette.primary,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
               ),
-              MoreButton(
-                onTap: () {
-                  context.push((context) {
-                    return const CalenderScreen();
-                  });
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  context.push((context) => const NotificationScreen());
                 },
+                icon: const CustomSvg(MyIcons.notification),
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 13),
-            child: EmtithalSummeryBuilder(),
-          ),
-          TextEditor(
-            onChanged: (value) {},
-            required: false,
-            hintText: context.appLocalization.searchTaskEmployee,
-            prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            sliver: SliverList.list(
+              children: [
+                const UserInformation(),
+                const SizedBox(height: 17),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        context.appLocalization.todayImtithalSummary,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: context.colorPalette.primary,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    MoreButton(
+                      onTap: () {
+                        context.push((context) {
+                          return const CalenderScreen();
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 13),
+                  child: EmtithalSummeryBuilder(),
+                ),
+                TextEditor(
+                  onChanged: (value) {},
+                  required: false,
+                  hintText: context.appLocalization.searchTaskEmployee,
+                  prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+                ),
+              ],
+            ),
           ),
           CustomFirestoreQueryBuilder(
             query: _assignedTasksQuery,
+            isSliver: true,
             onComplete: (context, snapshot) {
               final tasks = snapshot.docs;
               if (tasks.isEmpty) {
-                return const SizedBox.shrink();
+                return const SliverToBoxAdapter(child: SizedBox.shrink());
               }
-              return Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 13),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            context.appLocalization.topTasks,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: context.colorPalette.primary,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
+              return SliverMainAxisGroup(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+                    sliver: SliverToBoxAdapter(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              context.appLocalization.topTasks,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: context.colorPalette.primary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
-                        ),
-                        MoreButton(onTap: () {}),
-                      ],
+                          MoreButton(onTap: () {}),
+                        ],
+                      ),
                     ),
                   ),
-                  ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(height: 10),
-                    itemCount: tasks.length,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      final task = tasks[index].data();
-                      return TaskCard(task: task);
-                    },
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    sliver: SliverList.separated(
+                      separatorBuilder: (context, index) => const SizedBox(height: 10),
+                      itemCount: tasks.length,
+                      itemBuilder: (context, index) {
+                        final task = tasks[index].data();
+                        return TaskCard(task: task);
+                      },
+                    ),
                   ),
                 ],
               );
