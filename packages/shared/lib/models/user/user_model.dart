@@ -30,7 +30,7 @@ class UserModel with _$UserModel {
     @Default(0) int completedTasksCount,
     @Default(0) int lateTasksCount,
     @Default(0) int penaltyTasksCount,
-    required String createdById,
+    String? createdById,
     String? phoneCountryCode,
     String? phoneNum,
     @Default('') String nationalNumber,
@@ -42,12 +42,7 @@ class UserModel with _$UserModel {
 
 @freezed
 class LightUserModel with _$LightUserModel {
-  factory LightUserModel({
-    @Default('') String id,
-    @Default('') String displayName,
-    @Default('') String jobTitle,
-    String? profilePhoto,
-  }) = _LightUserModel;
+  factory LightUserModel({@Default('') String id, required String? departmentId}) = _LightUserModel;
 
   factory LightUserModel.fromJson(Map<String, dynamic> json) => _$LightUserModelFromJson(json);
 }

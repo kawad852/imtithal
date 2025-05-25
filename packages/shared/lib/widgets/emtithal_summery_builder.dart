@@ -21,7 +21,7 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
       Filter(MyFields.deliveryDate, isGreaterThanOrEqualTo: Timestamp.fromDate(startDate)),
       Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate)),
       Filter(
-        _departmentId != null ? MyFields.departmentId : MyFields.companyId,
+        _departmentId != null ? MyFields.user_departmentId : MyFields.companyId,
         isEqualTo: _departmentId ?? kCompanyId,
       ),
       filter,

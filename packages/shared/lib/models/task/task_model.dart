@@ -36,10 +36,18 @@ class TaskModel with _$TaskModel {
     @Default(0) int totalAssignedUsers,
     LightViolationModel? violation,
     required String createdById,
+    @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);
 
   TaskModel._();
+
+  // void getUser(List<UserModel> users) {
+  //   userModel ??= users.firstWhere(
+  //         (e) => e.id == user?.id,
+  //     orElse: () => UserModel(),
+  //   );
+  // }
 
   Color indicatorColor(BuildContext context) {
     if (markedAsLate) {

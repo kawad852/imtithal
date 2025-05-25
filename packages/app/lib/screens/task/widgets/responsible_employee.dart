@@ -3,14 +3,13 @@ import 'package:shared/shared.dart';
 import '../../violation/violation_input_screen.dart';
 
 class ResponsibleEmployee extends StatelessWidget {
-  final QueryDocumentSnapshot<TaskModel> assignedTaskQuerySnapshot;
+  final TaskModel assignedTask;
 
-  const ResponsibleEmployee({super.key, required this.assignedTaskQuerySnapshot});
+  const ResponsibleEmployee({super.key, required this.assignedTask});
 
   @override
   Widget build(BuildContext context) {
-    final assignedTask = assignedTaskQuerySnapshot.data();
-    final user = assignedTask.user!;
+    final user = assignedTask.userModel!;
     final indicatorColor = assignedTask.indicatorColor(context);
     return Container(
       width: double.infinity,
@@ -60,7 +59,7 @@ class ResponsibleEmployee extends StatelessWidget {
             icon: const CustomSvg(MyIcons.moreCircle),
             onSelected: (value) {
               if (value) {
-                assignedTaskQuerySnapshot.reference.update({
+                kFirebaseInstant.assignedTasks.doc(assignedTask.id).update({
                   MyFields.status: TaskStatusEnum.completed.value,
                 });
               } else {

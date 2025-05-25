@@ -96,35 +96,43 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
               //   ),
               // ),
               // ResponsibleDepartment(task: _task, users: users),
-              CustomFirestoreQueryBuilder(
-                query: _assignedTasksQuery,
-                onComplete: (context, snapshot) {
-                  final assignedTasks = snapshot.docs;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          context.appLocalization.responsibleEmployees,
-                          style: TextStyle(
-                            color: context.colorPalette.primary,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
+              UsersSelector(
+                builder: (context, users) {
+                  return CustomFirestoreQueryBuilder(
+                    query: _assignedTasksQuery,
+                    onComplete: (context, snapshot) {
+                      final assignedTasks = snapshot.docs;
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Text(
+                              context.appLocalization.responsibleEmployees,
+                              style: TextStyle(
+                                color: context.colorPalette.primary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      ListView.separated(
-                        separatorBuilder: (context, index) => const SizedBox(height: 10),
-                        itemCount: assignedTasks.length,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          final assignedTask = assignedTasks[index];
-                          return ResponsibleEmployee(assignedTaskQuerySnapshot: assignedTask);
-                        },
-                      ),
-                    ],
+                          ListView.separated(
+                            separatorBuilder: (context, index) => const SizedBox(height: 10),
+                            itemCount: assignedTasks.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              final assignedTask = assignedTasks[index].data();
+                              assignedTask.userModel ??= users.firstWhere(
+                                (e) => e.id == assignedTask.user?.id,
+                                orElse: () => UserModel(),
+                              );
+                              return ResponsibleEmployee(assignedTask: assignedTask);
+                            },
+                          ),
+                        ],
+                      );
+                    },
                   );
                 },
               ),

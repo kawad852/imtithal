@@ -69,8 +69,8 @@ mixin _$UserModel {
   set lateTasksCount(int value) => throw _privateConstructorUsedError;
   int get penaltyTasksCount => throw _privateConstructorUsedError;
   set penaltyTasksCount(int value) => throw _privateConstructorUsedError;
-  String get createdById => throw _privateConstructorUsedError;
-  set createdById(String value) => throw _privateConstructorUsedError;
+  String? get createdById => throw _privateConstructorUsedError;
+  set createdById(String? value) => throw _privateConstructorUsedError;
   String? get phoneCountryCode => throw _privateConstructorUsedError;
   set phoneCountryCode(String? value) => throw _privateConstructorUsedError;
   String? get phoneNum => throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ abstract class $UserModelCopyWith<$Res> {
     int completedTasksCount,
     int lateTasksCount,
     int penaltyTasksCount,
-    String createdById,
+    String? createdById,
     String? phoneCountryCode,
     String? phoneNum,
     String nationalNumber,
@@ -165,7 +165,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? completedTasksCount = null,
     Object? lateTasksCount = null,
     Object? penaltyTasksCount = null,
-    Object? createdById = null,
+    Object? createdById = freezed,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
     Object? nationalNumber = null,
@@ -284,10 +284,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
                         as int,
             createdById:
-                null == createdById
+                freezed == createdById
                     ? _value.createdById
                     : createdById // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             phoneCountryCode:
                 freezed == phoneCountryCode
                     ? _value.phoneCountryCode
@@ -346,7 +346,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     int completedTasksCount,
     int lateTasksCount,
     int penaltyTasksCount,
-    String createdById,
+    String? createdById,
     String? phoneCountryCode,
     String? phoneNum,
     String nationalNumber,
@@ -390,7 +390,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? completedTasksCount = null,
     Object? lateTasksCount = null,
     Object? penaltyTasksCount = null,
-    Object? createdById = null,
+    Object? createdById = freezed,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
     Object? nationalNumber = null,
@@ -509,10 +509,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
                     as int,
         createdById:
-            null == createdById
+            freezed == createdById
                 ? _value.createdById
                 : createdById // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         phoneCountryCode:
             freezed == phoneCountryCode
                 ? _value.phoneCountryCode
@@ -565,7 +565,7 @@ class _$UserModelImpl implements _UserModel {
     this.completedTasksCount = 0,
     this.lateTasksCount = 0,
     this.penaltyTasksCount = 0,
-    required this.createdById,
+    this.createdById,
     this.phoneCountryCode,
     this.phoneNum,
     this.nationalNumber = '',
@@ -637,7 +637,7 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   int penaltyTasksCount;
   @override
-  String createdById;
+  String? createdById;
   @override
   String? phoneCountryCode;
   @override
@@ -692,7 +692,7 @@ abstract class _UserModel implements UserModel {
     int completedTasksCount,
     int lateTasksCount,
     int penaltyTasksCount,
-    required String createdById,
+    String? createdById,
     String? phoneCountryCode,
     String? phoneNum,
     String nationalNumber,
@@ -773,8 +773,8 @@ abstract class _UserModel implements UserModel {
   int get penaltyTasksCount;
   set penaltyTasksCount(int value);
   @override
-  String get createdById;
-  set createdById(String value);
+  String? get createdById;
+  set createdById(String? value);
   @override
   String? get phoneCountryCode;
   set phoneCountryCode(String? value);
@@ -805,9 +805,7 @@ LightUserModel _$LightUserModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LightUserModel {
   String get id => throw _privateConstructorUsedError;
-  String get displayName => throw _privateConstructorUsedError;
-  String get jobTitle => throw _privateConstructorUsedError;
-  String? get profilePhoto => throw _privateConstructorUsedError;
+  String? get departmentId => throw _privateConstructorUsedError;
 
   /// Serializes this LightUserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -826,12 +824,7 @@ abstract class $LightUserModelCopyWith<$Res> {
     $Res Function(LightUserModel) then,
   ) = _$LightUserModelCopyWithImpl<$Res, LightUserModel>;
   @useResult
-  $Res call({
-    String id,
-    String displayName,
-    String jobTitle,
-    String? profilePhoto,
-  });
+  $Res call({String id, String? departmentId});
 }
 
 /// @nodoc
@@ -848,12 +841,7 @@ class _$LightUserModelCopyWithImpl<$Res, $Val extends LightUserModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? displayName = null,
-    Object? jobTitle = null,
-    Object? profilePhoto = freezed,
-  }) {
+  $Res call({Object? id = null, Object? departmentId = freezed}) {
     return _then(
       _value.copyWith(
             id:
@@ -861,20 +849,10 @@ class _$LightUserModelCopyWithImpl<$Res, $Val extends LightUserModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as String,
-            displayName:
-                null == displayName
-                    ? _value.displayName
-                    : displayName // ignore: cast_nullable_to_non_nullable
-                        as String,
-            jobTitle:
-                null == jobTitle
-                    ? _value.jobTitle
-                    : jobTitle // ignore: cast_nullable_to_non_nullable
-                        as String,
-            profilePhoto:
-                freezed == profilePhoto
-                    ? _value.profilePhoto
-                    : profilePhoto // ignore: cast_nullable_to_non_nullable
+            departmentId:
+                freezed == departmentId
+                    ? _value.departmentId
+                    : departmentId // ignore: cast_nullable_to_non_nullable
                         as String?,
           )
           as $Val,
@@ -891,12 +869,7 @@ abstract class _$$LightUserModelImplCopyWith<$Res>
   ) = __$$LightUserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String displayName,
-    String jobTitle,
-    String? profilePhoto,
-  });
+  $Res call({String id, String? departmentId});
 }
 
 /// @nodoc
@@ -912,12 +885,7 @@ class __$$LightUserModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? displayName = null,
-    Object? jobTitle = null,
-    Object? profilePhoto = freezed,
-  }) {
+  $Res call({Object? id = null, Object? departmentId = freezed}) {
     return _then(
       _$LightUserModelImpl(
         id:
@@ -925,20 +893,10 @@ class __$$LightUserModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as String,
-        displayName:
-            null == displayName
-                ? _value.displayName
-                : displayName // ignore: cast_nullable_to_non_nullable
-                    as String,
-        jobTitle:
-            null == jobTitle
-                ? _value.jobTitle
-                : jobTitle // ignore: cast_nullable_to_non_nullable
-                    as String,
-        profilePhoto:
-            freezed == profilePhoto
-                ? _value.profilePhoto
-                : profilePhoto // ignore: cast_nullable_to_non_nullable
+        departmentId:
+            freezed == departmentId
+                ? _value.departmentId
+                : departmentId // ignore: cast_nullable_to_non_nullable
                     as String?,
       ),
     );
@@ -948,12 +906,7 @@ class __$$LightUserModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LightUserModelImpl implements _LightUserModel {
-  _$LightUserModelImpl({
-    this.id = '',
-    this.displayName = '',
-    this.jobTitle = '',
-    this.profilePhoto,
-  });
+  _$LightUserModelImpl({this.id = '', required this.departmentId});
 
   factory _$LightUserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LightUserModelImplFromJson(json);
@@ -962,17 +915,11 @@ class _$LightUserModelImpl implements _LightUserModel {
   @JsonKey()
   final String id;
   @override
-  @JsonKey()
-  final String displayName;
-  @override
-  @JsonKey()
-  final String jobTitle;
-  @override
-  final String? profilePhoto;
+  final String? departmentId;
 
   @override
   String toString() {
-    return 'LightUserModel(id: $id, displayName: $displayName, jobTitle: $jobTitle, profilePhoto: $profilePhoto)';
+    return 'LightUserModel(id: $id, departmentId: $departmentId)';
   }
 
   @override
@@ -981,18 +928,13 @@ class _$LightUserModelImpl implements _LightUserModel {
         (other.runtimeType == runtimeType &&
             other is _$LightUserModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.displayName, displayName) ||
-                other.displayName == displayName) &&
-            (identical(other.jobTitle, jobTitle) ||
-                other.jobTitle == jobTitle) &&
-            (identical(other.profilePhoto, profilePhoto) ||
-                other.profilePhoto == profilePhoto));
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, displayName, jobTitle, profilePhoto);
+  int get hashCode => Object.hash(runtimeType, id, departmentId);
 
   /// Create a copy of LightUserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1014,9 +956,7 @@ class _$LightUserModelImpl implements _LightUserModel {
 abstract class _LightUserModel implements LightUserModel {
   factory _LightUserModel({
     final String id,
-    final String displayName,
-    final String jobTitle,
-    final String? profilePhoto,
+    required final String? departmentId,
   }) = _$LightUserModelImpl;
 
   factory _LightUserModel.fromJson(Map<String, dynamic> json) =
@@ -1025,11 +965,7 @@ abstract class _LightUserModel implements LightUserModel {
   @override
   String get id;
   @override
-  String get displayName;
-  @override
-  String get jobTitle;
-  @override
-  String? get profilePhoto;
+  String? get departmentId;
 
   /// Create a copy of LightUserModel
   /// with the given fields replaced by the non-null parameter values.

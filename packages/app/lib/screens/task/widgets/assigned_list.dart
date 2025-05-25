@@ -8,23 +8,35 @@ class AssignedList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: ListView.builder(
-        itemCount: assignedTasks.docs.length,
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        physics: const NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.zero,
-        itemBuilder: (context, index) {
-          final userQuerySnapshot = assignedTasks.docs[index];
-          final user = userQuerySnapshot.data().user!;
-          return Align(
-            widthFactor: 0.5,
-            child: UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 10),
-          );
-        },
-      ),
+    return UsersSelector(
+      builder: (context, users) {
+        return SizedBox(
+          height: height,
+          child: ListView.builder(
+            itemCount: assignedTasks.docs.length,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) {
+              final assignedTask = assignedTasks.docs[index].data();
+              assignedTask.userModel ??= users.firstWhere(
+                (e) => e.id == assignedTask.user?.id,
+                orElse: () => UserModel(),
+              );
+              final user = assignedTask.userModel;
+              return Align(
+                widthFactor: 0.5,
+                child: UserPhoto(
+                  url: user?.profilePhoto,
+                  displayName: user?.displayName ?? "",
+                  size: 10,
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

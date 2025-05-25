@@ -16,8 +16,7 @@ SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
 LightUserModel get kCurrentLightUser => LightUserModel(
   id: MySharedPreferences.user!.id!,
-  displayName: MySharedPreferences.user!.displayName,
-  profilePhoto: MySharedPreferences.user!.profilePhoto,
+  departmentId: MySharedPreferences.user!.departmentId!,
 );
 bool get kIsAdmin => MySharedPreferences.user?.role == RoleEnum.admin.value;
 bool get kIsEmployee => MySharedPreferences.user?.role == RoleEnum.employee.value;

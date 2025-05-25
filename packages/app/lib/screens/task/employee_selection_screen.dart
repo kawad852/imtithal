@@ -55,12 +55,7 @@ class _EmployeeSelectionScreenState extends State<EmployeeSelectionScreen> {
       callBack: () async {
         final batch = kFirebaseInstant.batch();
         for (var e in _selectedUsers) {
-          _task.user = LightUserModel(
-            id: e.id!,
-            displayName: e.displayName,
-            profilePhoto: e.profilePhoto,
-            jobTitle: e.jobTitle,
-          );
+          _task.user = LightUserModel(id: e.id!, departmentId: e.departmentId);
           final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
           final assignedTaskDocRef = kFirebaseInstant.users
               .doc(e.id)

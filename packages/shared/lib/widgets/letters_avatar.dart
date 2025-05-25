@@ -13,7 +13,7 @@ class LettersAvatar extends StatelessWidget {
       backgroundColor: context.colorPalette.black252,
       foregroundColor: context.colorScheme.surface,
       radius: radius,
-      child: Text(displayName[0]),
+      child: Text(displayName.isNotEmpty ? displayName[0] : ""),
     );
   }
 }

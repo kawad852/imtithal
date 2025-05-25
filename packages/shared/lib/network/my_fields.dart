@@ -38,5 +38,5 @@ class MyFields {
   static const String inCompletedTasksCount = 'inCompletedTasksCount';
   static const String markedAsLate = 'markedAsLate';
   static const String deliveryDate = 'deliveryDate';
-  static const String departmentId = 'departmentId';
+  static const String user_departmentId = 'user.departmentId';
 }

@@ -93,38 +93,50 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
                   ),
                 ),
               if (!_isGeneralViolation)
-                Row(
-                  children: [
-                    UserPhoto(url: _user?.profilePhoto, displayName: _user!.displayName, size: 20),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            _user!.jobTitle,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: context.colorPalette.grey8B8,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                            ),
+                UsersSelector(
+                  builder: (context, users) {
+                    _task!.userModel ??= users.firstWhere(
+                      (e) => e.id == _task!.user?.id,
+                      orElse: () => UserModel(),
+                    );
+                    return Row(
+                      children: [
+                        UserPhoto(
+                          url: _task!.userModel?.profilePhoto,
+                          displayName: _task?.userModel?.displayName ?? '',
+                          size: 20,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                _task?.userModel?.jobTitle ?? '',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: context.colorPalette.grey8B8,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                _task?.userModel?.displayName ?? '',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: context.colorPalette.black252,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 4),
-                          Text(
-                            _user!.displayName,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: context.colorPalette.black252,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                        ),
+                      ],
+                    );
+                  },
                 ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),

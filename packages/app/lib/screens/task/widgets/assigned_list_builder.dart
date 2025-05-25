@@ -25,15 +25,19 @@ class _AssignedListBuilderState extends State<AssignedListBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return ImpededStreamBuilder(
-      stream: _query,
-      onError: (error) => const SizedBox.shrink(),
-      onLoading: () => const SizedBox.shrink(),
-      onComplete: (context, snapshot) {
-        final assignedTasks = snapshot.data!;
-        return Offstage(
-          offstage: assignedTasks.docs.isEmpty,
-          child: AssignedList(assignedTasks: assignedTasks),
+    return UsersSelector(
+      builder: (context, users) {
+        return ImpededStreamBuilder(
+          stream: _query,
+          onError: (error) => const SizedBox.shrink(),
+          onLoading: () => const SizedBox.shrink(),
+          onComplete: (context, snapshot) {
+            final assignedTasks = snapshot.data!;
+            return Offstage(
+              offstage: assignedTasks.docs.isEmpty,
+              child: AssignedList(assignedTasks: assignedTasks),
+            );
+          },
         );
       },
     );

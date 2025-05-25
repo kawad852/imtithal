@@ -77,6 +77,10 @@ mixin _$TaskModel {
       throw _privateConstructorUsedError;
   String get createdById => throw _privateConstructorUsedError;
   set createdById(String value) => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  UserModel? get userModel => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  set userModel(UserModel? value) => throw _privateConstructorUsedError;
 
   /// Serializes this TaskModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -119,10 +123,12 @@ abstract class $TaskModelCopyWith<$Res> {
     int totalAssignedUsers,
     LightViolationModel? violation,
     String createdById,
+    @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   });
 
   $LightUserModelCopyWith<$Res>? get user;
   $LightViolationModelCopyWith<$Res>? get violation;
+  $UserModelCopyWith<$Res>? get userModel;
 }
 
 /// @nodoc
@@ -165,6 +171,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
     Object? createdById = null,
+    Object? userModel = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -293,6 +300,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.createdById
                     : createdById // ignore: cast_nullable_to_non_nullable
                         as String,
+            userModel:
+                freezed == userModel
+                    ? _value.userModel
+                    : userModel // ignore: cast_nullable_to_non_nullable
+                        as UserModel?,
           )
           as $Val,
     );
@@ -323,6 +335,20 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
 
     return $LightViolationModelCopyWith<$Res>(_value.violation!, (value) {
       return _then(_value.copyWith(violation: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TaskModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get userModel {
+    if (_value.userModel == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.userModel!, (value) {
+      return _then(_value.copyWith(userModel: value) as $Val);
     });
   }
 }
@@ -362,12 +388,15 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     int totalAssignedUsers,
     LightViolationModel? violation,
     String createdById,
+    @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   });
 
   @override
   $LightUserModelCopyWith<$Res>? get user;
   @override
   $LightViolationModelCopyWith<$Res>? get violation;
+  @override
+  $UserModelCopyWith<$Res>? get userModel;
 }
 
 /// @nodoc
@@ -409,6 +438,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
     Object? createdById = null,
+    Object? userModel = freezed,
   }) {
     return _then(
       _$TaskModelImpl(
@@ -537,6 +567,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.createdById
                 : createdById // ignore: cast_nullable_to_non_nullable
                     as String,
+        userModel:
+            freezed == userModel
+                ? _value.userModel
+                : userModel // ignore: cast_nullable_to_non_nullable
+                    as UserModel?,
       ),
     );
   }
@@ -572,6 +607,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.totalAssignedUsers = 0,
     this.violation,
     required this.createdById,
+    @JsonKey(includeFromJson: false, includeToJson: false) this.userModel,
   }) : super._();
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -645,10 +681,13 @@ class _$TaskModelImpl extends _TaskModel {
   LightViolationModel? violation;
   @override
   String createdById;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  UserModel? userModel;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, assignedUserIds: $assignedUserIds, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, id: $id, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, assignedUserIds: $assignedUserIds, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById, userModel: $userModel)';
   }
 
   /// Create a copy of TaskModel
@@ -692,6 +731,7 @@ abstract class _TaskModel extends TaskModel {
     int totalAssignedUsers,
     LightViolationModel? violation,
     required String createdById,
+    @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   }) = _$TaskModelImpl;
   _TaskModel._() : super._();
 
@@ -777,6 +817,11 @@ abstract class _TaskModel extends TaskModel {
   @override
   String get createdById;
   set createdById(String value);
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  UserModel? get userModel;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  set userModel(UserModel? value);
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.
