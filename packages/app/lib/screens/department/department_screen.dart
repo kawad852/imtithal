@@ -33,48 +33,62 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
       onComplete: (context, snapshot) {
         final department = snapshot.data!;
         return Scaffold(
-          appBar: AppBar(
-            backgroundColor: context.colorPalette.black252,
-            surfaceTintColor: context.colorPalette.black252,
-            leading: CustomBack(color: context.colorPalette.white),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: CustomSvg(MyIcons.calendarSearch, color: context.colorPalette.white),
-              ),
-            ],
-            bottom: const PreferredSize(
-              preferredSize: Size.fromHeight(365),
-              child: DepartmentHeader(),
-            ),
-          ),
-          body: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      context.appLocalization.departmentEmployees,
-                      style: TextStyle(
-                        color: context.colorPalette.primary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
+          body: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                backgroundColor: context.colorPalette.black252,
+                surfaceTintColor: context.colorPalette.black252,
+                expandedHeight: 425,
+                pinned: true,
+                leading: CustomBack(color: context.colorScheme.surface),
+                flexibleSpace: const FlexibleSpaceBar(
+                  background: SafeArea(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: kToolbarHeight),
+                      child: DepartmentHeader(),
                     ),
                   ),
-                  const CustomSvg(MyIcons.filter),
+                ),
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: CustomSvg(MyIcons.calendarSearch, color: context.colorPalette.white),
+                  ),
                 ],
               ),
-              ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(height: 10),
-                itemCount: 20,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                itemBuilder: (context, index) {
-                  return const EmployeeCard();
-                },
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                sliver: SliverMainAxisGroup(
+                  slivers: [
+                    PinnedHeaderSliver(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                context.appLocalization.departmentEmployees,
+                                style: TextStyle(
+                                  color: context.colorPalette.primary,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            const CustomSvg(MyIcons.filter),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SliverList.separated(
+                      separatorBuilder: (context, index) => const SizedBox(height: 10),
+                      itemCount: 20,
+                      itemBuilder: (context, index) {
+                        return const EmployeeCard();
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
