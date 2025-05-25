@@ -13,6 +13,7 @@ class _AppNavBarState extends State<AppNavBar> {
   late PageController _pageController;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   PersistentBottomSheetController? controller;
+  final cloudMessagingService = CloudMessagingService();
 
   final items = [MyIcons.home, MyIcons.calendar, MyIcons.add, MyIcons.building, MyIcons.profile];
 
@@ -53,6 +54,8 @@ class _AppNavBarState extends State<AppNavBar> {
   void initState() {
     super.initState();
     _pageController = PageController();
+    cloudMessagingService.requestPermission(context);
+    context.userProvider.updateDeviceToken(context);
   }
 
   @override

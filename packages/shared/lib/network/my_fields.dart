@@ -39,4 +39,5 @@ class MyFields {
   static const String markedAsLate = 'markedAsLate';
   static const String deliveryDate = 'deliveryDate';
   static const String user_departmentId = 'user.departmentId';
+  static const String unReadNotificationsCount = 'unReadNotificationsCount';
 }

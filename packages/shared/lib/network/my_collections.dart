@@ -23,4 +23,5 @@ class MyCollections {
   static const String violations = 'violations';
   static const String companies = 'companies';
   static const String departments = 'departments';
+  static const String notifications = 'notifications';
 }
