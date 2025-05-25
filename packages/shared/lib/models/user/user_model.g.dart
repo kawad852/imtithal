@@ -33,6 +33,8 @@ _$UserModelImpl _$$UserModelImplFromJson(
   completedTasksCount: (json['completedTasksCount'] as num?)?.toInt() ?? 0,
   lateTasksCount: (json['lateTasksCount'] as num?)?.toInt() ?? 0,
   penaltyTasksCount: (json['penaltyTasksCount'] as num?)?.toInt() ?? 0,
+  unReadNotificationsCount:
+      (json['unReadNotificationsCount'] as num?)?.toInt() ?? 0,
   createdById: json['createdById'] as String?,
   phoneCountryCode: json['phoneCountryCode'] as String?,
   phoneNum: json['phoneNum'] as String?,
@@ -64,6 +66,7 @@ Map<String, dynamic> _$$UserModelImplToJson(
   'completedTasksCount': instance.completedTasksCount,
   'lateTasksCount': instance.lateTasksCount,
   'penaltyTasksCount': instance.penaltyTasksCount,
+  'unReadNotificationsCount': instance.unReadNotificationsCount,
   'createdById': instance.createdById,
   'phoneCountryCode': instance.phoneCountryCode,
   'phoneNum': instance.phoneNum,

@@ -1,6 +1,7 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
+import '../notifications/notifications_screen.dart';
 import '../task/widgets/task_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,11 +58,20 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             actions: [
-              IconButton(
-                onPressed: () {
-                  context.push((context) => const NotificationScreen());
+              UserSelector(
+                builder: (context, user) {
+                  final count = user.unReadNotificationsCount;
+                  return IconButton(
+                    onPressed: () {
+                      context.push((context) => const NotificationsScreen());
+                    },
+                    icon: Badge(
+                      isLabelVisible: count > 0,
+                      label: Text("$count"),
+                      child: const CustomSvg(MyIcons.notification),
+                    ),
+                  );
                 },
-                icon: const CustomSvg(MyIcons.notification),
               ),
             ],
           ),

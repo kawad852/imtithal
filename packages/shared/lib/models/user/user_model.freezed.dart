@@ -69,6 +69,8 @@ mixin _$UserModel {
   set lateTasksCount(int value) => throw _privateConstructorUsedError;
   int get penaltyTasksCount => throw _privateConstructorUsedError;
   set penaltyTasksCount(int value) => throw _privateConstructorUsedError;
+  int get unReadNotificationsCount => throw _privateConstructorUsedError;
+  set unReadNotificationsCount(int value) => throw _privateConstructorUsedError;
   String? get createdById => throw _privateConstructorUsedError;
   set createdById(String? value) => throw _privateConstructorUsedError;
   String? get phoneCountryCode => throw _privateConstructorUsedError;
@@ -120,6 +122,7 @@ abstract class $UserModelCopyWith<$Res> {
     int completedTasksCount,
     int lateTasksCount,
     int penaltyTasksCount,
+    int unReadNotificationsCount,
     String? createdById,
     String? phoneCountryCode,
     String? phoneNum,
@@ -165,6 +168,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? completedTasksCount = null,
     Object? lateTasksCount = null,
     Object? penaltyTasksCount = null,
+    Object? unReadNotificationsCount = null,
     Object? createdById = freezed,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
@@ -283,6 +287,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.penaltyTasksCount
                     : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
                         as int,
+            unReadNotificationsCount:
+                null == unReadNotificationsCount
+                    ? _value.unReadNotificationsCount
+                    : unReadNotificationsCount // ignore: cast_nullable_to_non_nullable
+                        as int,
             createdById:
                 freezed == createdById
                     ? _value.createdById
@@ -346,6 +355,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     int completedTasksCount,
     int lateTasksCount,
     int penaltyTasksCount,
+    int unReadNotificationsCount,
     String? createdById,
     String? phoneCountryCode,
     String? phoneNum,
@@ -390,6 +400,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? completedTasksCount = null,
     Object? lateTasksCount = null,
     Object? penaltyTasksCount = null,
+    Object? unReadNotificationsCount = null,
     Object? createdById = freezed,
     Object? phoneCountryCode = freezed,
     Object? phoneNum = freezed,
@@ -508,6 +519,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.penaltyTasksCount
                 : penaltyTasksCount // ignore: cast_nullable_to_non_nullable
                     as int,
+        unReadNotificationsCount:
+            null == unReadNotificationsCount
+                ? _value.unReadNotificationsCount
+                : unReadNotificationsCount // ignore: cast_nullable_to_non_nullable
+                    as int,
         createdById:
             freezed == createdById
                 ? _value.createdById
@@ -565,6 +581,7 @@ class _$UserModelImpl implements _UserModel {
     this.completedTasksCount = 0,
     this.lateTasksCount = 0,
     this.penaltyTasksCount = 0,
+    this.unReadNotificationsCount = 0,
     this.createdById,
     this.phoneCountryCode,
     this.phoneNum,
@@ -637,6 +654,9 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   int penaltyTasksCount;
   @override
+  @JsonKey()
+  int unReadNotificationsCount;
+  @override
   String? createdById;
   @override
   String? phoneCountryCode;
@@ -651,7 +671,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, username: $username, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected)';
+    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, username: $username, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, unReadNotificationsCount: $unReadNotificationsCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected)';
   }
 
   /// Create a copy of UserModel
@@ -692,6 +712,7 @@ abstract class _UserModel implements UserModel {
     int completedTasksCount,
     int lateTasksCount,
     int penaltyTasksCount,
+    int unReadNotificationsCount,
     String? createdById,
     String? phoneCountryCode,
     String? phoneNum,
@@ -772,6 +793,9 @@ abstract class _UserModel implements UserModel {
   @override
   int get penaltyTasksCount;
   set penaltyTasksCount(int value);
+  @override
+  int get unReadNotificationsCount;
+  set unReadNotificationsCount(int value);
   @override
   String? get createdById;
   set createdById(String? value);

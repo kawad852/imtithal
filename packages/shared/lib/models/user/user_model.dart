@@ -30,6 +30,7 @@ class UserModel with _$UserModel {
     @Default(0) int completedTasksCount,
     @Default(0) int lateTasksCount,
     @Default(0) int penaltyTasksCount,
+    @Default(0) int unReadNotificationsCount,
     String? createdById,
     String? phoneCountryCode,
     String? phoneNum,

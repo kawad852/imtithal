@@ -2,6 +2,7 @@ import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
 import '../models/country/country_model.dart';
+import '../models/notification/notification_model.dart';
 import '../models/promo_code/promo_code_model.dart';
 import '../models/store/store_model.dart';
 
@@ -35,6 +36,14 @@ extension CollectionReferenceExtension on FirebaseFirestore {
       .collection(MyCollections.departments)
       .withConverter<DepartmentModel>(
         fromFirestore: (snapshot, _) => DepartmentModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
+  CollectionReference<NotificationModel> notifications(String parentId) => users
+      .doc(parentId)
+      .collection(MyCollections.notifications)
+      .withConverter<NotificationModel>(
+        fromFirestore: (snapshot, _) => NotificationModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 
