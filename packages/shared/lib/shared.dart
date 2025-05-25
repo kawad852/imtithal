@@ -76,6 +76,7 @@ export 'network/my_fields.dart';
 export 'network/my_queries.dart'; //
 ///Notifications
 export 'notifications/cloud_messaging_service.dart';
+export 'notifications/notification_route_handler.dart';
 export 'notifications/send_notification_service.dart';
 //providers
 export 'providers/app_provider.dart';

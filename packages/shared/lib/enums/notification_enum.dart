@@ -1,6 +1,7 @@
 enum NotificationType {
   emtithal('EMTITHAL'),
-  violation('VIOLATION');
+  violation('VIOLATION'),
+  lateTask('LATE-TASK');
 
   final String value;
 
