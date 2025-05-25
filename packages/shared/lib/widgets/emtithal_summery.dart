@@ -8,6 +8,7 @@ class EmtithalSummery extends StatelessWidget {
   final int completedTasksCount;
   final int lateTasksCount;
   final int violationTasksCount;
+  final bool isLoading;
 
   const EmtithalSummery({
     super.key,
@@ -15,6 +16,7 @@ class EmtithalSummery extends StatelessWidget {
     required this.completedTasksCount,
     required this.lateTasksCount,
     required this.violationTasksCount,
+    this.isLoading = false,
   });
 
   @override
@@ -22,10 +24,23 @@ class EmtithalSummery extends StatelessWidget {
     return Row(
       spacing: 10,
       children: [
-        TaskBubble(status: TaskStatusEnum.pending, value: inCompletedTasksCount),
-        TaskBubble(status: TaskStatusEnum.completed, value: completedTasksCount),
-        TaskBubble(status: TaskStatusEnum.pending, value: lateTasksCount, late: true),
-        TaskBubble(status: TaskStatusEnum.violated, value: violationTasksCount),
+        TaskBubble(
+          status: TaskStatusEnum.pending,
+          value: isLoading ? '-' : "$inCompletedTasksCount",
+        ),
+        TaskBubble(
+          status: TaskStatusEnum.completed,
+          value: isLoading ? '-' : "$completedTasksCount",
+        ),
+        TaskBubble(
+          status: TaskStatusEnum.pending,
+          value: isLoading ? '-' : "$lateTasksCount",
+          late: true,
+        ),
+        TaskBubble(
+          status: TaskStatusEnum.violated,
+          value: isLoading ? '-' : "$violationTasksCount",
+        ),
       ],
     );
   }

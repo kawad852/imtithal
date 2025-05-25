@@ -2,7 +2,16 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart' as sv;
 import 'package:shared/shared.dart';
 
 class DepartmentHeader extends StatelessWidget {
-  const DepartmentHeader({super.key});
+  final DepartmentModel department;
+  final UserModel? manager;
+  final List<UserModel> users;
+
+  const DepartmentHeader({
+    super.key,
+    required this.department,
+    required this.users,
+    required this.manager,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +27,7 @@ class DepartmentHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "${context.appLocalization.department} المستشارين",
+            "${context.appLocalization.department} ${department.name}",
             style: TextStyle(
               color: context.colorPalette.white,
               fontSize: 16,
@@ -29,7 +38,7 @@ class DepartmentHeader extends StatelessWidget {
           Row(
             children: [
               Text(
-                "12 ${context.appLocalization.employee} , ${context.appLocalization.responsibleManager}: ",
+                "${users.length} ${context.appLocalization.employee} , ${context.appLocalization.responsibleManager}: ",
                 style: TextStyle(
                   color: context.colorPalette.white,
                   fontSize: 14,
@@ -38,7 +47,7 @@ class DepartmentHeader extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  "محمد احمد",
+                  manager?.displayName ?? "-",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.primary,
@@ -98,14 +107,9 @@ class DepartmentHeader extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: EmtithalSummery(
-              inCompletedTasksCount: 0,
-              completedTasksCount: 0,
-              lateTasksCount: 0,
-              violationTasksCount: 0,
-            ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: EmtithalSummeryBuilder(departmentId: department.id),
           ),
           TextEditor(
             onChanged: (value) {},

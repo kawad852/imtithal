@@ -74,9 +74,7 @@ export 'network/doc_reference_extension.dart';
 export 'network/fire_query_extension.dart';
 export 'network/my_collections.dart';
 export 'network/my_fields.dart';
-export 'network/my_queries.dart';
-
-///
+export 'network/my_queries.dart'; //
 ///Notifications
 export 'notifications/cloud_messaging_service.dart';
 //providers
@@ -99,6 +97,7 @@ export 'widgets/custom_back.dart';
 export 'widgets/custom_firestore_query_builder.dart';
 export 'widgets/custom_svg.dart';
 export 'widgets/debug_button.dart';
+export 'widgets/department_users_builder.dart';
 export 'widgets/editors/base_editor.dart';
 export 'widgets/editors/date_picker_editor.dart';
 export 'widgets/editors/day_time_editor.dart';

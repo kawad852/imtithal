@@ -1,7 +1,9 @@
 import 'package:shared/shared.dart';
 
 class EmtithalSummeryBuilder extends StatefulWidget {
-  const EmtithalSummeryBuilder({super.key});
+  final String? departmentId;
+
+  const EmtithalSummeryBuilder({super.key, this.departmentId});
 
   @override
   State<EmtithalSummeryBuilder> createState() => _EmtithalSummeryBuilderState();
@@ -10,13 +12,18 @@ class EmtithalSummeryBuilder extends StatefulWidget {
 class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
   late Future<List<dynamic>> _futures;
 
+  String? get _departmentId => widget.departmentId;
+
   Filter _getFilter(Filter filter) {
     final startDate = DateTime(kNowDate.year, kNowDate.month, kNowDate.day);
     final endDate = startDate.add(const Duration(days: 1));
     return Filter.and(
       Filter(MyFields.deliveryDate, isGreaterThanOrEqualTo: Timestamp.fromDate(startDate)),
       Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate)),
-      Filter(MyFields.companyId, isEqualTo: kCompanyId),
+      Filter(
+        _departmentId != null ? MyFields.departmentId : MyFields.companyId,
+        isEqualTo: _departmentId ?? kCompanyId,
+      ),
       filter,
     );
   }
@@ -61,7 +68,9 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
             completedTasksCount: 0,
             lateTasksCount: 0,
             violationTasksCount: 0,
+            isLoading: true,
           ),
+      onError: (error) => const SizedBox.shrink(),
       onComplete: (context, snapshot) {
         final inCompletedTasksCount = snapshot.data![0] as int;
         final completedTasksCount = snapshot.data![1] as int;
