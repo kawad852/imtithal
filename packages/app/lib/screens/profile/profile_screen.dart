@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         children: [
-          const UserCard(),
+          const UserBubble(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(

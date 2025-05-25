@@ -18,9 +18,7 @@ export 'package:loading_animation_widget/loading_animation_widget.dart';
 export 'package:provider/provider.dart';
 export 'package:rxdart/rxdart.dart';
 export 'package:shared_preferences/shared_preferences.dart';
-export 'package:timelines_plus/timelines_plus.dart';
-
-///l10n
+export 'package:timelines_plus/timelines_plus.dart'; //l10n
 // export 'package:flutter_gen/gen_l10n/app_localizations.dart';
 export 'package:translations/app_localizations.dart';
 
@@ -97,6 +95,7 @@ export 'widgets/custom_back.dart';
 export 'widgets/custom_firestore_query_builder.dart';
 export 'widgets/custom_svg.dart';
 export 'widgets/debug_button.dart';
+export 'widgets/department_builder.dart';
 export 'widgets/department_users_builder.dart';
 export 'widgets/editors/base_editor.dart';
 export 'widgets/editors/date_picker_editor.dart';

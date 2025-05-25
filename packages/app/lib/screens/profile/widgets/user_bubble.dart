@@ -1,7 +1,7 @@
 import 'package:shared/shared.dart';
 
-class UserCard extends StatelessWidget {
-  const UserCard({super.key});
+class UserBubble extends StatelessWidget {
+  const UserBubble({super.key});
 
   @override
   Widget build(BuildContext context) {

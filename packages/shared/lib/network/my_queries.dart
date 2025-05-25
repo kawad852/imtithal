@@ -9,6 +9,8 @@ extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<TaskModel> get tasks => collection(MyCollections.tasks).taskConvertor;
   CollectionReference<TaskModel> get assignedTasks =>
       collectionGroup(MyCollections.assignedTasks).taskConvertor;
+  Query<TaskModel> get assignedTasksQuery =>
+      collectionGroup(MyCollections.assignedTasks).taskConvertor;
 
   CollectionReference<UserModel> get users => collection(MyCollections.users).userConvertor;
 

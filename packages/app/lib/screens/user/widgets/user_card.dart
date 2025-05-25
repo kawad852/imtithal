@@ -1,16 +1,16 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
-class EmployeeCard extends StatelessWidget {
+class UserCard extends StatelessWidget {
   final UserModel user;
 
-  const EmployeeCard({super.key, required this.user});
+  const UserCard({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push((context) => const EmployeeScreen());
+        context.push((context) => UserScreen(user: user));
       },
       child: Container(
         width: double.infinity,

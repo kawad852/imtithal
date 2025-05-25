@@ -1,8 +1,9 @@
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as sv;
 import 'package:shared/shared.dart';
 
-class EmployeeHeader extends StatelessWidget {
-  const EmployeeHeader({super.key});
+class UserHeader extends StatelessWidget {
+  final UserModel user;
+  const UserHeader({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class EmployeeHeader extends StatelessWidget {
         children: [
           Row(
             children: [
-              const BaseNetworkImage("", width: 70, height: 70, shape: BoxShape.circle),
+              UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 70),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
@@ -27,7 +28,7 @@ class EmployeeHeader extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "عبدالله محمد",
+                      user.displayName,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: context.colorPalette.primary,
@@ -37,14 +38,19 @@ class EmployeeHeader extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Text(
-                        "مسؤول العلاقات العامة - ${context.appLocalization.department} المستشارين",
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: context.colorPalette.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      child: DepartmentUserBuilder(
+                        id: user.departmentId!,
+                        builder: (context, department) {
+                          return Text(
+                            "${user.jobTitle} - ${department?.name ?? ''}",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: context.colorPalette.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          );
+                        },
                       ),
                     ),
                     Text(
@@ -91,12 +97,7 @@ class EmployeeHeader extends StatelessWidget {
               ],
             ),
           ),
-          const EmtithalSummery(
-            inCompletedTasksCount: 0,
-            completedTasksCount: 0,
-            lateTasksCount: 0,
-            violationTasksCount: 0,
-          ),
+          EmtithalSummeryBuilder(userId: user.id),
         ],
       ),
     );

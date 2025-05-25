@@ -92,7 +92,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                           itemCount: users.length,
                           itemBuilder: (context, index) {
                             final user = users[index];
-                            return EmployeeCard(user: user);
+                            return UserCard(user: user);
                           },
                         ),
                       ],

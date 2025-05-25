@@ -1,4 +1,5 @@
-import 'package:intl/intl.dart' as intl;
+import 'package:app/screens/calender/widgets/calendar_date_text.dart';
+import 'package:app/screens/calender/widgets/calendar_icon_button.dart';
 import 'package:shared/shared.dart';
 
 import '../task/widgets/task_card.dart';
@@ -12,23 +13,6 @@ class CalenderScreen extends StatefulWidget {
 
 class _CalenderScreenState extends State<CalenderScreen> {
   late DateTime _selectedDate;
-
-  Query<TaskModel> get _getQuery {
-    late Query<TaskModel> query;
-    final startDate = DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day);
-    final endDate = startDate.add(const Duration(days: 1));
-    final filter = Filter.and(
-      Filter(MyFields.deliveryDate, isGreaterThanOrEqualTo: Timestamp.fromDate(startDate)),
-      Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate)),
-      Filter(MyFields.companyId, isEqualTo: kCompanyId),
-    );
-    if (kIsEmployee) {
-      return kFirebaseInstant.assignedTasks.where(filter);
-    } else {
-      query = kFirebaseInstant.tasks.where(filter);
-    }
-    return query.orderByDeliveryDateDesc;
-  }
 
   @override
   void initState() {
@@ -50,16 +34,13 @@ class _CalenderScreenState extends State<CalenderScreen> {
         ),
         actions: [
           IconButton(onPressed: () {}, icon: const CustomSvg(MyIcons.search)),
-          DatePickerEditor(
+          CalendarIconButton(
             value: _selectedDate,
             minDateTime: kNowDate,
             onChanged: (value) {
               setState(() {
                 _selectedDate = value;
               });
-            },
-            builder: (context, onTap) {
-              return IconButton(onPressed: onTap, icon: const CustomSvg(MyIcons.calendarSearch));
             },
           ),
         ],
@@ -70,14 +51,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
           SizedBox(width: context.mediaQuery.width),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Text(
-              intl.DateFormat.yMMM(context.languageCode).format(_selectedDate),
-              style: TextStyle(
-                color: context.colorPalette.grey8B8,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            child: CalendarDateText(date: _selectedDate),
           ),
           MonthCalender(
             date: _selectedDate,
@@ -90,7 +64,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
           Expanded(
             child: CustomFirestoreQueryBuilder(
               key: ValueKey(_selectedDate),
-              query: _getQuery,
+              query: context.taskProvider.getAssignedTasksFromDate(_selectedDate),
               onComplete: (context, snapshot) {
                 return ListView.separated(
                   separatorBuilder: (context, index) => const SizedBox(height: 10),

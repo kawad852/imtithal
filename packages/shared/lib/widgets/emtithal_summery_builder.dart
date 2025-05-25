@@ -2,8 +2,9 @@ import 'package:shared/shared.dart';
 
 class EmtithalSummeryBuilder extends StatefulWidget {
   final String? departmentId;
+  final String? userId;
 
-  const EmtithalSummeryBuilder({super.key, this.departmentId});
+  const EmtithalSummeryBuilder({super.key, this.departmentId, this.userId});
 
   @override
   State<EmtithalSummeryBuilder> createState() => _EmtithalSummeryBuilderState();
@@ -17,20 +18,29 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
   Filter _getFilter(Filter filter) {
     final startDate = DateTime(kNowDate.year, kNowDate.month, kNowDate.day);
     final endDate = startDate.add(const Duration(days: 1));
-    return Filter.and(
-      Filter(MyFields.deliveryDate, isGreaterThanOrEqualTo: Timestamp.fromDate(startDate)),
-      Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate)),
-      Filter(
-        _departmentId != null ? MyFields.user_departmentId : MyFields.companyId,
-        isEqualTo: _departmentId ?? kCompanyId,
-      ),
-      filter,
+    final startDateFilter = Filter(
+      MyFields.deliveryDate,
+      isGreaterThanOrEqualTo: Timestamp.fromDate(startDate),
     );
+    final endDateFilter = Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate));
+    if (widget.userId != null) {
+      return Filter.and(startDateFilter, endDateFilter, filter);
+    } else if (widget.departmentId != null) {
+      final departmentIdFilter = Filter(MyFields.user_departmentId, isEqualTo: _departmentId);
+      return Filter.and(startDateFilter, endDateFilter, departmentIdFilter, filter);
+    } else {
+      final companyIdFilter = Filter(MyFields.companyId, isEqualTo: kCompanyId);
+      return Filter.and(startDateFilter, endDateFilter, companyIdFilter, filter);
+    }
   }
 
   Future<int> _fetch(String status, {bool late = false}) {
-    Query<TaskModel> docRef =
-        kFirebaseInstant.collectionGroup(MyCollections.assignedTasks).taskConvertor;
+    late Query<TaskModel> docRef;
+    if (widget.userId != null) {
+      docRef = kFirebaseInstant.userAssignedTasks(widget.userId!);
+    } else {
+      docRef = kFirebaseInstant.collectionGroup(MyCollections.assignedTasks).taskConvertor;
+    }
     late Query<TaskModel> query;
     if (late) {
       final filter = Filter(MyFields.markedAsLate, isEqualTo: true);

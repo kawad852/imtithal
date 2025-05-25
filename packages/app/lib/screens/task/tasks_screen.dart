@@ -24,7 +24,7 @@ class _TasksScreenState extends State<TasksScreen> {
       filter = Filter.and(Filter(MyFields.status, isEqualTo: widget.status.value), companyIdFilter);
     }
     if (kIsEmployee) {
-      return kFirebaseInstant.assignedTasks.where(filter);
+      return kFirebaseInstant.assignedTasksQuery.where(filter);
     } else {
       query = kFirebaseInstant.tasks.where(filter);
     }

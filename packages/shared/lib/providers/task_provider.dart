@@ -14,7 +14,10 @@ class TaskProvider extends ChangeNotifier {
   }
 
   Query<TaskModel> getAssignedTasksQuery(String id) {
-    return kFirebaseInstant.assignedTasks.orderByCreatedAtDesc.where(MyFields.id, isEqualTo: id);
+    return kFirebaseInstant.assignedTasksQuery.orderByCreatedAtDesc.where(
+      MyFields.id,
+      isEqualTo: id,
+    );
   }
 
   CollectionReference<TaskModel> assignedTaskQuery(String userId) =>
@@ -26,5 +29,22 @@ class TaskProvider extends ChangeNotifier {
     } else {
       return kFirebaseInstant.tasks.orderByCreatedAtDesc.whereMyCompany;
     }
+  }
+
+  Query<TaskModel> getAssignedTasksFromDate(DateTime date) {
+    late Query<TaskModel> query;
+    final startDate = DateTime(date.year, date.month, date.day);
+    final endDate = startDate.add(const Duration(days: 1));
+    final filter = Filter.and(
+      Filter(MyFields.deliveryDate, isGreaterThanOrEqualTo: Timestamp.fromDate(startDate)),
+      Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate)),
+      Filter(MyFields.companyId, isEqualTo: kCompanyId),
+    );
+    if (kIsEmployee) {
+      return kFirebaseInstant.assignedTasksQuery.where(filter);
+    } else {
+      query = kFirebaseInstant.tasks.where(filter);
+    }
+    return query.orderByDeliveryDateDesc;
   }
 }
