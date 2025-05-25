@@ -16,7 +16,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
   final _formKey = GlobalKey<FormState>();
 
   TaskModel? get _task => widget.task;
-  LightUserModel? get _user => widget.task?.user;
+  UserModel? get _user => widget.task?.userModel;
   bool get _isGeneralViolation => _task == null;
 
   Future<void> _onSubmit(BuildContext context) async {
@@ -40,6 +40,20 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
             violationDocRef.set(_violation);
             await batch.commit();
             if (context.mounted) {
+              SendNotificationService.sendToUser(
+                context,
+                userId: _user!.id!,
+                deviceToken: _user!.deviceToken!,
+                languageCode: _user!.languageCode,
+                id: _violation.id,
+                type: NotificationType.violation.value,
+                titleEn: "Task Violation",
+                titleAr: "تم تسجيل مخالفة على المهمة",
+                bodyEn:
+                    "A violation has been recorded for the assigned task. Please review and take corrective action.",
+                bodyAr:
+                    "تم تسجيل مخالفة على المهمة الموكلة إليك. يرجى المراجعة واتخاذ الإجراءات اللازمة",
+              );
               Navigator.pop(context);
               Fluttertoast.showToast(msg: context.appLocalization.savedSuccessfully);
             }
