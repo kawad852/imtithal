@@ -25,7 +25,7 @@ _$UserModelImpl _$$UserModelImplFromJson(
   address: json['address'] as String? ?? '',
   jobTitle: json['jobTitle'] as String? ?? '',
   companyId: json['companyId'] as String? ?? '',
-  departmentId: json['departmentId'] as String? ?? '',
+  departmentId: json['departmentId'] as String?,
   taskIds:
       (json['taskIds'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],

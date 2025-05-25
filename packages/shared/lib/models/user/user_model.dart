@@ -24,7 +24,7 @@ class UserModel with _$UserModel {
     @Default('') String address,
     @Default('') String jobTitle,
     @Default('') String companyId,
-    @Default('') String departmentId,
+    String? departmentId,
     @Default([]) List<String> taskIds,
     @Default(0) int inCompletedTasksCount,
     @Default(0) int completedTasksCount,

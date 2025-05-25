@@ -110,7 +110,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: AppBar(title: Text(context.appLocalization.addEmployee))),
+      appBar: AppBar(title: Text(context.appLocalization.addEmployee)),
       bottomNavigationBar: BottomButton(
         text: context.appLocalization.add,
         onPressed: () {
@@ -182,23 +182,10 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     ),
                     Expanded(
                       child: TitledTextField(
-                        title: context.appLocalization.department,
-                        child: DepartmentsSelector(
-                          builder: (context, departments) {
-                            return DropDownEditor(
-                              value: _user.departmentId.isEmpty ? null : _user.departmentId,
-                              onChanged: (value) {
-                                setState(() {
-                                  _user.departmentId = value!;
-                                });
-                              },
-                              title: "",
-                              items:
-                                  departments.map((e) {
-                                    return DropdownMenuItem(value: e.id, child: Text(e.name));
-                                  }).toList(),
-                            );
-                          },
+                        title: context.appLocalization.jobTitle,
+                        child: TextEditor(
+                          initialValue: _user.jobTitle,
+                          onChanged: (value) => _user.jobTitle = value!,
                         ),
                       ),
                     ),
@@ -207,17 +194,8 @@ class _UserInputScreenState extends State<UserInputScreen> {
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 10,
                 children: [
-                  Expanded(
-                    child: TitledTextField(
-                      title: context.appLocalization.jobTitle,
-                      child: TextEditor(
-                        initialValue: _user.jobTitle,
-                        onChanged: (value) => _user.jobTitle = value!,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
                   Expanded(
                     child: TitledTextField(
                       title: context.appLocalization.role,
@@ -239,6 +217,29 @@ class _UserInputScreenState extends State<UserInputScreen> {
                       ),
                     ),
                   ),
+                  if (_user.role != RoleEnum.admin.value)
+                    Expanded(
+                      child: TitledTextField(
+                        title: context.appLocalization.department,
+                        child: DepartmentsSelector(
+                          builder: (context, departments) {
+                            return DropDownEditor(
+                              value: _user.departmentId,
+                              onChanged: (value) {
+                                setState(() {
+                                  _user.departmentId = value!;
+                                });
+                              },
+                              title: "",
+                              items:
+                                  departments.map((e) {
+                                    return DropdownMenuItem(value: e.id, child: Text(e.name));
+                                  }).toList(),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                 ],
               ),
               Padding(
@@ -306,58 +307,34 @@ class _UserInputScreenState extends State<UserInputScreen> {
                   ),
                 ),
               ),
-              // Row(
-              //   children: [
-              //     Switch(
-              //       activeColor: context.colorPalette.primary,
-              //       activeTrackColor: context.colorPalette.greyD9D,
-              //       value: _user.canAccessApp,
-              //       onChanged: (value) {
-              //         setState(() {
-              //           _user.canAccessApp = value;
-              //         });
-              //       },
-              //     ),
-              //     const SizedBox(width: 5),
-              //     Text(
-              //       context.appLocalization.activateApplicationAccessPermission,
-              //       style: TextStyle(
-              //         color: context.colorPalette.black001,
-              //         fontSize: 14,
-              //         fontWeight: FontWeight.w500,
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              if (_user.role != RoleEnum.employee.value)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: TitledTextField(
-                          title: context.appLocalization.userName,
-                          child: UsernameEditor(
-                            initialValue: _user.username,
-                            readOnly: widget.user != null,
-                            onChanged: (value) => _user.username = value!,
-                          ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: TitledTextField(
+                        title: context.appLocalization.userName,
+                        child: UsernameEditor(
+                          initialValue: _user.username,
+                          readOnly: widget.user != null,
+                          onChanged: (value) => _user.username = value!,
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: TitledTextField(
-                          title: context.appLocalization.password,
-                          child: PasswordEditor(
-                            initialValue: _user.password,
-                            onChanged: (value) => _user.password = value!,
-                          ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TitledTextField(
+                        title: context.appLocalization.password,
+                        child: PasswordEditor(
+                          initialValue: _user.password,
+                          onChanged: (value) => _user.password = value!,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+              ),
             ],
           ),
         ),

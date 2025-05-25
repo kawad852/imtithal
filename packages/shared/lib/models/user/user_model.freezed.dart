@@ -57,8 +57,8 @@ mixin _$UserModel {
   set jobTitle(String value) => throw _privateConstructorUsedError;
   String get companyId => throw _privateConstructorUsedError;
   set companyId(String value) => throw _privateConstructorUsedError;
-  String get departmentId => throw _privateConstructorUsedError;
-  set departmentId(String value) => throw _privateConstructorUsedError;
+  String? get departmentId => throw _privateConstructorUsedError;
+  set departmentId(String? value) => throw _privateConstructorUsedError;
   List<String> get taskIds => throw _privateConstructorUsedError;
   set taskIds(List<String> value) => throw _privateConstructorUsedError;
   int get inCompletedTasksCount => throw _privateConstructorUsedError;
@@ -114,7 +114,7 @@ abstract class $UserModelCopyWith<$Res> {
     String address,
     String jobTitle,
     String companyId,
-    String departmentId,
+    String? departmentId,
     List<String> taskIds,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -159,7 +159,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? address = null,
     Object? jobTitle = null,
     Object? companyId = null,
-    Object? departmentId = null,
+    Object? departmentId = freezed,
     Object? taskIds = null,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
@@ -254,10 +254,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     : companyId // ignore: cast_nullable_to_non_nullable
                         as String,
             departmentId:
-                null == departmentId
+                freezed == departmentId
                     ? _value.departmentId
                     : departmentId // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             taskIds:
                 null == taskIds
                     ? _value.taskIds
@@ -340,7 +340,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String address,
     String jobTitle,
     String companyId,
-    String departmentId,
+    String? departmentId,
     List<String> taskIds,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -384,7 +384,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? address = null,
     Object? jobTitle = null,
     Object? companyId = null,
-    Object? departmentId = null,
+    Object? departmentId = freezed,
     Object? taskIds = null,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
@@ -479,10 +479,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 : companyId // ignore: cast_nullable_to_non_nullable
                     as String,
         departmentId:
-            null == departmentId
+            freezed == departmentId
                 ? _value.departmentId
                 : departmentId // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         taskIds:
             null == taskIds
                 ? _value.taskIds
@@ -559,7 +559,7 @@ class _$UserModelImpl implements _UserModel {
     this.address = '',
     this.jobTitle = '',
     this.companyId = '',
-    this.departmentId = '',
+    this.departmentId,
     this.taskIds = const [],
     this.inCompletedTasksCount = 0,
     this.completedTasksCount = 0,
@@ -620,8 +620,7 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   String companyId;
   @override
-  @JsonKey()
-  String departmentId;
+  String? departmentId;
   @override
   @JsonKey()
   List<String> taskIds;
@@ -687,7 +686,7 @@ abstract class _UserModel implements UserModel {
     String address,
     String jobTitle,
     String companyId,
-    String departmentId,
+    String? departmentId,
     List<String> taskIds,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -756,8 +755,8 @@ abstract class _UserModel implements UserModel {
   String get companyId;
   set companyId(String value);
   @override
-  String get departmentId;
-  set departmentId(String value);
+  String? get departmentId;
+  set departmentId(String? value);
   @override
   List<String> get taskIds;
   set taskIds(List<String> value);

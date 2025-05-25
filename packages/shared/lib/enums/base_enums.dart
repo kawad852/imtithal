@@ -36,7 +36,7 @@ enum RoleEnum {
       case RoleEnum.emtithalManager:
         return context.appLocalization.manager;
       case RoleEnum.departmentManager:
-        return context.appLocalization.manager;
+        return context.appLocalization.departmentManager;
       case RoleEnum.employee:
         return context.appLocalization.employee;
     }
