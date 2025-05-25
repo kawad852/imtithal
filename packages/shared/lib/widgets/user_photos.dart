@@ -4,24 +4,30 @@ import 'package:shared/widgets/user_photo.dart';
 
 class UserPhotos extends StatelessWidget {
   final List<UserModel> users;
+  final double height;
 
-  const UserPhotos({super.key, required this.users});
+  const UserPhotos({super.key, required this.users, this.height = 20});
 
   @override
   Widget build(BuildContext context) {
+    final list = users.take(5).toList();
     return SizedBox(
-      height: 20,
+      height: height,
       child: ListView.builder(
-        itemCount: users.length,
+        itemCount: list.length,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
-          final user = users[index];
+          final user = list[index];
           return Align(
             widthFactor: 0.5,
-            child: UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 10),
+            child: UserPhoto(
+              url: user.profilePhoto,
+              displayName: user.displayName,
+              size: height / 2,
+            ),
           );
         },
       ),

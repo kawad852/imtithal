@@ -10,8 +10,8 @@ class LettersAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: context.colorScheme.surfaceContainer,
-      foregroundColor: context.colorScheme.onSurface,
+      backgroundColor: context.colorPalette.black252,
+      foregroundColor: context.colorScheme.surface,
       radius: radius,
       child: Text(displayName[0]),
     );
