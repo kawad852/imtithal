@@ -53,7 +53,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
-                  "تقارير المحاميين للعمل الميداني",
+                  task.title,
                   style: TextStyle(
                     color: context.colorPalette.black252,
                     fontSize: 16,

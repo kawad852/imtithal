@@ -61,6 +61,7 @@ class ResponsibleEmployee extends StatelessWidget {
               if (value) {
                 kFirebaseInstant.userAssignedTasks(user.id!).doc(assignedTask.id).update({
                   MyFields.status: TaskStatusEnum.completed.value,
+                  MyFields.points: TaskPoints.imtithal.value,
                 });
                 SendNotificationService.sendToUser(
                   context,

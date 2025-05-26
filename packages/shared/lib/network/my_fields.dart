@@ -40,4 +40,5 @@ class MyFields {
   static const String deliveryDate = 'deliveryDate';
   static const String user_departmentId = 'user.departmentId';
   static const String unReadNotificationsCount = 'unReadNotificationsCount';
+  static const String points = 'points';
 }

@@ -107,3 +107,18 @@ enum ViolationType {
     return '';
   }
 }
+
+enum TaskPoints {
+  imtithal(10),
+  late(5),
+  violated(0);
+
+  final int value;
+
+  const TaskPoints(this.value);
+
+  static double getPercentage({required int count, required int sum}) {
+    final evaluationPercentage = (sum / (count * 10)) * 100;
+    return evaluationPercentage;
+  }
+}

@@ -15,6 +15,7 @@ class TaskModel with _$TaskModel {
     @TimestampSerializer() DateTime? deliveryDate,
     @Default("") String deliveryTime,
     @Default(0) int allowedDurationInMinutes,
+    @Default(0) int points,
     @Default("") String id,
     required String companyId,
     @Default("") String title,

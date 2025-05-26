@@ -63,7 +63,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get youCanRecoverIt => 'You can recover it with simple steps.';
 
   @override
-  String get enterEmailToRecoverPass => 'Please enter your email address to recover your password.';
+  String get enterEmailToRecoverPass =>
+      'Please enter your email address to recover your password.';
 
   @override
   String get home => 'Home';
@@ -162,7 +163,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get privacyPolicy => 'Privacy Policy';
 
   @override
-  String get sendComplaintOrReport => 'Send a complaint or report to management';
+  String get sendComplaintOrReport =>
+      'Send a complaint or report to management';
 
   @override
   String get account => 'Account';
@@ -183,7 +185,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addNewLeave => 'Add new leave';
 
   @override
-  String get leaveNote => 'You can enter leave days or holidays to exempt all employees from compliance tasks during leave days.';
+  String get leaveNote =>
+      'You can enter leave days or holidays to exempt all employees from compliance tasks during leave days.';
 
   @override
   String get leaveNo => 'Leave No';
@@ -198,7 +201,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get monitoredViolations => 'Monitored violations';
 
   @override
-  String get searchViolationEmployee => 'Search for violation, by employee name';
+  String get searchViolationEmployee =>
+      'Search for violation, by employee name';
 
   @override
   String get lastResponseBy => 'Last response by';
@@ -222,7 +226,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get doYouHaveComplaintReport => 'Do you have a complaint or report?';
 
   @override
-  String get complaintNote => 'Send it to the management with complete privacy and confidentiality, and it will be handled seriously for the overall benefit of the facility.';
+  String get complaintNote =>
+      'Send it to the management with complete privacy and confidentiality, and it will be handled seriously for the overall benefit of the facility.';
 
   @override
   String get yourMessage => 'Your message';
@@ -234,7 +239,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get department => 'Department';
 
   @override
-  String get thisMonthComplianceAssessment => 'This Month\'s Compliance Assessment';
+  String get thisMonthComplianceAssessment =>
+      'This Month\'s Compliance Assessment';
 
   @override
   String get since => 'Since';
@@ -243,7 +249,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get toDay => 'To day';
 
   @override
-  String get departmentComplianceAssessment => 'Department Compliance Assessment';
+  String get departmentComplianceAssessment =>
+      'Department Compliance Assessment';
 
   @override
   String get mostCompliantEmployee => 'Most Compliant Employee';
@@ -303,7 +310,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noRepetition => 'No repetition';
 
   @override
-  String get specifyTheDayForTaskRepetition => 'Specify the day for task repetition';
+  String get specifyTheDayForTaskRepetition =>
+      'Specify the day for task repetition';
 
   @override
   String get saturday => 'Saturday';
@@ -330,13 +338,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notesAboutTheTask => 'Notes about the task';
 
   @override
-  String get notesAboutTheTaskExecutionMechanism => 'Notes about the task execution mechanism';
+  String get notesAboutTheTaskExecutionMechanism =>
+      'Notes about the task execution mechanism';
 
   @override
   String get penaltyForNonCompliance => 'Penalty for non-compliance';
 
   @override
-  String get descriptionPenaltyForNonCompliance => 'Description of the penalty for non-compliance';
+  String get descriptionPenaltyForNonCompliance =>
+      'Description of the penalty for non-compliance';
 
   @override
   String get attachFiles => 'Attach files';
@@ -396,13 +406,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rejected => 'Rejected';
 
   @override
-  String get complianceOfficerNotesExplanations => 'Compliance officer\'s notes and explanations';
+  String get complianceOfficerNotesExplanations =>
+      'Compliance officer\'s notes and explanations';
 
   @override
   String get violationObservedInTask => 'Violation observed in a task';
 
   @override
-  String get theViolationWasDetectedAgainst => 'The violation was detected against';
+  String get theViolationWasDetectedAgainst =>
+      'The violation was detected against';
 
   @override
   String get dateAndTimeOfViolation => 'Date and time of violation';
@@ -426,19 +438,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get generalErrorTitle => 'Something went wrong';
 
   @override
-  String get generalErrorBody => 'An unexpected error occurred. Please try again later or contact support.';
+  String get generalErrorBody =>
+      'An unexpected error occurred. Please try again later or contact support.';
 
   @override
   String get connectionErrorTitle => 'Connection error';
 
   @override
-  String get connectionErrorBody => 'Unable to reach the server. Please check your internet connection and try again.';
+  String get connectionErrorBody =>
+      'Unable to reach the server. Please check your internet connection and try again.';
 
   @override
   String get serverErrorTitle => 'Data unavailable';
 
   @override
-  String get serverErrorBody => 'We are currently having difficulty retrieving data from the server. Please try again later.';
+  String get serverErrorBody =>
+      'We are currently having difficulty retrieving data from the server. Please try again later.';
 
   @override
   String get retry => 'Retry';

@@ -63,7 +63,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get youCanRecoverIt => 'يمكنك استعادتها بخطوات بسيطة';
 
   @override
-  String get enterEmailToRecoverPass => 'يرجى ادخال بريدك الإلكتروني لإستعادة كلمة المرور.';
+  String get enterEmailToRecoverPass =>
+      'يرجى ادخال بريدك الإلكتروني لإستعادة كلمة المرور.';
 
   @override
   String get home => 'الصفحة الرئيسية';
@@ -183,7 +184,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get addNewLeave => 'اضافة اجازة جديدة';
 
   @override
-  String get leaveNote => 'يمكنك ادخال ايام اجازة او عطلات لإعفاء الموظفين جميعاً من مهام الإمتثال خلال ايام الإجازة';
+  String get leaveNote =>
+      'يمكنك ادخال ايام اجازة او عطلات لإعفاء الموظفين جميعاً من مهام الإمتثال خلال ايام الإجازة';
 
   @override
   String get leaveNo => 'اجازة رقم';
@@ -222,7 +224,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get doYouHaveComplaintReport => 'هل لديك شكوى او بلاغ ؟';
 
   @override
-  String get complaintNote => 'ارسله للإدارة بكل خصوصية وسرية وسيتم العمل عليه لأجل المصلحة العامة للمنشأة بجدية';
+  String get complaintNote =>
+      'ارسله للإدارة بكل خصوصية وسرية وسيتم العمل عليه لأجل المصلحة العامة للمنشأة بجدية';
 
   @override
   String get yourMessage => 'رسالتك';
@@ -330,7 +333,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notesAboutTheTask => 'ملاحظات حول المهمة';
 
   @override
-  String get notesAboutTheTaskExecutionMechanism => 'ملاحظات حول الية تنفيذ المهمة';
+  String get notesAboutTheTaskExecutionMechanism =>
+      'ملاحظات حول الية تنفيذ المهمة';
 
   @override
   String get penaltyForNonCompliance => 'عقوبة عدم الإمتثال';
@@ -396,7 +400,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get rejected => 'مرفوضة';
 
   @override
-  String get complianceOfficerNotesExplanations => 'ملاحظات وشروحات موظف الأمتثال';
+  String get complianceOfficerNotesExplanations =>
+      'ملاحظات وشروحات موظف الأمتثال';
 
   @override
   String get violationObservedInTask => 'مخالفة مرصودة في مهمة';
@@ -426,19 +431,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get generalErrorTitle => 'حدث خطأ ما';
 
   @override
-  String get generalErrorBody => 'حدث خطأ غير متوقع. الرجاء المحاولة مرة أخرى لاحقًا أو الاتصال بالدعم.';
+  String get generalErrorBody =>
+      'حدث خطأ غير متوقع. الرجاء المحاولة مرة أخرى لاحقًا أو الاتصال بالدعم.';
 
   @override
   String get connectionErrorTitle => 'خطأ في الاتصال';
 
   @override
-  String get connectionErrorBody => 'تعذر الوصول إلى الخادم. الرجاء التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.';
+  String get connectionErrorBody =>
+      'تعذر الوصول إلى الخادم. الرجاء التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.';
 
   @override
   String get serverErrorTitle => 'البيانات غير متاحة';
 
   @override
-  String get serverErrorBody => 'نواجه حاليًا صعوبة في استرداد البيانات من الخادم. الرجاء المحاولة مرة أخرى لاحقًا.';
+  String get serverErrorBody =>
+      'نواجه حاليًا صعوبة في استرداد البيانات من الخادم. الرجاء المحاولة مرة أخرى لاحقًا.';
 
   @override
   String get retry => 'إعادة المحاولة';

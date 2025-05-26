@@ -14,6 +14,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
   deliveryTime: json['deliveryTime'] as String? ?? "",
   allowedDurationInMinutes:
       (json['allowedDurationInMinutes'] as num?)?.toInt() ?? 0,
+  points: (json['points'] as num?)?.toInt() ?? 0,
   id: json['id'] as String? ?? "",
   companyId: json['companyId'] as String,
   title: json['title'] as String? ?? "",
@@ -59,6 +60,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'deliveryDate': const TimestampSerializer().toJson(instance.deliveryDate),
       'deliveryTime': instance.deliveryTime,
       'allowedDurationInMinutes': instance.allowedDurationInMinutes,
+      'points': instance.points,
       'id': instance.id,
       'companyId': instance.companyId,
       'title': instance.title,
