@@ -7,25 +7,12 @@ class UserBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        BaseNetworkImage(
+        const BaseNetworkImage(
           "",
           width: 70,
           height: 70,
           shape: BoxShape.circle,
           alignment: AlignmentDirectional.bottomStart,
-          child: GestureDetector(
-            onTap: () {},
-            child: Container(
-              width: 24,
-              height: 24,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: context.colorPalette.primary,
-                shape: BoxShape.circle,
-              ),
-              child: const CustomSvg(MyIcons.edit),
-            ),
-          ),
         ),
         const SizedBox(width: 7),
         Expanded(

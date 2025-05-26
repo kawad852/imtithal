@@ -1,7 +1,10 @@
+import 'package:app/screens/user/user_input_screen.dart';
 import 'package:shared/shared.dart';
 
 class UserInformation extends StatelessWidget {
-  const UserInformation({super.key});
+  final bool edit;
+
+  const UserInformation({super.key, this.edit = false});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +12,30 @@ class UserInformation extends StatelessWidget {
       builder: (context, user) {
         return Row(
           children: [
-            UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 35),
+            Stack(
+              alignment: AlignmentDirectional.bottomStart,
+              children: [
+                UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 35),
+                if (edit)
+                  GestureDetector(
+                    onTap: () {
+                      context.push((context) {
+                        return UserInputScreen(user: user);
+                      });
+                    },
+                    child: Container(
+                      width: 24,
+                      height: 24,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: context.colorPalette.primary,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const CustomSvg(MyIcons.edit),
+                    ),
+                  ),
+              ],
+            ),
             const SizedBox(width: 7),
             Expanded(
               child: Column(
@@ -17,14 +43,15 @@ class UserInformation extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        "${context.appLocalization.hello} ، ",
-                        style: TextStyle(
-                          color: context.colorPalette.black252,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
+                      if (!edit)
+                        Text(
+                          "${context.appLocalization.hello} ، ",
+                          style: TextStyle(
+                            color: context.colorPalette.black252,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      ),
                       Expanded(
                         child: Text(
                           user.displayName,

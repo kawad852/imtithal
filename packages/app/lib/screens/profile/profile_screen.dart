@@ -13,7 +13,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(),
+        leading: const SizedBox.shrink(),
         leadingWidth: 0,
         title: Text(
           context.appLocalization.personalAccount,
@@ -27,7 +27,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         children: [
-          const UserBubble(),
+          // const UserBubble(),
+          const UserInformation(edit: true),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
