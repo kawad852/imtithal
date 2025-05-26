@@ -103,9 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 13),
-                  child: EmtithalSummeryBuilder(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 13),
+                  child: EmtithalSummeryBuilder(userId: kIsEmployee ? kUserId : null),
                 ),
                 TextEditor(
                   onChanged: (value) {},
