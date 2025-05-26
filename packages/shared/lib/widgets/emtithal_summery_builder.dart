@@ -16,8 +16,8 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
   String? get _departmentId => widget.departmentId;
 
   Filter _getFilter(Filter filter) {
-    final startDate = DateTime(kNowDate.year, kNowDate.month, kNowDate.day);
-    final endDate = startDate.add(const Duration(days: 1));
+    final startDate = DateTime(kNowDate.year, kNowDate.month, 1);
+    final endDate = startDate.add(Duration(days: kNowDate.day + 1));
     final startDateFilter = Filter(
       MyFields.deliveryDate,
       isGreaterThanOrEqualTo: Timestamp.fromDate(startDate),
