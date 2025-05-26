@@ -1,3 +1,4 @@
+import 'package:app/screens/search/search_screen.dart';
 import 'package:app/screens/user/user_input_screen.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
@@ -126,12 +127,16 @@ class _ManagementScreenState extends State<ManagementScreen> {
                     ],
                   ),
                 ),
-                TextEditor(
-                  onChanged: (value) {},
-                  required: false,
+                SearchScreen(
                   hintText: context.appLocalization.searchDepartmentEmployee,
-                  prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+                  includeIndexes: (true, true, false),
                 ),
+                // TextEditor(
+                //   onChanged: (value) {},
+                //   required: false,
+                //   hintText: context.appLocalization.searchDepartmentEmployee,
+                //   prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+                // ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Text(

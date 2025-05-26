@@ -1,6 +1,7 @@
 enum AlgoliaIndices {
-  categories('categories'),
-  items('items');
+  users('users'),
+  departments('departments'),
+  tasks('tasks');
 
   final String value;
 

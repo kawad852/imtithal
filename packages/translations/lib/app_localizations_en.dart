@@ -526,4 +526,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addedSuccessfully => 'Added Successfully';
+
+  @override
+  String get employees => 'Employees';
+
+  @override
+  String get departments => 'Departments';
 }

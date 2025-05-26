@@ -1132,6 +1132,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تم الإضافة بنجاح'**
   String get addedSuccessfully;
+
+  /// No description provided for @employees.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموظفين'**
+  String get employees;
+
+  /// No description provided for @departments.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأقسام'**
+  String get departments;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

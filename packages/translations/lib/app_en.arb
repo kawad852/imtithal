@@ -172,5 +172,7 @@
   "departmentManager": "Department Manager",
   "searchCountryOrCode": "Search by country name or code",
   "name": "Name",
-  "addedSuccessfully": "Added Successfully"
+  "addedSuccessfully": "Added Successfully",
+  "employees": "Employees",
+  "departments": "Departments"
 }

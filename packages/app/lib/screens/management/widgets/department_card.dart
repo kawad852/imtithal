@@ -34,7 +34,7 @@ class DepartmentCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        "${context.appLocalization.department} ${department.name}",
+                        department.name,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: context.colorPalette.black252,

@@ -526,4 +526,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get addedSuccessfully => 'تم الإضافة بنجاح';
+
+  @override
+  String get employees => 'الموظفين';
+
+  @override
+  String get departments => 'الأقسام';
 }
