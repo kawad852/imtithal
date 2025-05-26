@@ -13,8 +13,12 @@ const admin = require("firebase-admin");
 const { onCall } = require("firebase-functions/v2/https");
 const { onDocumentCreated, onDocumentUpdated, onDocumentDeleted } = require("firebase-functions/v2/firestore");
 const { algoliasearch } = require("algoliasearch");
+const { onSchedule } = require("firebase-functions/v2/scheduler");
+const { getFirestore, Timestamp, Filter } = require("firebase-admin/firestore");
+
 
 admin.initializeApp();
+const db = getFirestore();
 
 const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY);
 
@@ -109,3 +113,142 @@ exports.onDepartmentDeleted = onDocumentDeleted({
     console.error(`❌ Error deleting ${objectID} from Algolia`, error);
   }
 });
+
+
+/**
+ * Scheduled function to mark assigned tasks as late.
+ */
+exports.markLateAssignedTasks = onSchedule(
+  {
+    schedule: "every 1 minutes",
+    timeoutSeconds: 300,
+    memory: "256MiB",
+  },
+  async () => {
+    try {
+      const now = Timestamp.now();
+
+      const filter = Filter.and(
+        Filter.where("markedAsLate", "==", false),
+        Filter.where("deliveryDate", "<=", Timestamp.fromMillis(now.toMillis())),
+      );
+
+      const snapshot = await db
+        .collectionGroup("assignedTasks")
+        .where(filter)
+        .get();
+
+      if (snapshot.empty) {
+        console.log("No late tasks found at:", now.toDate());
+        return;
+      }
+
+      const batch = db.batch();
+      const notifications = [];
+
+      for (const doc of snapshot.docs) {
+        const data = doc.data();
+
+        const deliveryDate = data.deliveryDate;
+        const allowedDurationInMinutes = data.allowedDurationInMinutes;
+        const userId = data.user.id;
+
+        if (!deliveryDate || !allowedDurationInMinutes || data.markedAsLate) continue;
+
+        const deadlineMillis = deliveryDate.toDate().getTime() + allowedDurationInMinutes * 60 * 1000;
+
+        if (Date.now() > deadlineMillis) {
+          batch.update(doc.ref, { markedAsLate: true });
+
+          const taskId = doc.id;
+          const taskName = data.title || "Unnamed Task";
+          const deadline = new Date(deadlineMillis);
+
+          const formattedEn = new Intl.DateTimeFormat("en-US", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          }).format(deadline);
+
+          const formattedAr = new Intl.DateTimeFormat("ar-EG", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          }).format(deadline);
+
+          notifications.push(
+            sendNotification({
+              titleEn: "⚠️ Task Marked as Late",
+              titleAr: "⚠️ تم التأخر في المهمة",
+              bodyEn: `The task "${taskName}" exceeded the allowed time (${formattedEn}).`,
+              bodyAr: `تم تجاوز الوقت المسموح للمهمة "${taskName}" (${formattedAr}).`,
+              userId: userId,
+              notificationData: {
+                type: "LATE-TASK",
+                id: taskId,
+              },
+            }),
+          );
+        }
+      }
+
+      await batch.commit();
+      await Promise.all(notifications);
+      console.log(`✅ Marked ${snapshot.size} assigned tasks as late and notifications sent.`);
+    } catch (error) {
+      console.error("❌ Error marking assigned tasks as late:", error);
+      throw error;
+    }
+  },
+);
+
+async function sendNotification({
+  titleEn,
+  bodyEn,
+  titleAr,
+  bodyAr,
+  userId,
+  notificationData,
+}) {
+  const userDoc = await admin.firestore().collection("users").doc(userId).get();
+
+  if (!userDoc.exists) return;
+
+  const userRef = userDoc.ref;
+  const user = userDoc.data();
+  const token = user.deviceToken;
+  const lang = user.languageCode || "ar";
+  const title = lang === "ar" ? titleAr : titleEn;
+  const body = lang === "ar" ? bodyAr : bodyEn;
+
+  if (!token) return;
+
+  const payload = {
+    token,
+    notification: {
+      title,
+      body,
+    },
+    data: notificationData,
+    apns: {
+      payload: {
+        aps: {
+          sound: "default",
+        },
+      },
+    },
+  };
+
+  const notificationRef = userRef.collection("notifications").doc();
+
+  await Promise.all([
+    admin.messaging().send(payload),
+    userRef.update({
+      unReadNotificationsCount: admin.firestore.FieldValue.increment(1),
+    }),
+    notificationRef.set({
+      id: notificationRef.id,
+      notification: { title, body },
+      data: notificationData,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    }),
+  ]);
+}
