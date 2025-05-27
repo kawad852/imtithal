@@ -18,6 +18,8 @@ class _UserScreenState extends State<UserScreen> {
   late Stream<UserModel> _userStream;
   late Query<TaskModel> _assignedTasksQuery;
   late DateTime _selectedDate;
+  late DateTime _startDate;
+  late DateTime _endDate;
 
   void _initialize() {
     _userStream = kFirebaseInstant.users.doc(widget.user.id).snapshots().map((e) {
@@ -32,6 +34,8 @@ class _UserScreenState extends State<UserScreen> {
     super.initState();
     _selectedDate = kNowDate;
     _initialize();
+    _startDate = kFirstDayOfMonthDate;
+    _endDate = kTodayDate;
   }
 
   @override
@@ -56,7 +60,9 @@ class _UserScreenState extends State<UserScreen> {
                     icon: CustomSvg(MyIcons.calendarSearch, color: context.colorPalette.white),
                   ),
                 ],
-                flexibleSpace: FlexibleSpaceBar(background: UserHeader(user: user)),
+                flexibleSpace: FlexibleSpaceBar(
+                  background: UserHeader(user: user, startDate: _startDate, endDate: _endDate),
+                ),
               ),
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 20),

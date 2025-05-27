@@ -1,3 +1,4 @@
+import 'package:app/screens/task/widgets/range_date_button.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -12,6 +13,8 @@ class DepartmentScreen extends StatefulWidget {
 
 class _DepartmentScreenState extends State<DepartmentScreen> {
   late Stream<DepartmentModel> _departmentStream;
+  late DateTime _startDate;
+  late DateTime _endDate;
 
   void _initialize() {
     _departmentStream = kFirebaseInstant.departments.doc(widget.department.id).snapshots().map((e) {
@@ -23,6 +26,8 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
   void initState() {
     super.initState();
     _initialize();
+    _startDate = kFirstDayOfMonthDate;
+    _endDate = kTodayDate;
   }
 
   @override
@@ -49,6 +54,8 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                         child: Padding(
                           padding: const EdgeInsets.only(top: kToolbarHeight),
                           child: DepartmentHeader(
+                            startDate: _startDate,
+                            endDate: _endDate,
                             department: department,
                             manager: manager,
                             users: users,
@@ -57,9 +64,15 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                       ),
                     ),
                     actions: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: CustomSvg(MyIcons.calendarSearch, color: context.colorPalette.white),
+                      RangeDateButton(
+                        onChanged: (start, end) {
+                          setState(() {
+                            _startDate = start;
+                            _endDate = end;
+                          });
+                        },
+                        startDate: _startDate,
+                        endDate: _endDate,
                       ),
                     ],
                   ),

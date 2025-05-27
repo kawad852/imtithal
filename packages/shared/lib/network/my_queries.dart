@@ -3,8 +3,6 @@ import 'package:shared/shared.dart';
 
 import '../models/country/country_model.dart';
 import '../models/notification/notification_model.dart';
-import '../models/promo_code/promo_code_model.dart';
-import '../models/store/store_model.dart';
 
 extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<TaskModel> get tasks => collection(MyCollections.tasks).taskConvertor;
@@ -18,12 +16,6 @@ extension CollectionReferenceExtension on FirebaseFirestore {
       users.doc(userId).collection(MyCollections.violations).violationConvertor;
   CollectionReference<TaskModel> userAssignedTasks(String userId) =>
       users.doc(userId).collection(MyCollections.assignedTasks).taskConvertor;
-
-  CollectionReference<StoreModel> get foodStores =>
-      collection(MyCollections.foodStores).withConverter<StoreModel>(
-        fromFirestore: (snapshot, _) => StoreModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
 
   CollectionReference<CountryModel> get countries =>
       collection("countries").withConverter<CountryModel>(
@@ -44,29 +36,6 @@ extension CollectionReferenceExtension on FirebaseFirestore {
       .collection(MyCollections.notifications)
       .withConverter<NotificationModel>(
         fromFirestore: (snapshot, _) => NotificationModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
-  CollectionReference<PromoCodeModel> get promoCodes =>
-      collection(MyCollections.promoCodes).withConverter<PromoCodeModel>(
-        fromFirestore: (snapshot, _) => PromoCodeModel.fromJson(snapshot.data()!),
-        toFirestore: (snapshot, _) => snapshot.toJson(),
-      );
-
-  DocumentReference<ProductModel> meal(String storeId, String productId) {
-    return foodStores
-        .doc(storeId)
-        .collection("menu")
-        .doc(productId)
-        .withConverter<ProductModel>(
-          fromFirestore: (snapshot, _) => ProductModel.fromJson(snapshot.data()!),
-          toFirestore: (snapshot, _) => snapshot.toJson(),
-        );
-  }
-
-  CollectionReference<ProductModel> get products =>
-      collection(MyCollections.products).withConverter<ProductModel>(
-        fromFirestore: (snapshot, _) => ProductModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 

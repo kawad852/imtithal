@@ -43,7 +43,6 @@ export 'extensions/operation_extension.dart';
 export 'extensions/snackbar_extension.dart';
 //helper
 export 'helper/app_over_loader.dart';
-export 'helper/basket_helper.dart';
 export 'helper/my_header_delegate.dart';
 export 'helper/objects_comparer.dart';
 export 'helper/pagination_handler.dart';
@@ -56,8 +55,6 @@ export 'helper/translation_extension.dart';
 export 'helper/ui_helper.dart';
 export 'helper/validation_helper.dart';
 //models
-export 'models/address/address_model.dart';
-export 'models/basket/basket_model.dart';
 export 'models/country_code_model.dart';
 export 'models/department/department_model.dart';
 export 'models/expense_model.dart';
@@ -69,7 +66,6 @@ export 'models/user/user_model.dart';
 //network
 export 'network/api_service.dart';
 export 'network/branch_queries.dart';
-export 'network/doc_reference_extension.dart';
 export 'network/fire_query_extension.dart';
 export 'network/my_collections.dart';
 export 'network/my_fields.dart';

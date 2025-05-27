@@ -1,3 +1,5 @@
+import 'package:shared/network/api_service.dart';
+
 const kFallBackCountryCode = 'JO';
 const kLoginRouteName = 'login';
 const kOfferPrice = 999999999.99999;
@@ -8,3 +10,6 @@ const kOrder = 99999;
 const kAlgoliaApplicationId = "A8ZSH6H4WN";
 const kAlgoliaApiKey = "deccda5b1c9c370107b978ec8e7f63db";
 const kEmtithalDomain = "@gmail.com";
+
+DateTime get kFirstDayOfMonthDate => DateTime(kNowDate.year, kNowDate.month, 1);
+DateTime get kTodayDate => kNowDate;

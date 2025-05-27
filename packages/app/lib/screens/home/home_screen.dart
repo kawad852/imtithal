@@ -16,6 +16,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Query<TaskModel> _assignedTasksQuery;
+  late DateTime _startDate;
+  late DateTime _endDate;
 
   void _initialize() {
     _assignedTasksQuery = context.taskProvider.tasksQuery;
@@ -25,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _initialize();
+    _startDate = kFirstDayOfMonthDate;
+    _endDate = kTodayDate;
   }
 
   @override
@@ -109,6 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 13),
                   child: SummeryBuilder(
+                    startDate: _startDate,
+                    endDate: _endDate,
                     userId: kIsEmployee ? kUserId : null,
                     builder: (
                       (int, double) inCompletedTasks,

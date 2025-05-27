@@ -5,6 +5,9 @@ import 'status_summery_bubbles.dart';
 class SummeryBuilder extends StatefulWidget {
   final String? departmentId;
   final String? userId;
+  final DateTime startDate;
+  final DateTime endDate;
+
   final Widget Function(
     (int, double) inCompletedTasks,
     (int, double) completedTasks,
@@ -13,7 +16,14 @@ class SummeryBuilder extends StatefulWidget {
   )
   builder;
 
-  const SummeryBuilder({super.key, this.departmentId, this.userId, required this.builder});
+  const SummeryBuilder({
+    super.key,
+    this.departmentId,
+    this.userId,
+    required this.builder,
+    required this.startDate,
+    required this.endDate,
+  });
 
   @override
   State<SummeryBuilder> createState() => _SummeryBuilderState();
@@ -23,10 +33,12 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
   late Future<List<dynamic>> _futures;
 
   String? get _departmentId => widget.departmentId;
+  DateTime get _startDate => widget.startDate;
+  DateTime get _endDate => widget.endDate;
 
   Filter _getFilter(Filter filter) {
-    final startDate = DateTime(kNowDate.year, kNowDate.month, 1);
-    final endDate = startDate.add(Duration(days: kNowDate.day + 1));
+    final startDate = DateTime(_startDate.year, _startDate.month, 1);
+    final endDate = startDate.add(Duration(days: _endDate.day + 1));
     final startDateFilter = Filter(
       MyFields.deliveryDate,
       isGreaterThanOrEqualTo: Timestamp.fromDate(startDate),
@@ -84,6 +96,16 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
   void initState() {
     super.initState();
     _initialize();
+  }
+
+  @override
+  void didUpdateWidget(covariant SummeryBuilder oldWidget) {
+    if (oldWidget.startDate != widget.startDate || oldWidget.endDate != widget.endDate) {
+      setState(() {
+        _initialize();
+      });
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override

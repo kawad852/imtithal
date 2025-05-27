@@ -9,12 +9,16 @@ class DepartmentHeader extends StatelessWidget {
   final DepartmentModel department;
   final UserModel? manager;
   final List<UserModel> users;
+  final DateTime startDate;
+  final DateTime endDate;
 
   const DepartmentHeader({
     super.key,
     required this.department,
     required this.users,
     required this.manager,
+    required this.startDate,
+    required this.endDate,
   });
 
   @override
@@ -76,6 +80,8 @@ class DepartmentHeader extends StatelessWidget {
           ),
           SummeryBuilder(
             departmentId: department.id,
+            startDate: startDate,
+            endDate: endDate,
             builder: (
               (int, double) inCompletedTasks,
               (int, double) completedTasks,

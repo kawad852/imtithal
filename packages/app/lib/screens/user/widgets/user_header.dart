@@ -6,7 +6,10 @@ import '../../task/widgets/summery/summery_builder.dart';
 
 class UserHeader extends StatelessWidget {
   final UserModel user;
-  const UserHeader({super.key, required this.user});
+  final DateTime startDate;
+  final DateTime endDate;
+
+  const UserHeader({super.key, required this.user, required this.startDate, required this.endDate});
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +85,8 @@ class UserHeader extends StatelessWidget {
           ),
           SummeryBuilder(
             userId: user.id,
+            startDate: startDate,
+            endDate: endDate,
             builder: (
               (int, double) inCompletedTasks,
               (int, double) completedTasks,
