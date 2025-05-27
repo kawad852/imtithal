@@ -174,5 +174,10 @@
   "name": "الإسم",
   "addedSuccessfully": "تم الإضافة بنجاح",
   "employees": "الموظفين",
-  "departments": "الأقسام"
+  "departments": "الأقسام",
+  "excellent": "ممتاز",
+  "veryGood": "جيد جدا",
+  "good": "جيد",
+  "weak": "ضعيف",
+  "sinceComplianceAssessment": "تقييم الإمتثال منذ"
 }

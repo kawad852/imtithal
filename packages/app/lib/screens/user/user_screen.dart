@@ -3,6 +3,7 @@ import 'package:shared/shared.dart';
 
 import '../calender/widgets/calendar_date_text.dart';
 import '../calender/widgets/calendar_icon_button.dart';
+import '../task/widgets/range_date_button.dart';
 import '../task/widgets/task_card.dart';
 
 class UserScreen extends StatefulWidget {
@@ -52,12 +53,18 @@ class _UserScreenState extends State<UserScreen> {
                 backgroundColor: context.colorPalette.black252,
                 surfaceTintColor: context.colorPalette.black252,
                 leading: CustomBack(color: context.colorPalette.white),
-                expandedHeight: 320,
+                expandedHeight: 300,
                 pinned: true,
                 actions: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: CustomSvg(MyIcons.calendarSearch, color: context.colorPalette.white),
+                  RangeDateButton(
+                    onChanged: (start, end) {
+                      setState(() {
+                        _startDate = start;
+                        _endDate = end;
+                      });
+                    },
+                    startDate: _startDate,
+                    endDate: _endDate,
                   ),
                 ],
                 flexibleSpace: FlexibleSpaceBar(

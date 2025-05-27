@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:shared/extensions/base_extension.dart';
 import 'package:shared/helper/translation_extension.dart';
 
 enum TaskStatusEnum {
@@ -117,11 +118,29 @@ enum TaskPoints {
 
   const TaskPoints(this.value);
 
-  static int getPercentage({required int count, required double sum}) {
+  static (int, String, Color) getPercentage(
+    BuildContext context, {
+    required int count,
+    required double sum,
+  }) {
+    var label = '';
+    var color = context.colorPalette.primary;
     if (count == 0 || sum <= 0) {
-      return 0;
+      return (0, label, color);
     }
     final evaluationPercentage = (sum / (count * 10)) * 100;
-    return evaluationPercentage.round();
+    final percentage = evaluationPercentage.round();
+    if (percentage > 95) {
+      label = context.appLocalization.excellent;
+    } else if (percentage >= 85) {
+      label = context.appLocalization.veryGood;
+    } else if (percentage >= 50) {
+      label = context.appLocalization.good;
+      color = context.colorPalette.yellowC39;
+    } else {
+      color = context.colorPalette.redD62;
+      label = context.appLocalization.weak;
+    }
+    return (percentage, label, color);
   }
 }

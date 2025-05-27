@@ -1147,6 +1147,36 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الأقسام'**
   String get departments;
+
+  /// No description provided for @excellent.
+  ///
+  /// In ar, this message translates to:
+  /// **'ممتاز'**
+  String get excellent;
+
+  /// No description provided for @veryGood.
+  ///
+  /// In ar, this message translates to:
+  /// **'جيد جدا'**
+  String get veryGood;
+
+  /// No description provided for @good.
+  ///
+  /// In ar, this message translates to:
+  /// **'جيد'**
+  String get good;
+
+  /// No description provided for @weak.
+  ///
+  /// In ar, this message translates to:
+  /// **'ضعيف'**
+  String get weak;
+
+  /// No description provided for @sinceComplianceAssessment.
+  ///
+  /// In ar, this message translates to:
+  /// **'تقييم الإمتثال منذ'**
+  String get sinceComplianceAssessment;
 }
 
 class _AppLocalizationsDelegate

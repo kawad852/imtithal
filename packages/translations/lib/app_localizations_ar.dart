@@ -540,4 +540,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get departments => 'الأقسام';
+
+  @override
+  String get excellent => 'ممتاز';
+
+  @override
+  String get veryGood => 'جيد جدا';
+
+  @override
+  String get good => 'جيد';
+
+  @override
+  String get weak => 'ضعيف';
+
+  @override
+  String get sinceComplianceAssessment => 'تقييم الإمتثال منذ';
 }

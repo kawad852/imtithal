@@ -6,12 +6,6 @@ extension DatetimeExtension on DateTime {
   String getTime(BuildContext context) => DateFormat.jm(context.languageCode).format(this);
   String getDefaultFormattedDate(BuildContext context) =>
       DateFormat.yMd(context.languageCode).format(this);
-
-  bool get isFirstDayOfThisMonth {
-    return year == kFirstDayOfMonthDate.year &&
-        month == kFirstDayOfMonthDate.month &&
-        day == kFirstDayOfMonthDate.day;
-  }
 }
 
 extension DayTimeExtension on String {

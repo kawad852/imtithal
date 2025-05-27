@@ -3,6 +3,7 @@ import 'package:shared/shared.dart';
 
 import '../../task/widgets/summery/status_summery_bubbles.dart';
 import '../../task/widgets/summery/summery_builder.dart';
+import '../../task/widgets/summery/summery_label.dart';
 
 class UserHeader extends StatelessWidget {
   final UserModel user;
@@ -74,15 +75,6 @@ class UserHeader extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          Text(
-            "${context.appLocalization.thisMonthComplianceAssessment} , ${context.appLocalization.since}  01.05.2025 ${context.appLocalization.toDay}",
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: context.colorPalette.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
           SummeryBuilder(
             userId: user.id,
             startDate: startDate,
@@ -97,28 +89,15 @@ class UserHeader extends StatelessWidget {
                   inCompletedTasks.$1 + completedTasks.$1 + violationTasks.$1 + lateTasks.$1;
               final totalSum =
                   inCompletedTasks.$2 + completedTasks.$2 + violationTasks.$2 + lateTasks.$2;
+              final percentageValues = TaskPoints.getPercentage(
+                context,
+                count: totalCount,
+                sum: totalSum,
+              );
+
               return Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Row(
-                      children: [
-                        EvaluationBox(
-                          title: context.appLocalization.complianceAssessment,
-                          subTitle: "امتثال ممتاز",
-                          value: "${TaskPoints.getPercentage(count: totalCount, sum: totalSum)}%",
-                          color: context.colorPalette.primary,
-                        ),
-                        const SizedBox(width: 10),
-                        EvaluationBox(
-                          title: context.appLocalization.departmentComplianceAssessment,
-                          subTitle: context.appLocalization.monitoredViolations,
-                          value: "${violationTasks.$1}",
-                          color: context.colorPalette.redD62,
-                        ),
-                      ],
-                    ),
-                  ),
+                  SummeryLabel(startDate: startDate, endDate: endDate, values: percentageValues),
                   StatusSummeryBubbles(
                     inCompletedTasksCount: inCompletedTasks.$1,
                     completedTasksCount: completedTasks.$1,

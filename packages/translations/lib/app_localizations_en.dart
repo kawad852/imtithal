@@ -547,4 +547,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get departments => 'Departments';
+
+  @override
+  String get excellent => 'Excellent';
+
+  @override
+  String get veryGood => 'Very Good';
+
+  @override
+  String get good => 'Good';
+
+  @override
+  String get weak => 'Weak';
+
+  @override
+  String get sinceComplianceAssessment => 'Compliance assessment since';
 }

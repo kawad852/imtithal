@@ -174,5 +174,11 @@
   "name": "Name",
   "addedSuccessfully": "Added Successfully",
   "employees": "Employees",
-  "departments": "Departments"
+  "departments": "Departments",
+  "excellent": "Excellent",
+  "veryGood": "Very Good",
+  "good": "Good",
+  "weak": "Weak",
+  "sinceComplianceAssessment": "Compliance assessment since"
+
 }

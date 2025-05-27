@@ -1,3 +1,4 @@
+import 'package:app/screens/task/widgets/summery/summery_label.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as sv;
 import 'package:shared/shared.dart';
 
@@ -66,20 +67,6 @@ class DepartmentHeader extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              startDate.isFirstDayOfThisMonth
-                  ? "${context.appLocalization.thisMonthComplianceAssessment} , ${context.appLocalization.since}  ${startDate.getDefaultFormattedDate(context)} ${context.appLocalization.toDay}"
-                  : "",
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: context.colorPalette.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ),
           SummeryBuilder(
             departmentId: department.id,
             startDate: startDate,
@@ -94,17 +81,17 @@ class DepartmentHeader extends StatelessWidget {
                   inCompletedTasks.$1 + completedTasks.$1 + violationTasks.$1 + lateTasks.$1;
               final totalSum =
                   inCompletedTasks.$2 + completedTasks.$2 + violationTasks.$2 + lateTasks.$2;
+              final percentageValues = TaskPoints.getPercentage(
+                context,
+                count: totalCount,
+                sum: totalSum,
+              );
               return Column(
                 children: [
+                  SummeryLabel(startDate: startDate, endDate: endDate, values: percentageValues),
                   Row(
+                    spacing: 10,
                     children: [
-                      EvaluationBox(
-                        title: context.appLocalization.departmentComplianceAssessment,
-                        subTitle: "امتثال ممتاز",
-                        value: "${TaskPoints.getPercentage(count: totalCount, sum: totalSum)}%",
-                        color: context.colorPalette.primary,
-                      ),
-                      const SizedBox(width: 10),
                       EvaluationBox(
                         title: context.appLocalization.mostCompliantEmployee,
                         isEmployee: true,
@@ -112,18 +99,6 @@ class DepartmentHeader extends StatelessWidget {
                         value: "96",
                         color: context.colorPalette.primary,
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      EvaluationBox(
-                        title: context.appLocalization.departmentComplianceAssessment,
-                        subTitle: context.appLocalization.monitoredViolations,
-                        value: "${violationTasks.$1}",
-                        color: context.colorPalette.redD62,
-                      ),
-                      const SizedBox(width: 10),
                       EvaluationBox(
                         title: context.appLocalization.leastCompliantEmployee,
                         isEmployee: true,
@@ -133,6 +108,7 @@ class DepartmentHeader extends StatelessWidget {
                       ),
                     ],
                   ),
+
                   const SizedBox(height: 10),
                   StatusSummeryBubbles(
                     inCompletedTasksCount: inCompletedTasks.$1,
