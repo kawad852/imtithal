@@ -17,7 +17,7 @@ class SearchHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      titleTextStyle: context.textTheme.titleMedium,
+      titleTextStyle: context.textTheme.titleMedium!.copyWith(color: context.colorScheme.primary),
       contentPadding: contentPadding,
       minTileHeight: minTileHeight,
       title: Text(titleText),
