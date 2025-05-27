@@ -118,7 +118,9 @@ enum TaskPoints {
   const TaskPoints(this.value);
 
   static int getPercentage({required int count, required double sum}) {
-    if (count == 0) return 0;
+    if (count == 0 || sum <= 0) {
+      return 0;
+    }
     final evaluationPercentage = (sum / (count * 10)) * 100;
     return evaluationPercentage.round();
   }
