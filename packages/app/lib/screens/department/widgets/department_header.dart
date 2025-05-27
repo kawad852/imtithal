@@ -1,6 +1,9 @@
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as sv;
 import 'package:shared/shared.dart';
 
+import '../../task/widgets/summery/status_summery_bubbles.dart';
+import '../../task/widgets/summery/summery_builder.dart';
+
 class DepartmentHeader extends StatelessWidget {
   final DepartmentModel department;
   final UserModel? manager;
@@ -70,47 +73,69 @@ class DepartmentHeader extends StatelessWidget {
               ),
             ),
           ),
-          Row(
-            children: [
-              EvaluationBox(
-                title: context.appLocalization.departmentComplianceAssessment,
-                subTitle: "امتثال ممتاز",
-                value: "59",
-                color: context.colorPalette.primary,
-              ),
-              const SizedBox(width: 10),
-              EvaluationBox(
-                title: context.appLocalization.mostCompliantEmployee,
-                isEmployee: true,
-                subTitle: "احمد محمد",
-                value: "96",
-                color: context.colorPalette.primary,
-              ),
-            ],
+          SummeryBuilder(
+            departmentId: department.id,
+            builder: (
+              (int, double) inCompletedTasks,
+              (int, double) completedTasks,
+              (int, double) violationTasks,
+              (int, double) lateTasks,
+            ) {
+              final totalCount =
+                  inCompletedTasks.$1 + completedTasks.$1 + violationTasks.$1 + lateTasks.$1;
+              final totalSum =
+                  inCompletedTasks.$2 + completedTasks.$2 + violationTasks.$2 + lateTasks.$2;
+              return Column(
+                children: [
+                  Row(
+                    children: [
+                      EvaluationBox(
+                        title: context.appLocalization.departmentComplianceAssessment,
+                        subTitle: "امتثال ممتاز",
+                        value: "${TaskPoints.getPercentage(count: totalCount, sum: totalSum)}%",
+                        color: context.colorPalette.primary,
+                      ),
+                      const SizedBox(width: 10),
+                      EvaluationBox(
+                        title: context.appLocalization.mostCompliantEmployee,
+                        isEmployee: true,
+                        subTitle: "احمد محمد",
+                        value: "96",
+                        color: context.colorPalette.primary,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      EvaluationBox(
+                        title: context.appLocalization.departmentComplianceAssessment,
+                        subTitle: context.appLocalization.monitoredViolations,
+                        value: "${violationTasks.$1}",
+                        color: context.colorPalette.redD62,
+                      ),
+                      const SizedBox(width: 10),
+                      EvaluationBox(
+                        title: context.appLocalization.leastCompliantEmployee,
+                        isEmployee: true,
+                        subTitle: "عبدالله احمد",
+                        value: "96",
+                        color: context.colorPalette.redD62,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  StatusSummeryBubbles(
+                    inCompletedTasksCount: inCompletedTasks.$1,
+                    completedTasksCount: completedTasks.$1,
+                    lateTasksCount: lateTasks.$1,
+                    violationTasksCount: violationTasks.$1,
+                  ),
+                ],
+              );
+            },
           ),
           const SizedBox(height: 10),
-          Row(
-            children: [
-              EvaluationBox(
-                title: context.appLocalization.departmentComplianceAssessment,
-                subTitle: context.appLocalization.monitoredViolations,
-                value: "96",
-                color: context.colorPalette.redD62,
-              ),
-              const SizedBox(width: 10),
-              EvaluationBox(
-                title: context.appLocalization.leastCompliantEmployee,
-                isEmployee: true,
-                subTitle: "عبدالله احمد",
-                value: "96",
-                color: context.colorPalette.redD62,
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: EmtithalSummeryBuilder(departmentId: department.id),
-          ),
           TextEditor(
             onChanged: (value) {},
             required: false,

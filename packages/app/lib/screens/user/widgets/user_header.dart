@@ -1,6 +1,9 @@
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as sv;
 import 'package:shared/shared.dart';
 
+import '../../task/widgets/summery/status_summery_bubbles.dart';
+import '../../task/widgets/summery/summery_builder.dart';
+
 class UserHeader extends StatelessWidget {
   final UserModel user;
   const UserHeader({super.key, required this.user});
@@ -77,27 +80,50 @@ class UserHeader extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Row(
-              children: [
-                EvaluationBox(
-                  title: context.appLocalization.complianceAssessment,
-                  subTitle: "امتثال ممتاز",
-                  value: "59",
-                  color: context.colorPalette.primary,
-                ),
-                const SizedBox(width: 10),
-                EvaluationBox(
-                  title: context.appLocalization.departmentComplianceAssessment,
-                  subTitle: context.appLocalization.monitoredViolations,
-                  value: "96",
-                  color: context.colorPalette.redD62,
-                ),
-              ],
-            ),
+          SummeryBuilder(
+            userId: user.id,
+            builder: (
+              (int, double) inCompletedTasks,
+              (int, double) completedTasks,
+              (int, double) violationTasks,
+              (int, double) lateTasks,
+            ) {
+              final totalCount =
+                  inCompletedTasks.$1 + completedTasks.$1 + violationTasks.$1 + lateTasks.$1;
+              final totalSum =
+                  inCompletedTasks.$2 + completedTasks.$2 + violationTasks.$2 + lateTasks.$2;
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Row(
+                      children: [
+                        EvaluationBox(
+                          title: context.appLocalization.complianceAssessment,
+                          subTitle: "امتثال ممتاز",
+                          value: "${TaskPoints.getPercentage(count: totalCount, sum: totalSum)}%",
+                          color: context.colorPalette.primary,
+                        ),
+                        const SizedBox(width: 10),
+                        EvaluationBox(
+                          title: context.appLocalization.departmentComplianceAssessment,
+                          subTitle: context.appLocalization.monitoredViolations,
+                          value: "${violationTasks.$1}",
+                          color: context.colorPalette.redD62,
+                        ),
+                      ],
+                    ),
+                  ),
+                  StatusSummeryBubbles(
+                    inCompletedTasksCount: inCompletedTasks.$1,
+                    completedTasksCount: completedTasks.$1,
+                    lateTasksCount: lateTasks.$1,
+                    violationTasksCount: violationTasks.$1,
+                  ),
+                ],
+              );
+            },
           ),
-          EmtithalSummeryBuilder(userId: user.id),
         ],
       ),
     );

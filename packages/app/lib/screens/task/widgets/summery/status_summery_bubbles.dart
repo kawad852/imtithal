@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shared/enums/task_enums.dart';
 import 'package:shared/widgets/task_bubble.dart';
 
-import '../enums/task_enums.dart';
-
-class EmtithalSummery extends StatelessWidget {
+class StatusSummeryBubbles extends StatelessWidget {
   final int inCompletedTasksCount;
   final int completedTasksCount;
   final int lateTasksCount;
   final int violationTasksCount;
   final bool isLoading;
 
-  const EmtithalSummery({
+  const StatusSummeryBubbles({
     super.key,
     required this.inCompletedTasksCount,
     required this.completedTasksCount,

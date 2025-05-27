@@ -1,16 +1,25 @@
 import 'package:shared/shared.dart';
 
-class EmtithalSummeryBuilder extends StatefulWidget {
+import 'status_summery_bubbles.dart';
+
+class SummeryBuilder extends StatefulWidget {
   final String? departmentId;
   final String? userId;
+  final Widget Function(
+    (int, double) inCompletedTasks,
+    (int, double) completedTasks,
+    (int, double) violationTasks,
+    (int, double) lateTasks,
+  )
+  builder;
 
-  const EmtithalSummeryBuilder({super.key, this.departmentId, this.userId});
+  const SummeryBuilder({super.key, this.departmentId, this.userId, required this.builder});
 
   @override
-  State<EmtithalSummeryBuilder> createState() => _EmtithalSummeryBuilderState();
+  State<SummeryBuilder> createState() => _SummeryBuilderState();
 }
 
-class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
+class _SummeryBuilderState extends State<SummeryBuilder> {
   late Future<List<dynamic>> _futures;
 
   String? get _departmentId => widget.departmentId;
@@ -51,19 +60,15 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
       query = docRef.where(_getFilter(filter));
     }
 
-    final summeryModel = SummeryModel(count: 0, sum: 0);
     final c = await query.count().get().then((value) {
       final v = value.count!;
-      summeryModel.count = v;
       return v;
     });
     final s = await query.aggregate(sum(MyFields.points)).get().then((value) {
       final v = value.getSum(MyFields.points)!;
-      summeryModel.sum = v;
       return v;
     });
 
-    // return Future.value((c, s));
     return (c, s);
   }
 
@@ -86,7 +91,7 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
     return ImpededFutureBuilder(
       future: _futures,
       onLoading:
-          () => const EmtithalSummery(
+          () => const StatusSummeryBubbles(
             inCompletedTasksCount: 0,
             completedTasksCount: 0,
             lateTasksCount: 0,
@@ -95,16 +100,11 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
           ),
       onError: (error) => const SizedBox.shrink(),
       onComplete: (context, snapshot) {
-        final inCompletedTasksCount = snapshot.data![0] as (int, double);
-        final completedTasksCount = snapshot.data![1] as (int, double);
-        final violationTasksCount = snapshot.data![2] as (int, double);
-        final lateTasksCount = snapshot.data![3] as (int, double);
-        return EmtithalSummery(
-          inCompletedTasksCount: inCompletedTasksCount.$1,
-          completedTasksCount: completedTasksCount.$1,
-          lateTasksCount: lateTasksCount.$1,
-          violationTasksCount: violationTasksCount.$1,
-        );
+        final inCompletedTasks = snapshot.data![0] as (int, double);
+        final completedTasks = snapshot.data![1] as (int, double);
+        final violationTasks = snapshot.data![2] as (int, double);
+        final lateTasks = snapshot.data![3] as (int, double);
+        return widget.builder(inCompletedTasks, completedTasks, violationTasks, lateTasks);
       },
     );
   }

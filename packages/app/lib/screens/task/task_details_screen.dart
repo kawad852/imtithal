@@ -1,3 +1,4 @@
+import 'package:app/screens/task/widgets/summery/status_summery_bubbles.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -177,7 +178,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               ),
               if (!kIsEmployee) ...[
                 ResponsibleCard(task: task, assignedTasks: assignedTasksQuerySnapshot),
-                EmtithalSummery(
+                StatusSummeryBubbles(
                   inCompletedTasksCount: task.inCompletedTasksCount,
                   completedTasksCount: task.completedTasksCount,
                   lateTasksCount: task.lateTasksCount,

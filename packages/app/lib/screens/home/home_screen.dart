@@ -2,6 +2,8 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 import '../notifications/notifications_screen.dart';
+import '../task/widgets/summery/status_summery_bubbles.dart';
+import '../task/widgets/summery/summery_builder.dart';
 import '../task/widgets/task_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -105,7 +107,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 13),
-                  child: EmtithalSummeryBuilder(userId: kIsEmployee ? kUserId : null),
+                  child: SummeryBuilder(
+                    userId: kIsEmployee ? kUserId : null,
+                    builder: (
+                      (int, double) inCompletedTasks,
+                      (int, double) completedTasks,
+                      (int, double) violationTasks,
+                      (int, double) lateTasks,
+                    ) {
+                      return StatusSummeryBubbles(
+                        inCompletedTasksCount: inCompletedTasks.$1,
+                        completedTasksCount: completedTasks.$1,
+                        lateTasksCount: lateTasks.$1,
+                        violationTasksCount: violationTasks.$1,
+                      );
+                    },
+                  ),
                 ),
                 TextEditor(
                   onChanged: (value) {},
