@@ -34,13 +34,14 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
     }
   }
 
-  Future<int> _fetch(String status, {bool late = false}) {
+  Future<(int, double)> _fetch(String status, {bool late = false}) async {
     late Query<TaskModel> docRef;
     if (widget.userId != null) {
       docRef = kFirebaseInstant.userAssignedTasks(widget.userId!);
     } else {
       docRef = kFirebaseInstant.collectionGroup(MyCollections.assignedTasks).taskConvertor;
     }
+
     late Query<TaskModel> query;
     if (late) {
       final filter = Filter(MyFields.markedAsLate, isEqualTo: true);
@@ -49,9 +50,21 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
       final filter = Filter(MyFields.status, isEqualTo: status);
       query = docRef.where(_getFilter(filter));
     }
-    return query.count().get().then((value) {
-      return value.count!;
+
+    final summeryModel = SummeryModel(count: 0, sum: 0);
+    final c = await query.count().get().then((value) {
+      final v = value.count!;
+      summeryModel.count = v;
+      return v;
     });
+    final s = await query.aggregate(sum(MyFields.points)).get().then((value) {
+      final v = value.getSum(MyFields.points)!;
+      summeryModel.sum = v;
+      return v;
+    });
+
+    // return Future.value((c, s));
+    return (c, s);
   }
 
   void _initialize() {
@@ -82,17 +95,24 @@ class _EmtithalSummeryBuilderState extends State<EmtithalSummeryBuilder> {
           ),
       onError: (error) => const SizedBox.shrink(),
       onComplete: (context, snapshot) {
-        final inCompletedTasksCount = snapshot.data![0] as int;
-        final completedTasksCount = snapshot.data![1] as int;
-        final violationTasksCount = snapshot.data![2] as int;
-        final lateTasksCount = snapshot.data![3] as int;
+        final inCompletedTasksCount = snapshot.data![0] as (int, double);
+        final completedTasksCount = snapshot.data![1] as (int, double);
+        final violationTasksCount = snapshot.data![2] as (int, double);
+        final lateTasksCount = snapshot.data![3] as (int, double);
         return EmtithalSummery(
-          inCompletedTasksCount: inCompletedTasksCount,
-          completedTasksCount: completedTasksCount,
-          lateTasksCount: lateTasksCount,
-          violationTasksCount: violationTasksCount,
+          inCompletedTasksCount: inCompletedTasksCount.$1,
+          completedTasksCount: completedTasksCount.$1,
+          lateTasksCount: lateTasksCount.$1,
+          violationTasksCount: violationTasksCount.$1,
         );
       },
     );
   }
+}
+
+class SummeryModel {
+  int count;
+  double sum;
+
+  SummeryModel({required this.count, required this.sum});
 }
