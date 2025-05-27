@@ -89,32 +89,35 @@ class DepartmentHeader extends StatelessWidget {
               return Column(
                 children: [
                   SummeryLabel(startDate: startDate, endDate: endDate, values: percentageValues),
-                  Row(
-                    spacing: 10,
-                    children: [
-                      EvaluationBox(
-                        title: context.appLocalization.mostCompliantEmployee,
-                        isEmployee: true,
-                        subTitle: "احمد محمد",
-                        value: "96",
-                        color: context.colorPalette.primary,
-                      ),
-                      EvaluationBox(
-                        title: context.appLocalization.leastCompliantEmployee,
-                        isEmployee: true,
-                        subTitle: "عبدالله احمد",
-                        value: "96",
-                        color: context.colorPalette.redD62,
-                      ),
-                    ],
-                  ),
 
+                  // Row(
+                  //   spacing: 10,
+                  //   children: [
+                  //     EvaluationBox(
+                  //       title: context.appLocalization.mostCompliantEmployee,
+                  //       isEmployee: true,
+                  //       subTitle: "احمد محمد",
+                  //       value: "96",
+                  //       color: context.colorPalette.primary,
+                  //     ),
+                  //     EvaluationBox(
+                  //       title: context.appLocalization.leastCompliantEmployee,
+                  //       isEmployee: true,
+                  //       subTitle: "عبدالله احمد",
+                  //       value: "96",
+                  //       color: context.colorPalette.redD62,
+                  //     ),
+                  //   ],
+                  // ),
                   const SizedBox(height: 10),
                   StatusSummeryBubbles(
                     inCompletedTasksCount: inCompletedTasks.$1,
                     completedTasksCount: completedTasks.$1,
                     lateTasksCount: lateTasks.$1,
                     violationTasksCount: violationTasks.$1,
+                    departmentId: department.id,
+                    startDate: startDate,
+                    endDate: endDate,
                   ),
                 ],
               );

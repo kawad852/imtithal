@@ -25,6 +25,61 @@ class SummeryBuilder extends StatefulWidget {
     required this.endDate,
   });
 
+  static Query<TaskModel> getQuery({
+    required DateTime start,
+    required DateTime end,
+    required String status,
+    required String? userId,
+    required String? departmentId,
+    required bool late,
+  }) {
+    late Query<TaskModel> docRef;
+    if (userId != null) {
+      docRef = kFirebaseInstant.userAssignedTasks(userId);
+    } else {
+      docRef = kFirebaseInstant.assignedTasksQuery;
+    }
+
+    late Query<TaskModel> query;
+    if (late) {
+      final filter = Filter(MyFields.markedAsLate, isEqualTo: true);
+      query = docRef.where(
+        _getFilter(filter, userId: userId, departmentId: departmentId, start: start, end: end),
+      );
+    } else {
+      final filter = Filter(MyFields.status, isEqualTo: status);
+      query = docRef.where(
+        _getFilter(filter, userId: userId, departmentId: departmentId, start: start, end: end),
+      );
+    }
+    return query;
+  }
+
+  static Filter _getFilter(
+    Filter filter, {
+    required DateTime start,
+    required DateTime end,
+    required String? userId,
+    required String? departmentId,
+  }) {
+    final startDate = DateTime(start.year, start.month, 1);
+    final endDate = startDate.add(Duration(days: end.day + 1));
+    final startDateFilter = Filter(
+      MyFields.deliveryDate,
+      isGreaterThanOrEqualTo: Timestamp.fromDate(startDate),
+    );
+    final endDateFilter = Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate));
+    if (userId != null) {
+      return Filter.and(startDateFilter, endDateFilter, filter);
+    } else if (departmentId != null) {
+      final departmentIdFilter = Filter(MyFields.user_departmentId, isEqualTo: departmentId);
+      return Filter.and(startDateFilter, endDateFilter, departmentIdFilter, filter);
+    } else {
+      final companyIdFilter = Filter(MyFields.companyId, isEqualTo: kCompanyId);
+      return Filter.and(startDateFilter, endDateFilter, companyIdFilter, filter);
+    }
+  }
+
   @override
   State<SummeryBuilder> createState() => _SummeryBuilderState();
 }
@@ -36,41 +91,15 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
   DateTime get _startDate => widget.startDate;
   DateTime get _endDate => widget.endDate;
 
-  Filter _getFilter(Filter filter) {
-    final startDate = DateTime(_startDate.year, _startDate.month, 1);
-    final endDate = startDate.add(Duration(days: _endDate.day + 1));
-    final startDateFilter = Filter(
-      MyFields.deliveryDate,
-      isGreaterThanOrEqualTo: Timestamp.fromDate(startDate),
-    );
-    final endDateFilter = Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate));
-    if (widget.userId != null) {
-      return Filter.and(startDateFilter, endDateFilter, filter);
-    } else if (widget.departmentId != null) {
-      final departmentIdFilter = Filter(MyFields.user_departmentId, isEqualTo: _departmentId);
-      return Filter.and(startDateFilter, endDateFilter, departmentIdFilter, filter);
-    } else {
-      final companyIdFilter = Filter(MyFields.companyId, isEqualTo: kCompanyId);
-      return Filter.and(startDateFilter, endDateFilter, companyIdFilter, filter);
-    }
-  }
-
   Future<(int, double)> _fetch(String status, {bool late = false}) async {
-    late Query<TaskModel> docRef;
-    if (widget.userId != null) {
-      docRef = kFirebaseInstant.userAssignedTasks(widget.userId!);
-    } else {
-      docRef = kFirebaseInstant.collectionGroup(MyCollections.assignedTasks).taskConvertor;
-    }
-
-    late Query<TaskModel> query;
-    if (late) {
-      final filter = Filter(MyFields.markedAsLate, isEqualTo: true);
-      query = docRef.where(_getFilter(filter));
-    } else {
-      final filter = Filter(MyFields.status, isEqualTo: status);
-      query = docRef.where(_getFilter(filter));
-    }
+    final query = SummeryBuilder.getQuery(
+      start: _startDate,
+      end: _endDate,
+      status: status,
+      userId: widget.userId,
+      departmentId: _departmentId,
+      late: late,
+    );
 
     final c = await query.count().get().then((value) {
       final v = value.count!;
@@ -113,12 +142,14 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
     return ImpededFutureBuilder(
       future: _futures,
       onLoading:
-          () => const StatusSummeryBubbles(
+          () => StatusSummeryBubbles(
             inCompletedTasksCount: 0,
             completedTasksCount: 0,
             lateTasksCount: 0,
             violationTasksCount: 0,
             isLoading: true,
+            startDate: kNowDate,
+            endDate: kNowDate,
           ),
       onError: (error) => const SizedBox.shrink(),
       onComplete: (context, snapshot) {

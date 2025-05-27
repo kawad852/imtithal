@@ -103,6 +103,9 @@ class UserHeader extends StatelessWidget {
                     completedTasksCount: completedTasks.$1,
                     lateTasksCount: lateTasks.$1,
                     violationTasksCount: violationTasks.$1,
+                    userId: user.id,
+                    startDate: startDate,
+                    endDate: endDate,
                   ),
                 ],
               );

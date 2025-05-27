@@ -127,6 +127,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         completedTasksCount: completedTasks.$1,
                         lateTasksCount: lateTasks.$1,
                         violationTasksCount: violationTasks.$1,
+                        startDate: _startDate,
+                        endDate: _endDate,
                       );
                     },
                   ),

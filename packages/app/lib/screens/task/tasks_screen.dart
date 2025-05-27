@@ -4,8 +4,19 @@ import 'package:shared/shared.dart';
 class TasksScreen extends StatefulWidget {
   final TaskStatusEnum status;
   final bool late;
+  final String? userId;
+  final String? departmentId;
+  final DateTime startDate, endDate;
 
-  const TasksScreen({super.key, required this.status, this.late = false});
+  const TasksScreen({
+    super.key,
+    required this.status,
+    this.late = false,
+    this.userId,
+    this.departmentId,
+    required this.startDate,
+    required this.endDate,
+  });
 
   @override
   State<TasksScreen> createState() => _TasksScreenState();
@@ -14,19 +25,28 @@ class TasksScreen extends StatefulWidget {
 class _TasksScreenState extends State<TasksScreen> {
   late Query<TaskModel> _query;
 
+  String? get _departmentId => widget.departmentId;
+  String? get _userId => widget.userId;
+
   Query<TaskModel> get _getQuery {
     late Query<TaskModel> query;
     late Filter filter;
-    final companyIdFilter = Filter(MyFields.companyId, isEqualTo: kCompanyId);
+    late Filter statusFilter;
     if (widget.late) {
-      filter = Filter.and(Filter(MyFields.markedAsLate, isEqualTo: true), companyIdFilter);
+      statusFilter = Filter(MyFields.markedAsLate, isEqualTo: true);
     } else {
-      filter = Filter.and(Filter(MyFields.status, isEqualTo: widget.status.value), companyIdFilter);
+      statusFilter = Filter(MyFields.status, isEqualTo: widget.status.value);
     }
-    if (kIsEmployee) {
-      return kFirebaseInstant.assignedTasksQuery.where(filter);
+    filter = Filter.and(
+      statusFilter,
+      _departmentId != null
+          ? Filter(MyFields.user_departmentId, isEqualTo: _departmentId)
+          : Filter(MyFields.companyId, isEqualTo: kCompanyId),
+    );
+    if (_userId != null) {
+      return kFirebaseInstant.userAssignedTasks(_userId!).where(statusFilter);
     } else {
-      query = kFirebaseInstant.tasks.where(filter);
+      query = kFirebaseInstant.assignedTasksQuery.where(filter);
     }
     return query.orderByDeliveryDateDesc;
   }
@@ -62,6 +82,19 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     final task = _getTaskInfo(context);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          try {
+            await _getQuery.get().then((value) {
+              for (var e in value.docs) {
+                print("e::: ${e.data()!.status}");
+              }
+            });
+          } catch (e) {
+            print("e:: $e");
+          }
+        },
+      ),
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),

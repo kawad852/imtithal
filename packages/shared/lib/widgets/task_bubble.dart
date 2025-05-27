@@ -5,7 +5,21 @@ class TaskBubble extends StatelessWidget {
   final TaskStatusEnum status;
   final String value;
   final bool late;
-  const TaskBubble({super.key, required this.status, required this.value, this.late = false});
+  final String? userId;
+  final String? departmentId;
+  final DateTime startDate;
+  final DateTime endDate;
+
+  const TaskBubble({
+    super.key,
+    required this.status,
+    required this.value,
+    this.late = false,
+    required this.userId,
+    required this.departmentId,
+    required this.startDate,
+    required this.endDate,
+  });
 
   (String, Color, Color) _getTaskInfo(BuildContext context) {
     if (late) {
@@ -46,7 +60,16 @@ class TaskBubble extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          context.push((context) => TasksScreen(status: status, late: late));
+          context.push(
+            (context) => TasksScreen(
+              status: status,
+              late: late,
+              userId: userId,
+              departmentId: departmentId,
+              startDate: startDate,
+              endDate: endDate,
+            ),
+          );
         },
         child: Container(
           width: double.infinity,

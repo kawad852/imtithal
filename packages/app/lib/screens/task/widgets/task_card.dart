@@ -22,7 +22,7 @@ class TaskCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            if (kIsEmployee) VerticalLine(height: 67, color: task.indicatorColor(context)),
+            VerticalLine(height: 67, color: task.indicatorColor(context)),
             const SizedBox(width: 10),
             Expanded(
               child: Column(

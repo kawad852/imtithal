@@ -183,6 +183,8 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   completedTasksCount: task.completedTasksCount,
                   lateTasksCount: task.lateTasksCount,
                   violationTasksCount: task.violationTasksCount,
+                  startDate: kNowDate,
+                  endDate: kNowDate,
                 ),
               ],
             ],

@@ -8,6 +8,10 @@ class StatusSummeryBubbles extends StatelessWidget {
   final int lateTasksCount;
   final int violationTasksCount;
   final bool isLoading;
+  final String? userId;
+  final String? departmentId;
+  final DateTime startDate;
+  final DateTime endDate;
 
   const StatusSummeryBubbles({
     super.key,
@@ -16,6 +20,10 @@ class StatusSummeryBubbles extends StatelessWidget {
     required this.lateTasksCount,
     required this.violationTasksCount,
     this.isLoading = false,
+    this.userId,
+    this.departmentId,
+    required this.startDate,
+    required this.endDate,
   });
 
   @override
@@ -26,19 +34,35 @@ class StatusSummeryBubbles extends StatelessWidget {
         TaskBubble(
           status: TaskStatusEnum.pending,
           value: isLoading ? '-' : "$inCompletedTasksCount",
+          userId: userId,
+          departmentId: departmentId,
+          startDate: startDate,
+          endDate: endDate,
         ),
         TaskBubble(
           status: TaskStatusEnum.completed,
           value: isLoading ? '-' : "$completedTasksCount",
+          userId: userId,
+          departmentId: departmentId,
+          startDate: startDate,
+          endDate: endDate,
         ),
         TaskBubble(
           status: TaskStatusEnum.pending,
           value: isLoading ? '-' : "$lateTasksCount",
+          userId: userId,
+          departmentId: departmentId,
+          startDate: startDate,
+          endDate: endDate,
           late: true,
         ),
         TaskBubble(
           status: TaskStatusEnum.violated,
           value: isLoading ? '-' : "$violationTasksCount",
+          userId: userId,
+          departmentId: departmentId,
+          startDate: startDate,
+          endDate: endDate,
         ),
       ],
     );
