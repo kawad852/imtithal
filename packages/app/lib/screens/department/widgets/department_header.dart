@@ -69,7 +69,9 @@ class DepartmentHeader extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
-              "${context.appLocalization.thisMonthComplianceAssessment} , ${context.appLocalization.since}  01.05.2025 ${context.appLocalization.toDay}",
+              startDate.isFirstDayOfThisMonth
+                  ? "${context.appLocalization.thisMonthComplianceAssessment} , ${context.appLocalization.since}  ${startDate.getDefaultFormattedDate(context)} ${context.appLocalization.toDay}"
+                  : "",
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: context.colorPalette.white,

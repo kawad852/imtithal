@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:shared/extensions/base_extension.dart';
-import 'package:shared/helper/translation_extension.dart';
-import 'package:shared/network/api_service.dart';
-import 'package:shared/utils/my_icons.dart';
-import 'package:shared/widgets/custom_svg.dart';
+import 'package:shared/shared.dart';
 
 class RangeDateButton extends StatelessWidget {
   final DateTime startDate;
@@ -21,9 +16,8 @@ class RangeDateButton extends StatelessWidget {
   Future<DateTimeRange?> _selectDate(BuildContext context) async {
     DateTimeRange? result = await showDateRangePicker(
       context: context,
-      firstDate: startDate,
-      lastDate: kNowDate.add(const Duration(days: 999)),
-      currentDate: kNowDate,
+      firstDate: kFirstDayOfMonthDate,
+      lastDate: kNowDate,
       initialDateRange: DateTimeRange(start: startDate, end: endDate),
       saveText: context.appLocalization.save,
     );
