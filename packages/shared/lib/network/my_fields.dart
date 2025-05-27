@@ -41,4 +41,5 @@ class MyFields {
   static const String user_departmentId = 'user.departmentId';
   static const String unReadNotificationsCount = 'unReadNotificationsCount';
   static const String points = 'points';
+  static const String departmentId = 'departmentId';
 }

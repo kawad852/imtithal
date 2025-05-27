@@ -21,6 +21,7 @@ class AnchorTile extends StatelessWidget {
               ? BaseNetworkImage(thumbnail!, height: 45, width: 45, radius: kRadiusPrimary)
               : null,
       title: Text(name!),
+      minTileHeight: 10,
       subtitle:
           description != null
               ? Text(description!, maxLines: 1, overflow: TextOverflow.ellipsis)

@@ -1,6 +1,7 @@
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as sv;
 import 'package:shared/shared.dart';
 
+import '../../search/search_screen.dart';
 import '../../task/widgets/summery/status_summery_bubbles.dart';
 import '../../task/widgets/summery/summery_builder.dart';
 
@@ -136,11 +137,10 @@ class DepartmentHeader extends StatelessWidget {
             },
           ),
           const SizedBox(height: 10),
-          TextEditor(
-            onChanged: (value) {},
-            required: false,
+          SearchScreen(
             hintText: context.appLocalization.searchForEmployee,
-            prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+            includeIndexes: (true, false, false),
+            filters: '${MyFields.departmentId}:${department.id}',
           ),
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 import '../notifications/notifications_screen.dart';
+import '../search/search_screen.dart';
 import '../task/widgets/summery/status_summery_bubbles.dart';
 import '../task/widgets/summery/summery_builder.dart';
 import '../task/widgets/task_card.dart';
@@ -124,11 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                TextEditor(
-                  onChanged: (value) {},
-                  required: false,
+                SearchScreen(
                   hintText: context.appLocalization.searchTaskEmployee,
-                  prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+                  includeIndexes: (true, false, false),
                 ),
               ],
             ),
