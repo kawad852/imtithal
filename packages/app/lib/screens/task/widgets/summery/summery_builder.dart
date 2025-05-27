@@ -1,12 +1,11 @@
 import 'package:shared/shared.dart';
 
-import 'status_summery_bubbles.dart';
-
 class SummeryBuilder extends StatefulWidget {
   final String? departmentId;
   final String? userId;
   final DateTime startDate;
   final DateTime endDate;
+  final double height;
 
   final Widget Function(
     (int, double) inCompletedTasks,
@@ -23,6 +22,7 @@ class SummeryBuilder extends StatefulWidget {
     required this.builder,
     required this.startDate,
     required this.endDate,
+    required this.height,
   });
 
   static Query<TaskModel> getQuery({
@@ -142,15 +142,29 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
     return ImpededFutureBuilder(
       future: _futures,
       onLoading:
-          () => StatusSummeryBubbles(
-            inCompletedTasksCount: 0,
-            completedTasksCount: 0,
-            lateTasksCount: 0,
-            violationTasksCount: 0,
-            isLoading: true,
-            startDate: kNowDate,
-            endDate: kNowDate,
+          () => SizedBox(
+            height: widget.height,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Align(
+                alignment: const Alignment(0, -1),
+                child: LoadingAnimationWidget.flickr(
+                  leftDotColor: context.colorPalette.primary,
+                  rightDotColor: context.colorPalette.redD62,
+                  size: 30,
+                ),
+              ),
+            ),
           ),
+      // () => StatusSummeryBubbles(
+      //   inCompletedTasksCount: 0,
+      //   completedTasksCount: 0,
+      //   lateTasksCount: 0,
+      //   violationTasksCount: 0,
+      //   isLoading: true,
+      //   startDate: kNowDate,
+      //   endDate: kNowDate,
+      // ),
       onError: (error) => const SizedBox.shrink(),
       onComplete: (context, snapshot) {
         final inCompletedTasks = snapshot.data![0] as (int, double);

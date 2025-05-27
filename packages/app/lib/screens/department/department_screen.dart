@@ -46,7 +46,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                   SliverAppBar(
                     backgroundColor: context.colorPalette.black252,
                     surfaceTintColor: context.colorPalette.black252,
-                    expandedHeight: 425,
+                    expandedHeight: 400,
                     pinned: true,
                     leading: CustomBack(color: context.colorScheme.surface),
                     flexibleSpace: FlexibleSpaceBar(

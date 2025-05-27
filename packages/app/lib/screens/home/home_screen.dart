@@ -113,6 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 13),
                   child: SummeryBuilder(
+                    height: 60,
                     startDate: _startDate,
                     endDate: _endDate,
                     userId: kIsEmployee ? kUserId : null,

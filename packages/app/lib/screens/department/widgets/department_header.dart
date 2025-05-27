@@ -25,7 +25,6 @@ class DepartmentHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 365,
       padding: const EdgeInsets.symmetric(horizontal: 15),
       alignment: Alignment.bottomCenter,
       decoration: const BoxDecoration(
@@ -68,6 +67,7 @@ class DepartmentHeader extends StatelessWidget {
             ],
           ),
           SummeryBuilder(
+            height: 225,
             departmentId: department.id,
             startDate: startDate,
             endDate: endDate,
@@ -90,25 +90,25 @@ class DepartmentHeader extends StatelessWidget {
                 children: [
                   SummeryLabel(startDate: startDate, endDate: endDate, values: percentageValues),
 
-                  // Row(
-                  //   spacing: 10,
-                  //   children: [
-                  //     EvaluationBox(
-                  //       title: context.appLocalization.mostCompliantEmployee,
-                  //       isEmployee: true,
-                  //       subTitle: "احمد محمد",
-                  //       value: "96",
-                  //       color: context.colorPalette.primary,
-                  //     ),
-                  //     EvaluationBox(
-                  //       title: context.appLocalization.leastCompliantEmployee,
-                  //       isEmployee: true,
-                  //       subTitle: "عبدالله احمد",
-                  //       value: "96",
-                  //       color: context.colorPalette.redD62,
-                  //     ),
-                  //   ],
-                  // ),
+                  Row(
+                    spacing: 10,
+                    children: [
+                      EvaluationBox(
+                        title: context.appLocalization.mostCompliantEmployee,
+                        isEmployee: true,
+                        subTitle: "احمد محمد",
+                        value: "96",
+                        color: context.colorPalette.primary,
+                      ),
+                      EvaluationBox(
+                        title: context.appLocalization.leastCompliantEmployee,
+                        isEmployee: true,
+                        subTitle: "عبدالله احمد",
+                        value: "96",
+                        color: context.colorPalette.redD62,
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 10),
                   StatusSummeryBubbles(
                     inCompletedTasksCount: inCompletedTasks.$1,

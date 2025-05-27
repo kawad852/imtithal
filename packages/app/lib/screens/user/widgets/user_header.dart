@@ -15,7 +15,6 @@ class UserHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 260,
       padding: const EdgeInsets.symmetric(horizontal: 15),
       alignment: Alignment.bottomCenter,
       decoration: const BoxDecoration(
@@ -76,6 +75,7 @@ class UserHeader extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           SummeryBuilder(
+            height: 160,
             userId: user.id,
             startDate: startDate,
             endDate: endDate,
