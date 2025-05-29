@@ -76,6 +76,7 @@ class DepartmentHeader extends StatelessWidget {
               (int, double) completedTasks,
               (int, double) violationTasks,
               (int, double) lateTasks,
+              users,
             ) {
               final totalCount =
                   inCompletedTasks.$1 + completedTasks.$1 + violationTasks.$1 + lateTasks.$1;
@@ -89,26 +90,28 @@ class DepartmentHeader extends StatelessWidget {
               return Column(
                 children: [
                   SummeryLabel(startDate: startDate, endDate: endDate, values: percentageValues),
-
-                  Row(
-                    spacing: 10,
-                    children: [
-                      EvaluationBox(
-                        title: context.appLocalization.mostCompliantEmployee,
-                        isEmployee: true,
-                        subTitle: "احمد محمد",
-                        value: "96",
-                        color: context.colorPalette.primary,
-                      ),
-                      EvaluationBox(
-                        title: context.appLocalization.leastCompliantEmployee,
-                        isEmployee: true,
-                        subTitle: "عبدالله احمد",
-                        value: "96",
-                        color: context.colorPalette.redD62,
-                      ),
-                    ],
-                  ),
+                  if (users.$1 != null && users.$2 != null)
+                    Row(
+                      spacing: 10,
+                      children: [
+                        EvaluationBox(
+                          title: context.appLocalization.mostCompliantEmployee,
+                          isEmployee: true,
+                          subTitle: users.$1!.displayName,
+                          profilePhoto: users.$1!.profilePhoto,
+                          value: "${users.$1!.imtithalPercentage}%",
+                          color: context.colorPalette.primary,
+                        ),
+                        EvaluationBox(
+                          title: context.appLocalization.leastCompliantEmployee,
+                          isEmployee: true,
+                          subTitle: users.$2!.displayName,
+                          profilePhoto: users.$2!.profilePhoto,
+                          value: "${users.$2!.violatedCount}",
+                          color: context.colorPalette.redD62,
+                        ),
+                      ],
+                    ),
                   const SizedBox(height: 10),
                   StatusSummeryBubbles(
                     inCompletedTasksCount: inCompletedTasks.$1,

@@ -12,6 +12,7 @@ class SummeryBuilder extends StatefulWidget {
     (int, double) completedTasks,
     (int, double) violationTasks,
     (int, double) lateTasks,
+    (UserModel?, UserModel?) users,
   )
   builder;
 
@@ -26,9 +27,9 @@ class SummeryBuilder extends StatefulWidget {
   });
 
   static Query<TaskModel> getQuery({
+    required String? status,
     required DateTime start,
     required DateTime end,
-    required String status,
     required String? userId,
     required String? departmentId,
     required bool late,
@@ -47,7 +48,7 @@ class SummeryBuilder extends StatefulWidget {
         _getFilter(filter, userId: userId, departmentId: departmentId, start: start, end: end),
       );
     } else {
-      final filter = Filter(MyFields.status, isEqualTo: status);
+      final filter = status != null ? Filter(MyFields.status, isEqualTo: status) : null;
       query = docRef.where(
         _getFilter(filter, userId: userId, departmentId: departmentId, start: start, end: end),
       );
@@ -56,7 +57,7 @@ class SummeryBuilder extends StatefulWidget {
   }
 
   static Filter _getFilter(
-    Filter filter, {
+    Filter? filter, {
     required DateTime start,
     required DateTime end,
     required String? userId,
@@ -91,13 +92,18 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
   DateTime get _startDate => widget.startDate;
   DateTime get _endDate => widget.endDate;
 
-  Future<(int, double)> _fetch(String status, {bool late = false}) async {
+  Future<(int, double)> _fetchQuery(
+    String? status, {
+    bool late = false,
+    required String? userId,
+    required String? departmentId,
+  }) async {
     final query = SummeryBuilder.getQuery(
+      status: status,
       start: _startDate,
       end: _endDate,
-      status: status,
-      userId: widget.userId,
-      departmentId: _departmentId,
+      userId: userId,
+      departmentId: departmentId,
       late: late,
     );
 
@@ -113,25 +119,84 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
     return (c, s);
   }
 
-  void _initialize() {
-    final inCompletedFuture = _fetch(TaskStatusEnum.pending.value);
-    final completedFuture = _fetch(TaskStatusEnum.completed.value);
-    final violatedFuture = _fetch(TaskStatusEnum.violated.value);
-    final lateFuture = _fetch('', late: true);
-    _futures = Future.wait([inCompletedFuture, completedFuture, violatedFuture, lateFuture]);
+  Future<(UserModel?, UserModel?)> _fetchHighestUser(
+    BuildContext context,
+    String status, {
+    required bool descending,
+  }) async {
+    final departmentUsers = Provider.of<List<UserModel>>(
+      context,
+      listen: false,
+    ).where((e) => e.departmentId == _departmentId);
+
+    if (departmentUsers.isNotEmpty) {
+      for (var e in departmentUsers) {
+        final userId = e.id;
+        (int, double) values = await _fetchQuery(null, userId: userId, departmentId: null);
+        if (context.mounted) {
+          final imtithalPercentage =
+              TaskPoints.getPercentage(context, count: values.$1, sum: values.$2).$1;
+          e.imtithalPercentage = imtithalPercentage;
+        }
+      }
+
+      final highestUser = departmentUsers.reduce(
+        (a, b) => a.imtithalPercentage > b.imtithalPercentage ? a : b,
+      );
+
+      final lowestUser = departmentUsers.reduce(
+        (a, b) => a.imtithalPercentage < b.imtithalPercentage ? a : b,
+      );
+
+      final violationValues = await _fetchQuery(
+        TaskStatusEnum.violated.value,
+        userId: lowestUser.id,
+        departmentId: null,
+      );
+      lowestUser.violatedCount = violationValues.$1;
+
+      return (highestUser, lowestUser);
+    }
+    return (null, null);
+  }
+
+  void _initialize(BuildContext context) {
+    Future<(int, double)> query(String status, {bool late = false}) => _fetchQuery(
+      TaskStatusEnum.pending.value,
+      userId: widget.userId,
+      departmentId: _departmentId,
+      late: late,
+    );
+    final inCompletedFuture = query(TaskStatusEnum.pending.value);
+    final completedFuture = query(TaskStatusEnum.completed.value);
+    final violatedFuture = query(TaskStatusEnum.violated.value);
+    final lateFuture = query('', late: true);
+    late Future<(UserModel?, UserModel?)> usersFuture;
+    if (_departmentId != null) {
+      usersFuture = _fetchHighestUser(context, TaskStatusEnum.completed.value, descending: true);
+    } else {
+      usersFuture = Future.value((null, null));
+    }
+    _futures = Future.wait([
+      inCompletedFuture,
+      completedFuture,
+      violatedFuture,
+      lateFuture,
+      usersFuture,
+    ]);
   }
 
   @override
   void initState() {
     super.initState();
-    _initialize();
+    _initialize(context);
   }
 
   @override
   void didUpdateWidget(covariant SummeryBuilder oldWidget) {
     if (oldWidget.startDate != widget.startDate || oldWidget.endDate != widget.endDate) {
       setState(() {
-        _initialize();
+        _initialize(context);
       });
     }
     super.didUpdateWidget(oldWidget);
@@ -171,7 +236,8 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
         final completedTasks = snapshot.data![1] as (int, double);
         final violationTasks = snapshot.data![2] as (int, double);
         final lateTasks = snapshot.data![3] as (int, double);
-        return widget.builder(inCompletedTasks, completedTasks, violationTasks, lateTasks);
+        final users = snapshot.data![4] as (UserModel?, UserModel?);
+        return widget.builder(inCompletedTasks, completedTasks, violationTasks, lateTasks, users);
       },
     );
   }

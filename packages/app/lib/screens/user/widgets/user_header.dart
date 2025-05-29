@@ -84,6 +84,7 @@ class UserHeader extends StatelessWidget {
               (int, double) completedTasks,
               (int, double) violationTasks,
               (int, double) lateTasks,
+              users,
             ) {
               final totalCount =
                   inCompletedTasks.$1 + completedTasks.$1 + violationTasks.$1 + lateTasks.$1;

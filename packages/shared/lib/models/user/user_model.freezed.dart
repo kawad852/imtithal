@@ -83,6 +83,14 @@ mixin _$UserModel {
   bool get selected => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   set selected(bool value) => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  int get imtithalPercentage => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set imtithalPercentage(int value) => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  int get violatedCount => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set violatedCount(int value) => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -128,6 +136,9 @@ abstract class $UserModelCopyWith<$Res> {
     String? phoneNum,
     String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    int imtithalPercentage,
+    @JsonKey(includeToJson: false, includeFromJson: false) int violatedCount,
   });
 }
 
@@ -174,6 +185,8 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? phoneNum = freezed,
     Object? nationalNumber = null,
     Object? selected = null,
+    Object? imtithalPercentage = null,
+    Object? violatedCount = null,
   }) {
     return _then(
       _value.copyWith(
@@ -317,6 +330,16 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.selected
                     : selected // ignore: cast_nullable_to_non_nullable
                         as bool,
+            imtithalPercentage:
+                null == imtithalPercentage
+                    ? _value.imtithalPercentage
+                    : imtithalPercentage // ignore: cast_nullable_to_non_nullable
+                        as int,
+            violatedCount:
+                null == violatedCount
+                    ? _value.violatedCount
+                    : violatedCount // ignore: cast_nullable_to_non_nullable
+                        as int,
           )
           as $Val,
     );
@@ -361,6 +384,9 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String? phoneNum,
     String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    int imtithalPercentage,
+    @JsonKey(includeToJson: false, includeFromJson: false) int violatedCount,
   });
 }
 
@@ -406,6 +432,8 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? phoneNum = freezed,
     Object? nationalNumber = null,
     Object? selected = null,
+    Object? imtithalPercentage = null,
+    Object? violatedCount = null,
   }) {
     return _then(
       _$UserModelImpl(
@@ -549,6 +577,16 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.selected
                 : selected // ignore: cast_nullable_to_non_nullable
                     as bool,
+        imtithalPercentage:
+            null == imtithalPercentage
+                ? _value.imtithalPercentage
+                : imtithalPercentage // ignore: cast_nullable_to_non_nullable
+                    as int,
+        violatedCount:
+            null == violatedCount
+                ? _value.violatedCount
+                : violatedCount // ignore: cast_nullable_to_non_nullable
+                    as int,
       ),
     );
   }
@@ -588,6 +626,10 @@ class _$UserModelImpl implements _UserModel {
     this.nationalNumber = '',
     @JsonKey(includeToJson: false, includeFromJson: false)
     this.selected = false,
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    this.imtithalPercentage = 0,
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    this.violatedCount = 0,
   });
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -668,10 +710,16 @@ class _$UserModelImpl implements _UserModel {
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool selected;
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  int imtithalPercentage;
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  int violatedCount;
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, username: $username, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, unReadNotificationsCount: $unReadNotificationsCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected)';
+    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, username: $username, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, unReadNotificationsCount: $unReadNotificationsCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected, imtithalPercentage: $imtithalPercentage, violatedCount: $violatedCount)';
   }
 
   /// Create a copy of UserModel
@@ -718,6 +766,9 @@ abstract class _UserModel implements UserModel {
     String? phoneNum,
     String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    int imtithalPercentage,
+    @JsonKey(includeToJson: false, includeFromJson: false) int violatedCount,
   }) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -813,6 +864,16 @@ abstract class _UserModel implements UserModel {
   bool get selected;
   @JsonKey(includeToJson: false, includeFromJson: false)
   set selected(bool value);
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  int get imtithalPercentage;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set imtithalPercentage(int value);
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  int get violatedCount;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set violatedCount(int value);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

@@ -36,6 +36,8 @@ class UserModel with _$UserModel {
     String? phoneNum,
     @Default('') String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) @Default(false) bool selected,
+    @JsonKey(includeToJson: false, includeFromJson: false) @Default(0) int imtithalPercentage,
+    @JsonKey(includeToJson: false, includeFromJson: false) @Default(0) int violatedCount,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

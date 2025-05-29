@@ -122,6 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       (int, double) completedTasks,
                       (int, double) violationTasks,
                       (int, double) lateTasks,
+                      users,
                     ) {
                       return StatusSummeryBubbles(
                         inCompletedTasksCount: inCompletedTasks.$1,

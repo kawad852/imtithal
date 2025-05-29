@@ -4,6 +4,8 @@ class EvaluationBox extends StatelessWidget {
   final String title, subTitle, value;
   final Color color;
   final bool isEmployee;
+  final String? profilePhoto;
+
   const EvaluationBox({
     super.key,
     required this.title,
@@ -11,6 +13,7 @@ class EvaluationBox extends StatelessWidget {
     required this.value,
     required this.color,
     this.isEmployee = false,
+    this.profilePhoto,
   });
 
   @override
@@ -56,24 +59,15 @@ class EvaluationBox extends StatelessWidget {
                     ),
                   ),
                   Row(
+                    spacing: 5,
                     children: [
-                      if (isEmployee)
-                        const BaseNetworkImage(
-                          "",
-                          width: 20,
-                          height: 20,
-                          margin: EdgeInsetsDirectional.only(end: 4),
-                          shape: BoxShape.circle,
-                        ),
+                      if (isEmployee && profilePhoto != null)
+                        UserPhoto(url: profilePhoto, displayName: subTitle),
                       Expanded(
                         child: Text(
                           subTitle,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: color,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: TextStyle(color: color, fontSize: 14, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ],

@@ -95,6 +95,7 @@ class _MyAppState extends State<MyApp> {
                 value: kFirebaseInstant.users.whereMyCompany.snapshots().map(
                   (e) => e.docs.map((e) => e.data()).toList(),
                 ),
+                lazy: false,
                 initialData: const [],
                 updateShouldNotify: (initialValue, value) {
                   return true;

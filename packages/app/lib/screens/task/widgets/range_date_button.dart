@@ -16,7 +16,7 @@ class RangeDateButton extends StatelessWidget {
   Future<DateTimeRange?> _selectDate(BuildContext context) async {
     DateTimeRange? result = await showDateRangePicker(
       context: context,
-      firstDate: kFirstDayOfMonthDate,
+      firstDate: kNowDate.subtract(const Duration(days: 9999)),
       lastDate: kNowDate,
       initialDateRange: DateTimeRange(start: startDate, end: endDate),
       saveText: context.appLocalization.save,
