@@ -59,8 +59,6 @@ class ResponsibleEmployee extends StatelessWidget {
             icon: const CustomSvg(MyIcons.moreCircle),
             onSelected: (value) {
               if (value) {
-                print("userId::: ${user.id}");
-                print("assignedTaskId::: ${assignedTask.id}");
                 kFirebaseInstant.userAssignedTasks(user.id!).doc(assignedTask.id).update({
                   MyFields.status: TaskStatusEnum.completed.value,
                   MyFields.points: TaskPoints.imtithal.value,
