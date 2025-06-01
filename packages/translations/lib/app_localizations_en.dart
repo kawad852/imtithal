@@ -562,4 +562,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sinceComplianceAssessment => 'Compliance assessment since';
+
+  @override
+  String get selectEmployees => 'Select Employees';
+
+  @override
+  String get generalViolation => 'General Violation';
 }

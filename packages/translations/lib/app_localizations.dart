@@ -1177,6 +1177,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تقييم الإمتثال منذ'**
   String get sinceComplianceAssessment;
+
+  /// No description provided for @selectEmployees.
+  ///
+  /// In ar, this message translates to:
+  /// **'إختر الموظفين'**
+  String get selectEmployees;
+
+  /// No description provided for @generalViolation.
+  ///
+  /// In ar, this message translates to:
+  /// **'رصد مخالفة عامة'**
+  String get generalViolation;
 }
 
 class _AppLocalizationsDelegate

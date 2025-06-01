@@ -179,5 +179,7 @@
   "veryGood": "جيد جدا",
   "good": "جيد",
   "weak": "ضعيف",
-  "sinceComplianceAssessment": "تقييم الإمتثال منذ"
+  "sinceComplianceAssessment": "تقييم الإمتثال منذ",
+  "selectEmployees": "إختر الموظفين",
+  "generalViolation":"رصد مخالفة عامة"
 }

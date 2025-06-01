@@ -179,6 +179,7 @@
   "veryGood": "Very Good",
   "good": "Good",
   "weak": "Weak",
-  "sinceComplianceAssessment": "Compliance assessment since"
-
+  "sinceComplianceAssessment": "Compliance assessment since",
+  "selectEmployees": "Select Employees",
+  "generalViolation":"General Violation"
 }

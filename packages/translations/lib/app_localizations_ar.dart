@@ -555,4 +555,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sinceComplianceAssessment => 'تقييم الإمتثال منذ';
+
+  @override
+  String get selectEmployees => 'إختر الموظفين';
+
+  @override
+  String get generalViolation => 'رصد مخالفة عامة';
 }
