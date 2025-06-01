@@ -1,4 +1,4 @@
-import 'package:app/screens/task/employee_selection_screen.dart';
+import 'package:app/screens/user/users_selection_screen.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -22,6 +22,34 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   void _initialize() {
     _taskStream = context.taskProvider.getTaskDocRef(_taskId).snapshots();
     _assignedTasksQuery = context.taskProvider.getAssignedTasksQuery(_taskId);
+  }
+
+  void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) {
+    ApiService.fetch(
+      context,
+      callBack: () async {
+        final batch = kFirebaseInstant.batch();
+        List<String> userIds = selectedUsers.map((e) => e.id!).toList();
+        for (var e in selectedUsers) {
+          _task.user = LightUserModel(id: e.id!, departmentId: e.departmentId);
+          final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
+          final assignedTaskDocRef = kFirebaseInstant.users
+              .doc(e.id)
+              .collection(MyCollections.assignedTasks)
+              .taskConvertor
+              .doc(_task.id);
+          batch.set(assignedTaskDocRef, _task);
+          batch.update(taskDocRef, {
+            MyFields.assignedUserIds: FieldValue.arrayUnion(userIds),
+            MyFields.inCompletedTasksCount: FieldValue.increment(1),
+          });
+        }
+        await batch.commit();
+        if (context.mounted) {
+          context.showSnackBar(context.appLocalization.savedSuccessfully);
+        }
+      },
+    );
   }
 
   @override
@@ -65,9 +93,15 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                 children: [
                   ActionButton(
                     onTap: () {
-                      context.push((context) {
-                        return EmployeeSelectionScreen(task: task);
-                      });
+                      context
+                          .push((context) {
+                            return UsersSelectionScreen(userIds: task.assignedUserIds);
+                          })
+                          .then((value) {
+                            if (value != null && context.mounted) {
+                              _onAddUsers(context, selectedUsers: value);
+                            }
+                          });
                     },
                     icon: MyIcons.userEdit,
                     title: context.appLocalization.addRemoveEmployee,
