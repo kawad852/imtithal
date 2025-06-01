@@ -42,6 +42,8 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
             }
           } else {
             final taskDocRef = kFirebaseInstant.userAssignedTasks(_user!.id!).doc(_task!.id);
+            final violationDocRef = kFirebaseInstant.userViolations(_user!.id!).doc(_violation.id);
+            batch.set(violationDocRef, _violation);
             batch.update(taskDocRef, {
               MyFields.status: TaskStatusEnum.violated.value,
               MyFields.violation:
@@ -215,7 +217,9 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
                     children:
                         (_isGeneralViolation
                                 ? [ViolationType.nonCompliance, ViolationType.generalSafety]
-                                : ViolationType.values)
+                                : ViolationType.values.where(
+                                  (e) => e != ViolationType.generalSafety,
+                                ))
                             .map((e) {
                               final selected = _violation.type == e.value;
                               return DayBubble(
