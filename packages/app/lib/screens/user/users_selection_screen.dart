@@ -45,28 +45,28 @@ class _UsersSelectionScreenState extends State<UsersSelectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: SearchAppBar(
-        onChanged: _onSearchChanged,
-        hintText: context.appLocalization.searchForEmployee,
-      ),
-      bottomNavigationBar: BottomButton(
-        text: context.appLocalization.save,
-        onPressed:
-            _selectedUsers?.isNotEmpty ?? false
-                ? () {
-                  Navigator.pop(context, _selectedUsers);
-                }
-                : null,
-      ),
-      body: UsersSelector(
-        builder: (context, allUsers) {
-          final users =
-              allUsers
-                  .where((e) => e.companyId == kCompanyId && e.role == RoleEnum.employee.value)
-                  .toList();
-          _selectedUsers ??= users.where((e) => widget.userIds.contains(e.id)).toList();
-          return ListView.builder(
+    return UsersSelector(
+      builder: (context, allUsers) {
+        final users =
+            allUsers
+                .where((e) => e.companyId == kCompanyId && e.role == RoleEnum.employee.value)
+                .toList();
+        _selectedUsers ??= users.where((e) => widget.userIds.contains(e.id)).toList();
+        return Scaffold(
+          appBar: SearchAppBar(
+            onChanged: _onSearchChanged,
+            hintText: context.appLocalization.searchForEmployee,
+          ),
+          bottomNavigationBar: BottomButton(
+            text: context.appLocalization.save,
+            onPressed:
+                widget.userIds.length != _userIds.length
+                    ? () {
+                      Navigator.pop(context, _selectedUsers);
+                    }
+                    : null,
+          ),
+          body: ListView.builder(
             itemCount: users.length,
             padding: EdgeInsets.zero,
             itemBuilder: (context, index) {
@@ -87,9 +87,9 @@ class _UsersSelectionScreenState extends State<UsersSelectionScreen> {
                 },
               );
             },
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
