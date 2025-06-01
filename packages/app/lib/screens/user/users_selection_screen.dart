@@ -52,6 +52,7 @@ class _UsersSelectionScreenState extends State<UsersSelectionScreen> {
                 .where((e) => e.companyId == kCompanyId && e.role == RoleEnum.employee.value)
                 .toList();
         _selectedUsers ??= users.where((e) => widget.userIds.contains(e.id)).toList();
+        final equal = ObjectsComparer.listEquals(widget.userIds, _userIds);
         return Scaffold(
           appBar: SearchAppBar(
             onChanged: _onSearchChanged,
@@ -60,11 +61,11 @@ class _UsersSelectionScreenState extends State<UsersSelectionScreen> {
           bottomNavigationBar: BottomButton(
             text: context.appLocalization.save,
             onPressed:
-                widget.userIds.length != _userIds.length
-                    ? () {
+                equal
+                    ? null
+                    : () {
                       Navigator.pop(context, _selectedUsers);
-                    }
-                    : null,
+                    },
           ),
           body: ListView.builder(
             itemCount: users.length,
