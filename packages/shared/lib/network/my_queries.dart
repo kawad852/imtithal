@@ -12,6 +12,8 @@ extension CollectionReferenceExtension on FirebaseFirestore {
 
   CollectionReference<UserModel> get users => collection(MyCollections.users).userConvertor;
 
+  Query<ViolationModel> get violations =>
+      collectionGroup(MyCollections.violations).violationConvertor;
   CollectionReference<ViolationModel> userViolations(String userId) =>
       users.doc(userId).collection(MyCollections.violations).violationConvertor;
   CollectionReference<TaskModel> userAssignedTasks(String userId) =>

@@ -1,11 +1,20 @@
 import 'package:app/screens_exports.dart';
+import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
 class ViolationsCard extends StatelessWidget {
-  const ViolationsCard({super.key});
+  final ViolationModel violation;
+  final String? userId;
+
+  const ViolationsCard({super.key, required this.violation, required this.userId});
 
   @override
   Widget build(BuildContext context) {
+    UserModel? user;
+    if (userId != null) {
+      final users = context.read<List<UserModel>>();
+      user = users.firstWhere((e) => e.id == userId, orElse: () => UserModel());
+    }
     return GestureDetector(
       onTap: () {
         context.push((context) => const ViolationSingleScreen());
@@ -20,17 +29,9 @@ class ViolationsCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            VerticalLine(
-              height: 86,
-              color: context.colorPalette.redD62,
-            ),
-            const BaseNetworkImage(
-              "",
-              width: 60,
-              height: 60,
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              shape: BoxShape.circle,
-            ),
+            VerticalLine(height: 86, color: context.colorPalette.redD62),
+            if (user?.id != null)
+              UserPhoto(url: user!.profilePhoto, displayName: user.displayName, size: 60),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

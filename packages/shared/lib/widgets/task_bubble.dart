@@ -60,16 +60,20 @@ class TaskBubble extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          context.push(
-            (context) => TasksScreen(
-              status: status,
-              late: late,
-              userId: userId,
-              departmentId: departmentId,
-              startDate: startDate,
-              endDate: endDate,
-            ),
-          );
+          if (task.$1 == TaskStatusEnum.violated.value) {
+            context.push((context) => ViolationsScreen(userId: userId));
+          } else {
+            context.push(
+              (context) => TasksScreen(
+                status: status,
+                late: late,
+                userId: userId,
+                departmentId: departmentId,
+                startDate: startDate,
+                endDate: endDate,
+              ),
+            );
+          }
         },
         child: Container(
           width: double.infinity,

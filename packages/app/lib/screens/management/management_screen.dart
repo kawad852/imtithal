@@ -111,7 +111,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
                     children: [
                       ManageButton(
                         onTap: () {
-                          context.push((context) => ViolationsScreen());
+                          context.push((context) => const ViolationsScreen(userId: null));
                         },
 
                         icon: MyIcons.danger,

@@ -1,14 +1,33 @@
 import 'package:app/screens_exports.dart';
+import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
 class ViolationsScreen extends StatefulWidget {
-  const ViolationsScreen({super.key});
+  final String? userId;
+
+  const ViolationsScreen({super.key, required this.userId});
 
   @override
   State<ViolationsScreen> createState() => _ViolationsScreenState();
 }
 
 class _ViolationsScreenState extends State<ViolationsScreen> {
+  late Query<ViolationModel> _query;
+
+  void _initialize() {
+    if (widget.userId != null) {
+      _query = kFirebaseInstant.userViolations(widget.userId!);
+    } else {
+      _query = kFirebaseInstant.violations;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,23 +45,29 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: TextEditor(
-                onChanged: (value) {},
-                required: false,
-                hintText: context.appLocalization.searchViolationEmployee,
-                prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+            if (!kIsEmployee)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: TextEditor(
+                  onChanged: (value) {},
+                  required: false,
+                  hintText: context.appLocalization.searchViolationEmployee,
+                  prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
+                ),
               ),
-            ),
             Expanded(
-              child: ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(height: 10),
-                itemCount: 10,
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                itemBuilder: (context, index) {
-                  return const ViolationsCard();
+              child: CustomFirestoreQueryBuilder(
+                query: _query,
+                onComplete: (context, snapshot) {
+                  return ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(height: 10),
+                    itemCount: snapshot.docs.length,
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (context, index) {
+                      final violation = snapshot.docs[index].data();
+                      return ViolationsCard(violation: violation, userId: widget.userId);
+                    },
+                  );
                 },
               ),
             ),
