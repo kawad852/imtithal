@@ -34,6 +34,7 @@ export 'enums/notification_enum.dart';
 export 'enums/order_enums.dart';
 export 'enums/stores_enums.dart';
 export 'enums/task_enums.dart';
+export 'enums/violation_enums.dart';
 //extensions
 export 'extensions/base_extension.dart';
 export 'extensions/datetime_extension.dart';

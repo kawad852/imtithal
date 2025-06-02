@@ -33,8 +33,14 @@ mixin _$ViolationModel {
   set notes(String value) => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   set description(String value) => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
+  set userId(String value) => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  set status(String value) => throw _privateConstructorUsedError;
   String get createdById => throw _privateConstructorUsedError;
   set createdById(String value) => throw _privateConstructorUsedError;
+  LightUserModel? get lastReplyBy => throw _privateConstructorUsedError;
+  set lastReplyBy(LightUserModel? value) => throw _privateConstructorUsedError;
 
   /// Serializes this ViolationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,8 +65,13 @@ abstract class $ViolationModelCopyWith<$Res> {
     String type,
     String notes,
     String description,
+    String userId,
+    String status,
     String createdById,
+    LightUserModel? lastReplyBy,
   });
+
+  $LightUserModelCopyWith<$Res>? get lastReplyBy;
 }
 
 /// @nodoc
@@ -83,7 +94,10 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
     Object? type = null,
     Object? notes = null,
     Object? description = null,
+    Object? userId = null,
+    Object? status = null,
     Object? createdById = null,
+    Object? lastReplyBy = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -112,14 +126,43 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
                     ? _value.description
                     : description // ignore: cast_nullable_to_non_nullable
                         as String,
+            userId:
+                null == userId
+                    ? _value.userId
+                    : userId // ignore: cast_nullable_to_non_nullable
+                        as String,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
+                        as String,
             createdById:
                 null == createdById
                     ? _value.createdById
                     : createdById // ignore: cast_nullable_to_non_nullable
                         as String,
+            lastReplyBy:
+                freezed == lastReplyBy
+                    ? _value.lastReplyBy
+                    : lastReplyBy // ignore: cast_nullable_to_non_nullable
+                        as LightUserModel?,
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of ViolationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LightUserModelCopyWith<$Res>? get lastReplyBy {
+    if (_value.lastReplyBy == null) {
+      return null;
+    }
+
+    return $LightUserModelCopyWith<$Res>(_value.lastReplyBy!, (value) {
+      return _then(_value.copyWith(lastReplyBy: value) as $Val);
+    });
   }
 }
 
@@ -138,8 +181,14 @@ abstract class _$$ViolationModelImplCopyWith<$Res>
     String type,
     String notes,
     String description,
+    String userId,
+    String status,
     String createdById,
+    LightUserModel? lastReplyBy,
   });
+
+  @override
+  $LightUserModelCopyWith<$Res>? get lastReplyBy;
 }
 
 /// @nodoc
@@ -161,7 +210,10 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
     Object? type = null,
     Object? notes = null,
     Object? description = null,
+    Object? userId = null,
+    Object? status = null,
     Object? createdById = null,
+    Object? lastReplyBy = freezed,
   }) {
     return _then(
       _$ViolationModelImpl(
@@ -190,11 +242,26 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
                 ? _value.description
                 : description // ignore: cast_nullable_to_non_nullable
                     as String,
+        userId:
+            null == userId
+                ? _value.userId
+                : userId // ignore: cast_nullable_to_non_nullable
+                    as String,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String,
         createdById:
             null == createdById
                 ? _value.createdById
                 : createdById // ignore: cast_nullable_to_non_nullable
                     as String,
+        lastReplyBy:
+            freezed == lastReplyBy
+                ? _value.lastReplyBy
+                : lastReplyBy // ignore: cast_nullable_to_non_nullable
+                    as LightUserModel?,
       ),
     );
   }
@@ -209,7 +276,10 @@ class _$ViolationModelImpl implements _ViolationModel {
     this.type = '',
     this.notes = '',
     this.description = '',
+    this.userId = '',
+    this.status = ViolationStatus.defaultValue,
     required this.createdById,
+    this.lastReplyBy,
   });
 
   factory _$ViolationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -231,11 +301,19 @@ class _$ViolationModelImpl implements _ViolationModel {
   @JsonKey()
   String description;
   @override
+  @JsonKey()
+  String userId;
+  @override
+  @JsonKey()
+  String status;
+  @override
   String createdById;
+  @override
+  LightUserModel? lastReplyBy;
 
   @override
   String toString() {
-    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, createdById: $createdById)';
+    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, userId: $userId, status: $status, createdById: $createdById, lastReplyBy: $lastReplyBy)';
   }
 
   /// Create a copy of ViolationModel
@@ -262,7 +340,10 @@ abstract class _ViolationModel implements ViolationModel {
     String type,
     String notes,
     String description,
+    String userId,
+    String status,
     required String createdById,
+    LightUserModel? lastReplyBy,
   }) = _$ViolationModelImpl;
 
   factory _ViolationModel.fromJson(Map<String, dynamic> json) =
@@ -286,8 +367,17 @@ abstract class _ViolationModel implements ViolationModel {
   String get description;
   set description(String value);
   @override
+  String get userId;
+  set userId(String value);
+  @override
+  String get status;
+  set status(String value);
+  @override
   String get createdById;
   set createdById(String value);
+  @override
+  LightUserModel? get lastReplyBy;
+  set lastReplyBy(LightUserModel? value);
 
   /// Create a copy of ViolationModel
   /// with the given fields replaced by the non-null parameter values.
@@ -307,6 +397,8 @@ mixin _$LightViolationModel {
   set id(String value) => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   set type(String value) => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  set status(String value) => throw _privateConstructorUsedError;
 
   /// Serializes this LightViolationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -325,7 +417,7 @@ abstract class $LightViolationModelCopyWith<$Res> {
     $Res Function(LightViolationModel) then,
   ) = _$LightViolationModelCopyWithImpl<$Res, LightViolationModel>;
   @useResult
-  $Res call({String id, String type});
+  $Res call({String id, String type, String status});
 }
 
 /// @nodoc
@@ -342,7 +434,7 @@ class _$LightViolationModelCopyWithImpl<$Res, $Val extends LightViolationModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null, Object? type = null}) {
+  $Res call({Object? id = null, Object? type = null, Object? status = null}) {
     return _then(
       _value.copyWith(
             id:
@@ -354,6 +446,11 @@ class _$LightViolationModelCopyWithImpl<$Res, $Val extends LightViolationModel>
                 null == type
                     ? _value.type
                     : type // ignore: cast_nullable_to_non_nullable
+                        as String,
+            status:
+                null == status
+                    ? _value.status
+                    : status // ignore: cast_nullable_to_non_nullable
                         as String,
           )
           as $Val,
@@ -370,7 +467,7 @@ abstract class _$$LightViolationModelImplCopyWith<$Res>
   ) = __$$LightViolationModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String type});
+  $Res call({String id, String type, String status});
 }
 
 /// @nodoc
@@ -386,7 +483,7 @@ class __$$LightViolationModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null, Object? type = null}) {
+  $Res call({Object? id = null, Object? type = null, Object? status = null}) {
     return _then(
       _$LightViolationModelImpl(
         id:
@@ -399,6 +496,11 @@ class __$$LightViolationModelImplCopyWithImpl<$Res>
                 ? _value.type
                 : type // ignore: cast_nullable_to_non_nullable
                     as String,
+        status:
+            null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -407,7 +509,11 @@ class __$$LightViolationModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LightViolationModelImpl implements _LightViolationModel {
-  _$LightViolationModelImpl({this.id = '', this.type = ''});
+  _$LightViolationModelImpl({
+    this.id = '',
+    this.type = '',
+    this.status = ViolationStatus.defaultValue,
+  });
 
   factory _$LightViolationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LightViolationModelImplFromJson(json);
@@ -418,10 +524,13 @@ class _$LightViolationModelImpl implements _LightViolationModel {
   @override
   @JsonKey()
   String type;
+  @override
+  @JsonKey()
+  String status;
 
   @override
   String toString() {
-    return 'LightViolationModel(id: $id, type: $type)';
+    return 'LightViolationModel(id: $id, type: $type, status: $status)';
   }
 
   /// Create a copy of LightViolationModel
@@ -442,7 +551,7 @@ class _$LightViolationModelImpl implements _LightViolationModel {
 }
 
 abstract class _LightViolationModel implements LightViolationModel {
-  factory _LightViolationModel({String id, String type}) =
+  factory _LightViolationModel({String id, String type, String status}) =
       _$LightViolationModelImpl;
 
   factory _LightViolationModel.fromJson(Map<String, dynamic> json) =
@@ -454,6 +563,9 @@ abstract class _LightViolationModel implements LightViolationModel {
   @override
   String get type;
   set type(String value);
+  @override
+  String get status;
+  set status(String value);
 
   /// Create a copy of LightViolationModel
   /// with the given fields replaced by the non-null parameter values.

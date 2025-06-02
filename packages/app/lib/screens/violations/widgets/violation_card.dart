@@ -2,18 +2,21 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
-class ViolationsCard extends StatelessWidget {
+class ViolationCard extends StatelessWidget {
   final ViolationModel violation;
   final String? userId;
 
-  const ViolationsCard({super.key, required this.violation, required this.userId});
+  const ViolationCard({super.key, required this.violation, required this.userId});
 
   @override
   Widget build(BuildContext context) {
     UserModel? user;
-    if (userId != null) {
+    if (!kIsEmployee) {
       final users = context.read<List<UserModel>>();
-      user = users.firstWhere((e) => e.id == userId, orElse: () => UserModel());
+      user = users.firstWhere(
+        (e) => e.id == (userId ?? violation.userId),
+        orElse: () => UserModel(),
+      );
     }
     return GestureDetector(
       onTap: () {
@@ -30,8 +33,12 @@ class ViolationsCard extends StatelessWidget {
         child: Row(
           children: [
             VerticalLine(height: 86, color: context.colorPalette.redD62),
+            const SizedBox(width: 6),
             if (user?.id != null)
-              UserPhoto(url: user!.profilePhoto, displayName: user.displayName, size: 60),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(end: 10),
+                child: UserPhoto(url: user!.profilePhoto, displayName: user.displayName, size: 30),
+              ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +48,7 @@ class ViolationsCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          "عدم امتثال 13324#",
+                          "${ViolationType.getLabel(violation.type, context)} #${violation.id}",
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: context.colorPalette.grey8B8,
@@ -59,7 +66,7 @@ class ViolationsCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(kRadiusPrimary),
                         ),
                         child: Text(
-                          "تم الإلغاء",
+                          ViolationStatus.getLabel(violation.status, context),
                           style: TextStyle(
                             color: context.colorPalette.white,
                             fontSize: 12,
@@ -72,7 +79,7 @@ class ViolationsCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
-                      "ارشفة برنامج زهو",
+                      violation.description,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: context.colorPalette.black252,
@@ -81,32 +88,33 @@ class ViolationsCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        "${context.appLocalization.lastResponseBy} : ",
-                        style: TextStyle(
-                          color: context.colorPalette.grey8B8,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          "محمد عبدالله",
-                          overflow: TextOverflow.ellipsis,
+                  if (violation.lastReplyBy != null)
+                    Row(
+                      children: [
+                        Text(
+                          "${context.appLocalization.lastResponseBy} : ",
                           style: TextStyle(
-                            color: context.colorPalette.primary,
+                            color: context.colorPalette.grey8B8,
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
+                        Expanded(
+                          child: Text(
+                            user?.displayName ?? '',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: context.colorPalette.primary,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   const SizedBox(height: 4),
                   Text(
-                    "08:30 صباحاً- 01.05.2025",
+                    violation.createdAt!.getDefaultFormattedDateWithTune(context),
                     style: TextStyle(
                       color: context.colorPalette.grey8B8,
                       fontSize: 12,

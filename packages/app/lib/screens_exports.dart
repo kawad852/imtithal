@@ -39,6 +39,6 @@ export 'screens/violations/violation_single_screen.dart';
 export 'screens/violations/violations_screen.dart';
 export 'screens/violations/widgets/reply_card.dart';
 export 'screens/violations/widgets/reply_sheet.dart';
+export 'screens/violations/widgets/violation_card.dart';
 export 'screens/violations/widgets/violation_info.dart';
 export 'screens/violations/widgets/violation_type_widget.dart';
-export 'screens/violations/widgets/violations_card.dart';

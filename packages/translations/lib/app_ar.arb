@@ -181,5 +181,8 @@
   "weak": "ضعيف",
   "sinceComplianceAssessment": "تقييم الإمتثال منذ",
   "selectEmployees": "إختر الموظفين",
-  "generalViolation":"رصد مخالفة عامة"
+  "generalViolation":"رصد مخالفة عامة",
+  "confirmed": "تم التأكيد",
+  "canceled": "تم الإلغاء",
+  "pending": "بالإنتظار"
 }

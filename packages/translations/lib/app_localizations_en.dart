@@ -568,4 +568,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get generalViolation => 'General Violation';
+
+  @override
+  String get confirmed => 'Confirmed';
+
+  @override
+  String get canceled => 'Canceled';
+
+  @override
+  String get pending => 'Pending';
 }

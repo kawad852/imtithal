@@ -1189,6 +1189,24 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'رصد مخالفة عامة'**
   String get generalViolation;
+
+  /// No description provided for @confirmed.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم التأكيد'**
+  String get confirmed;
+
+  /// No description provided for @canceled.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم الإلغاء'**
+  String get canceled;
+
+  /// No description provided for @pending.
+  ///
+  /// In ar, this message translates to:
+  /// **'بالإنتظار'**
+  String get pending;
 }
 
 class _AppLocalizationsDelegate

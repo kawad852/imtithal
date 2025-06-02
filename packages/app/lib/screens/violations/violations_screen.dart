@@ -31,7 +31,7 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(forceMaterialTransparency: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
         child: Column(
@@ -65,7 +65,7 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       final violation = snapshot.docs[index].data();
-                      return ViolationsCard(violation: violation, userId: widget.userId);
+                      return ViolationCard(violation: violation, userId: widget.userId);
                     },
                   );
                 },

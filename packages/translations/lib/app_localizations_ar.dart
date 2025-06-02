@@ -561,4 +561,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get generalViolation => 'رصد مخالفة عامة';
+
+  @override
+  String get confirmed => 'تم التأكيد';
+
+  @override
+  String get canceled => 'تم الإلغاء';
+
+  @override
+  String get pending => 'بالإنتظار';
 }

@@ -84,31 +84,6 @@ enum TaskDaysEnum {
   }
 }
 
-enum ViolationType {
-  nonCompliance('NON_COMPLIANCE'),
-  rejected('REJECTED'),
-  late('LATE'),
-  generalSafety('GENERAL-SAFETY');
-
-  final String value;
-
-  const ViolationType(this.value);
-
-  static String getLabel(String status, BuildContext context) {
-    final value = ViolationType.values.firstWhere((e) => e.value == status);
-    if (value == nonCompliance) {
-      return context.appLocalization.nonCompliance;
-    } else if (value == rejected) {
-      return context.appLocalization.rejected;
-    } else if (value == late) {
-      return context.appLocalization.late;
-    } else if (value == generalSafety) {
-      return context.appLocalization.generalSafety;
-    }
-    return '';
-  }
-}
-
 enum TaskPoints {
   imtithal(10),
   late(5),

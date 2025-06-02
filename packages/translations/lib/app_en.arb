@@ -181,5 +181,8 @@
   "weak": "Weak",
   "sinceComplianceAssessment": "Compliance assessment since",
   "selectEmployees": "Select Employees",
-  "generalViolation":"General Violation"
+  "generalViolation":"General Violation",
+  "confirmed": "Confirmed",
+  "canceled": "Canceled",
+  "pending": "Pending"
 }
