@@ -71,6 +71,9 @@ class _CalenderScreenState extends State<CalenderScreen> {
                   itemCount: snapshot.docs.length,
                   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   itemBuilder: (context, index) {
+                    if (snapshot.isLoadingMore(index)) {
+                      return const FPLoading();
+                    }
                     final task = snapshot.docs[index].data();
                     return TaskCard(task: task);
                   },

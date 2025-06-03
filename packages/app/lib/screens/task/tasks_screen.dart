@@ -116,9 +116,11 @@ class _TasksScreenState extends State<TasksScreen> {
                   return ListView.separated(
                     separatorBuilder: (context, index) => const SizedBox(height: 10),
                     itemCount: snapshot.docs.length,
-                    shrinkWrap: true,
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     itemBuilder: (context, index) {
+                      if (snapshot.isLoadingMore(index)) {
+                        return const FPLoading();
+                      }
                       final task = snapshot.docs[index].data();
                       return TaskCard(task: task);
                     },

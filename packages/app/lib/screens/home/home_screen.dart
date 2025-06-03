@@ -178,6 +178,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           separatorBuilder: (context, index) => const SizedBox(height: 10),
                           itemCount: tasks.length,
                           itemBuilder: (context, index) {
+                            if (snapshot.isLoadingMore(index)) {
+                              return const FPLoading();
+                            }
                             final task = tasks[index].data();
                             return TaskCard(task: task);
                           },

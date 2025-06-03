@@ -161,6 +161,9 @@ class _ManagementScreenState extends State<ManagementScreen> {
                   separatorBuilder: (context, index) => const SizedBox(height: 10),
                   itemCount: snapshot.docs.length,
                   itemBuilder: (context, index) {
+                    if (snapshot.isLoadingMore(index)) {
+                      return const FPLoading();
+                    }
                     final department = snapshot.docs[index].data();
                     return DepartmentCard(department: department);
                   },

@@ -122,6 +122,9 @@ class _UserScreenState extends State<UserScreen> {
                       separatorBuilder: (context, index) => const SizedBox(height: 10),
                       itemCount: snapshot.docs.length,
                       itemBuilder: (context, index) {
+                        if (snapshot.isLoadingMore(index)) {
+                          return const FPLoading();
+                        }
                         final task = snapshot.docs[index].data();
                         return TaskCard(task: task);
                       },

@@ -14,7 +14,6 @@ class TaskCard extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        height: 89,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           color: context.colorPalette.greyF5F,
@@ -123,7 +122,7 @@ class TaskCard extends StatelessWidget {
                           builder: (context, users) {
                             final assignedUsers =
                                 users.where((e) => task.assignedUserIds.contains(e.id)).toList();
-                            return UserPhotos(users: assignedUsers);
+                            return UserPhotos(users: assignedUsers, height: 32);
                           },
                         ),
                     ],

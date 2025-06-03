@@ -156,6 +156,9 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
+                              if (snapshot.isLoadingMore(index)) {
+                                return const FPLoading();
+                              }
                               final assignedTask = assignedTasks[index].data();
                               assignedTask.userModel ??= users.firstWhere(
                                 (e) => e.id == assignedTask.user?.id,

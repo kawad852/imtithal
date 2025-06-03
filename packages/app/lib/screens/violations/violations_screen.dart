@@ -64,6 +64,9 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
                     itemCount: snapshot.docs.length,
                     padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
+                      if (snapshot.isLoadingMore(index)) {
+                        return const FPLoading();
+                      }
                       final violation = snapshot.docs[index].data();
                       return ViolationCard(violation: violation, userId: widget.userId);
                     },

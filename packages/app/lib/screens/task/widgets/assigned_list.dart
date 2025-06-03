@@ -30,7 +30,7 @@ class AssignedList extends StatelessWidget {
                 child: UserPhoto(
                   url: user?.profilePhoto,
                   displayName: user?.displayName ?? "",
-                  size: 10,
+                  size: 20,
                 ),
               );
             },

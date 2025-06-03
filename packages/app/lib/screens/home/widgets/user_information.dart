@@ -16,7 +16,7 @@ class UserInformation extends StatelessWidget {
             Stack(
               alignment: AlignmentDirectional.bottomStart,
               children: [
-                UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 35),
+                UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 70),
                 if (edit)
                   GestureDetector(
                     onTap: () {

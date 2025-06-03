@@ -44,8 +44,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             separatorBuilder: (context, index) => const Divider(height: 0),
             padding: const EdgeInsets.symmetric(vertical: kScreenMargin),
             itemBuilder: (context, index) {
-              if (snapshot.hasMore && index + 1 == snapshot.docs.length) {
-                snapshot.fetchMore();
+              if (snapshot.isLoadingMore(index)) {
+                return const FPLoading();
               }
 
               final notification = snapshot.docs[index].data();
