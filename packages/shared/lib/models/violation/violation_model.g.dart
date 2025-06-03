@@ -13,7 +13,11 @@ _$ViolationModelImpl _$$ViolationModelImplFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String? ?? '',
       notes: json['notes'] as String? ?? '',
       description: json['description'] as String? ?? '',
-      userId: json['userId'] as String? ?? '',
+      companyId: json['companyId'] as String? ?? '',
+      user:
+          json['user'] == null
+              ? null
+              : LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
       status: json['status'] as String? ?? ViolationStatus.defaultValue,
       createdById: json['createdById'] as String,
       lastReplyBy:
@@ -32,10 +36,11 @@ Map<String, dynamic> _$$ViolationModelImplToJson(
   'type': instance.type,
   'notes': instance.notes,
   'description': instance.description,
-  'userId': instance.userId,
+  'companyId': instance.companyId,
+  'user': instance.user?.toJson(),
   'status': instance.status,
   'createdById': instance.createdById,
-  'lastReplyBy': instance.lastReplyBy,
+  'lastReplyBy': instance.lastReplyBy?.toJson(),
 };
 
 _$LightViolationModelImpl _$$LightViolationModelImplFromJson(

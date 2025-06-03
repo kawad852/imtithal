@@ -3,8 +3,9 @@ import 'package:shared/shared.dart';
 
 class UserInformation extends StatelessWidget {
   final bool edit;
+  final (int, String, Color) percentageValues;
 
-  const UserInformation({super.key, this.edit = false});
+  const UserInformation({super.key, this.edit = false, required this.percentageValues});
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +90,10 @@ class UserInformation extends StatelessWidget {
                     )
                   else
                     Text(
-                      "%94 ، ${context.appLocalization.facilityCompliance} ممتاز",
+                      "${percentageValues.$1}% ، ${context.appLocalization.facilityCompliance} ${percentageValues.$2}",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        color: context.colorPalette.primary,
+                        color: percentageValues.$3,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),

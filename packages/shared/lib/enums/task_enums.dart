@@ -101,7 +101,7 @@ enum TaskPoints {
     var label = '';
     var color = context.colorPalette.primary;
     if (count == 0 || sum <= 0) {
-      return (0, label, color);
+      return (0, context.appLocalization.weak, context.colorPalette.redD62);
     }
     final evaluationPercentage = (sum / (count * 10)) * 100;
     final percentage = evaluationPercentage.round();

@@ -52,143 +52,144 @@ class _HomeScreenState extends State<HomeScreen> {
       //     );
       //   },
       // ),
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            title: Text(
-              context.appLocalization.home,
-              style: TextStyle(
-                color: context.colorPalette.primary,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            actions: [
-              UserSelector(
-                builder: (context, user) {
-                  final count = user.unReadNotificationsCount;
-                  return IconButton(
-                    onPressed: () {
-                      context.push((context) => const NotificationsScreen());
-                    },
-                    icon: Badge(
-                      isLabelVisible: count > 0,
-                      label: Text("$count"),
-                      child: const CustomSvg(MyIcons.notification),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            sliver: SliverList.list(
-              children: [
-                const UserInformation(),
-                const SizedBox(height: 17),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        context.appLocalization.todayImtithalSummary,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: context.colorPalette.primary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    MoreButton(
-                      onTap: () {
-                        context.push((context) {
-                          return const CalenderScreen();
-                        });
-                      },
-                    ),
-                  ],
+      body: SummeryBuilder(
+        height: 60,
+        startDate: _startDate,
+        endDate: _endDate,
+        userId: kIsEmployee ? kUserId : null,
+        builder: (
+          (int, double) inCompletedTasks,
+          (int, double) completedTasks,
+          (int, double) violationTasks,
+          (int, double) lateTasks,
+          users,
+          percentageValues,
+        ) {
+          return CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                pinned: true,
+                title: Text(
+                  context.appLocalization.home,
+                  style: TextStyle(
+                    color: context.colorPalette.primary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 13),
-                  child: SummeryBuilder(
-                    height: 60,
-                    startDate: _startDate,
-                    endDate: _endDate,
-                    userId: kIsEmployee ? kUserId : null,
-                    builder: (
-                      (int, double) inCompletedTasks,
-                      (int, double) completedTasks,
-                      (int, double) violationTasks,
-                      (int, double) lateTasks,
-                      users,
-                    ) {
-                      return StatusSummeryBubbles(
+                actions: [
+                  UserSelector(
+                    builder: (context, user) {
+                      final count = user.unReadNotificationsCount;
+                      return IconButton(
+                        onPressed: () {
+                          context.push((context) => const NotificationsScreen());
+                        },
+                        icon: Badge(
+                          isLabelVisible: count > 0,
+                          label: Text("$count"),
+                          child: const CustomSvg(MyIcons.notification),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                sliver: SliverList.list(
+                  children: [
+                    UserInformation(percentageValues: percentageValues),
+                    const SizedBox(height: 17),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            context.appLocalization.todayImtithalSummary,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: context.colorPalette.primary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        MoreButton(
+                          onTap: () {
+                            context.push((context) {
+                              return const CalenderScreen();
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 13),
+                      child: StatusSummeryBubbles(
                         inCompletedTasksCount: inCompletedTasks.$1,
                         completedTasksCount: completedTasks.$1,
                         lateTasksCount: lateTasks.$1,
                         violationTasksCount: violationTasks.$1,
                         startDate: _startDate,
                         endDate: _endDate,
-                      );
-                    },
-                  ),
-                ),
-                SearchScreen(
-                  hintText: context.appLocalization.searchTaskEmployee,
-                  includeIndexes: (true, false, false),
-                ),
-              ],
-            ),
-          ),
-          CustomFirestoreQueryBuilder(
-            query: _assignedTasksQuery,
-            isSliver: true,
-            onComplete: (context, snapshot) {
-              final tasks = snapshot.docs;
-              if (tasks.isEmpty) {
-                return const SliverToBoxAdapter(child: SizedBox.shrink());
-              }
-              return SliverMainAxisGroup(
-                slivers: [
-                  SliverPadding(
-                    padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
-                    sliver: SliverToBoxAdapter(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              context.appLocalization.topTasks,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: context.colorPalette.primary,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                          MoreButton(onTap: () {}),
-                        ],
                       ),
                     ),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    sliver: SliverList.separated(
-                      separatorBuilder: (context, index) => const SizedBox(height: 10),
-                      itemCount: tasks.length,
-                      itemBuilder: (context, index) {
-                        final task = tasks[index].data();
-                        return TaskCard(task: task);
-                      },
+                    SearchScreen(
+                      hintText: context.appLocalization.searchTaskEmployee,
+                      includeIndexes: (true, false, false),
                     ),
-                  ),
-                ],
-              );
-            },
-          ),
-        ],
+                  ],
+                ),
+              ),
+              CustomFirestoreQueryBuilder(
+                query: _assignedTasksQuery,
+                isSliver: true,
+                onComplete: (context, snapshot) {
+                  final tasks = snapshot.docs;
+                  if (tasks.isEmpty) {
+                    return const SliverToBoxAdapter(child: SizedBox.shrink());
+                  }
+                  return SliverMainAxisGroup(
+                    slivers: [
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+                        sliver: SliverToBoxAdapter(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  context.appLocalization.topTasks,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: context.colorPalette.primary,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                              MoreButton(onTap: () {}),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        sliver: SliverList.separated(
+                          separatorBuilder: (context, index) => const SizedBox(height: 10),
+                          itemCount: tasks.length,
+                          itemBuilder: (context, index) {
+                            final task = tasks[index].data();
+                            return TaskCard(task: task);
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ],
+          );
+        },
       ),
     );
   }

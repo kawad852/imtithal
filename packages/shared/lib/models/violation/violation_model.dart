@@ -9,13 +9,15 @@ part 'violation_model.g.dart';
 
 @unfreezed
 class ViolationModel with _$ViolationModel {
+  @JsonSerializable(explicitToJson: true)
   factory ViolationModel({
     @TimestampSerializer() DateTime? createdAt,
     @Default('') String id,
     @Default('') String type,
     @Default('') String notes,
     @Default('') String description,
-    @Default('') String userId,
+    @Default('') String companyId,
+    LightUserModel? user,
     @Default(ViolationStatus.defaultValue) String status,
     required String createdById,
     LightUserModel? lastReplyBy,

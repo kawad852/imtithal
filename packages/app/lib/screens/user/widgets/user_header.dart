@@ -85,17 +85,8 @@ class UserHeader extends StatelessWidget {
               (int, double) violationTasks,
               (int, double) lateTasks,
               users,
+              percentageValues,
             ) {
-              final totalCount =
-                  inCompletedTasks.$1 + completedTasks.$1 + violationTasks.$1 + lateTasks.$1;
-              final totalSum =
-                  inCompletedTasks.$2 + completedTasks.$2 + violationTasks.$2 + lateTasks.$2;
-              final percentageValues = TaskPoints.getPercentage(
-                context,
-                count: totalCount,
-                sum: totalSum,
-              );
-
               return Column(
                 children: [
                   SummeryLabel(startDate: startDate, endDate: endDate, values: percentageValues),

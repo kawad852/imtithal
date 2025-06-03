@@ -28,7 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         children: [
           // const UserBubble(),
-          const UserInformation(edit: true),
+          const UserInformation(edit: true, percentageValues: (0, '', Colors.white)),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(

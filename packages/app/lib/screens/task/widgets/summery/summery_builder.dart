@@ -1,3 +1,4 @@
+import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
 class SummeryBuilder extends StatefulWidget {
@@ -13,6 +14,7 @@ class SummeryBuilder extends StatefulWidget {
     (int, double) violationTasks,
     (int, double) lateTasks,
     (UserModel?, UserModel?) users,
+    (int, String, Color) percentageValues,
   )
   builder;
 
@@ -26,7 +28,7 @@ class SummeryBuilder extends StatefulWidget {
     required this.height,
   });
 
-  static Query<TaskModel> getQuery({
+  static Query<T> getQuery<T>({
     required String? status,
     required DateTime start,
     required DateTime end,
@@ -35,49 +37,78 @@ class SummeryBuilder extends StatefulWidget {
     required bool late,
   }) {
     late Query<TaskModel> docRef;
+    late Query<ViolationModel> violationsDocRef;
     if (userId != null) {
       docRef = kFirebaseInstant.userAssignedTasks(userId);
+      violationsDocRef = kFirebaseInstant.userViolations(userId);
     } else {
       docRef = kFirebaseInstant.assignedTasksQuery;
+      violationsDocRef = kFirebaseInstant.violations;
     }
 
     late Query<TaskModel> query;
+    late Query<ViolationModel> violationsQuery;
     if (late) {
       final filter = Filter(MyFields.markedAsLate, isEqualTo: true);
       query = docRef.where(
         _getFilter(filter, userId: userId, departmentId: departmentId, start: start, end: end),
       );
+      return query as Query<T>;
     } else {
-      final filter = status != null ? Filter(MyFields.status, isEqualTo: status) : null;
-      query = docRef.where(
-        _getFilter(filter, userId: userId, departmentId: departmentId, start: start, end: end),
-      );
+      if (status == TaskStatusEnum.violated.value) {
+        violationsQuery = violationsDocRef.where(
+          _getFilter(
+            null,
+            userId: userId,
+            departmentId: departmentId,
+            start: start,
+            end: end,
+            timeField: MyFields.createdAt,
+          ),
+        );
+        return violationsQuery as Query<T>;
+      } else {
+        final filter = status != null ? Filter(MyFields.status, isEqualTo: status) : null;
+        final filter2 = Filter(MyFields.violation, isNull: true);
+        query = docRef.where(
+          _getFilter(
+            filter,
+            filter2: filter2,
+            userId: userId,
+            departmentId: departmentId,
+            start: start,
+            end: end,
+          ),
+        );
+        return query as Query<T>;
+      }
     }
-    return query;
   }
 
   static Filter _getFilter(
     Filter? filter, {
+    Filter? filter2,
     required DateTime start,
     required DateTime end,
     required String? userId,
     required String? departmentId,
+    String timeField = MyFields.deliveryDate,
   }) {
     final startDate = DateTime(start.year, start.month, 1);
     final endDate = startDate.add(Duration(days: end.day + 1));
     final startDateFilter = Filter(
-      MyFields.deliveryDate,
+      timeField,
       isGreaterThanOrEqualTo: Timestamp.fromDate(startDate),
     );
-    final endDateFilter = Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate));
+    final endDateFilter = Filter(timeField, isLessThan: Timestamp.fromDate(endDate));
     if (userId != null) {
-      return Filter.and(startDateFilter, endDateFilter, filter);
+      return Filter.and(startDateFilter, endDateFilter, filter, filter2);
     } else if (departmentId != null) {
       final departmentIdFilter = Filter(MyFields.user_departmentId, isEqualTo: departmentId);
-      return Filter.and(startDateFilter, endDateFilter, departmentIdFilter, filter);
+      return Filter.and(startDateFilter, endDateFilter, departmentIdFilter, filter, filter2);
     } else {
       final companyIdFilter = Filter(MyFields.companyId, isEqualTo: kCompanyId);
-      return Filter.and(startDateFilter, endDateFilter, companyIdFilter, filter);
+      return Filter.and(startDateFilter, endDateFilter, companyIdFilter, filter, filter2);
     }
   }
 
@@ -92,13 +123,13 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
   DateTime get _startDate => widget.startDate;
   DateTime get _endDate => widget.endDate;
 
-  Future<(int, double)> _fetchQuery(
+  Future<(int, double)> _fetchQuery<T>(
     String? status, {
     bool late = false,
     required String? userId,
     required String? departmentId,
   }) async {
-    final query = SummeryBuilder.getQuery(
+    final query = SummeryBuilder.getQuery<T>(
       status: status,
       start: _startDate,
       end: _endDate,
@@ -111,10 +142,14 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
       final v = value.count!;
       return v;
     });
-    final s = await query.aggregate(sum(MyFields.points)).get().then((value) {
-      final v = value.getSum(MyFields.points)!;
-      return v;
-    });
+
+    double s = 0.0;
+
+    if (status == TaskStatusEnum.completed.value) {
+      s = (c * TaskPoints.imtithal.value).toDouble();
+    } else if (late) {
+      s = (c * TaskPoints.late.value).toDouble();
+    }
 
     return (c, s);
   }
@@ -161,16 +196,12 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
   }
 
   void _initialize(BuildContext context) {
-    Future<(int, double)> query(String status, {bool late = false}) => _fetchQuery(
-      TaskStatusEnum.pending.value,
-      userId: widget.userId,
-      departmentId: _departmentId,
-      late: late,
-    );
-    final inCompletedFuture = query(TaskStatusEnum.pending.value);
-    final completedFuture = query(TaskStatusEnum.completed.value);
-    final violatedFuture = query(TaskStatusEnum.violated.value);
-    final lateFuture = query('', late: true);
+    Future<(int, double)> query<T>(String? status, {bool late = false}) =>
+        _fetchQuery(status, userId: widget.userId, departmentId: _departmentId, late: late);
+    final inCompletedFuture = query<TaskModel>(TaskStatusEnum.pending.value);
+    final completedFuture = query<TaskModel>(TaskStatusEnum.completed.value);
+    final violatedFuture = query<ViolationModel>(TaskStatusEnum.violated.value);
+    final lateFuture = query<TaskModel>(null, late: true);
     late Future<(UserModel?, UserModel?)> usersFuture;
     if (_departmentId != null) {
       usersFuture = _fetchHighestUser(context, TaskStatusEnum.completed.value, descending: true);
@@ -237,7 +268,24 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
         final violationTasks = snapshot.data![2] as (int, double);
         final lateTasks = snapshot.data![3] as (int, double);
         final users = snapshot.data![4] as (UserModel?, UserModel?);
-        return widget.builder(inCompletedTasks, completedTasks, violationTasks, lateTasks, users);
+
+        final totalCount =
+            inCompletedTasks.$1 + completedTasks.$1 + violationTasks.$1 + lateTasks.$1;
+        final totalSum = inCompletedTasks.$2 + completedTasks.$2 + violationTasks.$2 + lateTasks.$2;
+        final percentageValues = TaskPoints.getPercentage(
+          context,
+          count: totalCount,
+          sum: totalSum,
+        );
+
+        return widget.builder(
+          inCompletedTasks,
+          completedTasks,
+          violationTasks,
+          lateTasks,
+          users,
+          percentageValues,
+        );
       },
     );
   }

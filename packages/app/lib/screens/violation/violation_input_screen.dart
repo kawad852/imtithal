@@ -33,16 +33,17 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
         callBack: () async {
           _violation.id = kUUID;
           _violation.createdAt = kNowDate;
+          _violation.companyId = kCompanyId;
           final batch = kFirebaseInstant.batch();
           if (_isGeneralViolation) {
             for (var user in _selectedUsers) {
               final violationDocRef = kFirebaseInstant.userViolations(user.id!).doc(_violation.id);
-              _violation.userId = user.id!;
+              _violation.user = LightUserModel(departmentId: user.departmentId, id: user.id!);
               batch.set(violationDocRef, _violation);
               _sendNotification(context, user: user);
             }
           } else {
-            _violation.userId = _user!.id!;
+            _violation.user = LightUserModel(departmentId: _user!.departmentId!, id: _user!.id!);
             final taskDocRef = kFirebaseInstant.userAssignedTasks(_user!.id!).doc(_task!.id);
             final violationDocRef = kFirebaseInstant.userViolations(_user!.id!).doc(_violation.id);
             batch.set(violationDocRef, _violation);
