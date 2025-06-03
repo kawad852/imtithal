@@ -10,7 +10,7 @@ class UserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push((context) => UserScreen(user: user));
+        context.navigate((context) => UserScreen(user: user));
       },
       child: Container(
         width: double.infinity,

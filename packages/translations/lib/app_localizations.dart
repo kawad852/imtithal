@@ -1207,6 +1207,174 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'بالإنتظار'**
   String get pending;
+
+  /// No description provided for @displayName.
+  ///
+  /// In ar, this message translates to:
+  /// **'Display name'**
+  String get displayName;
+
+  /// No description provided for @build.
+  ///
+  /// In ar, this message translates to:
+  /// **'Build'**
+  String get build;
+
+  /// No description provided for @manage.
+  ///
+  /// In ar, this message translates to:
+  /// **'Manage'**
+  String get manage;
+
+  /// No description provided for @roles.
+  ///
+  /// In ar, this message translates to:
+  /// **'Roles'**
+  String get roles;
+
+  /// No description provided for @admins.
+  ///
+  /// In ar, this message translates to:
+  /// **'Admins'**
+  String get admins;
+
+  /// No description provided for @companies.
+  ///
+  /// In ar, this message translates to:
+  /// **'Companies'**
+  String get companies;
+
+  /// No description provided for @invalidCredential.
+  ///
+  /// In ar, this message translates to:
+  /// **'Invalid credentials'**
+  String get invalidCredential;
+
+  /// No description provided for @update.
+  ///
+  /// In ar, this message translates to:
+  /// **'Update'**
+  String get update;
+
+  /// No description provided for @createdAt.
+  ///
+  /// In ar, this message translates to:
+  /// **'Created at'**
+  String get createdAt;
+
+  /// No description provided for @logout.
+  ///
+  /// In ar, this message translates to:
+  /// **'Log out'**
+  String get logout;
+
+  /// No description provided for @adminLogin.
+  ///
+  /// In ar, this message translates to:
+  /// **'Admin login'**
+  String get adminLogin;
+
+  /// No description provided for @noAccessTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'Access denied'**
+  String get noAccessTitle;
+
+  /// No description provided for @noAccessBody.
+  ///
+  /// In ar, this message translates to:
+  /// **'You do not have permission to view this page. Please contact the administrator.'**
+  String get noAccessBody;
+
+  /// No description provided for @policies.
+  ///
+  /// In ar, this message translates to:
+  /// **'Policies'**
+  String get policies;
+
+  /// No description provided for @title.
+  ///
+  /// In ar, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// No description provided for @body.
+  ///
+  /// In ar, this message translates to:
+  /// **'Body'**
+  String get body;
+
+  /// No description provided for @titleEn.
+  ///
+  /// In ar, this message translates to:
+  /// **'Title in English'**
+  String get titleEn;
+
+  /// No description provided for @titleAr.
+  ///
+  /// In ar, this message translates to:
+  /// **'Title in Arabic'**
+  String get titleAr;
+
+  /// No description provided for @nameEn.
+  ///
+  /// In ar, this message translates to:
+  /// **'Name in English'**
+  String get nameEn;
+
+  /// No description provided for @nameAr.
+  ///
+  /// In ar, this message translates to:
+  /// **'Name in Arabic'**
+  String get nameAr;
+
+  /// No description provided for @permissions.
+  ///
+  /// In ar, this message translates to:
+  /// **'Permissions'**
+  String get permissions;
+
+  /// No description provided for @initialLocation.
+  ///
+  /// In ar, this message translates to:
+  /// **'Initial location'**
+  String get initialLocation;
+
+  /// No description provided for @show.
+  ///
+  /// In ar, this message translates to:
+  /// **'Show'**
+  String get show;
+
+  /// No description provided for @edit.
+  ///
+  /// In ar, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @delete.
+  ///
+  /// In ar, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @users.
+  ///
+  /// In ar, this message translates to:
+  /// **'Users'**
+  String get users;
+
+  /// No description provided for @successfullyUpdated.
+  ///
+  /// In ar, this message translates to:
+  /// **'Successfully updated'**
+  String get successfullyUpdated;
+
+  /// No description provided for @configure.
+  ///
+  /// In ar, this message translates to:
+  /// **'Configure'**
+  String get configure;
 }
 
 class _AppLocalizationsDelegate

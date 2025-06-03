@@ -77,7 +77,7 @@ class ResponsibleEmployee extends StatelessWidget {
                   bodyAr: "لقد قمت بالإمتثال لمتطلبات المهمة بنجاح. استمر في الأداء الجيد",
                 );
               } else {
-                context.push((context) {
+                context.navigate((context) {
                   return ViolationInputScreen(task: assignedTask);
                 });
               }

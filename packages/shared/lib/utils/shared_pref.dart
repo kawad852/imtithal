@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:shared/shared.dart';
 
+import '../models/company/company_model.dart';
+
 class MySharedPreferences {
   static late SharedPreferences _sharedPreferences;
 
@@ -39,4 +41,32 @@ class MySharedPreferences {
   static String get countryCode =>
       _sharedPreferences.getString('countryCode') ?? kFallBackCountryCode;
   static set countryCode(String value) => _sharedPreferences.setString('countryCode', value);
+
+  static RoleModel? get role {
+    String? value = _sharedPreferences.getString('role');
+    RoleModel? role;
+    if (value != null && value.isNotEmpty && value != 'null') {
+      role = RoleModel.fromJson(jsonDecode(value));
+    }
+    return role;
+  }
+
+  static set role(RoleModel? value) {
+    value?.createdAt = null;
+    _sharedPreferences.setString('role', jsonEncode(value?.toJson()));
+  }
+
+  static CompanyModel? get company {
+    String? value = _sharedPreferences.getString('company');
+    CompanyModel? role;
+    if (value != null && value.isNotEmpty && value != 'null') {
+      role = CompanyModel.fromJson(jsonDecode(value));
+    }
+    return role;
+  }
+
+  static set company(CompanyModel? value) {
+    value?.createdAt = null;
+    _sharedPreferences.setString('company', jsonEncode(value?.toJson()));
+  }
 }

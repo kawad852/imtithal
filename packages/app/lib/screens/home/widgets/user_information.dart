@@ -20,7 +20,7 @@ class UserInformation extends StatelessWidget {
                 if (edit)
                   GestureDetector(
                     onTap: () {
-                      context.push((context) {
+                      context.navigate((context) {
                         return UserInputScreen(user: user);
                       });
                     },

@@ -570,4 +570,89 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pending => 'بالإنتظار';
+
+  @override
+  String get displayName => 'Display name';
+
+  @override
+  String get build => 'Build';
+
+  @override
+  String get manage => 'Manage';
+
+  @override
+  String get roles => 'Roles';
+
+  @override
+  String get admins => 'Admins';
+
+  @override
+  String get companies => 'Companies';
+
+  @override
+  String get invalidCredential => 'Invalid credentials';
+
+  @override
+  String get update => 'Update';
+
+  @override
+  String get createdAt => 'Created at';
+
+  @override
+  String get logout => 'Log out';
+
+  @override
+  String get adminLogin => 'Admin login';
+
+  @override
+  String get noAccessTitle => 'Access denied';
+
+  @override
+  String get noAccessBody =>
+      'You do not have permission to view this page. Please contact the administrator.';
+
+  @override
+  String get policies => 'Policies';
+
+  @override
+  String get title => 'Title';
+
+  @override
+  String get body => 'Body';
+
+  @override
+  String get titleEn => 'Title in English';
+
+  @override
+  String get titleAr => 'Title in Arabic';
+
+  @override
+  String get nameEn => 'Name in English';
+
+  @override
+  String get nameAr => 'Name in Arabic';
+
+  @override
+  String get permissions => 'Permissions';
+
+  @override
+  String get initialLocation => 'Initial location';
+
+  @override
+  String get show => 'Show';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get users => 'Users';
+
+  @override
+  String get successfullyUpdated => 'Successfully updated';
+
+  @override
+  String get configure => 'Configure';
 }

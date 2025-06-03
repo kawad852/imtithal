@@ -151,7 +151,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                         name: element.displayName,
                         description: element.jobTitle,
                         onTap: () {
-                          context.push((context) {
+                          context.navigate((context) {
                             return UserScreen(user: element);
                           });
                         },
@@ -164,7 +164,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                       return AnchorTile(
                         name: element.name,
                         onTap: () {
-                          context.push((context) {
+                          context.navigate((context) {
                             return DepartmentScreen(department: element);
                           });
                         },
@@ -178,7 +178,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                         name: element.title,
                         description: element.description,
                         onTap: () {
-                          context.push((context) {
+                          context.navigate((context) {
                             return TaskDetailsScreen(task: element);
                           });
                         },

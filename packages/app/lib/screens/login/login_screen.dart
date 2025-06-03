@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          context.push((context) => const ResetPasswordScreen());
+                          context.navigate((context) => const ResetPasswordScreen());
                         },
                         child: Text(
                           context.appLocalization.resetPassword,

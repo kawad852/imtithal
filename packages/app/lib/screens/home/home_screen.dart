@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       final count = user.unReadNotificationsCount;
                       return IconButton(
                         onPressed: () {
-                          context.push((context) => const NotificationsScreen());
+                          context.navigate((context) => const NotificationsScreen());
                         },
                         icon: Badge(
                           isLabelVisible: count > 0,
@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         MoreButton(
                           onTap: () {
-                            context.push((context) {
+                            context.navigate((context) {
                               return const CalenderScreen();
                             });
                           },

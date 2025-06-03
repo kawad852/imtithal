@@ -61,9 +61,9 @@ class TaskBubble extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if (status == TaskStatusEnum.violated) {
-            context.push((context) => ViolationsScreen(userId: userId));
+            context.navigate((context) => ViolationsScreen(userId: userId));
           } else {
-            context.push(
+            context.navigate(
               (context) => TasksScreen(
                 status: status,
                 late: late,

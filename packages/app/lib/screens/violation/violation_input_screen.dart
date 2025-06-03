@@ -122,7 +122,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
                 NavEditor(
                   onTap: () {
                     context
-                        .push((context) {
+                        .navigate((context) {
                           return UsersSelectionScreen(userIds: _userIds);
                         })
                         .then((value) {

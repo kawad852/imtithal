@@ -16,6 +16,7 @@ class UserModel with _$UserModel {
     @Default('') String username,
     String? deviceToken,
     String? role,
+    String? roleId,
     String? languageCode,
     String? profilePhoto,
     @Default(false) bool blocked,

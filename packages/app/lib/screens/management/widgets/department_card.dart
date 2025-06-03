@@ -18,7 +18,7 @@ class DepartmentCard extends StatelessWidget {
         final hasManager = departmentManager.id != null;
         return GestureDetector(
           onTap: () {
-            context.push((context) => DepartmentScreen(department: department));
+            context.navigate((context) => DepartmentScreen(department: department));
           },
           child: Container(
             width: double.infinity,

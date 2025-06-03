@@ -10,7 +10,7 @@ class NotificationRouteHandler {
   }) {
     try {
       if (type == NotificationType.emtithal.value || type == NotificationType.lateTask.value) {
-        context.push((context) {
+        context.navigate((context) {
           return TaskDetailsScreen(id: id);
         });
       }

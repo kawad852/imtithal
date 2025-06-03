@@ -54,7 +54,7 @@ class ResponsibleCard extends StatelessWidget {
                         Expanded(child: AssignedList(assignedTasks: assignedTasks, height: 32)),
                       GestureDetector(
                         onTap: () {
-                          context.push(
+                          context.navigate(
                             (context) => TaskActionScreen(task: task, assignedTasks: assignedTasks),
                           );
                         },

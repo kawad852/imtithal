@@ -1,8 +1,11 @@
 import 'package:app/screens/base/app_nav_bar.dart';
-import 'package:flutter/material.dart';
+
+import '../shared.dart';
 
 extension NavigationExtension on BuildContext {
-  Future<T?> push<T>(WidgetBuilder builder, {bool fullscreenDialog = false, String? name}) {
+  String get currentRoutePath => GoRouter.of(this).routeInformationProvider.value.uri.path;
+
+  Future<T?> navigate<T>(WidgetBuilder builder, {bool fullscreenDialog = false, String? name}) {
     return Navigator.push<T?>(
       this,
       MaterialPageRoute(
@@ -13,7 +16,7 @@ extension NavigationExtension on BuildContext {
     ).then((value) => value);
   }
 
-  Future<T?> pushReplacement<T>(
+  Future<T?> pushReplacement2<T>(
     WidgetBuilder builder, {
     bool fullscreenDialog = false,
     String? name,
@@ -48,5 +51,5 @@ extension NavigationExtension on BuildContext {
     );
   }
 
-  void pop([value]) => Navigator.pop(this, value);
+  void back([value]) => Navigator.pop(this, value);
 }

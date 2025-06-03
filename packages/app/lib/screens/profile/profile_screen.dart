@@ -47,21 +47,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           ProfileCard(
             onTap: () {
-              context.push((context) => const PolicyScreen(policyEnum: PolicyEnum.laws));
+              context.navigate((context) => const PolicyScreen(policyEnum: PolicyEnum.laws));
             },
             icon: MyIcons.judge,
             title: context.appLocalization.lawsAndRegulations,
           ),
           ProfileCard(
             onTap: () {
-              context.push((context) => const PolicyScreen(policyEnum: PolicyEnum.policy));
+              context.navigate((context) => const PolicyScreen(policyEnum: PolicyEnum.policy));
             },
             icon: MyIcons.policy,
             title: context.appLocalization.privacyPolicy,
           ),
           ProfileCard(
             onTap: () {
-              context.push((context) => const ComplaintScreen());
+              context.navigate((context) => const ComplaintScreen());
             },
             icon: MyIcons.smsTracking,
             title: context.appLocalization.sendComplaintOrReport,

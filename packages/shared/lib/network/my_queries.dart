@@ -1,6 +1,7 @@
 import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
+import '../models/company/company_model.dart';
 import '../models/country/country_model.dart';
 import '../models/notification/notification_model.dart';
 
@@ -44,6 +45,18 @@ extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<PolicyModel> get policies =>
       collection(MyCollections.policies).withConverter<PolicyModel>(
         fromFirestore: (snapshot, _) => PolicyModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
+  CollectionReference<CompanyModel> get companies =>
+      collection(MyCollections.companies).withConverter<CompanyModel>(
+        fromFirestore: (snapshot, _) => CompanyModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
+  CollectionReference<RoleModel> get roles =>
+      collection(MyCollections.roles).withConverter<RoleModel>(
+        fromFirestore: (snapshot, _) => RoleModel.fromJson(snapshot.data()!),
         toFirestore: (snapshot, _) => snapshot.toJson(),
       );
 }

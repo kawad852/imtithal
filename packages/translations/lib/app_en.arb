@@ -184,5 +184,13 @@
   "generalViolation":"General Violation",
   "confirmed": "Confirmed",
   "canceled": "Canceled",
-  "pending": "Pending"
+  "pending": "Pending",
+  "displayName": "Display name",
+  "build": "Build",
+  "manage": "Manage",
+  "roles": "Roles",
+  "admins": "Admins",
+  "companies": "Companies",
+  "invalidCredential": "Invalid credentials",
+  "update": "Update"
 }

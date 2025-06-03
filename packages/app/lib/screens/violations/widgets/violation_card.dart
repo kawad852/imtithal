@@ -20,7 +20,7 @@ class ViolationCard extends StatelessWidget {
     }
     return GestureDetector(
       onTap: () {
-        context.push((context) => const ViolationSingleScreen());
+        context.navigate((context) => const ViolationSingleScreen());
       },
       child: Container(
         width: double.infinity,

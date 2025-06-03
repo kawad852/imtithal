@@ -51,7 +51,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
                   children: [
                     ManageButton(
                       onTap: () {
-                        context.push((context) {
+                        context.navigate((context) {
                           return const UserInputScreen();
                         });
                       },
@@ -72,7 +72,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
                     children: [
                       ManageButton(
                         onTap: () {
-                          context.push((context) {
+                          context.navigate((context) {
                             return const DepartmentInputScreen();
                           });
                         },
@@ -92,7 +92,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
                   children: [
                     ManageButton(
                       onTap: () {
-                        context.push((context) => const LeavesScreen());
+                        context.navigate((context) => const LeavesScreen());
                       },
                       icon: MyIcons.emoji,
                       title: context.appLocalization.leavesAndHolidays,
@@ -111,7 +111,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
                     children: [
                       ManageButton(
                         onTap: () {
-                          context.push((context) => const ViolationsScreen(userId: null));
+                          context.navigate((context) => const ViolationsScreen(userId: null));
                         },
 
                         icon: MyIcons.danger,

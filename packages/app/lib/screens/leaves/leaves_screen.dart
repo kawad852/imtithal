@@ -17,7 +17,7 @@ class _LeavesScreenState extends State<LeavesScreen> {
       ),
       bottomNavigationBar: BottomButton(
         onPressed: () {
-          context.push((context) => const LeaveInputScreen());
+          context.navigate((context) => const LeaveInputScreen());
         },
         text: context.appLocalization.addNewLeave,
       ),

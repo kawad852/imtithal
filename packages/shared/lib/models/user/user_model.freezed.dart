@@ -41,6 +41,8 @@ mixin _$UserModel {
   set deviceToken(String? value) => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   set role(String? value) => throw _privateConstructorUsedError;
+  String? get roleId => throw _privateConstructorUsedError;
+  set roleId(String? value) => throw _privateConstructorUsedError;
   String? get languageCode => throw _privateConstructorUsedError;
   set languageCode(String? value) => throw _privateConstructorUsedError;
   String? get profilePhoto => throw _privateConstructorUsedError;
@@ -116,6 +118,7 @@ abstract class $UserModelCopyWith<$Res> {
     String username,
     String? deviceToken,
     String? role,
+    String? roleId,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
@@ -165,6 +168,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? username = null,
     Object? deviceToken = freezed,
     Object? role = freezed,
+    Object? roleId = freezed,
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
@@ -229,6 +233,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                 freezed == role
                     ? _value.role
                     : role // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            roleId:
+                freezed == roleId
+                    ? _value.roleId
+                    : roleId // ignore: cast_nullable_to_non_nullable
                         as String?,
             languageCode:
                 freezed == languageCode
@@ -364,6 +373,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     String username,
     String? deviceToken,
     String? role,
+    String? roleId,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
@@ -412,6 +422,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? username = null,
     Object? deviceToken = freezed,
     Object? role = freezed,
+    Object? roleId = freezed,
     Object? languageCode = freezed,
     Object? profilePhoto = freezed,
     Object? blocked = null,
@@ -476,6 +487,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
             freezed == role
                 ? _value.role
                 : role // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        roleId:
+            freezed == roleId
+                ? _value.roleId
+                : roleId // ignore: cast_nullable_to_non_nullable
                     as String?,
         languageCode:
             freezed == languageCode
@@ -605,6 +621,7 @@ class _$UserModelImpl implements _UserModel {
     this.username = '',
     this.deviceToken,
     this.role,
+    this.roleId,
     this.languageCode,
     this.profilePhoto,
     this.blocked = false,
@@ -656,6 +673,8 @@ class _$UserModelImpl implements _UserModel {
   String? deviceToken;
   @override
   String? role;
+  @override
+  String? roleId;
   @override
   String? languageCode;
   @override
@@ -719,7 +738,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, username: $username, deviceToken: $deviceToken, role: $role, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, unReadNotificationsCount: $unReadNotificationsCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected, imtithalPercentage: $imtithalPercentage, violatedCount: $violatedCount)';
+    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, username: $username, deviceToken: $deviceToken, role: $role, roleId: $roleId, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, unReadNotificationsCount: $unReadNotificationsCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected, imtithalPercentage: $imtithalPercentage, violatedCount: $violatedCount)';
   }
 
   /// Create a copy of UserModel
@@ -746,6 +765,7 @@ abstract class _UserModel implements UserModel {
     String username,
     String? deviceToken,
     String? role,
+    String? roleId,
     String? languageCode,
     String? profilePhoto,
     bool blocked,
@@ -802,6 +822,9 @@ abstract class _UserModel implements UserModel {
   @override
   String? get role;
   set role(String? value);
+  @override
+  String? get roleId;
+  set roleId(String? value);
   @override
   String? get languageCode;
   set languageCode(String? value);

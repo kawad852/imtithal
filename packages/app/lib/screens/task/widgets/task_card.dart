@@ -10,7 +10,7 @@ class TaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push((context) => TaskDetailsScreen(task: task));
+        context.navigate((context) => TaskDetailsScreen(task: task));
       },
       child: Container(
         width: double.infinity,

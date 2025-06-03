@@ -94,7 +94,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                   ActionButton(
                     onTap: () {
                       context
-                          .push((context) {
+                          .navigate((context) {
                             return UsersSelectionScreen(userIds: task.assignedUserIds);
                           })
                           .then((value) {
@@ -109,7 +109,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                   const SizedBox(width: 10),
                   ActionButton(
                     onTap: () {
-                      context.push((context) {
+                      context.navigate((context) {
                         return TaskInputScreen(task: task);
                       });
                     },
