@@ -10,13 +10,13 @@ class UsersTable extends StatefulWidget {
 
 class _UsersTableState extends State<UsersTable> {
   late Query<UserModel> _query;
-  late Future<QuerySnapshot<CompanyModel>> _companiesFuture;
+  late Stream<QuerySnapshot<CompanyModel>> _companiesStream;
 
   CollectionReference<UserModel> get _collectionRef => kFirebaseInstant.users;
 
   void _initializeQuery() {
     _query = _collectionRef.orderByCreatedAtDesc.where(MyFields.companyId, isNull: false);
-    _companiesFuture = kFirebaseInstant.companies.orderByCreatedAtDesc.get();
+    _companiesStream = kFirebaseInstant.companies.orderByCreatedAtDesc.snapshots();
   }
 
   @override
@@ -39,7 +39,7 @@ class _UsersTableState extends State<UsersTable> {
         return [DataCell(Text(data.displayName))];
       },
       onSave: (ref, data) async {
-        if (data.companyId == null) {
+        if (data.companyId.isEmpty) {
           context.showSnackBar(context.appLocalization.generalError);
           return;
         }
@@ -68,17 +68,17 @@ class _UsersTableState extends State<UsersTable> {
           ),
           UsernameEditor(initialValue: data.username, onChanged: (value) => data.username = value!),
           PasswordEditor(initialValue: data.password, onChanged: (value) => data.password = value!),
-          ImpededFutureBuilder(
-            future: _companiesFuture,
+          ImpededStreamBuilder(
+            stream: _companiesStream,
             onComplete: (context, snapshot) {
               return DropDownEditor(
-                value: data.companyId,
+                value: data.companyId.isNotEmpty ? data.companyId : null,
                 onChanged: (value) {
                   setState(() {
                     data.companyId = value!;
                   });
                 },
-                title: context.appLocalization.companies,
+                title: context.appLocalization.company,
                 items: snapshot.data!.docs.map((element) {
                   return DropdownMenuItem(value: element.id, child: Text(element.data().name!));
                 }).toList(),

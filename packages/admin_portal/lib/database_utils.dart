@@ -9,7 +9,7 @@ class DatabaseUtils {
         nameEn: 'Super Admin',
         nameAr: 'سوبر ادمن',
         createdAt: DateTime.now(),
-        initialLocation: '/policies',
+        initialLocation: '/companies',
       );
 
       await FirebaseFirestore.instance.roles.doc(superAdminRole.id).set(superAdminRole);
@@ -44,8 +44,9 @@ class DatabaseUtils {
         region: "europe-west3",
       ).httpsCallable('createUser');
       final results = await callable.call(<String, dynamic>{
-        'email': admin.email!,
+        'email': admin.email,
         'password': admin.password,
+        'isAdmin': true,
       });
       final data = results.data as Map<String, dynamic>;
       admin.id = data['uid'];

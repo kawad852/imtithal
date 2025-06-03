@@ -662,4 +662,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get configure => 'Configure';
+
+  @override
+  String get company => 'Company';
 }

@@ -39,7 +39,7 @@ class UserProvider extends ChangeNotifier {
         // final user = UserModel();
 
         final auth = await _firebaseAuth.signInWithEmailAndPassword(
-          email: "$username$kEmtithalDomain",
+          email: portalLogin ? username : "$username$kEmtithalDomain",
           password: password,
         );
 
@@ -59,18 +59,18 @@ class UserProvider extends ChangeNotifier {
           }
         }
 
-        // if (portalLogin && context.mounted) {
-        //   if (user.roleId == null) {
-        //     Fluttertoast.showToast(msg: context.appLocalization.authFailed);
-        //   } else {
-        //     await context.portalProvider.initRole(context);
-        //     if (context.mounted) {
-        //       notifyListeners();
-        //       GoRouter.of(context).go(context.portalProvider.role!.initialLocation!);
-        //     }
-        //   }
-        //   return;
-        // }
+        if (portalLogin && context.mounted) {
+          if (user.roleId == null) {
+            Fluttertoast.showToast(msg: context.appLocalization.authFailed);
+          } else {
+            await context.portalProvider.initRole(context);
+            if (context.mounted) {
+              notifyListeners();
+              GoRouter.of(context).go(context.portalProvider.role!.initialLocation!);
+            }
+          }
+          return;
+        }
 
         notifyListeners();
 

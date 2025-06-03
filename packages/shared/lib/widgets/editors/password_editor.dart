@@ -30,7 +30,6 @@ class _PasswordEditorState extends State<PasswordEditor> {
     return BaseEditor(
       initialValue: widget.initialValue,
       obscureText: _obscureText,
-      obscuringCharacter: "●",
       required: true,
       autoValidateMode: widget.isConfirm ? null : AutovalidateMode.onUserInteraction,
       prefixIcon: IconButton(
@@ -59,7 +58,7 @@ class _PasswordEditorState extends State<PasswordEditor> {
       validator: (value) {
         if (widget.isConfirm) {
           return widget.password == value ? null : context.appLocalization.passwordNotMatch;
-        } 
+        }
         return ValidationHelper.password(context, value);
       },
     );

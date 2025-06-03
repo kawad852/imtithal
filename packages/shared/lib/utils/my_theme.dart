@@ -15,39 +15,38 @@ const kMaxWidth = 600.0;
 class MyTheme {
   static final String fontFamily = GoogleFonts.cairo().fontFamily!;
 
-  static InputDecorationTheme inputDecorationTheme(
-    BuildContext context,
-    ColorScheme colorScheme,
-  ) => InputDecorationTheme(
-    filled: true,
-    isDense: true,
-    fillColor: const Color(0xFFF5F5F5),
-    hintStyle: TextStyle(fontSize: 14, color: context.colorPalette.grey8B8),
-    contentPadding: const EdgeInsetsDirectional.symmetric(
-      horizontal: 5,
-      vertical: 10,
-    ).copyWith(start: 20),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(kRadiusSecondary),
-      borderSide: const BorderSide(color: Colors.transparent),
-    ),
-    disabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(kRadiusSecondary),
-      borderSide: const BorderSide(color: Colors.transparent),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(kRadiusSecondary),
-      borderSide: const BorderSide(color: Colors.transparent),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(kRadiusSecondary),
-      borderSide: BorderSide(color: colorScheme.error),
-    ),
-    focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(kRadiusSecondary),
-      borderSide: BorderSide(color: colorScheme.error),
-    ),
-  );
+  static InputDecorationTheme inputDecorationTheme(BuildContext context, ColorScheme colorScheme) =>
+      InputDecorationTheme(
+        filled: true,
+        isDense: true,
+        fillColor: const Color(0xFFF5F5F5),
+        constraints: const BoxConstraints(maxWidth: 500),
+        hintStyle: TextStyle(fontSize: 14, color: context.colorPalette.grey8B8),
+        contentPadding: const EdgeInsetsDirectional.symmetric(
+          horizontal: 5,
+          vertical: 10,
+        ).copyWith(start: 20),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(kRadiusSecondary),
+          borderSide: const BorderSide(color: Colors.transparent),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(kRadiusSecondary),
+          borderSide: const BorderSide(color: Colors.transparent),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(kRadiusSecondary),
+          borderSide: const BorderSide(color: Colors.transparent),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(kRadiusSecondary),
+          borderSide: BorderSide(color: colorScheme.error),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(kRadiusSecondary),
+          borderSide: BorderSide(color: colorScheme.error),
+        ),
+      );
 
   ThemeData materialTheme(BuildContext context, ColorScheme colorScheme) {
     return ThemeData(
@@ -61,19 +60,12 @@ class MyTheme {
         },
       ),
       listTileTheme: ListTileThemeData(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kRadiusPrimary),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadiusPrimary)),
       ),
-      cardTheme: CardThemeData(
-        color: colorScheme.onInverseSurface,
-        margin: EdgeInsets.zero,
-      ),
+      cardTheme: CardThemeData(color: colorScheme.onInverseSurface, margin: EdgeInsets.zero),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kRadiusPrimary),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadiusPrimary)),
         ),
       ),
       bottomAppBarTheme: BottomAppBarTheme(

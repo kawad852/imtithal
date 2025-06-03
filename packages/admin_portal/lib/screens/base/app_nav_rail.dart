@@ -37,23 +37,22 @@ class _AppNavRailState extends State<AppNavRail> {
           final isSmallDevice = constraints.maxWidth < kMaxSmallDeviceWidth;
           final role = _portalProvider.role;
           final isSuperAdmin = role?.id == kSuperAdminRoleId;
-          final permissionPaths =
-              isSuperAdmin
-                  ? []
-                  : role?.permissions
-                          ?.where(
-                            (element) =>
-                                element.add || element.edit || element.show || element.delete,
-                          )
-                          .map((e) => e.path!)
-                          .toList() ??
-                      [];
+          final permissionPaths = isSuperAdmin
+              ? []
+              : role?.permissions
+                        ?.where(
+                          (element) =>
+                              element.add || element.edit || element.show || element.delete,
+                        )
+                        .map((e) => e.path!)
+                        .toList() ??
+                    [];
 
           var buildRoutes = <String>[];
-          var manageRoutes = _getRouteSections(0, 3);
+          var manageRoutes = _getRouteSections(0, 2);
           var servicesRoutes = <String>[];
           var engageRoutes = <String>[];
-          var configureRoutes = _getRouteSections(3, 6);
+          var configureRoutes = _getRouteSections(2, 5);
 
           // var buildRoutes = <String>[];
           // var servicesRoutes = <String>[];
@@ -61,16 +60,21 @@ class _AppNavRailState extends State<AppNavRail> {
           // var configureRoutes = <String>[];
 
           if (!isSuperAdmin) {
-            buildRoutes =
-                buildRoutes.where((element) => permissionPaths.contains(element)).toList();
-            servicesRoutes =
-                servicesRoutes.where((element) => permissionPaths.contains(element)).toList();
-            configureRoutes =
-                configureRoutes.where((element) => permissionPaths.contains(element)).toList();
-            engageRoutes =
-                engageRoutes.where((element) => permissionPaths.contains(element)).toList();
-            manageRoutes =
-                manageRoutes.where((element) => permissionPaths.contains(element)).toList();
+            buildRoutes = buildRoutes
+                .where((element) => permissionPaths.contains(element))
+                .toList();
+            servicesRoutes = servicesRoutes
+                .where((element) => permissionPaths.contains(element))
+                .toList();
+            configureRoutes = configureRoutes
+                .where((element) => permissionPaths.contains(element))
+                .toList();
+            engageRoutes = engageRoutes
+                .where((element) => permissionPaths.contains(element))
+                .toList();
+            manageRoutes = manageRoutes
+                .where((element) => permissionPaths.contains(element))
+                .toList();
           }
 
           final drawer = AppDrawer(
@@ -87,7 +91,10 @@ class _AppNavRailState extends State<AppNavRail> {
             key: scaffoldKey,
             drawer: isSmallDevice ? drawer : null,
             body: Row(
-              children: [if (!isSmallDevice) drawer, Expanded(child: widget.navigationShell)],
+              children: [
+                if (!isSmallDevice) drawer,
+                Expanded(child: widget.navigationShell),
+              ],
             ),
           );
         },

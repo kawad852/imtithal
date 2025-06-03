@@ -572,87 +572,90 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pending => 'بالإنتظار';
 
   @override
-  String get displayName => 'Display name';
+  String get displayName => 'الاسم الظاهر';
 
   @override
-  String get build => 'Build';
+  String get build => 'البناء';
 
   @override
-  String get manage => 'Manage';
+  String get manage => 'إدارة';
 
   @override
-  String get roles => 'Roles';
+  String get roles => 'الأدوار';
 
   @override
-  String get admins => 'Admins';
+  String get admins => 'المسؤولون';
 
   @override
-  String get companies => 'Companies';
+  String get companies => 'الشركات';
 
   @override
-  String get invalidCredential => 'Invalid credentials';
+  String get invalidCredential => 'بيانات الاعتماد غير صالحة';
 
   @override
-  String get update => 'Update';
+  String get update => 'تحديث';
 
   @override
-  String get createdAt => 'Created at';
+  String get createdAt => 'تاريخ الإنشاء';
 
   @override
-  String get logout => 'Log out';
+  String get logout => 'تسجيل الخروج';
 
   @override
-  String get adminLogin => 'Admin login';
+  String get adminLogin => 'تسجيل دخول المسؤول';
 
   @override
-  String get noAccessTitle => 'Access denied';
+  String get noAccessTitle => 'تم رفض الوصول';
 
   @override
   String get noAccessBody =>
-      'You do not have permission to view this page. Please contact the administrator.';
+      'ليس لديك صلاحية لعرض هذه الصفحة. يرجى التواصل مع المسؤول.';
 
   @override
-  String get policies => 'Policies';
+  String get policies => 'السياسات';
 
   @override
-  String get title => 'Title';
+  String get title => 'العنوان';
 
   @override
-  String get body => 'Body';
+  String get body => 'المحتوى';
 
   @override
-  String get titleEn => 'Title in English';
+  String get titleEn => 'العنوان باللغة الإنجليزية';
 
   @override
-  String get titleAr => 'Title in Arabic';
+  String get titleAr => 'العنوان باللغة العربية';
 
   @override
-  String get nameEn => 'Name in English';
+  String get nameEn => 'الاسم باللغة الإنجليزية';
 
   @override
-  String get nameAr => 'Name in Arabic';
+  String get nameAr => 'الاسم باللغة العربية';
 
   @override
-  String get permissions => 'Permissions';
+  String get permissions => 'الصلاحيات';
 
   @override
-  String get initialLocation => 'Initial location';
+  String get initialLocation => 'الموقع الابتدائي';
 
   @override
-  String get show => 'Show';
+  String get show => 'عرض';
 
   @override
-  String get edit => 'Edit';
+  String get edit => 'تعديل';
 
   @override
-  String get delete => 'Delete';
+  String get delete => 'حذف';
 
   @override
-  String get users => 'Users';
+  String get users => 'المستخدمون';
 
   @override
-  String get successfullyUpdated => 'Successfully updated';
+  String get successfullyUpdated => 'تم التحديث بنجاح';
 
   @override
-  String get configure => 'Configure';
+  String get configure => 'تهيئة';
+
+  @override
+  String get company => 'الشركة';
 }

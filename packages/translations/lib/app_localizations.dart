@@ -1211,170 +1211,176 @@ abstract class AppLocalizations {
   /// No description provided for @displayName.
   ///
   /// In ar, this message translates to:
-  /// **'Display name'**
+  /// **'الاسم الظاهر'**
   String get displayName;
 
   /// No description provided for @build.
   ///
   /// In ar, this message translates to:
-  /// **'Build'**
+  /// **'البناء'**
   String get build;
 
   /// No description provided for @manage.
   ///
   /// In ar, this message translates to:
-  /// **'Manage'**
+  /// **'إدارة'**
   String get manage;
 
   /// No description provided for @roles.
   ///
   /// In ar, this message translates to:
-  /// **'Roles'**
+  /// **'الأدوار'**
   String get roles;
 
   /// No description provided for @admins.
   ///
   /// In ar, this message translates to:
-  /// **'Admins'**
+  /// **'المسؤولون'**
   String get admins;
 
   /// No description provided for @companies.
   ///
   /// In ar, this message translates to:
-  /// **'Companies'**
+  /// **'الشركات'**
   String get companies;
 
   /// No description provided for @invalidCredential.
   ///
   /// In ar, this message translates to:
-  /// **'Invalid credentials'**
+  /// **'بيانات الاعتماد غير صالحة'**
   String get invalidCredential;
 
   /// No description provided for @update.
   ///
   /// In ar, this message translates to:
-  /// **'Update'**
+  /// **'تحديث'**
   String get update;
 
   /// No description provided for @createdAt.
   ///
   /// In ar, this message translates to:
-  /// **'Created at'**
+  /// **'تاريخ الإنشاء'**
   String get createdAt;
 
   /// No description provided for @logout.
   ///
   /// In ar, this message translates to:
-  /// **'Log out'**
+  /// **'تسجيل الخروج'**
   String get logout;
 
   /// No description provided for @adminLogin.
   ///
   /// In ar, this message translates to:
-  /// **'Admin login'**
+  /// **'تسجيل دخول المسؤول'**
   String get adminLogin;
 
   /// No description provided for @noAccessTitle.
   ///
   /// In ar, this message translates to:
-  /// **'Access denied'**
+  /// **'تم رفض الوصول'**
   String get noAccessTitle;
 
   /// No description provided for @noAccessBody.
   ///
   /// In ar, this message translates to:
-  /// **'You do not have permission to view this page. Please contact the administrator.'**
+  /// **'ليس لديك صلاحية لعرض هذه الصفحة. يرجى التواصل مع المسؤول.'**
   String get noAccessBody;
 
   /// No description provided for @policies.
   ///
   /// In ar, this message translates to:
-  /// **'Policies'**
+  /// **'السياسات'**
   String get policies;
 
   /// No description provided for @title.
   ///
   /// In ar, this message translates to:
-  /// **'Title'**
+  /// **'العنوان'**
   String get title;
 
   /// No description provided for @body.
   ///
   /// In ar, this message translates to:
-  /// **'Body'**
+  /// **'المحتوى'**
   String get body;
 
   /// No description provided for @titleEn.
   ///
   /// In ar, this message translates to:
-  /// **'Title in English'**
+  /// **'العنوان باللغة الإنجليزية'**
   String get titleEn;
 
   /// No description provided for @titleAr.
   ///
   /// In ar, this message translates to:
-  /// **'Title in Arabic'**
+  /// **'العنوان باللغة العربية'**
   String get titleAr;
 
   /// No description provided for @nameEn.
   ///
   /// In ar, this message translates to:
-  /// **'Name in English'**
+  /// **'الاسم باللغة الإنجليزية'**
   String get nameEn;
 
   /// No description provided for @nameAr.
   ///
   /// In ar, this message translates to:
-  /// **'Name in Arabic'**
+  /// **'الاسم باللغة العربية'**
   String get nameAr;
 
   /// No description provided for @permissions.
   ///
   /// In ar, this message translates to:
-  /// **'Permissions'**
+  /// **'الصلاحيات'**
   String get permissions;
 
   /// No description provided for @initialLocation.
   ///
   /// In ar, this message translates to:
-  /// **'Initial location'**
+  /// **'الموقع الابتدائي'**
   String get initialLocation;
 
   /// No description provided for @show.
   ///
   /// In ar, this message translates to:
-  /// **'Show'**
+  /// **'عرض'**
   String get show;
 
   /// No description provided for @edit.
   ///
   /// In ar, this message translates to:
-  /// **'Edit'**
+  /// **'تعديل'**
   String get edit;
 
   /// No description provided for @delete.
   ///
   /// In ar, this message translates to:
-  /// **'Delete'**
+  /// **'حذف'**
   String get delete;
 
   /// No description provided for @users.
   ///
   /// In ar, this message translates to:
-  /// **'Users'**
+  /// **'المستخدمون'**
   String get users;
 
   /// No description provided for @successfullyUpdated.
   ///
   /// In ar, this message translates to:
-  /// **'Successfully updated'**
+  /// **'تم التحديث بنجاح'**
   String get successfullyUpdated;
 
   /// No description provided for @configure.
   ///
   /// In ar, this message translates to:
-  /// **'Configure'**
+  /// **'تهيئة'**
   String get configure;
+
+  /// No description provided for @company.
+  ///
+  /// In ar, this message translates to:
+  /// **'الشركة'**
+  String get company;
 }
 
 class _AppLocalizationsDelegate
