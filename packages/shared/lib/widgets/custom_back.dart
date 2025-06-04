@@ -10,12 +10,9 @@ class CustomBack extends StatelessWidget {
       alignment: AlignmentDirectional.centerStart,
       child: IconButton(
         onPressed: () {
-          context.pop();
+          context.back();
         },
-        icon: Icon(
-          Icons.arrow_back_rounded,
-          color: color ?? context.colorPalette.black,
-        ),
+        icon: Icon(Icons.arrow_back_rounded, color: color ?? context.colorPalette.black),
       ),
     );
   }

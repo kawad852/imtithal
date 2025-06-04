@@ -43,6 +43,13 @@ mixin _$ViolationModel {
   set createdById(String value) => throw _privateConstructorUsedError;
   LightUserModel? get lastReplyBy => throw _privateConstructorUsedError;
   set lastReplyBy(LightUserModel? value) => throw _privateConstructorUsedError;
+  List<AttachmentModel>? get attachments => throw _privateConstructorUsedError;
+  set attachments(List<AttachmentModel>? value) =>
+      throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  UserModel? get userModel => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set userModel(UserModel? value) => throw _privateConstructorUsedError;
 
   /// Serializes this ViolationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -72,10 +79,13 @@ abstract class $ViolationModelCopyWith<$Res> {
     String status,
     String createdById,
     LightUserModel? lastReplyBy,
+    List<AttachmentModel>? attachments,
+    @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   });
 
   $LightUserModelCopyWith<$Res>? get user;
   $LightUserModelCopyWith<$Res>? get lastReplyBy;
+  $UserModelCopyWith<$Res>? get userModel;
 }
 
 /// @nodoc
@@ -103,6 +113,8 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
     Object? status = null,
     Object? createdById = null,
     Object? lastReplyBy = freezed,
+    Object? attachments = freezed,
+    Object? userModel = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -156,6 +168,16 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
                     ? _value.lastReplyBy
                     : lastReplyBy // ignore: cast_nullable_to_non_nullable
                         as LightUserModel?,
+            attachments:
+                freezed == attachments
+                    ? _value.attachments
+                    : attachments // ignore: cast_nullable_to_non_nullable
+                        as List<AttachmentModel>?,
+            userModel:
+                freezed == userModel
+                    ? _value.userModel
+                    : userModel // ignore: cast_nullable_to_non_nullable
+                        as UserModel?,
           )
           as $Val,
     );
@@ -188,6 +210,20 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
       return _then(_value.copyWith(lastReplyBy: value) as $Val);
     });
   }
+
+  /// Create a copy of ViolationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get userModel {
+    if (_value.userModel == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.userModel!, (value) {
+      return _then(_value.copyWith(userModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -210,12 +246,16 @@ abstract class _$$ViolationModelImplCopyWith<$Res>
     String status,
     String createdById,
     LightUserModel? lastReplyBy,
+    List<AttachmentModel>? attachments,
+    @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   });
 
   @override
   $LightUserModelCopyWith<$Res>? get user;
   @override
   $LightUserModelCopyWith<$Res>? get lastReplyBy;
+  @override
+  $UserModelCopyWith<$Res>? get userModel;
 }
 
 /// @nodoc
@@ -242,6 +282,8 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? createdById = null,
     Object? lastReplyBy = freezed,
+    Object? attachments = freezed,
+    Object? userModel = freezed,
   }) {
     return _then(
       _$ViolationModelImpl(
@@ -295,6 +337,16 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
                 ? _value.lastReplyBy
                 : lastReplyBy // ignore: cast_nullable_to_non_nullable
                     as LightUserModel?,
+        attachments:
+            freezed == attachments
+                ? _value.attachments
+                : attachments // ignore: cast_nullable_to_non_nullable
+                    as List<AttachmentModel>?,
+        userModel:
+            freezed == userModel
+                ? _value.userModel
+                : userModel // ignore: cast_nullable_to_non_nullable
+                    as UserModel?,
       ),
     );
   }
@@ -315,6 +367,8 @@ class _$ViolationModelImpl implements _ViolationModel {
     this.status = ViolationStatus.defaultValue,
     required this.createdById,
     this.lastReplyBy,
+    this.attachments,
+    @JsonKey(includeToJson: false, includeFromJson: false) this.userModel,
   });
 
   factory _$ViolationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -347,10 +401,15 @@ class _$ViolationModelImpl implements _ViolationModel {
   String createdById;
   @override
   LightUserModel? lastReplyBy;
+  @override
+  List<AttachmentModel>? attachments;
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  UserModel? userModel;
 
   @override
   String toString() {
-    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, companyId: $companyId, user: $user, status: $status, createdById: $createdById, lastReplyBy: $lastReplyBy)';
+    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, companyId: $companyId, user: $user, status: $status, createdById: $createdById, lastReplyBy: $lastReplyBy, attachments: $attachments, userModel: $userModel)';
   }
 
   /// Create a copy of ViolationModel
@@ -382,6 +441,8 @@ abstract class _ViolationModel implements ViolationModel {
     String status,
     required String createdById,
     LightUserModel? lastReplyBy,
+    List<AttachmentModel>? attachments,
+    @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   }) = _$ViolationModelImpl;
 
   factory _ViolationModel.fromJson(Map<String, dynamic> json) =
@@ -419,6 +480,14 @@ abstract class _ViolationModel implements ViolationModel {
   @override
   LightUserModel? get lastReplyBy;
   set lastReplyBy(LightUserModel? value);
+  @override
+  List<AttachmentModel>? get attachments;
+  set attachments(List<AttachmentModel>? value);
+  @override
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  UserModel? get userModel;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  set userModel(UserModel? value);
 
   /// Create a copy of ViolationModel
   /// with the given fields replaced by the non-null parameter values.

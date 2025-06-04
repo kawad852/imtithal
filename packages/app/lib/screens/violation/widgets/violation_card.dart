@@ -17,10 +17,11 @@ class ViolationCard extends StatelessWidget {
         (e) => e.id == (userId ?? violation.user?.id),
         orElse: () => UserModel(),
       );
+      violation.userModel ??= user;
     }
     return GestureDetector(
       onTap: () {
-        context.navigate((context) => const ViolationSingleScreen());
+        context.navigate((context) => ViolationDetailsScreen(violation: violation));
       },
       child: Container(
         width: double.infinity,

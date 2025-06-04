@@ -3,6 +3,7 @@ import 'package:shared/enums/violation_enums.dart';
 import 'package:shared/models/user/user_model.dart';
 
 import '../../helper/time_stamp_serializer.dart';
+import '../attachment/attachment_model.dart';
 
 part 'violation_model.freezed.dart';
 part 'violation_model.g.dart';
@@ -21,6 +22,8 @@ class ViolationModel with _$ViolationModel {
     @Default(ViolationStatus.defaultValue) String status,
     required String createdById,
     LightUserModel? lastReplyBy,
+    List<AttachmentModel>? attachments,
+    @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   }) = _ViolationModel;
 
   factory ViolationModel.fromJson(Map<String, dynamic> json) => _$ViolationModelFromJson(json);

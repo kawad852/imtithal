@@ -1,10 +1,14 @@
+import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
 class ViolationInfo extends StatelessWidget {
-  const ViolationInfo({super.key});
+  final ViolationModel violation;
+
+  const ViolationInfo({super.key, required this.violation});
 
   @override
   Widget build(BuildContext context) {
+    final user = violation.userModel!;
     return Container(
       width: double.infinity,
       height: 100,
@@ -32,12 +36,7 @@ class ViolationInfo extends StatelessWidget {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    const BaseNetworkImage(
-                      "",
-                      width: 40,
-                      height: 40,
-                      shape: BoxShape.circle,
-                    ),
+                    UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 20),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Column(
@@ -45,7 +44,7 @@ class ViolationInfo extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "مستشار مالي",
+                            user.jobTitle,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: context.colorPalette.grey8B8,
@@ -55,7 +54,7 @@ class ViolationInfo extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "محمد آل احمد",
+                            user.displayName,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: context.colorPalette.black252,
@@ -71,11 +70,7 @@ class ViolationInfo extends StatelessWidget {
               ],
             ),
           ),
-          VerticalDivider(
-            color: context.colorPalette.grey8B8,
-            indent: 12,
-            endIndent: 12,
-          ),
+          VerticalDivider(color: context.colorPalette.grey8B8, indent: 12, endIndent: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,14 +89,10 @@ class ViolationInfo extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CustomSvg(
-                        MyIcons.clock,
-                        color: context.colorPalette.grey8B8,
-                        width: 16,
-                      ),
+                      CustomSvg(MyIcons.clock, color: context.colorPalette.grey8B8, width: 16),
                       const SizedBox(width: 10),
                       Text(
-                        "03:30 مساءً",
+                        violation.createdAt!.getTime(context),
                         style: TextStyle(
                           color: context.colorPalette.grey8B8,
                           fontSize: 12,
@@ -114,14 +105,10 @@ class ViolationInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomSvg(
-                      MyIcons.calendar,
-                      color: context.colorPalette.grey8B8,
-                      width: 16,
-                    ),
+                    CustomSvg(MyIcons.calendar, color: context.colorPalette.grey8B8, width: 16),
                     const SizedBox(width: 10),
                     Text(
-                      "01.05.2025",
+                      violation.createdAt!.getDefaultFormattedDate(context),
                       style: TextStyle(
                         color: context.colorPalette.grey8B8,
                         fontSize: 12,

@@ -1,3 +1,4 @@
+import 'package:app/screens/violation/widgets/violation_card.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';

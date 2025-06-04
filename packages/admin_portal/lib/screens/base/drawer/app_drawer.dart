@@ -43,7 +43,7 @@ class _AppDrawerState extends State<AppDrawer> with AutomaticKeepAliveClientMixi
 
   _onDestinationSelected(int index) {
     if (context.mediaQuery.width < kMaxSmallDeviceWidth) {
-      context.pop();
+      context.back();
     }
     widget.navigationShell.goBranch(
       index,

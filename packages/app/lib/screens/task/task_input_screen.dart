@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:app/screens/task/widgets/attachments_list.dart';
 import 'package:app/screens_exports.dart' show DayBubble, TaskDetailsScreen;
 import 'package:shared/shared.dart';
 
@@ -244,33 +243,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                   _files.addAll(files);
                 },
               ),
-              if (_files.isNotEmpty)
-                SizedBox(
-                  height: 90,
-                  child: SingleChildScrollView(
-                    child: Row(
-                      children:
-                          _files
-                              .map((e) {
-                                if (e is XFile) {
-                                  return ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.file(
-                                      File(e.path),
-                                      height: 90,
-                                      width: 90,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  );
-                                } else {
-                                  return BaseNetworkImage(e as String, height: 90, width: 90);
-                                }
-                              })
-                              .separator(const SizedBox(width: 10))
-                              .toList(),
-                    ),
-                  ),
-                ),
+              if (_files.isNotEmpty) AttachmentsList(files: _files),
             ],
           ),
         ),
