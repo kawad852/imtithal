@@ -20,16 +20,16 @@ _$ViolationModelImpl _$$ViolationModelImplFromJson(Map<String, dynamic> json) =>
               : LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
       status: json['status'] as String? ?? ViolationStatus.defaultValue,
       createdById: json['createdById'] as String,
-      lastReplyBy:
-          json['lastReplyBy'] == null
-              ? null
-              : LightUserModel.fromJson(
-                json['lastReplyBy'] as Map<String, dynamic>,
-              ),
       attachments:
           (json['attachments'] as List<dynamic>?)
               ?.map((e) => AttachmentModel.fromJson(e as Map<String, dynamic>))
               .toList(),
+      lastReply:
+          json['lastReply'] == null
+              ? null
+              : ViolationReplyModel.fromJson(
+                json['lastReply'] as Map<String, dynamic>,
+              ),
     );
 
 Map<String, dynamic> _$$ViolationModelImplToJson(
@@ -44,8 +44,8 @@ Map<String, dynamic> _$$ViolationModelImplToJson(
   'user': instance.user?.toJson(),
   'status': instance.status,
   'createdById': instance.createdById,
-  'lastReplyBy': instance.lastReplyBy?.toJson(),
   'attachments': instance.attachments?.map((e) => e.toJson()).toList(),
+  'lastReply': instance.lastReply?.toJson(),
 };
 
 _$LightViolationModelImpl _$$LightViolationModelImplFromJson(
@@ -62,4 +62,29 @@ Map<String, dynamic> _$$LightViolationModelImplToJson(
   'id': instance.id,
   'type': instance.type,
   'status': instance.status,
+};
+
+_$ViolationReplyModelImpl _$$ViolationReplyModelImplFromJson(
+  Map<String, dynamic> json,
+) => _$ViolationReplyModelImpl(
+  createdAt: const TimestampSerializer().fromJson(json['createdAt']),
+  id: json['id'] as String? ?? '',
+  comment: json['comment'] as String? ?? '',
+  userId: json['userId'] as String? ?? '',
+  status: json['status'] as String? ?? ViolationStatus.defaultValue,
+  attachments:
+      (json['attachments'] as List<dynamic>?)
+          ?.map((e) => AttachmentModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+);
+
+Map<String, dynamic> _$$ViolationReplyModelImplToJson(
+  _$ViolationReplyModelImpl instance,
+) => <String, dynamic>{
+  'createdAt': const TimestampSerializer().toJson(instance.createdAt),
+  'id': instance.id,
+  'comment': instance.comment,
+  'userId': instance.userId,
+  'status': instance.status,
+  'attachments': instance.attachments?.map((e) => e.toJson()).toList(),
 };

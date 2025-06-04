@@ -1381,6 +1381,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الشركة'**
   String get company;
+
+  /// No description provided for @sentSuccessfully.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم الإرسال بنجاح'**
+  String get sentSuccessfully;
 }
 
 class _AppLocalizationsDelegate

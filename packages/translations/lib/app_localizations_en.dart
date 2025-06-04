@@ -665,4 +665,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get company => 'Company';
+
+  @override
+  String get sentSuccessfully => 'Sent Successfully';
 }

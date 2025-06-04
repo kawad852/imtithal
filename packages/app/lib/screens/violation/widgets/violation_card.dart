@@ -89,7 +89,7 @@ class ViolationCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (violation.lastReplyBy != null)
+                  if (violation.lastReply != null)
                     Row(
                       children: [
                         Text(

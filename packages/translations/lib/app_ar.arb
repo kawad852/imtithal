@@ -213,5 +213,6 @@
   "users": "المستخدمون",
   "successfullyUpdated": "تم التحديث بنجاح",
   "configure": "تهيئة",
-  "company": "الشركة"
+  "company": "الشركة",
+  "sentSuccessfully": "تم الإرسال بنجاح"
 }

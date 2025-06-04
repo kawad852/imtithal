@@ -1,12 +1,32 @@
+import 'package:app/screens/task/widgets/attachments_list.dart';
+import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
 class ReplyCard extends StatelessWidget {
-  const ReplyCard({super.key});
+  final ViolationReplyModel reply;
+
+  const ReplyCard({super.key, required this.reply});
+
+  String get _getStatusArabicLabel {
+    final status = reply.status;
+    if (status == ViolationStatus.confirmed.value) {
+      return 'تم تأكيد المخالفة';
+    } else if (status == ViolationStatus.canceled.value) {
+      return 'تم إلغاء المخالفة';
+    } else {
+      return '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (reply.userModel == null) {
+      final users = context.read<List<UserModel>>();
+      final user = users.firstWhere((e) => e.id == reply.userId, orElse: () => UserModel());
+      reply.userModel = user;
+    }
+    final user = reply.userModel!;
     return Container(
-      width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         color: context.colorPalette.greyF5F,
@@ -17,12 +37,7 @@ class ReplyCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const BaseNetworkImage(
-                "",
-                width: 40,
-                height: 40,
-                shape: BoxShape.circle,
-              ),
+              UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 40),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
@@ -30,7 +45,7 @@ class ReplyCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "المدير العام",
+                      user.jobTitle,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: context.colorPalette.grey8B8,
@@ -40,7 +55,7 @@ class ReplyCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      "ا. فارس المالكي",
+                      user.displayName,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: context.colorPalette.black252,
@@ -56,7 +71,7 @@ class ReplyCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
-              "الحمدلله على سلامتك يرجى ابلاغ القسم المعني في حالة الإجازة المرضية. يتم الغاء المخالفة مع عدم تكرارها.",
+              reply.comment,
               style: TextStyle(
                 color: context.colorPalette.grey8B8,
                 fontSize: 14,
@@ -64,26 +79,25 @@ class ReplyCard extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            "تم الغاء المخالفة",
-            style: TextStyle(
-              color: context.colorPalette.primary,
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
+          if (reply.status != ViolationStatus.pending.value)
+            Text(
+              context.isRTL
+                  ? _getStatusArabicLabel
+                  : "${context.appLocalization.violation} ${ViolationStatus.getLabel(reply.status, context)}",
+              style: TextStyle(
+                color: context.colorPalette.primary,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
-          const SizedBox(height: 60),
+          if (reply.attachments?.isNotEmpty ?? false) AttachmentsList(files: reply.attachments!),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CustomSvg(
-                MyIcons.clock,
-                color: context.colorPalette.grey8B8,
-                width: 16,
-              ),
+              CustomSvg(MyIcons.clock, color: context.colorPalette.grey8B8, width: 16),
               const SizedBox(width: 10),
               Text(
-                "03:30 مساءً",
+                reply.createdAt!.getTime(context),
                 style: TextStyle(
                   color: context.colorPalette.grey8B8,
                   fontSize: 12,
@@ -91,14 +105,10 @@ class ReplyCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              CustomSvg(
-                MyIcons.calendar,
-                color: context.colorPalette.grey8B8,
-                width: 16,
-              ),
+              CustomSvg(MyIcons.calendar, color: context.colorPalette.grey8B8, width: 16),
               const SizedBox(width: 10),
               Text(
-                "01.05.2025",
+                reply.createdAt!.getDefaultFormattedDate(context),
                 style: TextStyle(
                   color: context.colorPalette.grey8B8,
                   fontSize: 12,

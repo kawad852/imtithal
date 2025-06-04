@@ -21,8 +21,8 @@ class ViolationModel with _$ViolationModel {
     LightUserModel? user,
     @Default(ViolationStatus.defaultValue) String status,
     required String createdById,
-    LightUserModel? lastReplyBy,
     List<AttachmentModel>? attachments,
+    ViolationReplyModel? lastReply,
     @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   }) = _ViolationModel;
 
@@ -39,4 +39,21 @@ class LightViolationModel with _$LightViolationModel {
 
   factory LightViolationModel.fromJson(Map<String, dynamic> json) =>
       _$LightViolationModelFromJson(json);
+}
+
+@unfreezed
+class ViolationReplyModel with _$ViolationReplyModel {
+  @JsonSerializable(explicitToJson: true)
+  factory ViolationReplyModel({
+    @TimestampSerializer() DateTime? createdAt,
+    @Default('') String id,
+    @Default('') String comment,
+    @Default('') String userId,
+    @Default(ViolationStatus.defaultValue) String status,
+    List<AttachmentModel>? attachments,
+    @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
+  }) = _ViolationReplyModel;
+
+  factory ViolationReplyModel.fromJson(Map<String, dynamic> json) =>
+      _$ViolationReplyModelFromJson(json);
 }

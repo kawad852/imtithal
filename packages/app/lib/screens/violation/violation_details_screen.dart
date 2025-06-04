@@ -16,17 +16,32 @@ class ViolationDetailsScreen extends StatefulWidget {
 }
 
 class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
-  late Stream<ViolationModel> _violationStream;
+  late Stream<List<dynamic>> _streams;
 
   String get _id => widget.violation?.id ?? widget.id!;
   String get _userId => widget.violation?.user?.id ?? widget.userId!;
 
+  DocumentReference<ViolationModel> get _violationDocRef =>
+      kFirebaseInstant.userViolations(_userId).doc(_id);
+  CollectionReference<ViolationReplyModel> get _replyCollectionRef => _violationDocRef
+      .collection(MyCollections.replies)
+      .withConverter<ViolationReplyModel>(
+        fromFirestore: (snapshot, _) => ViolationReplyModel.fromJson(snapshot.data()!),
+        toFirestore: (snapshot, _) => snapshot.toJson(),
+      );
+
   void _initialize() {
-    _violationStream = kFirebaseInstant
-        .userViolations(_userId)
-        .doc(_id)
-        .snapshots()
-        .map((e) => e.data()!);
+    final violationStream = _violationDocRef.snapshots().map((e) => e.data()!);
+
+    final repliesStream = _replyCollectionRef.orderByCreatedAtDesc.snapshots();
+
+    _streams = Rx.combineLatest2<ViolationModel, QuerySnapshot<ViolationReplyModel>, List<dynamic>>(
+      violationStream,
+      repliesStream,
+      (s1, s2) {
+        return [s1, s2];
+      },
+    );
   }
 
   @override
@@ -37,23 +52,34 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final users = context.read<List<UserModel>>();
     return BigStreamBuilder(
-      stream: _violationStream,
-      initialData: widget.violation,
+      stream: _streams,
       onComplete: (context, snapshot) {
-        final violation = snapshot.data!;
-        final user = users.firstWhere((e) => e.id == violation.user?.id, orElse: () => UserModel());
-        violation.userModel ??= user;
+        final violation = snapshot.data![0] as ViolationModel;
+        final replies = snapshot.data![1] as QuerySnapshot<ViolationReplyModel>;
+
+        UserModel getUser() {
+          final users = context.read<List<UserModel>>();
+          final user = users.firstWhere(
+            (e) => e.id == violation.user?.id,
+            orElse: () => UserModel(),
+          );
+          return user;
+        }
+
+        violation.userModel ??= getUser();
+
         return Scaffold(
           appBar: AppBar(),
           bottomNavigationBar: BottomButton(
             onPressed: () {
               context.showBottomSheet(
                 context,
-                maxHeight: 401,
                 builder: (context) {
-                  return const ReplySheet();
+                  return ReplySheet(
+                    violationDocRef: _violationDocRef,
+                    replyCollectionRef: _replyCollectionRef,
+                  );
                 },
               );
             },
@@ -82,74 +108,76 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
                 ),
               ),
               ViolationInfo(violation: violation),
-              Container(
-                width: double.infinity,
-                height: 56,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                  color: context.colorPalette.greyF5F,
-                  borderRadius: BorderRadius.circular(kRadiusSecondary),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            context.appLocalization.finalAdministrativeDecision,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: context.colorPalette.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
+
+              if (violation.lastReply != null)
+                Container(
+                  width: double.infinity,
+                  height: 56,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: context.colorPalette.greyF5F,
+                    borderRadius: BorderRadius.circular(kRadiusSecondary),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              context.appLocalization.finalAdministrativeDecision,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: context.colorPalette.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 5),
-                          Row(
-                            children: [
-                              CustomSvg(
-                                MyIcons.clock,
-                                color: context.colorPalette.grey8B8,
-                                width: 16,
-                              ),
-                              const SizedBox(width: 10),
-                              Text(
-                                "03:30 مساءً",
-                                style: TextStyle(
+                            const SizedBox(height: 5),
+                            Row(
+                              children: [
+                                CustomSvg(
+                                  MyIcons.clock,
                                   color: context.colorPalette.grey8B8,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
+                                  width: 16,
                                 ),
-                              ),
-                              const SizedBox(width: 10),
-                              CustomSvg(
-                                MyIcons.calendar,
-                                color: context.colorPalette.grey8B8,
-                                width: 16,
-                              ),
-                              const SizedBox(width: 10),
-                              Text(
-                                "01.05.2025",
-                                style: TextStyle(
+                                const SizedBox(width: 10),
+                                Text(
+                                  violation.lastReply!.createdAt!.getTime(context),
+                                  style: TextStyle(
+                                    color: context.colorPalette.grey8B8,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                CustomSvg(
+                                  MyIcons.calendar,
                                   color: context.colorPalette.grey8B8,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
+                                  width: 16,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                const SizedBox(width: 10),
+                                Text(
+                                  violation.lastReply!.createdAt!.getDefaultFormattedDate(context),
+                                  style: TextStyle(
+                                    color: context.colorPalette.grey8B8,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    ViolationTypeWidget(
-                      title: "تم الإلغاء",
-                      backgroundColor: context.colorPalette.primary,
-                    ),
-                  ],
+                      ViolationTypeWidget(
+                        title: ViolationStatus.getLabel(violation.status, context),
+                        backgroundColor: context.colorPalette.primary,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TitledTextField(
@@ -231,12 +259,13 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
               Divider(color: context.colorPalette.grey8B8),
               ListView.separated(
                 separatorBuilder: (context, index) => const SizedBox(height: 10),
-                itemCount: 3,
+                itemCount: replies.docs.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 itemBuilder: (context, index) {
-                  return const ReplyCard();
+                  final reply = replies.docs[index].data();
+                  return ReplyCard(reply: reply);
                 },
               ),
             ],

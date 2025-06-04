@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:shared/models/attachment/attachment_model.dart';
 import 'package:shared/shared.dart';
 
 class AttachmentsList extends StatelessWidget {
@@ -21,6 +22,8 @@ class AttachmentsList extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: Image.file(File(e.path), height: 90, width: 90, fit: BoxFit.cover),
                       );
+                    } else if (e is AttachmentModel) {
+                      return BaseNetworkImage(e.url, height: 90, width: 90);
                     } else {
                       return BaseNetworkImage(e as String, height: 90, width: 90);
                     }

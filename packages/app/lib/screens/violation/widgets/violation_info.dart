@@ -36,7 +36,7 @@ class ViolationInfo extends StatelessWidget {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 20),
+                    UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 40),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Column(

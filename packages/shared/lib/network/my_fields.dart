@@ -43,4 +43,5 @@ class MyFields {
   static const String points = 'points';
   static const String departmentId = 'departmentId';
   static const String roleId = 'roleId';
+  static const String lastReply = 'lastReply';
 }

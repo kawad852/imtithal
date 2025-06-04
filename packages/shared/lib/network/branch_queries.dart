@@ -17,4 +17,9 @@ extension FireConvertors on Query {
     fromFirestore: (snapshot, _) => ViolationModel.fromJson(snapshot.data()!),
     toFirestore: (snapshot, _) => snapshot.toJson(),
   );
+
+  get violationReplyConvertor => withConverter<ViolationReplyModel>(
+    fromFirestore: (snapshot, _) => ViolationReplyModel.fromJson(snapshot.data()!),
+    toFirestore: (snapshot, _) => snapshot.toJson(),
+  );
 }

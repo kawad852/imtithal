@@ -213,5 +213,6 @@
   "users": "Users",
   "successfullyUpdated": "Successfully updated",
   "configure": "Configure",
-  "company": "Company"
+  "company": "Company",
+  "sentSuccessfully": "Sent Successfully"
 }

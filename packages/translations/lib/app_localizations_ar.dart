@@ -658,4 +658,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get company => 'الشركة';
+
+  @override
+  String get sentSuccessfully => 'تم الإرسال بنجاح';
 }

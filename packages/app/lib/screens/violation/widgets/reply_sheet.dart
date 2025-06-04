@@ -1,100 +1,128 @@
 import 'package:app/screens_exports.dart';
+import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
+import '../../task/widgets/attachments_list.dart';
+
 class ReplySheet extends StatefulWidget {
-  const ReplySheet({super.key});
+  final DocumentReference<ViolationModel> violationDocRef;
+  final CollectionReference<ViolationReplyModel> replyCollectionRef;
+
+  const ReplySheet({super.key, required this.violationDocRef, required this.replyCollectionRef});
 
   @override
   State<ReplySheet> createState() => _ReplySheetState();
 }
 
 class _ReplySheetState extends State<ReplySheet> {
-  int _decisionIndex = 0;
-  List<String> decision() {
-    return [
-      context.appLocalization.cancelPenalty,
-      context.appLocalization.confirmPenalty,
-    ];
+  final _reply = ViolationReplyModel();
+  final _formKey = GlobalKey<FormState>();
+  final _storageService = StorageService();
+  final List<Object> _files = [];
+
+  DocumentReference<ViolationModel> get _violationDocRef => widget.violationDocRef;
+  CollectionReference<ViolationReplyModel> get _replyCollectionRef => widget.replyCollectionRef;
+
+  void _onSubmit(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      context.unFocusKeyboard();
+      ApiService.fetch(
+        context,
+        callBack: () async {
+          final batch = kFirebaseInstant.batch();
+          final docRef = _replyCollectionRef.doc();
+          _reply.id = docRef.id;
+          _reply.createdAt = kNowDate;
+          _reply.userId = kUserId;
+          _reply.attachments = await _storageService.uploadFiles(MyCollections.tasks, _files);
+          batch.set(docRef, _reply);
+          batch.update(_violationDocRef, {
+            MyFields.status: _reply.status,
+            MyFields.lastReply: _reply.toJson(),
+          });
+          await batch.commit();
+          if (context.mounted) {
+            Navigator.pop(context);
+          }
+        },
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            context.appLocalization.managementDecision,
-            style: TextStyle(
-              color: context.colorPalette.primary,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          Wrap(
-            direction: Axis.horizontal,
-            children:
-                decision().map((item) {
-                  return DayBubble(
-                    onTap: () {
-                      setState(() {
-                        _decisionIndex = decision().indexOf(item);
-                      });
-                    },
-                    title: item,
-                    isSelected: _decisionIndex == decision().indexOf(item),
-                    backgroundColor:
-                        _decisionIndex == decision().indexOf(item)
-                            ? context.colorPalette.primary
-                            : context.colorPalette.white,
-                  );
-                }).toList(),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: TitledTextField(
-              title: context.appLocalization.yourMessage,
-              child: TextEditor(
-                onChanged: (value) {},
-                maxLines: 4,
-                filled: true,
-                fillColor: context.colorPalette.white,
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                const CustomSvg(MyIcons.attachSquare),
-                const SizedBox(width: 11),
-                Text(
-                  context.appLocalization.attachFilesImages,
-                  style: TextStyle(
-                    color: context.colorPalette.black252,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const Spacer(),
-          StretchedButton(
-            onPressed: () {},
-            child: Text(
-              context.appLocalization.send,
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.appLocalization.managementDecision,
               style: TextStyle(
-                color: context.colorPalette.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
+                color: context.colorPalette.primary,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-        ],
+            if (kIsAdmin)
+              Wrap(
+                direction: Axis.horizontal,
+                children:
+                    ViolationStatus.values.where((e) => e != ViolationStatus.pending).map((e) {
+                      final selected = _reply.status == e.value;
+                      return DayBubble(
+                        onTap: () {
+                          setState(() {
+                            _reply.status = e.value;
+                          });
+                        },
+                        title:
+                            e == ViolationStatus.confirmed
+                                ? context.appLocalization.confirmPenalty
+                                : context.appLocalization.cancelPenalty,
+                        isSelected: selected,
+                        backgroundColor:
+                            selected ? context.colorPalette.primary : context.colorPalette.white,
+                      );
+                    }).toList(),
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: TitledTextField(
+                title: context.appLocalization.yourMessage,
+                child: TextEditor(
+                  onChanged: (value) => _reply.comment = value!,
+                  maxLines: 4,
+                  filled: true,
+                  fillColor: context.colorPalette.white,
+                ),
+              ),
+            ),
+            ImagesAttacher(
+              onChanged: (files) {
+                _files.addAll(files);
+              },
+            ),
+            if (_files.isNotEmpty) AttachmentsList(files: _files),
+            const SizedBox(height: 30),
+            StretchedButton(
+              onPressed: () {
+                _onSubmit(context);
+              },
+              child: Text(
+                context.appLocalization.send,
+                style: TextStyle(
+                  color: context.colorPalette.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
       ),
     );
   }
