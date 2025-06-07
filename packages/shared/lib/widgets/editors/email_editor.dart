@@ -18,11 +18,9 @@ class EmailEditor extends StatelessWidget {
       initialValue: initialValue,
       keyboardType: TextInputType.emailAddress,
       required: true,
+      labelText: context.appLocalization.email,
       readOnly: readonly,
-      prefixIcon: const IconButton(
-        onPressed: null,
-        icon: CustomSvg(MyIcons.sms),
-      ),
+      prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.sms)),
       onChanged: (value) {
         if (value.isEmpty) {
           onChanged(null);

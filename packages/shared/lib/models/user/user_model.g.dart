@@ -6,40 +6,34 @@ part of 'user_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserModelImpl _$$UserModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$UserModelImpl(
-  createdAt: const TimestampSerializer().fromJson(json['createdAt']),
-  workStartDate: const TimestampSerializer().fromJson(json['workStartDate']),
-  id: json['id'] as String?,
-  displayName: json['displayName'] as String? ?? '',
-  email: json['email'] as String?,
-  deviceToken: json['deviceToken'] as String?,
-  role: json['role'] as String?,
-  roleId: json['roleId'] as String?,
-  languageCode: json['languageCode'] as String?,
-  profilePhoto: json['profilePhoto'] as String?,
-  blocked: json['blocked'] as bool? ?? false,
-  salary: (json['salary'] as num?)?.toDouble() ?? 0.0,
-  password: json['password'] as String? ?? '',
-  address: json['address'] as String? ?? '',
-  jobTitle: json['jobTitle'] as String? ?? '',
-  companyId: json['companyId'] as String? ?? '',
-  departmentId: json['departmentId'] as String?,
-  taskIds:
-      (json['taskIds'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      const [],
-  inCompletedTasksCount: (json['inCompletedTasksCount'] as num?)?.toInt() ?? 0,
-  completedTasksCount: (json['completedTasksCount'] as num?)?.toInt() ?? 0,
-  lateTasksCount: (json['lateTasksCount'] as num?)?.toInt() ?? 0,
-  penaltyTasksCount: (json['penaltyTasksCount'] as num?)?.toInt() ?? 0,
-  unReadNotificationsCount:
-      (json['unReadNotificationsCount'] as num?)?.toInt() ?? 0,
-  createdById: json['createdById'] as String?,
-  phoneCountryCode: json['phoneCountryCode'] as String?,
-  phoneNum: json['phoneNum'] as String?,
-  nationalNumber: json['nationalNumber'] as String? ?? '',
-);
+_$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
+    _$UserModelImpl(
+      createdAt: const TimestampSerializer().fromJson(json['createdAt']),
+      workStartDate: const TimestampSerializer().fromJson(
+        json['workStartDate'],
+      ),
+      id: json['id'] as String?,
+      displayName: json['displayName'] as String? ?? '',
+      email: json['email'] as String?,
+      deviceToken: json['deviceToken'] as String?,
+      role: json['role'] as String?,
+      roleId: json['roleId'] as String?,
+      languageCode: json['languageCode'] as String?,
+      profilePhoto: json['profilePhoto'] as String?,
+      blocked: json['blocked'] as bool? ?? false,
+      salary: (json['salary'] as num?)?.toDouble() ?? 0.0,
+      password: json['password'] as String? ?? '',
+      address: json['address'] as String? ?? '',
+      jobTitle: json['jobTitle'] as String? ?? '',
+      companyId: json['companyId'] as String? ?? '',
+      departmentId: json['departmentId'] as String?,
+      unReadNotificationsCount:
+          (json['unReadNotificationsCount'] as num?)?.toInt() ?? 0,
+      createdById: json['createdById'] as String?,
+      phoneCountryCode: json['phoneCountryCode'] as String?,
+      phoneNum: json['phoneNum'] as String?,
+      nationalNumber: json['nationalNumber'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$$UserModelImplToJson(
   _$UserModelImpl instance,
@@ -61,11 +55,6 @@ Map<String, dynamic> _$$UserModelImplToJson(
   'jobTitle': instance.jobTitle,
   'companyId': instance.companyId,
   'departmentId': instance.departmentId,
-  'taskIds': instance.taskIds,
-  'inCompletedTasksCount': instance.inCompletedTasksCount,
-  'completedTasksCount': instance.completedTasksCount,
-  'lateTasksCount': instance.lateTasksCount,
-  'penaltyTasksCount': instance.penaltyTasksCount,
   'unReadNotificationsCount': instance.unReadNotificationsCount,
   'createdById': instance.createdById,
   'phoneCountryCode': instance.phoneCountryCode,

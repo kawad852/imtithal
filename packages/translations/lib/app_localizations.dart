@@ -1199,7 +1199,7 @@ abstract class AppLocalizations {
   /// No description provided for @displayName.
   ///
   /// In ar, this message translates to:
-  /// **'الاسم الظاهر'**
+  /// **'الاسم'**
   String get displayName;
 
   /// No description provided for @build.
@@ -1385,7 +1385,7 @@ abstract class AppLocalizations {
   /// No description provided for @email.
   ///
   /// In ar, this message translates to:
-  /// **'Email'**
+  /// **'البريد الإلكتروني'**
   String get email;
 }
 

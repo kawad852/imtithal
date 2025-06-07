@@ -566,7 +566,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pending => 'بالإنتظار';
 
   @override
-  String get displayName => 'الاسم الظاهر';
+  String get displayName => 'الاسم';
 
   @override
   String get build => 'البناء';
@@ -661,5 +661,5 @@ class AppLocalizationsAr extends AppLocalizations {
       'تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني. يرجى التحقق من صندوق الوارد واتباع التعليمات لاستعادة كلمة المرور.';
 
   @override
-  String get email => 'Email';
+  String get email => 'البريد الإلكتروني';
 }

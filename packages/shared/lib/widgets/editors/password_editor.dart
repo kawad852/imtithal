@@ -31,6 +31,7 @@ class _PasswordEditorState extends State<PasswordEditor> {
       initialValue: widget.initialValue,
       obscureText: _obscureText,
       required: true,
+      labelText: context.appLocalization.password,
       autoValidateMode: widget.isConfirm ? null : AutovalidateMode.onUserInteraction,
       prefixIcon: IconButton(
         onPressed: () {
