@@ -15,18 +15,22 @@ class _AppNavBarState extends State<AppNavBar> {
   PersistentBottomSheetController? controller;
   final cloudMessagingService = CloudMessagingService();
 
-  final items = [MyIcons.home, MyIcons.calendar, MyIcons.add, MyIcons.building, MyIcons.profile];
+  final items = [
+    MyIcons.home,
+    MyIcons.calendar,
+    if (!kIsEmployee) ...[MyIcons.add, MyIcons.building],
+    MyIcons.profile,
+  ];
 
   final screens = [
     const HomeScreen(),
     const CalenderScreen(),
-    const SizedBox.shrink(),
-    const ManagementScreen(),
+    if (!kIsEmployee) ...[const SizedBox.shrink(), const ManagementScreen()],
     const ProfileScreen(),
   ];
 
   void _onSelect(int index) {
-    if (index != 2) {
+    if (index != 2 || kIsEmployee) {
       setState(() {
         _currentIndex = index;
       });
