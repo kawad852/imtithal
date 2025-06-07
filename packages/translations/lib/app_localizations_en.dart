@@ -669,4 +669,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get email => 'Email';
+
+  @override
+  String get emailNotFound => 'Email not found';
+
+  @override
+  String get wrongPassword => 'Wrong password';
 }

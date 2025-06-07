@@ -1235,7 +1235,7 @@ abstract class AppLocalizations {
   /// No description provided for @invalidCredential.
   ///
   /// In ar, this message translates to:
-  /// **'بيانات الاعتماد غير صالحة'**
+  /// **'البيانات غير صحيحة'**
   String get invalidCredential;
 
   /// No description provided for @update.
@@ -1387,6 +1387,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'البريد الإلكتروني'**
   String get email;
+
+  /// No description provided for @emailNotFound.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإميميل غير صحيح'**
+  String get emailNotFound;
+
+  /// No description provided for @wrongPassword.
+  ///
+  /// In ar, this message translates to:
+  /// **'كلمة المرور غير صحيحة'**
+  String get wrongPassword;
 }
 
 class _AppLocalizationsDelegate

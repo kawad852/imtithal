@@ -106,6 +106,18 @@ class ApiService {
             }
           });
       return futureCallback;
+    } on FirebaseAuthException catch (e) {
+      if (context.mounted) {
+        if (e.code == 'user-not-found') {
+          context.showSnackBar(context.appLocalization.emailNotFound);
+        } else if (e.code == 'wrong-password') {
+          context.showSnackBar(context.appLocalization.wrongPassword);
+        } else if (e.code == 'invalid-credential') {
+          context.showSnackBar(context.appLocalization.invalidCredential);
+        } else {
+          context.showSnackBar(context.appLocalization.generalError);
+        }
+      }
     } on SocketException catch (e) {
       debugPrint("Exception::\nType:: SocketException\nmsg:: $e");
       failure = Failure(type: socketException, code: e.message);

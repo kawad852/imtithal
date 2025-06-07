@@ -9,14 +9,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String? _username;
+  String? _email;
   var _password = '';
   final _formKey = GlobalKey<FormState>();
 
   Future<void> _login(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       context.unFocusKeyboard();
-      await context.userProvider.login(context, email: _username!, password: _password);
+      await context.userProvider.login(context, email: _email!, password: _password);
     }
   }
 
@@ -71,18 +71,9 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
-                  TitledTextField(
-                    title: context.appLocalization.email,
-                    child: EmailEditor(onChanged: (value) => _username = value, initialValue: null),
-                  ),
+                  EmailEditor(onChanged: (value) => _email = value, initialValue: null),
                   const SizedBox(height: 10),
-                  TitledTextField(
-                    title: context.appLocalization.password,
-                    child: PasswordEditor(
-                      onChanged: (value) => _password = value!,
-                      initialValue: null,
-                    ),
-                  ),
+                  PasswordEditor(onChanged: (value) => _password = value!, initialValue: null),
                   Row(
                     children: [
                       Text(

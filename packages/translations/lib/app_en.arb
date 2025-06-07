@@ -214,5 +214,7 @@
   "company": "Company",
   "sentSuccessfully": "Sent Successfully",
   "checkEmailResetPasswordMsg": "A password reset link has been sent to your email. Please check your inbox and follow the instructions to reset your password.",
-  "email": "Email"
+  "email": "Email",
+  "emailNotFound": "Email not found",
+  "wrongPassword": "Wrong password"
 }

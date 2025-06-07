@@ -584,7 +584,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get companies => 'الشركات';
 
   @override
-  String get invalidCredential => 'بيانات الاعتماد غير صالحة';
+  String get invalidCredential => 'البيانات غير صحيحة';
 
   @override
   String get update => 'تحديث';
@@ -662,4 +662,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get email => 'البريد الإلكتروني';
+
+  @override
+  String get emailNotFound => 'الإميميل غير صحيح';
+
+  @override
+  String get wrongPassword => 'كلمة المرور غير صحيحة';
 }
