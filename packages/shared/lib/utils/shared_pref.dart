@@ -58,11 +58,11 @@ class MySharedPreferences {
 
   static CompanyModel? get company {
     String? value = _sharedPreferences.getString('company');
-    CompanyModel? role;
+    CompanyModel? company;
     if (value != null && value.isNotEmpty && value != 'null') {
-      role = CompanyModel.fromJson(jsonDecode(value));
+      company = CompanyModel.fromJson(jsonDecode(value));
     }
-    return role;
+    return company;
   }
 
   static set company(CompanyModel? value) {

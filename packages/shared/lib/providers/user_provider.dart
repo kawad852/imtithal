@@ -9,17 +9,12 @@ import '../app_routes.dart';
 class UserProvider extends ChangeNotifier {
   Function()? onGuestRegistration;
 
-  User? get user => _firebaseAuth.currentUser;
-
-  String? get userUid => user?.uid;
-
-  bool get isAuthenticated => user != null && !user!.isAnonymous;
+  bool get isAuthenticated => MySharedPreferences.user != null;
 
   FirebaseAuth get _firebaseAuth => FirebaseAuth.instance;
-
   FirebaseFirestore get _firebaseFirestore => FirebaseFirestore.instance;
 
-  DocumentReference<UserModel> get userDocRef => _firebaseFirestore.users.doc(userUid);
+  DocumentReference<UserModel> get userDocRef => _firebaseFirestore.users.doc(kUserId);
 
   Stream<DocumentSnapshot<UserModel>> get userStream => userDocRef.snapshots();
 

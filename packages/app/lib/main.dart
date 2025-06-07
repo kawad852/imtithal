@@ -112,19 +112,17 @@ class _MyAppState extends State<MyApp> {
                   return true;
                 },
               ),
-              if (kCompanyId.isNotEmpty)
-                StreamProvider<CompanyModel>.value(
-                  key: ValueKey(userProvider.isAuthenticated),
-                  value: kFirebaseInstant.companies
-                      .doc(kCompanyId)
-                      .snapshots()
-                      .map((e) => e.data()!),
-                  initialData: MySharedPreferences.company ?? CompanyModel(),
-                  updateShouldNotify: (initialValue, value) {
-                    MySharedPreferences.company = value;
-                    return true;
-                  },
-                ),
+              StreamProvider<CompanyModel>.value(
+                key: ValueKey(userProvider.isAuthenticated),
+                value: kFirebaseInstant.companies.doc(kCompanyId).snapshots().map((e) {
+                  return e.data()!;
+                }),
+                initialData: MySharedPreferences.company ?? CompanyModel(),
+                updateShouldNotify: (initialValue, value) {
+                  MySharedPreferences.company = value;
+                  return true;
+                },
+              ),
             ],
 
             // StreamProvider<BranchModel>.value(
