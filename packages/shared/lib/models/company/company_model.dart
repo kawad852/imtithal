@@ -7,6 +7,7 @@ part 'company_model.g.dart';
 
 @unfreezed
 class CompanyModel with _$CompanyModel {
+  @JsonSerializable(explicitToJson: true)
   factory CompanyModel({
     @TimestampSerializer() DateTime? createdAt,
     String? id,

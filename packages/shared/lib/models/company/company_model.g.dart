@@ -32,10 +32,10 @@ Map<String, dynamic> _$$CompanyModelImplToJson(_$CompanyModelImpl instance) =>
       'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'id': instance.id,
       'name': instance.name,
-      'subscription': instance.subscription,
+      'subscription': instance.subscription?.toJson(),
       'intermediaryId': instance.intermediaryId,
-      'serviceData': instance.serviceData,
-      'rowId': instance.rowId,
+      'serviceData': instance.serviceData?.toJson(),
+      'rowId': instance.rowId?.toJson(),
     };
 
 _$SubscriptionImpl _$$SubscriptionImplFromJson(Map<String, dynamic> json) =>

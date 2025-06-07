@@ -270,7 +270,8 @@ class __$$CompanyModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$CompanyModelImpl implements _CompanyModel {
   _$CompanyModelImpl({
     @TimestampSerializer() this.createdAt,
