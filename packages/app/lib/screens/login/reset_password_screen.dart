@@ -72,7 +72,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   ),
                 ),
               ),
-              EmailEditor(initialValue: null, onChanged: (value) {}),
+              EmailEditor(initialValue: null, onChanged: (value) => _email = value),
             ],
           ),
         ),

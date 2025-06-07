@@ -2,6 +2,7 @@ import 'package:app/screens/calender/widgets/calendar_date_text.dart';
 import 'package:app/screens/calender/widgets/calendar_icon_button.dart';
 import 'package:shared/shared.dart';
 
+import '../search/search_screen.dart';
 import '../task/widgets/task_card.dart';
 
 class CalenderScreen extends StatefulWidget {
@@ -33,7 +34,20 @@ class _CalenderScreenState extends State<CalenderScreen> {
           ),
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const CustomSvg(MyIcons.search)),
+          SearchScreen(
+            hintText: context.appLocalization.searchTask,
+            includeIndexes: (false, false, true),
+            filters: kIsEmployee ? '${MyFields.user_id}:$kUserId' : null,
+            builder: (controller) {
+              return IconButton(
+                onPressed: () {
+                  controller.openView();
+                },
+                icon: const CustomSvg(MyIcons.search),
+              );
+            },
+          ),
+
           CalendarIconButton(
             value: _selectedDate,
             minDateTime: kNowDate,
