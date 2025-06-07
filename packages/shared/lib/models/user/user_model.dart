@@ -28,6 +28,7 @@ class UserModel with _$UserModel {
     @Default(0) int unReadNotificationsCount,
     String? createdById,
     String? phoneCountryCode,
+    String? rowId,
     String? phoneNum,
     @Default('') String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) @Default(false) bool selected,

@@ -46,4 +46,5 @@ class MyFields {
   static const String roleId = 'roleId';
   static const String lastReply = 'lastReply';
   static const String languageCode = 'languageCode';
+  static const String rowId = 'rowId';
 }

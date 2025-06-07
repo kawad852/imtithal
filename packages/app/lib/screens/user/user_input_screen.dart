@@ -50,6 +50,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
             _user.languageCode = context.languageCode;
             _user.phoneNum = _phoneController.getPhoneNumber;
             _user.phoneCountryCode = _phoneController.countryCode;
+            _user.rowId = await RowIdHelper().getUserId();
             if (_file != null) {
               _user.profilePhoto = await _storageService.uploadFile(
                 collection: "personalPhotos",

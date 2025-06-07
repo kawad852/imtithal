@@ -35,6 +35,8 @@ mixin _$CompanyModel {
   set intermediaryId(String? value) => throw _privateConstructorUsedError;
   ServiceData? get serviceData => throw _privateConstructorUsedError;
   set serviceData(ServiceData? value) => throw _privateConstructorUsedError;
+  RowIdModel? get rowId => throw _privateConstructorUsedError;
+  set rowId(RowIdModel? value) => throw _privateConstructorUsedError;
 
   /// Serializes this CompanyModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -60,10 +62,12 @@ abstract class $CompanyModelCopyWith<$Res> {
     Subscription? subscription,
     String? intermediaryId,
     ServiceData? serviceData,
+    RowIdModel? rowId,
   });
 
   $SubscriptionCopyWith<$Res>? get subscription;
   $ServiceDataCopyWith<$Res>? get serviceData;
+  $RowIdModelCopyWith<$Res>? get rowId;
 }
 
 /// @nodoc
@@ -87,6 +91,7 @@ class _$CompanyModelCopyWithImpl<$Res, $Val extends CompanyModel>
     Object? subscription = freezed,
     Object? intermediaryId = freezed,
     Object? serviceData = freezed,
+    Object? rowId = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -120,6 +125,11 @@ class _$CompanyModelCopyWithImpl<$Res, $Val extends CompanyModel>
                     ? _value.serviceData
                     : serviceData // ignore: cast_nullable_to_non_nullable
                         as ServiceData?,
+            rowId:
+                freezed == rowId
+                    ? _value.rowId
+                    : rowId // ignore: cast_nullable_to_non_nullable
+                        as RowIdModel?,
           )
           as $Val,
     );
@@ -152,6 +162,20 @@ class _$CompanyModelCopyWithImpl<$Res, $Val extends CompanyModel>
       return _then(_value.copyWith(serviceData: value) as $Val);
     });
   }
+
+  /// Create a copy of CompanyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RowIdModelCopyWith<$Res>? get rowId {
+    if (_value.rowId == null) {
+      return null;
+    }
+
+    return $RowIdModelCopyWith<$Res>(_value.rowId!, (value) {
+      return _then(_value.copyWith(rowId: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -170,12 +194,15 @@ abstract class _$$CompanyModelImplCopyWith<$Res>
     Subscription? subscription,
     String? intermediaryId,
     ServiceData? serviceData,
+    RowIdModel? rowId,
   });
 
   @override
   $SubscriptionCopyWith<$Res>? get subscription;
   @override
   $ServiceDataCopyWith<$Res>? get serviceData;
+  @override
+  $RowIdModelCopyWith<$Res>? get rowId;
 }
 
 /// @nodoc
@@ -198,6 +225,7 @@ class __$$CompanyModelImplCopyWithImpl<$Res>
     Object? subscription = freezed,
     Object? intermediaryId = freezed,
     Object? serviceData = freezed,
+    Object? rowId = freezed,
   }) {
     return _then(
       _$CompanyModelImpl(
@@ -231,6 +259,11 @@ class __$$CompanyModelImplCopyWithImpl<$Res>
                 ? _value.serviceData
                 : serviceData // ignore: cast_nullable_to_non_nullable
                     as ServiceData?,
+        rowId:
+            freezed == rowId
+                ? _value.rowId
+                : rowId // ignore: cast_nullable_to_non_nullable
+                    as RowIdModel?,
       ),
     );
   }
@@ -246,6 +279,7 @@ class _$CompanyModelImpl implements _CompanyModel {
     this.subscription,
     this.intermediaryId,
     this.serviceData,
+    this.rowId,
   });
 
   factory _$CompanyModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -264,10 +298,12 @@ class _$CompanyModelImpl implements _CompanyModel {
   String? intermediaryId;
   @override
   ServiceData? serviceData;
+  @override
+  RowIdModel? rowId;
 
   @override
   String toString() {
-    return 'CompanyModel(createdAt: $createdAt, id: $id, name: $name, subscription: $subscription, intermediaryId: $intermediaryId, serviceData: $serviceData)';
+    return 'CompanyModel(createdAt: $createdAt, id: $id, name: $name, subscription: $subscription, intermediaryId: $intermediaryId, serviceData: $serviceData, rowId: $rowId)';
   }
 
   /// Create a copy of CompanyModel
@@ -292,6 +328,7 @@ abstract class _CompanyModel implements CompanyModel {
     Subscription? subscription,
     String? intermediaryId,
     ServiceData? serviceData,
+    RowIdModel? rowId,
   }) = _$CompanyModelImpl;
 
   factory _CompanyModel.fromJson(Map<String, dynamic> json) =
@@ -317,6 +354,9 @@ abstract class _CompanyModel implements CompanyModel {
   @override
   ServiceData? get serviceData;
   set serviceData(ServiceData? value);
+  @override
+  RowIdModel? get rowId;
+  set rowId(RowIdModel? value);
 
   /// Create a copy of CompanyModel
   /// with the given fields replaced by the non-null parameter values.
@@ -716,5 +756,176 @@ abstract class _ServiceData implements ServiceData {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ServiceDataImplCopyWith<_$ServiceDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RowIdModel _$RowIdModelFromJson(Map<String, dynamic> json) {
+  return _RowIdModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RowIdModel {
+  int get userId => throw _privateConstructorUsedError;
+  int get taskId => throw _privateConstructorUsedError;
+
+  /// Serializes this RowIdModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of RowIdModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $RowIdModelCopyWith<RowIdModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RowIdModelCopyWith<$Res> {
+  factory $RowIdModelCopyWith(
+    RowIdModel value,
+    $Res Function(RowIdModel) then,
+  ) = _$RowIdModelCopyWithImpl<$Res, RowIdModel>;
+  @useResult
+  $Res call({int userId, int taskId});
+}
+
+/// @nodoc
+class _$RowIdModelCopyWithImpl<$Res, $Val extends RowIdModel>
+    implements $RowIdModelCopyWith<$Res> {
+  _$RowIdModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of RowIdModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? userId = null, Object? taskId = null}) {
+    return _then(
+      _value.copyWith(
+            userId:
+                null == userId
+                    ? _value.userId
+                    : userId // ignore: cast_nullable_to_non_nullable
+                        as int,
+            taskId:
+                null == taskId
+                    ? _value.taskId
+                    : taskId // ignore: cast_nullable_to_non_nullable
+                        as int,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$RowIdModelImplCopyWith<$Res>
+    implements $RowIdModelCopyWith<$Res> {
+  factory _$$RowIdModelImplCopyWith(
+    _$RowIdModelImpl value,
+    $Res Function(_$RowIdModelImpl) then,
+  ) = __$$RowIdModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int userId, int taskId});
+}
+
+/// @nodoc
+class __$$RowIdModelImplCopyWithImpl<$Res>
+    extends _$RowIdModelCopyWithImpl<$Res, _$RowIdModelImpl>
+    implements _$$RowIdModelImplCopyWith<$Res> {
+  __$$RowIdModelImplCopyWithImpl(
+    _$RowIdModelImpl _value,
+    $Res Function(_$RowIdModelImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of RowIdModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? userId = null, Object? taskId = null}) {
+    return _then(
+      _$RowIdModelImpl(
+        userId:
+            null == userId
+                ? _value.userId
+                : userId // ignore: cast_nullable_to_non_nullable
+                    as int,
+        taskId:
+            null == taskId
+                ? _value.taskId
+                : taskId // ignore: cast_nullable_to_non_nullable
+                    as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RowIdModelImpl implements _RowIdModel {
+  _$RowIdModelImpl({this.userId = 0, this.taskId = 0});
+
+  factory _$RowIdModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RowIdModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int userId;
+  @override
+  @JsonKey()
+  final int taskId;
+
+  @override
+  String toString() {
+    return 'RowIdModel(userId: $userId, taskId: $taskId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RowIdModelImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.taskId, taskId) || other.taskId == taskId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, userId, taskId);
+
+  /// Create a copy of RowIdModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RowIdModelImplCopyWith<_$RowIdModelImpl> get copyWith =>
+      __$$RowIdModelImplCopyWithImpl<_$RowIdModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RowIdModelImplToJson(this);
+  }
+}
+
+abstract class _RowIdModel implements RowIdModel {
+  factory _RowIdModel({final int userId, final int taskId}) = _$RowIdModelImpl;
+
+  factory _RowIdModel.fromJson(Map<String, dynamic> json) =
+      _$RowIdModelImpl.fromJson;
+
+  @override
+  int get userId;
+  @override
+  int get taskId;
+
+  /// Create a copy of RowIdModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RowIdModelImplCopyWith<_$RowIdModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

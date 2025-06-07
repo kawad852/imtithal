@@ -47,7 +47,7 @@ class _UsersTableState extends State<UsersTable> {
         if (ref == null) {
           final id = await context.userProvider.createAuthUser(data.email!, data.password);
           reference = ref ?? _collectionRef.doc(id);
-          data = data.copyWith(id: id, createdAt: kNowDate, email: data.email);
+          data = data.copyWith(id: id, createdAt: kNowDate, email: data.email, rowId: '0');
         }
         await reference!.set(data);
       },

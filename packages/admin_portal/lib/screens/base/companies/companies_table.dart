@@ -48,7 +48,7 @@ class _CompaniesTableState extends State<CompaniesTable> {
       onSave: (ref, data) async {
         final reference = ref ?? _collectionRef.doc();
         if (ref == null) {
-          data = data.copyWith(id: reference.id, createdAt: kNowDate);
+          data = data.copyWith(id: reference.id, createdAt: kNowDate, rowId: RowIdModel());
         }
         await reference.set(data);
       },

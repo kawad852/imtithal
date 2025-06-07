@@ -21,6 +21,10 @@ _$CompanyModelImpl _$$CompanyModelImplFromJson(
       json['serviceData'] == null
           ? null
           : ServiceData.fromJson(json['serviceData'] as Map<String, dynamic>),
+  rowId:
+      json['rowId'] == null
+          ? null
+          : RowIdModel.fromJson(json['rowId'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$$CompanyModelImplToJson(_$CompanyModelImpl instance) =>
@@ -31,6 +35,7 @@ Map<String, dynamic> _$$CompanyModelImplToJson(_$CompanyModelImpl instance) =>
       'subscription': instance.subscription,
       'intermediaryId': instance.intermediaryId,
       'serviceData': instance.serviceData,
+      'rowId': instance.rowId,
     };
 
 _$SubscriptionImpl _$$SubscriptionImplFromJson(Map<String, dynamic> json) =>
@@ -60,3 +65,12 @@ Map<String, dynamic> _$$ServiceDataImplToJson(_$ServiceDataImpl instance) =>
       'login': instance.login,
       'password': instance.password,
     };
+
+_$RowIdModelImpl _$$RowIdModelImplFromJson(Map<String, dynamic> json) =>
+    _$RowIdModelImpl(
+      userId: (json['userId'] as num?)?.toInt() ?? 0,
+      taskId: (json['taskId'] as num?)?.toInt() ?? 0,
+    );
+
+Map<String, dynamic> _$$RowIdModelImplToJson(_$RowIdModelImpl instance) =>
+    <String, dynamic>{'userId': instance.userId, 'taskId': instance.taskId};

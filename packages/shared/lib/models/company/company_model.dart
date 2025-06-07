@@ -14,6 +14,7 @@ class CompanyModel with _$CompanyModel {
     Subscription? subscription,
     String? intermediaryId,
     ServiceData? serviceData,
+    RowIdModel? rowId,
   }) = _CompanyModel;
 
   factory CompanyModel.fromJson(Map<String, dynamic> json) => _$CompanyModelFromJson(json);
@@ -21,22 +22,21 @@ class CompanyModel with _$CompanyModel {
 
 @freezed
 class Subscription with _$Subscription {
-  factory Subscription({
-    String? id,
-    @TimestampSerializer() DateTime? createdAt,
-  }) = _Subscription;
+  factory Subscription({String? id, @TimestampSerializer() DateTime? createdAt}) = _Subscription;
 
   factory Subscription.fromJson(Map<String, dynamic> json) => _$SubscriptionFromJson(json);
 }
 
 @freezed
 class ServiceData with _$ServiceData {
-  factory ServiceData({
-    String? id,
-    String? db,
-    String? login,
-    String? password,
-  }) = _ServiceData;
+  factory ServiceData({String? id, String? db, String? login, String? password}) = _ServiceData;
 
   factory ServiceData.fromJson(Map<String, dynamic> json) => _$ServiceDataFromJson(json);
+}
+
+@freezed
+class RowIdModel with _$RowIdModel {
+  factory RowIdModel({@Default(0) int userId, @Default(0) int taskId}) = _RowIdModel;
+
+  factory RowIdModel.fromJson(Map<String, dynamic> json) => _$RowIdModelFromJson(json);
 }

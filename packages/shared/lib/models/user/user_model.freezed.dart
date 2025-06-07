@@ -65,6 +65,8 @@ mixin _$UserModel {
   set createdById(String? value) => throw _privateConstructorUsedError;
   String? get phoneCountryCode => throw _privateConstructorUsedError;
   set phoneCountryCode(String? value) => throw _privateConstructorUsedError;
+  String? get rowId => throw _privateConstructorUsedError;
+  set rowId(String? value) => throw _privateConstructorUsedError;
   String? get phoneNum => throw _privateConstructorUsedError;
   set phoneNum(String? value) => throw _privateConstructorUsedError;
   String get nationalNumber => throw _privateConstructorUsedError;
@@ -118,6 +120,7 @@ abstract class $UserModelCopyWith<$Res> {
     int unReadNotificationsCount,
     String? createdById,
     String? phoneCountryCode,
+    String? rowId,
     String? phoneNum,
     String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
@@ -162,6 +165,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? unReadNotificationsCount = null,
     Object? createdById = freezed,
     Object? phoneCountryCode = freezed,
+    Object? rowId = freezed,
     Object? phoneNum = freezed,
     Object? nationalNumber = null,
     Object? selected = null,
@@ -270,6 +274,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     ? _value.phoneCountryCode
                     : phoneCountryCode // ignore: cast_nullable_to_non_nullable
                         as String?,
+            rowId:
+                freezed == rowId
+                    ? _value.rowId
+                    : rowId // ignore: cast_nullable_to_non_nullable
+                        as String?,
             phoneNum:
                 freezed == phoneNum
                     ? _value.phoneNum
@@ -331,6 +340,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     int unReadNotificationsCount,
     String? createdById,
     String? phoneCountryCode,
+    String? rowId,
     String? phoneNum,
     String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
@@ -374,6 +384,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? unReadNotificationsCount = null,
     Object? createdById = freezed,
     Object? phoneCountryCode = freezed,
+    Object? rowId = freezed,
     Object? phoneNum = freezed,
     Object? nationalNumber = null,
     Object? selected = null,
@@ -482,6 +493,11 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 ? _value.phoneCountryCode
                 : phoneCountryCode // ignore: cast_nullable_to_non_nullable
                     as String?,
+        rowId:
+            freezed == rowId
+                ? _value.rowId
+                : rowId // ignore: cast_nullable_to_non_nullable
+                    as String?,
         phoneNum:
             freezed == phoneNum
                 ? _value.phoneNum
@@ -537,6 +553,7 @@ class _$UserModelImpl implements _UserModel {
     this.unReadNotificationsCount = 0,
     this.createdById,
     this.phoneCountryCode,
+    this.rowId,
     this.phoneNum,
     this.nationalNumber = '',
     @JsonKey(includeToJson: false, includeFromJson: false)
@@ -601,6 +618,8 @@ class _$UserModelImpl implements _UserModel {
   @override
   String? phoneCountryCode;
   @override
+  String? rowId;
+  @override
   String? phoneNum;
   @override
   @JsonKey()
@@ -617,7 +636,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, roleId: $roleId, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, unReadNotificationsCount: $unReadNotificationsCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected, imtithalPercentage: $imtithalPercentage, violatedCount: $violatedCount)';
+    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, roleId: $roleId, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, unReadNotificationsCount: $unReadNotificationsCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, rowId: $rowId, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected, imtithalPercentage: $imtithalPercentage, violatedCount: $violatedCount)';
   }
 
   /// Create a copy of UserModel
@@ -656,6 +675,7 @@ abstract class _UserModel implements UserModel {
     int unReadNotificationsCount,
     String? createdById,
     String? phoneCountryCode,
+    String? rowId,
     String? phoneNum,
     String nationalNumber,
     @JsonKey(includeToJson: false, includeFromJson: false) bool selected,
@@ -731,6 +751,9 @@ abstract class _UserModel implements UserModel {
   @override
   String? get phoneCountryCode;
   set phoneCountryCode(String? value);
+  @override
+  String? get rowId;
+  set rowId(String? value);
   @override
   String? get phoneNum;
   set phoneNum(String? value);

@@ -31,6 +31,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           (json['unReadNotificationsCount'] as num?)?.toInt() ?? 0,
       createdById: json['createdById'] as String?,
       phoneCountryCode: json['phoneCountryCode'] as String?,
+      rowId: json['rowId'] as String?,
       phoneNum: json['phoneNum'] as String?,
       nationalNumber: json['nationalNumber'] as String? ?? '',
     );
@@ -58,6 +59,7 @@ Map<String, dynamic> _$$UserModelImplToJson(
   'unReadNotificationsCount': instance.unReadNotificationsCount,
   'createdById': instance.createdById,
   'phoneCountryCode': instance.phoneCountryCode,
+  'rowId': instance.rowId,
   'phoneNum': instance.phoneNum,
   'nationalNumber': instance.nationalNumber,
 };
