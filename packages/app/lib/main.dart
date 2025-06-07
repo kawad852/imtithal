@@ -134,7 +134,11 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: appProvider.appLocale,
-            theme: MyTheme().materialTheme(context, colorScheme),
+            theme: MyTheme().materialTheme(
+              context,
+              colorScheme,
+              fillColor: const Color(0xFFF5F5F5),
+            ),
             // home: const AppNavBar(),
             home: _toggleScreen(context),
           ),

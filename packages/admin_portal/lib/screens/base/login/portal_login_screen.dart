@@ -1,4 +1,3 @@
-import 'package:admin_portal/database_utils.dart';
 import 'package:shared/shared.dart';
 
 class PortalLoginScreen extends StatefulWidget {
@@ -27,11 +26,6 @@ class _PortalLoginScreenState extends State<PortalLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          DatabaseUtils().init();
-        },
-      ),
       body: Center(
         child: SingleChildScrollView(
           child: ConstrainedBox(
