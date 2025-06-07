@@ -1,42 +1,50 @@
 import 'package:shared/shared.dart';
 
 class PolicyScreen extends StatefulWidget {
-  final PolicyEnum policyEnum;
-  const PolicyScreen({super.key, required this.policyEnum});
+  final String id;
+
+  const PolicyScreen({super.key, required this.id});
 
   @override
   State<PolicyScreen> createState() => _PolicyScreenState();
 }
 
 class _PolicyScreenState extends State<PolicyScreen> {
+  late Future<DocumentSnapshot<PolicyModel>> _policyFuture;
+
+  FirebaseFirestore get _firebaseFirestore => FirebaseFirestore.instance;
+  String get _policyId => widget.id;
+
+  void _initializeFuture() {
+    _policyFuture = _firebaseFirestore.policies.doc(_policyId).get();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeFuture();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-        children: [
-          Text(
-            widget.policyEnum == PolicyEnum.policy
-                ? context.appLocalization.privacyPolicy
-                : context.appLocalization.lawsAndRegulations,
-            style: TextStyle(
-              color: context.colorPalette.black252,
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
+    return BigFutureBuilder(
+      future: _policyFuture,
+      onComplete: (context, snapshot) {
+        final policy = snapshot.data!.data()!;
+        return Scaffold(
+          appBar: AppBar(title: Text(policy.title)),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                const Center(child: CustomSvg(MyImages.logo)),
+                const SizedBox(height: 20),
+                Html(data: policy.content),
+              ],
             ),
           ),
-          const SizedBox(height: 20),
-          Text(
-            "وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف وصف",
-            style: TextStyle(
-              color: context.colorPalette.black,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

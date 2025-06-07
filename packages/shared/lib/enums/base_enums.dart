@@ -43,4 +43,11 @@ enum RoleEnum {
   }
 }
 
-enum PolicyEnum { policy, laws }
+enum PolicyDocument {
+  privacyPolicy('BklYRnbuGMi4r2Y7Qe3Y'),
+  lawsAndRegulations('9heum2QGHq0mNBnhbRs2');
+
+  final String value;
+
+  const PolicyDocument(this.value);
+}

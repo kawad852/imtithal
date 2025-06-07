@@ -47,14 +47,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           ProfileCard(
             onTap: () {
-              context.navigate((context) => const PolicyScreen(policyEnum: PolicyEnum.laws));
+              context.navigate(
+                (context) => PolicyScreen(id: PolicyDocument.lawsAndRegulations.value),
+              );
             },
             icon: MyIcons.judge,
             title: context.appLocalization.lawsAndRegulations,
           ),
           ProfileCard(
             onTap: () {
-              context.navigate((context) => const PolicyScreen(policyEnum: PolicyEnum.policy));
+              context.navigate((context) => PolicyScreen(id: PolicyDocument.privacyPolicy.value));
             },
             icon: MyIcons.policy,
             title: context.appLocalization.privacyPolicy,
