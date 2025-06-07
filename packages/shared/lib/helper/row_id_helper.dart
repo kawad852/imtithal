@@ -2,14 +2,21 @@ import '../../shared.dart';
 import '../models/company/company_model.dart';
 
 class RowIdHelper {
-  Future<String> get(String key, {required int Function(RowIdModel row) onValueUpdate}) async {
+  Future<String> get(
+    String key, {
+    required int Function(RowIdModel row) onValueUpdate,
+    String? companyId,
+  }) async {
     var newOrderId = 0;
-    final orderIdDocumentRef = kFirebaseInstant.companies.doc(kCompanyId);
+    final orderIdDocumentRef = kFirebaseInstant.companies.doc(companyId ?? kCompanyId);
     await kFirebaseInstant.runTransaction((Transaction transaction) async {
       final snapshot = await transaction.get(orderIdDocumentRef);
       final rowId = snapshot.data()!.rowId!;
       newOrderId = onValueUpdate(rowId);
-      transaction.update(orderIdDocumentRef, {'${MyFields.rowId}.$key': FieldValue.increment(1)});
+      final field = '${MyFields.rowId}.$key';
+      print("companyId::: ${companyId}");
+      print("field::: ${field}");
+      transaction.update(orderIdDocumentRef, {field: FieldValue.increment(1)});
     });
     return '$newOrderId';
   }
@@ -22,8 +29,9 @@ extension RowIdExtension on RowIdHelper {
       return row.taskId;
     },
   );
-  Future<String> getUserId() async => get(
+  Future<String> getUserId({String? companyId}) async => get(
     'userId',
+    companyId: companyId,
     onValueUpdate: (row) {
       return row.userId;
     },

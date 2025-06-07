@@ -868,7 +868,7 @@ class __$$RowIdModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RowIdModelImpl implements _RowIdModel {
-  _$RowIdModelImpl({this.userId = 0, this.taskId = 0});
+  _$RowIdModelImpl({this.userId = 1, this.taskId = 1});
 
   factory _$RowIdModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RowIdModelImplFromJson(json);

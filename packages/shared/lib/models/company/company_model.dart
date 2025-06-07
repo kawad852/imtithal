@@ -37,7 +37,7 @@ class ServiceData with _$ServiceData {
 
 @freezed
 class RowIdModel with _$RowIdModel {
-  factory RowIdModel({@Default(0) int userId, @Default(0) int taskId}) = _RowIdModel;
+  factory RowIdModel({@Default(1) int userId, @Default(1) int taskId}) = _RowIdModel;
 
   factory RowIdModel.fromJson(Map<String, dynamic> json) => _$RowIdModelFromJson(json);
 }
