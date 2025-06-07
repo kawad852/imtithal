@@ -1,3 +1,4 @@
+import 'package:app/screens/base/langauge_screen.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -41,7 +42,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           ProfileCard(
-            onTap: () {},
+            onTap: () {
+              context.navigate((context) => const LanguageScreen());
+            },
             icon: MyIcons.translate,
             title: context.appLocalization.changeLanguage,
           ),
@@ -61,13 +64,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             icon: MyIcons.policy,
             title: context.appLocalization.privacyPolicy,
           ),
-          ProfileCard(
-            onTap: () {
-              context.navigate((context) => const ComplaintScreen());
-            },
-            icon: MyIcons.smsTracking,
-            title: context.appLocalization.sendComplaintOrReport,
-          ),
+          if (!kIsAdmin)
+            ProfileCard(
+              onTap: () {
+                context.navigate((context) => const ComplaintScreen());
+              },
+              icon: MyIcons.smsTracking,
+              title: context.appLocalization.sendComplaintOrReport,
+            ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
