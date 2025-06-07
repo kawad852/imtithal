@@ -60,7 +60,7 @@ class UserHeader extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${context.appLocalization.employeeNo} : 56",
+                      "${context.appLocalization.employeeNo} : ${user.rowId}",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: context.colorPalette.grey8B8,
