@@ -69,7 +69,7 @@ class UserInformation extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Text(
-                      "${user.jobTitle} - شركة نستطيع",
+                      "${user.jobTitle} - ${MySharedPreferences.company?.name}",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: context.colorPalette.grey8B8,
@@ -80,7 +80,7 @@ class UserInformation extends StatelessWidget {
                   ),
                   if (user.role == RoleEnum.employee.value)
                     Text(
-                      "${context.appLocalization.employeeNo}: ${user.id}",
+                      "${context.appLocalization.employeeNo}: ${user.rowId}",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: context.colorPalette.grey666,
