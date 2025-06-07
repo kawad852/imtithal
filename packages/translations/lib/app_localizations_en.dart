@@ -675,4 +675,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get wrongPassword => 'Wrong password';
+
+  @override
+  String get searchTask => 'Search for task';
 }

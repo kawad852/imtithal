@@ -135,8 +135,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SearchScreen(
-                      hintText: context.appLocalization.searchTaskEmployee,
-                      includeIndexes: (true, false, false),
+                      hintText:
+                          kIsEmployee
+                              ? context.appLocalization.searchTask
+                              : context.appLocalization.searchTaskEmployee,
+                      includeIndexes: kIsEmployee ? (false, false, true) : (true, false, true),
+                      filters: kIsEmployee ? '${MyFields.user_departmentId}:$kUserId' : null,
                     ),
                   ],
                 ),

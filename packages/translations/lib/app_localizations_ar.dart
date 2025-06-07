@@ -668,4 +668,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wrongPassword => 'كلمة المرور غير صحيحة';
+
+  @override
+  String get searchTask => 'إبحث عن مهمة';
 }

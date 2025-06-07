@@ -1399,6 +1399,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'كلمة المرور غير صحيحة'**
   String get wrongPassword;
+
+  /// No description provided for @searchTask.
+  ///
+  /// In ar, this message translates to:
+  /// **'إبحث عن مهمة'**
+  String get searchTask;
 }
 
 class _AppLocalizationsDelegate
