@@ -9,7 +9,7 @@ import '../app_routes.dart';
 class UserProvider extends ChangeNotifier {
   Function()? onGuestRegistration;
 
-  bool get isAuthenticated => MySharedPreferences.user != null;
+  bool get isAuthenticated => MySharedPreferences.user?.id != null;
 
   FirebaseAuth get _firebaseAuth => FirebaseAuth.instance;
   FirebaseFirestore get _firebaseFirestore => FirebaseFirestore.instance;
@@ -111,7 +111,6 @@ class UserProvider extends ChangeNotifier {
       callBack: () async {
         await _firebaseAuth.signOut();
         MySharedPreferences.clearStorage();
-        notifyListeners();
         if (context.mounted) {
           if (adminPanel) {
             LoginRoute().go(context);
@@ -121,6 +120,7 @@ class UserProvider extends ChangeNotifier {
             });
           }
         }
+        notifyListeners();
       },
     );
   }

@@ -22,7 +22,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MySharedPreferences.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // await _logout();
+  await _logout();
   runApp(
     MultiProvider(
       providers: [

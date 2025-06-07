@@ -13,6 +13,8 @@ class MySharedPreferences {
 
   static void clearStorage() {
     user = null;
+    company = null;
+    role = null;
   }
 
   static UserModel? get user {
