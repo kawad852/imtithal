@@ -69,7 +69,7 @@ class UserInformation extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Text(
-                      "${user.jobTitle} - ${MySharedPreferences.company?.name}",
+                      "${user.jobTitle.isEmpty ? context.appLocalization.admin : user.jobTitle} - ${MySharedPreferences.company?.name}",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: context.colorPalette.grey8B8,
