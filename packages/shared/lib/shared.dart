@@ -122,7 +122,6 @@ export 'widgets/editors/numbers_editor.dart';
 export 'widgets/editors/password_editor.dart';
 export 'widgets/editors/phone_editor.dart';
 export 'widgets/editors/text_editor.dart';
-export 'widgets/editors/username_editor.dart';
 export 'widgets/evaluation_box.dart';
 export 'widgets/fp_loading.dart';
 export 'widgets/future_builders/big_future_builder.dart';

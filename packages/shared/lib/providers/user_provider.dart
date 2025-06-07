@@ -29,7 +29,7 @@ class UserProvider extends ChangeNotifier {
 
   Future<void> login(
     BuildContext context, {
-    required String username,
+    required String email,
     required String password,
     bool portalLogin = false,
   }) async {
@@ -39,7 +39,7 @@ class UserProvider extends ChangeNotifier {
         // final user = UserModel();
 
         final auth = await _firebaseAuth.signInWithEmailAndPassword(
-          email: portalLogin ? username : "$username$kEmtithalDomain",
+          email: email,
           password: password,
         );
 

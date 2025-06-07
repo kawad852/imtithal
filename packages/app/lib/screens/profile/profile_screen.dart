@@ -80,7 +80,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           ProfileCard(
-            onTap: () {},
+            onTap: () {
+              context.navigate((context) => const ResetPasswordScreen());
+            },
             icon: MyIcons.lock,
             title: context.appLocalization.changePassword,
           ),

@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _login(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       context.unFocusKeyboard();
-      await context.userProvider.login(context, username: _username!, password: _password);
+      await context.userProvider.login(context, email: _username!, password: _password);
     }
   }
 
@@ -72,8 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   TitledTextField(
-                    title: context.appLocalization.usernameEmail,
-                    child: UsernameEditor(onChanged: (value) => _username = value),
+                    title: context.appLocalization.email,
+                    child: EmailEditor(onChanged: (value) => _username = value, initialValue: null),
                   ),
                   const SizedBox(height: 10),
                   TitledTextField(

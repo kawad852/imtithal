@@ -9,7 +9,6 @@ const String kRowIdDocument = 'bpDRfCR3EP8ZjFWnToZX';
 const kOrder = 99999;
 const kAlgoliaApplicationId = "A8ZSH6H4WN";
 const kAlgoliaApiKey = "deccda5b1c9c370107b978ec8e7f63db";
-const kEmtithalDomain = "@gmail.com";
 const kSuperAdminRoleId = '34fbd0909d4011eeb24e170bd46df764';
 const kMaxSmallDeviceWidth = 1000.0;
 

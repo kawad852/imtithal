@@ -6,7 +6,6 @@
   "authFailed": "Error in the registration process",
   "simply":"Simply, ",
   "limitless":"Limitless",
-  "usernameEmail":"Username / Email",
   "password":"Password",
   "forgotPassword":"Forgot password?",
   "resetPassword":"Reset Password",
@@ -154,7 +153,6 @@
   "generalSafety": "General Safety",
   "deliveryDate": "Delivery Date",
   "personalPhotoRequired": "Personal photo required",
-  "userName": "Username",
   "addEmployee": "Add employee",
   "add": "Add",
   "fullName": "Full name",
@@ -214,5 +212,7 @@
   "successfullyUpdated": "Successfully updated",
   "configure": "Configure",
   "company": "Company",
-  "sentSuccessfully": "Sent Successfully"
+  "sentSuccessfully": "Sent Successfully",
+  "checkEmailResetPasswordMsg": "A password reset link has been sent to your email. Please check your inbox and follow the instructions to reset your password.",
+  "email": "Email"
 }

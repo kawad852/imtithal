@@ -6,7 +6,6 @@
   "authFailed": "خطأ في عملية التسجيل",
   "simply":"ببساطـــــــــــة، ",
   "limitless":"بلا حدود",
-  "usernameEmail":"اسم المستخدم / البريد الألكتروني",
   "password":"كلمة المرور",
   "forgotPassword":"هل نسيت كلمة المرور ؟",
   "resetPassword":"استعادة كلمة المرور",
@@ -154,7 +153,6 @@
   "generalSafety": "سلامة عامة",
   "deliveryDate": "تاريخ التسليم",
   "personalPhotoRequired":"الصورة الشخصية مطلوبة",
-  "userName":"اسم المستخدم",
   "addEmployee":"اضافة موظف",
   "add": "إضافة",
   "fullName":"الاسم الكامل",
@@ -214,5 +212,7 @@
   "successfullyUpdated": "تم التحديث بنجاح",
   "configure": "تهيئة",
   "company": "الشركة",
-  "sentSuccessfully": "تم الإرسال بنجاح"
+  "sentSuccessfully": "تم الإرسال بنجاح",
+  "checkEmailResetPasswordMsg": "تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني. يرجى التحقق من صندوق الوارد واتباع التعليمات لاستعادة كلمة المرور.",
+  "email": "Email"
 }

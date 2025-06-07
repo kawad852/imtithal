@@ -140,12 +140,6 @@ abstract class AppLocalizations {
   /// **'بلا حدود'**
   String get limitless;
 
-  /// No description provided for @usernameEmail.
-  ///
-  /// In ar, this message translates to:
-  /// **'اسم المستخدم / البريد الألكتروني'**
-  String get usernameEmail;
-
   /// No description provided for @password.
   ///
   /// In ar, this message translates to:
@@ -1022,12 +1016,6 @@ abstract class AppLocalizations {
   /// **'الصورة الشخصية مطلوبة'**
   String get personalPhotoRequired;
 
-  /// No description provided for @userName.
-  ///
-  /// In ar, this message translates to:
-  /// **'اسم المستخدم'**
-  String get userName;
-
   /// No description provided for @addEmployee.
   ///
   /// In ar, this message translates to:
@@ -1387,6 +1375,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تم الإرسال بنجاح'**
   String get sentSuccessfully;
+
+  /// No description provided for @checkEmailResetPasswordMsg.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني. يرجى التحقق من صندوق الوارد واتباع التعليمات لاستعادة كلمة المرور.'**
+  String get checkEmailResetPasswordMsg;
+
+  /// No description provided for @email.
+  ///
+  /// In ar, this message translates to:
+  /// **'Email'**
+  String get email;
 }
 
 class _AppLocalizationsDelegate

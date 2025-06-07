@@ -30,9 +30,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get limitless => 'بلا حدود';
 
   @override
-  String get usernameEmail => 'اسم المستخدم / البريد الألكتروني';
-
-  @override
   String get password => 'كلمة المرور';
 
   @override
@@ -479,9 +476,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get personalPhotoRequired => 'الصورة الشخصية مطلوبة';
 
   @override
-  String get userName => 'اسم المستخدم';
-
-  @override
   String get addEmployee => 'اضافة موظف';
 
   @override
@@ -661,4 +655,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sentSuccessfully => 'تم الإرسال بنجاح';
+
+  @override
+  String get checkEmailResetPasswordMsg =>
+      'تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني. يرجى التحقق من صندوق الوارد واتباع التعليمات لاستعادة كلمة المرور.';
+
+  @override
+  String get email => 'Email';
 }

@@ -41,11 +41,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
           AppOverlayLoader.show();
           context.unFocusKeyboard();
           if (widget.user == null) {
-            final id = await context.userProvider.createAuthUser(
-              "${_user.username}$kEmtithalDomain",
-              _user.password,
-            );
-            _user.username = _user.username.toLowerCase();
+            final id = await context.userProvider.createAuthUser(_user.email!, _user.password);
             _user.id = id;
             _user.createdAt = kNowDate;
           }
@@ -314,11 +310,11 @@ class _UserInputScreenState extends State<UserInputScreen> {
                   children: [
                     Expanded(
                       child: TitledTextField(
-                        title: context.appLocalization.userName,
-                        child: UsernameEditor(
-                          initialValue: _user.username,
-                          readOnly: widget.user != null,
-                          onChanged: (value) => _user.username = value!,
+                        title: context.appLocalization.email,
+                        child: EmailEditor(
+                          initialValue: _user.email,
+                          readonly: widget.user != null,
+                          onChanged: (value) => _user.email = value!,
                         ),
                       ),
                     ),

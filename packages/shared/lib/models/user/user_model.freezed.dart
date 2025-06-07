@@ -33,10 +33,8 @@ mixin _$UserModel {
   set id(String? value) => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   set displayName(String value) => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  set email(String value) => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  set username(String value) => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  set email(String? value) => throw _privateConstructorUsedError;
   String? get deviceToken => throw _privateConstructorUsedError;
   set deviceToken(String? value) => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
@@ -114,8 +112,7 @@ abstract class $UserModelCopyWith<$Res> {
     @TimestampSerializer() DateTime? workStartDate,
     String? id,
     String displayName,
-    String email,
-    String username,
+    String? email,
     String? deviceToken,
     String? role,
     String? roleId,
@@ -164,8 +161,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? workStartDate = freezed,
     Object? id = freezed,
     Object? displayName = null,
-    Object? email = null,
-    Object? username = null,
+    Object? email = freezed,
     Object? deviceToken = freezed,
     Object? role = freezed,
     Object? roleId = freezed,
@@ -215,15 +211,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
                     : displayName // ignore: cast_nullable_to_non_nullable
                         as String,
             email:
-                null == email
+                freezed == email
                     ? _value.email
                     : email // ignore: cast_nullable_to_non_nullable
-                        as String,
-            username:
-                null == username
-                    ? _value.username
-                    : username // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             deviceToken:
                 freezed == deviceToken
                     ? _value.deviceToken
@@ -369,8 +360,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
     @TimestampSerializer() DateTime? workStartDate,
     String? id,
     String displayName,
-    String email,
-    String username,
+    String? email,
     String? deviceToken,
     String? role,
     String? roleId,
@@ -418,8 +408,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? workStartDate = freezed,
     Object? id = freezed,
     Object? displayName = null,
-    Object? email = null,
-    Object? username = null,
+    Object? email = freezed,
     Object? deviceToken = freezed,
     Object? role = freezed,
     Object? roleId = freezed,
@@ -469,15 +458,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
                 : displayName // ignore: cast_nullable_to_non_nullable
                     as String,
         email:
-            null == email
+            freezed == email
                 ? _value.email
                 : email // ignore: cast_nullable_to_non_nullable
-                    as String,
-        username:
-            null == username
-                ? _value.username
-                : username // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         deviceToken:
             freezed == deviceToken
                 ? _value.deviceToken
@@ -617,8 +601,7 @@ class _$UserModelImpl implements _UserModel {
     @TimestampSerializer() this.workStartDate,
     this.id,
     this.displayName = '',
-    this.email = '',
-    this.username = '',
+    this.email,
     this.deviceToken,
     this.role,
     this.roleId,
@@ -664,11 +647,7 @@ class _$UserModelImpl implements _UserModel {
   @JsonKey()
   String displayName;
   @override
-  @JsonKey()
-  String email;
-  @override
-  @JsonKey()
-  String username;
+  String? email;
   @override
   String? deviceToken;
   @override
@@ -738,7 +717,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, username: $username, deviceToken: $deviceToken, role: $role, roleId: $roleId, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, unReadNotificationsCount: $unReadNotificationsCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected, imtithalPercentage: $imtithalPercentage, violatedCount: $violatedCount)';
+    return 'UserModel(createdAt: $createdAt, workStartDate: $workStartDate, id: $id, displayName: $displayName, email: $email, deviceToken: $deviceToken, role: $role, roleId: $roleId, languageCode: $languageCode, profilePhoto: $profilePhoto, blocked: $blocked, salary: $salary, password: $password, address: $address, jobTitle: $jobTitle, companyId: $companyId, departmentId: $departmentId, taskIds: $taskIds, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, penaltyTasksCount: $penaltyTasksCount, unReadNotificationsCount: $unReadNotificationsCount, createdById: $createdById, phoneCountryCode: $phoneCountryCode, phoneNum: $phoneNum, nationalNumber: $nationalNumber, selected: $selected, imtithalPercentage: $imtithalPercentage, violatedCount: $violatedCount)';
   }
 
   /// Create a copy of UserModel
@@ -761,8 +740,7 @@ abstract class _UserModel implements UserModel {
     @TimestampSerializer() DateTime? workStartDate,
     String? id,
     String displayName,
-    String email,
-    String username,
+    String? email,
     String? deviceToken,
     String? role,
     String? roleId,
@@ -811,11 +789,8 @@ abstract class _UserModel implements UserModel {
   String get displayName;
   set displayName(String value);
   @override
-  String get email;
-  set email(String value);
-  @override
-  String get username;
-  set username(String value);
+  String? get email;
+  set email(String? value);
   @override
   String? get deviceToken;
   set deviceToken(String? value);

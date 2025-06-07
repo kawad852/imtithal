@@ -45,12 +45,9 @@ class _UsersTableState extends State<UsersTable> {
         }
         var reference = ref;
         if (ref == null) {
-          final id = await context.userProvider.createAuthUser(
-            "${data.username}$kEmtithalDomain",
-            data.password,
-          );
+          final id = await context.userProvider.createAuthUser(data.email!, data.password);
           reference = ref ?? _collectionRef.doc(id);
-          data = data.copyWith(id: id, createdAt: kNowDate, username: data.username.toLowerCase());
+          data = data.copyWith(id: id, createdAt: kNowDate, email: data.email);
         }
         await reference!.set(data);
       },
@@ -66,7 +63,7 @@ class _UsersTableState extends State<UsersTable> {
               });
             },
           ),
-          UsernameEditor(initialValue: data.username, onChanged: (value) => data.username = value!),
+          EmailEditor(initialValue: data.email, onChanged: (value) => data.email = value!),
           PasswordEditor(initialValue: data.password, onChanged: (value) => data.password = value!),
           ImpededStreamBuilder(
             stream: _companiesStream,

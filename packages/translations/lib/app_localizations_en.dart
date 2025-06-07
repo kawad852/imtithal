@@ -30,9 +30,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get limitless => 'Limitless';
 
   @override
-  String get usernameEmail => 'Username / Email';
-
-  @override
   String get password => 'Password';
 
   @override
@@ -486,9 +483,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get personalPhotoRequired => 'Personal photo required';
 
   @override
-  String get userName => 'Username';
-
-  @override
   String get addEmployee => 'Add employee';
 
   @override
@@ -668,4 +662,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sentSuccessfully => 'Sent Successfully';
+
+  @override
+  String get checkEmailResetPasswordMsg =>
+      'A password reset link has been sent to your email. Please check your inbox and follow the instructions to reset your password.';
+
+  @override
+  String get email => 'Email';
 }
