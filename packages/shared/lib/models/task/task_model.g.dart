@@ -38,10 +38,7 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
       const [],
   repeatDays:
       (json['repeatDays'] as List<dynamic>).map((e) => e as String).toList(),
-  user:
-      json['user'] == null
-          ? null
-          : LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
+  userId: json['userId'] as String?,
   inCompletedTasksCount: (json['inCompletedTasksCount'] as num?)?.toInt() ?? 0,
   completedTasksCount: (json['completedTasksCount'] as num?)?.toInt() ?? 0,
   lateTasksCount: (json['lateTasksCount'] as num?)?.toInt() ?? 0,
@@ -78,7 +75,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'attachments': instance.attachments?.map((e) => e.toJson()).toList(),
       'assignedUserIds': instance.assignedUserIds,
       'repeatDays': instance.repeatDays,
-      'user': instance.user?.toJson(),
+      'userId': instance.userId,
       'inCompletedTasksCount': instance.inCompletedTasksCount,
       'completedTasksCount': instance.completedTasksCount,
       'lateTasksCount': instance.lateTasksCount,

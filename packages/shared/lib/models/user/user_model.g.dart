@@ -63,16 +63,3 @@ Map<String, dynamic> _$$UserModelImplToJson(
   'phoneNum': instance.phoneNum,
   'nationalNumber': instance.nationalNumber,
 };
-
-_$LightUserModelImpl _$$LightUserModelImplFromJson(Map<String, dynamic> json) =>
-    _$LightUserModelImpl(
-      id: json['id'] as String? ?? '',
-      departmentId: json['departmentId'] as String?,
-    );
-
-Map<String, dynamic> _$$LightUserModelImplToJson(
-  _$LightUserModelImpl instance,
-) => <String, dynamic>{
-  'id': instance.id,
-  'departmentId': instance.departmentId,
-};

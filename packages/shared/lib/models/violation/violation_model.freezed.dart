@@ -35,8 +35,8 @@ mixin _$ViolationModel {
   set description(String value) => throw _privateConstructorUsedError;
   String get companyId => throw _privateConstructorUsedError;
   set companyId(String value) => throw _privateConstructorUsedError;
-  LightUserModel? get user => throw _privateConstructorUsedError;
-  set user(LightUserModel? value) => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
+  set userId(String? value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
   String get createdById => throw _privateConstructorUsedError;
@@ -76,7 +76,7 @@ abstract class $ViolationModelCopyWith<$Res> {
     String notes,
     String description,
     String companyId,
-    LightUserModel? user,
+    String? userId,
     String status,
     String createdById,
     List<AttachmentModel>? attachments,
@@ -84,7 +84,6 @@ abstract class $ViolationModelCopyWith<$Res> {
     @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   });
 
-  $LightUserModelCopyWith<$Res>? get user;
   $ViolationReplyModelCopyWith<$Res>? get lastReply;
   $UserModelCopyWith<$Res>? get userModel;
 }
@@ -110,7 +109,7 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
     Object? notes = null,
     Object? description = null,
     Object? companyId = null,
-    Object? user = freezed,
+    Object? userId = freezed,
     Object? status = null,
     Object? createdById = null,
     Object? attachments = freezed,
@@ -149,11 +148,11 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
                     ? _value.companyId
                     : companyId // ignore: cast_nullable_to_non_nullable
                         as String,
-            user:
-                freezed == user
-                    ? _value.user
-                    : user // ignore: cast_nullable_to_non_nullable
-                        as LightUserModel?,
+            userId:
+                freezed == userId
+                    ? _value.userId
+                    : userId // ignore: cast_nullable_to_non_nullable
+                        as String?,
             status:
                 null == status
                     ? _value.status
@@ -182,20 +181,6 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
           )
           as $Val,
     );
-  }
-
-  /// Create a copy of ViolationModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $LightUserModelCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $LightUserModelCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
   }
 
   /// Create a copy of ViolationModel
@@ -243,7 +228,7 @@ abstract class _$$ViolationModelImplCopyWith<$Res>
     String notes,
     String description,
     String companyId,
-    LightUserModel? user,
+    String? userId,
     String status,
     String createdById,
     List<AttachmentModel>? attachments,
@@ -251,8 +236,6 @@ abstract class _$$ViolationModelImplCopyWith<$Res>
     @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   });
 
-  @override
-  $LightUserModelCopyWith<$Res>? get user;
   @override
   $ViolationReplyModelCopyWith<$Res>? get lastReply;
   @override
@@ -279,7 +262,7 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
     Object? notes = null,
     Object? description = null,
     Object? companyId = null,
-    Object? user = freezed,
+    Object? userId = freezed,
     Object? status = null,
     Object? createdById = null,
     Object? attachments = freezed,
@@ -318,11 +301,11 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
                 ? _value.companyId
                 : companyId // ignore: cast_nullable_to_non_nullable
                     as String,
-        user:
-            freezed == user
-                ? _value.user
-                : user // ignore: cast_nullable_to_non_nullable
-                    as LightUserModel?,
+        userId:
+            freezed == userId
+                ? _value.userId
+                : userId // ignore: cast_nullable_to_non_nullable
+                    as String?,
         status:
             null == status
                 ? _value.status
@@ -364,7 +347,7 @@ class _$ViolationModelImpl implements _ViolationModel {
     this.notes = '',
     this.description = '',
     this.companyId = '',
-    this.user,
+    this.userId,
     this.status = ViolationStatus.defaultValue,
     required this.createdById,
     this.attachments,
@@ -394,7 +377,7 @@ class _$ViolationModelImpl implements _ViolationModel {
   @JsonKey()
   String companyId;
   @override
-  LightUserModel? user;
+  String? userId;
   @override
   @JsonKey()
   String status;
@@ -410,7 +393,7 @@ class _$ViolationModelImpl implements _ViolationModel {
 
   @override
   String toString() {
-    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, companyId: $companyId, user: $user, status: $status, createdById: $createdById, attachments: $attachments, lastReply: $lastReply, userModel: $userModel)';
+    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, companyId: $companyId, userId: $userId, status: $status, createdById: $createdById, attachments: $attachments, lastReply: $lastReply, userModel: $userModel)';
   }
 
   /// Create a copy of ViolationModel
@@ -438,7 +421,7 @@ abstract class _ViolationModel implements ViolationModel {
     String notes,
     String description,
     String companyId,
-    LightUserModel? user,
+    String? userId,
     String status,
     required String createdById,
     List<AttachmentModel>? attachments,
@@ -470,8 +453,8 @@ abstract class _ViolationModel implements ViolationModel {
   String get companyId;
   set companyId(String value);
   @override
-  LightUserModel? get user;
-  set user(LightUserModel? value);
+  String? get userId;
+  set userId(String? value);
   @override
   String get status;
   set status(String value);

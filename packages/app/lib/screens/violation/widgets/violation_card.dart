@@ -14,7 +14,7 @@ class ViolationCard extends StatelessWidget {
     if (!kIsEmployee) {
       final users = context.read<List<UserModel>>();
       user = users.firstWhere(
-        (e) => e.id == (userId ?? violation.user?.id),
+        (e) => e.id == (userId ?? violation.userId),
         orElse: () => UserModel(),
       );
       violation.userModel ??= user;

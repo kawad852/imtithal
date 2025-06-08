@@ -31,7 +31,7 @@ class TaskModel with _$TaskModel {
     List<AttachmentModel>? attachments,
     @Default([]) List<String> assignedUserIds,
     required List<String> repeatDays,
-    LightUserModel? user,
+    String? userId,
     @Default(0) int inCompletedTasksCount,
     @Default(0) int completedTasksCount,
     @Default(0) int lateTasksCount,

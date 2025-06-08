@@ -40,7 +40,7 @@ class _TasksScreenState extends State<TasksScreen> {
     filter = Filter.and(
       statusFilter,
       _departmentId != null
-          ? Filter(MyFields.user_departmentId, isEqualTo: _departmentId)
+          ? Filter(MyFields.userId, isEqualTo: _departmentId) // Change!!!
           : Filter(MyFields.companyId, isEqualTo: kCompanyId),
     );
     if (_userId != null) {

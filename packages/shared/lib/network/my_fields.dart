@@ -34,8 +34,9 @@ class MyFields {
   static const String assignedUserIds = 'assignedUserIds';
   static const String markedAsLate = 'markedAsLate';
   static const String deliveryDate = 'deliveryDate';
-  static const String user_departmentId = 'user.departmentId';
-  static const String user_id = 'user.id';
+  // static const String user_departmentId = 'user.departmentId';
+  // static const String user_id = 'user.id';
+  static const String userId = 'userId';
   static const String unReadNotificationsCount = 'unReadNotificationsCount';
   static const String points = 'points';
   static const String departmentId = 'departmentId';

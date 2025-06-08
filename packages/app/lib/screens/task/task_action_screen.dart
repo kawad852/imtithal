@@ -139,7 +139,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                               }
                               final assignedTask = assignedTasks[index].data();
                               assignedTask.userModel ??= users.firstWhere(
-                                (e) => e.id == assignedTask.user?.id,
+                                (e) => e.id == assignedTask.userId,
                                 orElse: () => UserModel(),
                               );
                               return ResponsibleEmployee(assignedTask: assignedTask);

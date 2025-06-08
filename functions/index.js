@@ -334,9 +334,9 @@ exports.assignTasks = onSchedule(
           const taskToAssign = {
             ...task,
             id: assignedTaskId,
-            assignedAt: admin.firestore.FieldValue.serverTimestamp(),
             assignedDate: todayDateStr,
             parentTaskId: task.id,
+            userId: userId,
           };
 
           await assignedDocRef.set(taskToAssign);

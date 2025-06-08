@@ -28,7 +28,8 @@ class SummeryBuilder extends StatefulWidget {
     required this.height,
   });
 
-  static Query<T> getQuery<T>({
+  static Query<T> getQuery<T>(
+    BuildContext context, {
     required String? status,
     required DateTime start,
     required DateTime end,
@@ -51,13 +52,21 @@ class SummeryBuilder extends StatefulWidget {
     if (late) {
       final filter = Filter(MyFields.markedAsLate, isEqualTo: true);
       query = docRef.where(
-        _getFilter(filter, userId: userId, departmentId: departmentId, start: start, end: end),
+        _getFilter(
+          context,
+          filter,
+          userId: userId,
+          departmentId: departmentId,
+          start: start,
+          end: end,
+        ),
       );
       return query as Query<T>;
     } else {
       if (status == TaskStatusEnum.violated.value) {
         violationsQuery = violationsDocRef.where(
           _getFilter(
+            context,
             null,
             userId: userId,
             departmentId: departmentId,
@@ -72,6 +81,7 @@ class SummeryBuilder extends StatefulWidget {
         final filter2 = Filter(MyFields.violation, isNull: true);
         query = docRef.where(
           _getFilter(
+            context,
             filter,
             filter2: filter2,
             userId: userId,
@@ -86,6 +96,7 @@ class SummeryBuilder extends StatefulWidget {
   }
 
   static Filter _getFilter(
+    BuildContext context,
     Filter? filter, {
     Filter? filter2,
     required DateTime start,
@@ -104,7 +115,9 @@ class SummeryBuilder extends StatefulWidget {
     if (userId != null) {
       return Filter.and(startDateFilter, endDateFilter, filter, filter2);
     } else if (departmentId != null) {
-      final departmentIdFilter = Filter(MyFields.user_departmentId, isEqualTo: departmentId);
+      final users = context.read<List<UserModel>>();
+      final userIds = users.map((e) => e.id!).toList();
+      final departmentIdFilter = Filter(MyFields.userId, whereIn: userIds);
       return Filter.and(startDateFilter, endDateFilter, departmentIdFilter, filter, filter2);
     } else {
       final companyIdFilter = Filter(MyFields.companyId, isEqualTo: kCompanyId);
@@ -124,12 +137,14 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
   DateTime get _endDate => widget.endDate;
 
   Future<(int, double)> _fetchQuery<T>(
+    BuildContext context,
     String? status, {
     bool late = false,
     required String? userId,
     required String? departmentId,
   }) async {
     final query = SummeryBuilder.getQuery<T>(
+      context,
       status: status,
       start: _startDate,
       end: _endDate,
@@ -167,7 +182,7 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
     if (departmentUsers.isNotEmpty) {
       for (var e in departmentUsers) {
         final userId = e.id;
-        (int, double) values = await _fetchQuery(null, userId: userId, departmentId: null);
+        (int, double) values = await _fetchQuery(context, null, userId: userId, departmentId: null);
         if (context.mounted) {
           final imtithalPercentage =
               TaskPoints.getPercentage(context, count: values.$1, sum: values.$2).$1;
@@ -184,6 +199,7 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
       );
 
       final violationValues = await _fetchQuery(
+        context,
         TaskStatusEnum.violated.value,
         userId: lowestUser.id,
         departmentId: null,
@@ -196,8 +212,13 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
   }
 
   void _initialize(BuildContext context) {
-    Future<(int, double)> query<T>(String? status, {bool late = false}) =>
-        _fetchQuery(status, userId: widget.userId, departmentId: _departmentId, late: late);
+    Future<(int, double)> query<T>(String? status, {bool late = false}) => _fetchQuery(
+      context,
+      status,
+      userId: widget.userId,
+      departmentId: _departmentId,
+      late: late,
+    );
     final inCompletedFuture = query<TaskModel>(TaskStatusEnum.pending.value);
     final completedFuture = query<TaskModel>(TaskStatusEnum.completed.value);
     final violatedFuture = query<ViolationModel>(TaskStatusEnum.violated.value);

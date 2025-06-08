@@ -21,7 +21,7 @@ class AssignedList extends StatelessWidget {
             itemBuilder: (context, index) {
               final assignedTask = assignedTasks.docs[index].data();
               assignedTask.userModel ??= users.firstWhere(
-                (e) => e.id == assignedTask.user?.id,
+                (e) => e.id == assignedTask.userId,
                 orElse: () => UserModel(),
               );
               final user = assignedTask.userModel;

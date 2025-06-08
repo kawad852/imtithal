@@ -18,7 +18,7 @@ class ViolationModel with _$ViolationModel {
     @Default('') String notes,
     @Default('') String description,
     @Default('') String companyId,
-    LightUserModel? user,
+    String? userId,
     @Default(ViolationStatus.defaultValue) String status,
     required String createdById,
     List<AttachmentModel>? attachments,

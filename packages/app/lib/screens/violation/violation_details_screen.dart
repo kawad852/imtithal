@@ -19,7 +19,7 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
   late Stream<List<dynamic>> _streams;
 
   String get _id => widget.violation?.id ?? widget.id!;
-  String get _userId => widget.violation?.user?.id ?? widget.userId!;
+  String get _userId => widget.violation?.userId ?? widget.userId!;
 
   DocumentReference<ViolationModel> get _violationDocRef =>
       kFirebaseInstant.userViolations(_userId).doc(_id);
@@ -60,10 +60,7 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
 
         UserModel getUser() {
           final users = context.read<List<UserModel>>();
-          final user = users.firstWhere(
-            (e) => e.id == violation.user?.id,
-            orElse: () => UserModel(),
-          );
+          final user = users.firstWhere((e) => e.id == violation.userId, orElse: () => UserModel());
           return user;
         }
 
