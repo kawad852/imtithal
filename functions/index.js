@@ -252,3 +252,103 @@ async function sendNotification({
     }),
   ]);
 }
+
+
+exports.notifyTaskStart = functions.pubsub
+  .schedule('every 1 minutes')
+  .timeZone('Asia/Amman')
+  .onRun(async () => {
+    const now = DateTime.now().setZone('Asia/Amman');
+    const today = now.startOf('day');
+    const currentHour = now.hour;
+    const currentMinute = now.minute;
+
+    const tasksSnapshot = await db.collection('tasks').get();
+
+    for (const taskDoc of tasksSnapshot.docs) {
+      const task = taskDoc.data();
+      const taskId = taskDoc.id;
+      const {
+        startTime,
+        companyId,
+        assignedUserIds = [],
+        date,
+        repeat = 'ONCE',
+      } = task;
+
+      if (!startTime || !companyId || assignedUserIds.length === 0 || !date) continue;
+
+      const baseDate = DateTime.fromJSDate(date.toDate()).setZone('Asia/Amman');
+
+      // 🛑 Skip if not today's task based on repeat
+      let shouldTriggerToday = false;
+
+      switch (repeat) {
+        case 'ONCE':
+          shouldTriggerToday = baseDate.hasSame(today, 'day');
+          break;
+        case 'DAILY':
+          shouldTriggerToday = true;
+          break;
+        case 'WEEKLY':
+          shouldTriggerToday = baseDate.weekday === today.weekday;
+          break;
+        case 'MONTHLY':
+          shouldTriggerToday = baseDate.day === today.day;
+          break;
+        default:
+          continue;
+      }
+
+      if (!shouldTriggerToday) continue;
+
+      // 🛑 Check if today is a holiday
+      const holidaysSnapshot = await db
+        .collection('companies')
+        .doc(companyId)
+        .collection('holidays')
+        .get();
+
+      const isHoliday = holidaysSnapshot.docs.some(doc => {
+        const h = doc.data();
+        const start = DateTime.fromJSDate(h.startDate.toDate()).startOf('day');
+        const end = DateTime.fromJSDate(h.endDate.toDate()).endOf('day');
+        return today >= start && today <= end;
+      });
+
+      if (isHoliday) continue;
+
+      // 🕐 Compare current time with task startTime
+      const taskTime = DateTime.fromFormat(startTime, 'hh:mm a', { zone: 'Asia/Amman' });
+      if (taskTime.hour !== currentHour || taskTime.minute !== currentMinute) continue;
+
+      // 🔔 Notify assigned users
+      for (const userId of assignedUserIds) {
+        const userDoc = await db.collection('users').doc(userId).get();
+        const deviceToken = userDoc.data()?.deviceToken;
+        if (!deviceToken) continue;
+
+        await admin.messaging().send({
+          token: deviceToken,
+          notification: {
+            title: '📌 Task Reminder',
+            body: task.title || 'A task has started now!',
+          },
+          data: {
+            taskId,
+            repeat,
+          },
+        });
+
+        // Optional: mark as notified
+        await db
+          .collection('users')
+          .doc(userId)
+          .collection('assignedTasks')
+          .doc(taskId)
+          .update({ notified: true });
+      }
+    }
+
+    return null;
+  });
