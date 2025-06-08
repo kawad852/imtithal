@@ -34,6 +34,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
           _violation.id = await RowIdHelper().getViolationId();
           _violation.createdAt = kNowDate;
           _violation.companyId = kCompanyId;
+          _violation.taskId = _task?.id;
           final batch = kFirebaseInstant.batch();
           if (_isGeneralViolation) {
             for (var user in _selectedUsers) {
@@ -84,6 +85,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
   void initState() {
     super.initState();
     _violation = ViolationModel(createdById: kUserId, attachments: []);
+    print("_user:: ${_user?.toJson()}");
   }
 
   @override

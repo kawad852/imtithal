@@ -33,6 +33,8 @@ mixin _$ViolationModel {
   set notes(String value) => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   set description(String value) => throw _privateConstructorUsedError;
+  String? get taskId => throw _privateConstructorUsedError;
+  set taskId(String? value) => throw _privateConstructorUsedError;
   String get companyId => throw _privateConstructorUsedError;
   set companyId(String value) => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
@@ -75,6 +77,7 @@ abstract class $ViolationModelCopyWith<$Res> {
     String type,
     String notes,
     String description,
+    String? taskId,
     String companyId,
     String? userId,
     String status,
@@ -108,6 +111,7 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
     Object? type = null,
     Object? notes = null,
     Object? description = null,
+    Object? taskId = freezed,
     Object? companyId = null,
     Object? userId = freezed,
     Object? status = null,
@@ -143,6 +147,11 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
                     ? _value.description
                     : description // ignore: cast_nullable_to_non_nullable
                         as String,
+            taskId:
+                freezed == taskId
+                    ? _value.taskId
+                    : taskId // ignore: cast_nullable_to_non_nullable
+                        as String?,
             companyId:
                 null == companyId
                     ? _value.companyId
@@ -227,6 +236,7 @@ abstract class _$$ViolationModelImplCopyWith<$Res>
     String type,
     String notes,
     String description,
+    String? taskId,
     String companyId,
     String? userId,
     String status,
@@ -261,6 +271,7 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
     Object? type = null,
     Object? notes = null,
     Object? description = null,
+    Object? taskId = freezed,
     Object? companyId = null,
     Object? userId = freezed,
     Object? status = null,
@@ -296,6 +307,11 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
                 ? _value.description
                 : description // ignore: cast_nullable_to_non_nullable
                     as String,
+        taskId:
+            freezed == taskId
+                ? _value.taskId
+                : taskId // ignore: cast_nullable_to_non_nullable
+                    as String?,
         companyId:
             null == companyId
                 ? _value.companyId
@@ -346,6 +362,7 @@ class _$ViolationModelImpl implements _ViolationModel {
     this.type = '',
     this.notes = '',
     this.description = '',
+    this.taskId,
     this.companyId = '',
     this.userId,
     this.status = ViolationStatus.defaultValue,
@@ -374,6 +391,8 @@ class _$ViolationModelImpl implements _ViolationModel {
   @JsonKey()
   String description;
   @override
+  String? taskId;
+  @override
   @JsonKey()
   String companyId;
   @override
@@ -393,7 +412,7 @@ class _$ViolationModelImpl implements _ViolationModel {
 
   @override
   String toString() {
-    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, companyId: $companyId, userId: $userId, status: $status, createdById: $createdById, attachments: $attachments, lastReply: $lastReply, userModel: $userModel)';
+    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, taskId: $taskId, companyId: $companyId, userId: $userId, status: $status, createdById: $createdById, attachments: $attachments, lastReply: $lastReply, userModel: $userModel)';
   }
 
   /// Create a copy of ViolationModel
@@ -420,6 +439,7 @@ abstract class _ViolationModel implements ViolationModel {
     String type,
     String notes,
     String description,
+    String? taskId,
     String companyId,
     String? userId,
     String status,
@@ -449,6 +469,9 @@ abstract class _ViolationModel implements ViolationModel {
   @override
   String get description;
   set description(String value);
+  @override
+  String? get taskId;
+  set taskId(String? value);
   @override
   String get companyId;
   set companyId(String value);

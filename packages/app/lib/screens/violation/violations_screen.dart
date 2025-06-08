@@ -21,6 +21,7 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
     } else {
       _query = kFirebaseInstant.violations;
     }
+    _query = _query.orderByCreatedAtDesc;
   }
 
   @override

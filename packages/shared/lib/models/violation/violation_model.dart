@@ -17,6 +17,7 @@ class ViolationModel with _$ViolationModel {
     @Default('') String type,
     @Default('') String notes,
     @Default('') String description,
+    String? taskId,
     @Default('') String companyId,
     String? userId,
     @Default(ViolationStatus.defaultValue) String status,
