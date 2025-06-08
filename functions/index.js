@@ -163,6 +163,7 @@ exports.markLateAssignedTasks = onSchedule(
 
       const filter = Filter.and(
         Filter.where("markedAsLate", "==", false),
+        Filter.where("status", "==", "PENDING"),
         Filter.where("deliveryDate", "<=", Timestamp.fromMillis(now.toMillis())),
       );
 
