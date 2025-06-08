@@ -671,4 +671,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get searchTask => 'إبحث عن مهمة';
+
+  @override
+  String get taskStartTime => 'وقت بدء المهمة';
 }

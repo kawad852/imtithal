@@ -217,5 +217,6 @@
   "email": "Email",
   "emailNotFound": "Email not found",
   "wrongPassword": "Wrong password",
-  "searchTask": "Search for task"
+  "searchTask": "Search for task",
+  "taskStartTime": "Task Start Time"
 }

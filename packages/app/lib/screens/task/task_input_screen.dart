@@ -119,6 +119,13 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                   ),
                 ),
               ),
+              TitledTextField(
+                title: context.appLocalization.taskStartTime,
+                child: DayTimeEditor(
+                  initialValue: _task.startTime,
+                  onChanged: (value) => _task.startTime = value,
+                ),
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

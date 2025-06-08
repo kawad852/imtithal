@@ -217,5 +217,6 @@
   "email": "البريد الإلكتروني",
   "emailNotFound": "الإميميل غير صحيح",
   "wrongPassword": "كلمة المرور غير صحيحة",
-  "searchTask": "إبحث عن مهمة"
+  "searchTask": "إبحث عن مهمة",
+  "taskStartTime": "وقت بدء المهمة"
 }

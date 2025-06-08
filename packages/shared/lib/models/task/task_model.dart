@@ -18,6 +18,7 @@ class TaskModel with _$TaskModel {
     @Default(0) int allowedDurationInMinutes,
     @Default(0) int points,
     @Default("") String id,
+    @Default("09:00 Am") String startTime,
     String? parentTaskId,
     required String companyId,
     @Default("") String title,

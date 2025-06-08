@@ -678,4 +678,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchTask => 'Search for task';
+
+  @override
+  String get taskStartTime => 'Task Start Time';
 }

@@ -41,6 +41,8 @@ mixin _$TaskModel {
   set points(int value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
+  String get startTime => throw _privateConstructorUsedError;
+  set startTime(String value) => throw _privateConstructorUsedError;
   String? get parentTaskId => throw _privateConstructorUsedError;
   set parentTaskId(String? value) => throw _privateConstructorUsedError;
   String get companyId => throw _privateConstructorUsedError;
@@ -113,6 +115,7 @@ abstract class $TaskModelCopyWith<$Res> {
     int allowedDurationInMinutes,
     int points,
     String id,
+    String startTime,
     String? parentTaskId,
     String companyId,
     String title,
@@ -163,6 +166,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? allowedDurationInMinutes = null,
     Object? points = null,
     Object? id = null,
+    Object? startTime = null,
     Object? parentTaskId = freezed,
     Object? companyId = null,
     Object? title = null,
@@ -222,6 +226,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                 null == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            startTime:
+                null == startTime
+                    ? _value.startTime
+                    : startTime // ignore: cast_nullable_to_non_nullable
                         as String,
             parentTaskId:
                 freezed == parentTaskId
@@ -384,6 +393,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     int allowedDurationInMinutes,
     int points,
     String id,
+    String startTime,
     String? parentTaskId,
     String companyId,
     String title,
@@ -435,6 +445,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? allowedDurationInMinutes = null,
     Object? points = null,
     Object? id = null,
+    Object? startTime = null,
     Object? parentTaskId = freezed,
     Object? companyId = null,
     Object? title = null,
@@ -494,6 +505,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
             null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        startTime:
+            null == startTime
+                ? _value.startTime
+                : startTime // ignore: cast_nullable_to_non_nullable
                     as String,
         parentTaskId:
             freezed == parentTaskId
@@ -622,6 +638,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.allowedDurationInMinutes = 0,
     this.points = 0,
     this.id = "",
+    this.startTime = "09:00 Am",
     this.parentTaskId,
     required this.companyId,
     this.title = "",
@@ -670,6 +687,9 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   @JsonKey()
   String id;
+  @override
+  @JsonKey()
+  String startTime;
   @override
   String? parentTaskId;
   @override
@@ -731,7 +751,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, assignedDate: $assignedDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, assignedUserIds: $assignedUserIds, repeatDays: $repeatDays, userId: $userId, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById, userModel: $userModel)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, assignedDate: $assignedDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, startTime: $startTime, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, assignedUserIds: $assignedUserIds, repeatDays: $repeatDays, userId: $userId, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById, userModel: $userModel)';
   }
 
   /// Create a copy of TaskModel
@@ -757,6 +777,7 @@ abstract class _TaskModel extends TaskModel {
     int allowedDurationInMinutes,
     int points,
     String id,
+    String startTime,
     String? parentTaskId,
     required String companyId,
     String title,
@@ -812,6 +833,9 @@ abstract class _TaskModel extends TaskModel {
   @override
   String get id;
   set id(String value);
+  @override
+  String get startTime;
+  set startTime(String value);
   @override
   String? get parentTaskId;
   set parentTaskId(String? value);

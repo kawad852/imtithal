@@ -1405,6 +1405,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إبحث عن مهمة'**
   String get searchTask;
+
+  /// No description provided for @taskStartTime.
+  ///
+  /// In ar, this message translates to:
+  /// **'وقت بدء المهمة'**
+  String get taskStartTime;
 }
 
 class _AppLocalizationsDelegate
