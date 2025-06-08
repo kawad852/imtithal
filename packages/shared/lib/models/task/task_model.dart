@@ -13,6 +13,7 @@ class TaskModel with _$TaskModel {
   factory TaskModel({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? deliveryDate,
+    @TimestampSerializer() DateTime? assignedDate,
     @Default("") String deliveryTime,
     @Default(0) int allowedDurationInMinutes,
     @Default(0) int points,

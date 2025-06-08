@@ -25,32 +25,9 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   }
 
   void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) {
-    ApiService.fetch(
-      context,
-      callBack: () async {
-        final batch = kFirebaseInstant.batch();
-        List<String> userIds = selectedUsers.map((e) => e.id!).toList();
-        for (var e in selectedUsers) {
-          _task.user = LightUserModel(id: e.id!, departmentId: e.departmentId);
-          final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
-          final assignedTaskId = await RowIdHelper().getAssignedTaskId();
-          final assignedTaskDocRef = kFirebaseInstant.users
-              .doc(e.id)
-              .collection(MyCollections.assignedTasks)
-              .taskConvertor
-              .doc(assignedTaskId);
-          batch.set(assignedTaskDocRef, _task.copyWith(id: assignedTaskId, parentTaskId: _task.id));
-          batch.update(taskDocRef, {
-            MyFields.assignedUserIds: FieldValue.arrayUnion(userIds),
-            MyFields.inCompletedTasksCount: FieldValue.increment(1),
-          });
-        }
-        await batch.commit();
-        if (context.mounted) {
-          context.showSnackBar(context.appLocalization.savedSuccessfully);
-        }
-      },
-    );
+    List<String> userIds = selectedUsers.map((e) => e.id!).toList();
+    final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
+    taskDocRef.update({MyFields.assignedUserIds: FieldValue.arrayUnion(userIds)});
   }
 
   @override

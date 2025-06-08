@@ -29,6 +29,10 @@ mixin _$TaskModel {
   DateTime? get deliveryDate => throw _privateConstructorUsedError;
   @TimestampSerializer()
   set deliveryDate(DateTime? value) => throw _privateConstructorUsedError;
+  @TimestampSerializer()
+  DateTime? get assignedDate => throw _privateConstructorUsedError;
+  @TimestampSerializer()
+  set assignedDate(DateTime? value) => throw _privateConstructorUsedError;
   String get deliveryTime => throw _privateConstructorUsedError;
   set deliveryTime(String value) => throw _privateConstructorUsedError;
   int get allowedDurationInMinutes => throw _privateConstructorUsedError;
@@ -104,6 +108,7 @@ abstract class $TaskModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? deliveryDate,
+    @TimestampSerializer() DateTime? assignedDate,
     String deliveryTime,
     int allowedDurationInMinutes,
     int points,
@@ -154,6 +159,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
   $Res call({
     Object? createdAt = freezed,
     Object? deliveryDate = freezed,
+    Object? assignedDate = freezed,
     Object? deliveryTime = null,
     Object? allowedDurationInMinutes = null,
     Object? points = null,
@@ -192,6 +198,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                 freezed == deliveryDate
                     ? _value.deliveryDate
                     : deliveryDate // ignore: cast_nullable_to_non_nullable
+                        as DateTime?,
+            assignedDate:
+                freezed == assignedDate
+                    ? _value.assignedDate
+                    : assignedDate // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
             deliveryTime:
                 null == deliveryTime
@@ -383,6 +394,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? deliveryDate,
+    @TimestampSerializer() DateTime? assignedDate,
     String deliveryTime,
     int allowedDurationInMinutes,
     int points,
@@ -435,6 +447,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? deliveryDate = freezed,
+    Object? assignedDate = freezed,
     Object? deliveryTime = null,
     Object? allowedDurationInMinutes = null,
     Object? points = null,
@@ -473,6 +486,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
             freezed == deliveryDate
                 ? _value.deliveryDate
                 : deliveryDate // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
+        assignedDate:
+            freezed == assignedDate
+                ? _value.assignedDate
+                : assignedDate // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
         deliveryTime:
             null == deliveryTime
@@ -616,6 +634,7 @@ class _$TaskModelImpl extends _TaskModel {
   _$TaskModelImpl({
     @TimestampSerializer() this.createdAt,
     @TimestampSerializer() this.deliveryDate,
+    @TimestampSerializer() this.assignedDate,
     this.deliveryTime = "",
     this.allowedDurationInMinutes = 0,
     this.points = 0,
@@ -653,6 +672,9 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   @TimestampSerializer()
   DateTime? deliveryDate;
+  @override
+  @TimestampSerializer()
+  DateTime? assignedDate;
   @override
   @JsonKey()
   String deliveryTime;
@@ -726,7 +748,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, assignedUserIds: $assignedUserIds, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById, userModel: $userModel)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, assignedDate: $assignedDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, assignedUserIds: $assignedUserIds, repeatDays: $repeatDays, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById, userModel: $userModel)';
   }
 
   /// Create a copy of TaskModel
@@ -747,6 +769,7 @@ abstract class _TaskModel extends TaskModel {
   factory _TaskModel({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? deliveryDate,
+    @TimestampSerializer() DateTime? assignedDate,
     String deliveryTime,
     int allowedDurationInMinutes,
     int points,
@@ -789,6 +812,11 @@ abstract class _TaskModel extends TaskModel {
   DateTime? get deliveryDate;
   @TimestampSerializer()
   set deliveryDate(DateTime? value);
+  @override
+  @TimestampSerializer()
+  DateTime? get assignedDate;
+  @TimestampSerializer()
+  set assignedDate(DateTime? value);
   @override
   String get deliveryTime;
   set deliveryTime(String value);

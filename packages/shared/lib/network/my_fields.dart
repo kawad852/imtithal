@@ -22,8 +22,6 @@ class MyFields {
   static const String balance = 'balance';
   static const String idBranch = 'branch.id';
   static const String createTime = 'createTime';
-  static const String totalSubTasks = 'totalSubTasks';
-  static const String completedSubTasksCount = 'completedSubTasksCount';
   static const String images = 'images';
   static const String startedAt = 'startedAt';
   static const String endedAt = 'endedAt';
@@ -32,10 +30,8 @@ class MyFields {
   static const String subTasks = 'subTasks';
   static const String branch = 'branch';
   static const String companyId = 'companyId';
-  static const String totalAssignedUsers = 'totalAssignedUsers';
   static const String violation = 'violation';
   static const String assignedUserIds = 'assignedUserIds';
-  static const String inCompletedTasksCount = 'inCompletedTasksCount';
   static const String markedAsLate = 'markedAsLate';
   static const String deliveryDate = 'deliveryDate';
   static const String user_departmentId = 'user.departmentId';
@@ -47,4 +43,6 @@ class MyFields {
   static const String lastReply = 'lastReply';
   static const String languageCode = 'languageCode';
   static const String rowId = 'rowId';
+  static const String assignedDate = 'assignedDate';
+  static const String parentTaskId = 'parentTaskId';
 }

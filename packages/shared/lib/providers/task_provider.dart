@@ -15,7 +15,7 @@ class TaskProvider extends ChangeNotifier {
 
   Query<TaskModel> getAssignedTasksQuery(String id) {
     return kFirebaseInstant.assignedTasksQuery.orderByCreatedAtDesc.where(
-      MyFields.id,
+      MyFields.parentTaskId,
       isEqualTo: id,
     );
   }
