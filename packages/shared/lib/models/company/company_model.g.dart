@@ -70,7 +70,12 @@ _$RowIdModelImpl _$$RowIdModelImplFromJson(Map<String, dynamic> json) =>
     _$RowIdModelImpl(
       userId: (json['userId'] as num?)?.toInt() ?? 1,
       taskId: (json['taskId'] as num?)?.toInt() ?? 1,
+      assignedTaskId: (json['assignedTaskId'] as num?)?.toInt() ?? 1,
     );
 
 Map<String, dynamic> _$$RowIdModelImplToJson(_$RowIdModelImpl instance) =>
-    <String, dynamic>{'userId': instance.userId, 'taskId': instance.taskId};
+    <String, dynamic>{
+      'userId': instance.userId,
+      'taskId': instance.taskId,
+      'assignedTaskId': instance.assignedTaskId,
+    };

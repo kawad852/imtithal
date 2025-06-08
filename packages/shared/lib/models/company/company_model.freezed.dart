@@ -768,6 +768,7 @@ RowIdModel _$RowIdModelFromJson(Map<String, dynamic> json) {
 mixin _$RowIdModel {
   int get userId => throw _privateConstructorUsedError;
   int get taskId => throw _privateConstructorUsedError;
+  int get assignedTaskId => throw _privateConstructorUsedError;
 
   /// Serializes this RowIdModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -786,7 +787,7 @@ abstract class $RowIdModelCopyWith<$Res> {
     $Res Function(RowIdModel) then,
   ) = _$RowIdModelCopyWithImpl<$Res, RowIdModel>;
   @useResult
-  $Res call({int userId, int taskId});
+  $Res call({int userId, int taskId, int assignedTaskId});
 }
 
 /// @nodoc
@@ -803,7 +804,11 @@ class _$RowIdModelCopyWithImpl<$Res, $Val extends RowIdModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? userId = null, Object? taskId = null}) {
+  $Res call({
+    Object? userId = null,
+    Object? taskId = null,
+    Object? assignedTaskId = null,
+  }) {
     return _then(
       _value.copyWith(
             userId:
@@ -815,6 +820,11 @@ class _$RowIdModelCopyWithImpl<$Res, $Val extends RowIdModel>
                 null == taskId
                     ? _value.taskId
                     : taskId // ignore: cast_nullable_to_non_nullable
+                        as int,
+            assignedTaskId:
+                null == assignedTaskId
+                    ? _value.assignedTaskId
+                    : assignedTaskId // ignore: cast_nullable_to_non_nullable
                         as int,
           )
           as $Val,
@@ -831,7 +841,7 @@ abstract class _$$RowIdModelImplCopyWith<$Res>
   ) = __$$RowIdModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int userId, int taskId});
+  $Res call({int userId, int taskId, int assignedTaskId});
 }
 
 /// @nodoc
@@ -847,7 +857,11 @@ class __$$RowIdModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? userId = null, Object? taskId = null}) {
+  $Res call({
+    Object? userId = null,
+    Object? taskId = null,
+    Object? assignedTaskId = null,
+  }) {
     return _then(
       _$RowIdModelImpl(
         userId:
@@ -860,6 +874,11 @@ class __$$RowIdModelImplCopyWithImpl<$Res>
                 ? _value.taskId
                 : taskId // ignore: cast_nullable_to_non_nullable
                     as int,
+        assignedTaskId:
+            null == assignedTaskId
+                ? _value.assignedTaskId
+                : assignedTaskId // ignore: cast_nullable_to_non_nullable
+                    as int,
       ),
     );
   }
@@ -868,7 +887,7 @@ class __$$RowIdModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RowIdModelImpl implements _RowIdModel {
-  _$RowIdModelImpl({this.userId = 1, this.taskId = 1});
+  _$RowIdModelImpl({this.userId = 1, this.taskId = 1, this.assignedTaskId = 1});
 
   factory _$RowIdModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RowIdModelImplFromJson(json);
@@ -879,10 +898,13 @@ class _$RowIdModelImpl implements _RowIdModel {
   @override
   @JsonKey()
   final int taskId;
+  @override
+  @JsonKey()
+  final int assignedTaskId;
 
   @override
   String toString() {
-    return 'RowIdModel(userId: $userId, taskId: $taskId)';
+    return 'RowIdModel(userId: $userId, taskId: $taskId, assignedTaskId: $assignedTaskId)';
   }
 
   @override
@@ -891,12 +913,14 @@ class _$RowIdModelImpl implements _RowIdModel {
         (other.runtimeType == runtimeType &&
             other is _$RowIdModelImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.taskId, taskId) || other.taskId == taskId));
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.assignedTaskId, assignedTaskId) ||
+                other.assignedTaskId == assignedTaskId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, taskId);
+  int get hashCode => Object.hash(runtimeType, userId, taskId, assignedTaskId);
 
   /// Create a copy of RowIdModel
   /// with the given fields replaced by the non-null parameter values.
@@ -913,7 +937,11 @@ class _$RowIdModelImpl implements _RowIdModel {
 }
 
 abstract class _RowIdModel implements RowIdModel {
-  factory _RowIdModel({final int userId, final int taskId}) = _$RowIdModelImpl;
+  factory _RowIdModel({
+    final int userId,
+    final int taskId,
+    final int assignedTaskId,
+  }) = _$RowIdModelImpl;
 
   factory _RowIdModel.fromJson(Map<String, dynamic> json) =
       _$RowIdModelImpl.fromJson;
@@ -922,6 +950,8 @@ abstract class _RowIdModel implements RowIdModel {
   int get userId;
   @override
   int get taskId;
+  @override
+  int get assignedTaskId;
 
   /// Create a copy of RowIdModel
   /// with the given fields replaced by the non-null parameter values.

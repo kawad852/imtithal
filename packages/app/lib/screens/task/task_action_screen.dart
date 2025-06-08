@@ -33,12 +33,13 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
         for (var e in selectedUsers) {
           _task.user = LightUserModel(id: e.id!, departmentId: e.departmentId);
           final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
+          final assignedTaskId = await RowIdHelper().getAssignedTaskId();
           final assignedTaskDocRef = kFirebaseInstant.users
               .doc(e.id)
               .collection(MyCollections.assignedTasks)
               .taskConvertor
-              .doc(_task.id);
-          batch.set(assignedTaskDocRef, _task);
+              .doc(assignedTaskId);
+          batch.set(assignedTaskDocRef, _task.copyWith(id: assignedTaskId, parentTaskId: _task.id));
           batch.update(taskDocRef, {
             MyFields.assignedUserIds: FieldValue.arrayUnion(userIds),
             MyFields.inCompletedTasksCount: FieldValue.increment(1),

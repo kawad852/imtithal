@@ -14,8 +14,6 @@ class RowIdHelper {
       final rowId = snapshot.data()!.rowId!;
       newOrderId = onValueUpdate(rowId);
       final field = '${MyFields.rowId}.$key';
-      print("companyId::: ${companyId}");
-      print("field::: ${field}");
       transaction.update(orderIdDocumentRef, {field: FieldValue.increment(1)});
     });
     return '$newOrderId';
@@ -27,6 +25,12 @@ extension RowIdExtension on RowIdHelper {
     'taskId',
     onValueUpdate: (row) {
       return row.taskId;
+    },
+  );
+  Future<String> getAssignedTaskId() async => get(
+    'assignedTaskId',
+    onValueUpdate: (row) {
+      return row.assignedTaskId;
     },
   );
   Future<String> getUserId({String? companyId}) async => get(
