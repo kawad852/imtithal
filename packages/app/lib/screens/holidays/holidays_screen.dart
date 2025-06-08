@@ -9,6 +9,18 @@ class HolidaysScreen extends StatefulWidget {
 }
 
 class _HolidaysScreenState extends State<HolidaysScreen> {
+  late Query<HolidayModel> _query;
+
+  void _initialize() {
+    _query = kFirebaseInstant.companyHolidays.orderByCreatedAtDesc;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,13 +56,21 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
               ),
             ),
             Expanded(
-              child: ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(height: 11),
-                itemCount: 20,
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                itemBuilder: (context, index) {
-                  return const HolidayCard();
+              child: CustomFirestoreQueryBuilder(
+                query: _query,
+                onComplete: (context, snapshot) {
+                  return ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(height: 11),
+                    itemCount: snapshot.docs.length,
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (context, index) {
+                      if (snapshot.isLoadingMore(index)) {
+                        return const FPLoading();
+                      }
+                      final holiday = snapshot.docs[index].data();
+                      return HolidayCard(holiday: holiday);
+                    },
+                  );
                 },
               ),
             ),

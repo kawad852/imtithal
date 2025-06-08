@@ -1,7 +1,9 @@
 import 'package:shared/shared.dart';
 
 class HolidayCard extends StatelessWidget {
-  const HolidayCard({super.key});
+  final HolidayModel holiday;
+
+  const HolidayCard({super.key, required this.holiday});
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +24,19 @@ class HolidayCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "${context.appLocalization.leaveNo} 21#",
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: context.colorPalette.grey8B8,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                // Text(
+                //   "${context.appLocalization.leaveNo} 21#",
+                //   overflow: TextOverflow.ellipsis,
+                //   style: TextStyle(
+                //     color: context.colorPalette.grey8B8,
+                //     fontSize: 12,
+                //     fontWeight: FontWeight.w400,
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Text(
-                    "اجازة رسمية - العيد الوطني",
+                    holiday.title,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: context.colorPalette.black252,
@@ -44,7 +46,7 @@ class HolidayCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "${context.appLocalization.leaveSetFromDate} 01.05.2025 ${context.appLocalization.toDate} 03.05.2025",
+                  holiday.description,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: context.colorPalette.grey8B8,
@@ -52,10 +54,21 @@ class HolidayCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
+                AutoSizeText(
+                  "${context.appLocalization.leaveSetFromDate} ${holiday.startDate!.getDefaultFormattedDate(context)} ${context.appLocalization.toDate} ${holiday.endDate!.getDefaultFormattedDate(context)}",
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  minFontSize: 8,
+                  maxFontSize: 12,
+                  style: TextStyle(
+                    color: context.colorPalette.grey8B8,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
           ),
-          const Icon(Icons.arrow_forward_ios_rounded),
+          // const Icon(Icons.arrow_forward_ios_rounded),
         ],
       ),
     );

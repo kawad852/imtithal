@@ -70,7 +70,7 @@ class _HolidayInputScreenState extends State<HolidayInputScreen> {
                 title: context.appLocalization.leaveTitle,
                 child: TextEditor(
                   onChanged: (value) => _holiday.title = value!,
-                  hintText: context.appLocalization.taskTitleToComplyWith,
+                  // hintText: context.appLocalization.taskTitleToComplyWith,
                 ),
               ),
               Padding(
@@ -79,7 +79,7 @@ class _HolidayInputScreenState extends State<HolidayInputScreen> {
                   title: context.appLocalization.leaveDescription,
                   child: TextEditor(
                     onChanged: (value) => _holiday.description = value!,
-                    hintText: context.appLocalization.requiredTaskDescription,
+                    // hintText: context.appLocalization.requiredTaskDescription,
                   ),
                 ),
               ),
