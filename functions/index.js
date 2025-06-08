@@ -261,84 +261,117 @@ exports.assignTasks = onSchedule(
     memory: "256MiB",
   },
   async () => {
-  try {
-    const now = dayjs();
-    const currentDay = now.format("dddd"); // e.g. "Sunday"
-    const currentDate = now.toDate();
-  //  const currentTime = now.format("HH:mm");
+    try {
+      const now = dayjs();
+      const todayDateStr = now.format("YYYY-MM-DD");
+      const currentDay = now.format("dddd");
+      const currentDate = now.toDate();
 
-    const tasksSnapshot = await db.collection("tasks").get();
+      const tasksSnapshot = await db.collection("tasks").get();
 
-    for (const doc of tasksSnapshot.docs) {
-      const task = doc.data();
-      const startDate = task.startDate ? task.startDate.toDate() : null;
-      const repeatType = task.repeatType;
-      const repeatDays = task.repeatDays || [];
+      for (const doc of tasksSnapshot.docs) {
+        const task = doc.data();
+        const startDate = task.startDate ? task.startDate.toDate() : null;
+        const repeatType = task.repeatType;
+        const repeatDays = task.repeatDays || [];
 
-      const isDue = (() => {
-        if (!repeatType || repeatType === "ONCE") {
-          return startDate && dayjs(startDate).isSame(now, "day");
+        const isDue = (() => {
+          if (!repeatType || repeatType === "ONCE") {
+            return startDate && dayjs(startDate).isSame(now, "day");
+          }
+          if (repeatType === "DAILY") return true;
+          if (repeatType === "WEEKLY" || repeatType === "MONTHLY") {
+            return repeatDays.includes(currentDay);
+          }
+          return false;
+        })();
+
+        if (!isDue) continue;
+
+        // Check for holidays
+        const holidaySnap = await db
+          .collection("companies")
+          .doc(task.companyId)
+          .collection("holidays")
+          .where("startDate", "<=", currentDate)
+          .where("endDate", ">=", currentDate)
+          .get();
+
+        if (!holidaySnap.empty) {
+          console.log(`Holiday found for company ${task.companyId}, skipping task ${task.id}`);
+          continue;
         }
-        if (repeatType === "DAILY") return true;
-        if (repeatType === "WEEKLY" || repeatType === "MONTHLY") {
-          return repeatDays.includes(currentDay);
+
+        // 🔹 Fetch and update rowId from company
+        const companyRef = db.collection("companies").doc(task.companyId);
+        const companyDoc = await companyRef.get();
+        const companyData = companyDoc.data();
+        const rowId = (companyData && companyData.rowId) ? companyData.rowId : { assignedTaskId: 1 };
+
+        let currentAssignedTaskId = rowId.assignedTaskId;
+
+        // Assign to each user
+        for (const userId of task.assignedUserIds) {
+          const userRef = db.collection("users").doc(userId);
+          const assignedTasksRef = userRef.collection("assignedTasks");
+
+          // 🔸 Check if task is already assigned today
+          const alreadyAssigned = await assignedTasksRef
+            .where("parentTaskId", "==", task.id)
+            .where("assignedDate", "==", todayDateStr)
+            .limit(1)
+            .get();
+
+          if (!alreadyAssigned.empty) {
+            console.log(`Task ${task.id} already assigned to user ${userId} today`);
+            continue;
+          }
+
+          // 🔸 Assign task with incremented ID
+          const assignedTaskId = `${currentAssignedTaskId}`;
+          const assignedDocRef = assignedTasksRef.doc(assignedTaskId);
+
+          const taskToAssign = {
+            ...task,
+            id: assignedTaskId,
+            assignedAt: admin.firestore.FieldValue.serverTimestamp(),
+            assignedDate: todayDateStr,
+            parentTaskId: task.id,
+          };
+
+          await assignedDocRef.set(taskToAssign);
+          currentAssignedTaskId++;
+
+          // 🔸 Send notification
+          const userDoc = await userRef.get();
+          const user = userDoc.data();
+          const deviceToken = user.deviceToken;
+
+          if (deviceToken) {
+            await admin.messaging().send({
+              token: deviceToken,
+              notification: {
+                title: "New Task Assigned",
+                body: `You have a new task: ${task.title}`,
+              },
+              data: {
+                assignedTaskId,
+                parentTaskId: task.id,
+              },
+            });
+          }
         }
-        return false;
-      })();
 
-      if (!isDue) continue;
-
-      // Check if it's a holiday
-      const holidaySnap = await db
-        .collection("companies")
-        .doc(task.companyId)
-        .collection("holidays")
-        .where("startDate", "<=", currentDate)
-        .where("endDate", ">=", currentDate)
-        .get();
-
-      if (!holidaySnap.empty) {
-        console.log(`Holiday found for company ${task.companyId}, skipping task ${task.id}`);
-        continue;
+        // 🔸 Update company.rowId.assignedTaskId
+        await companyRef.update({
+          "rowId.assignedTaskId": currentAssignedTaskId,
+        });
       }
 
-      // Assign task to each user
-      for (const userId of task.assignedUserIds) {
-        const userRef = db.collection("users").doc(userId);
-        const assignedTasksRef = userRef.collection("assignedTasks").doc(); // 🔹 Auto-generated ID
-
-        const taskToAssign = {
-          ...task,
-          assignedAt: admin.firestore.FieldValue.serverTimestamp(),
-          parentTaskId: task.id, // 🔹 Reference to original task
-          id: assignedTasksRef.id, // 🔹 Store assigned task's new ID
-        };
-
-        await assignedTasksRef.set(taskToAssign);
-
-        // Send notification
-        const userDoc = await userRef.get();
-        const user = userDoc.data();
-        const deviceToken = user.deviceToken;
-
-        if (deviceToken) {
-          await admin.messaging().send({
-            token: deviceToken,
-            notification: {
-              title: "New Task Assigned",
-              body: `You have a new task: ${task.title}`,
-            },
-            data: {
-              assignedTaskId: assignedTasksRef.id,
-              parentTaskId: task.id,
-            },
-          });
-        }
-      }
+      return null;
+    } catch (error) {
+      console.error("❌ Error assigning tasks:", error);
+      throw error;
     }
-    return null;
-  } catch (error) {
-    console.error("❌ Error marking tasks as late:", error);
-    throw error;
-  }
-});
+  },
+);
