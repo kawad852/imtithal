@@ -116,6 +116,38 @@ exports.onDepartmentDeleted = onDocumentDeleted({
 });
 
 
+exports.onTasksUpdate = onDocumentUpdated({
+  region: "europe-west3",
+  document: 'tasks/{taskId}',
+}, async (event) => {
+  const beforeData = event.data.before.data();
+  const newData = event.data.after.data();
+  const taskId = event.params.taskId;
+
+  const beforeAssigned = beforeData.assignedUserIds || [];
+  const afterAssigned = newData.assignedUserIds || [];
+
+  const removedUserIds = beforeAssigned.filter((id) => !afterAssigned.includes(id));
+
+  const db = admin.firestore();
+
+  const deletePromises = removedUserIds.map(async (userId) => {
+    const assignedTasksRef = db
+      .collection('users')
+      .doc(userId)
+      .collection('assignedTasks')
+      .where('parentTaskId', '==', taskId);
+
+    const snapshot = await assignedTasksRef.get();
+    const deletions = snapshot.docs.map((doc) => doc.ref.delete());
+
+    return Promise.all(deletions);
+  });
+
+  await Promise.all(deletePromises);
+  return;
+});
+
 /**
  * Scheduled function to mark assigned tasks as late.
  */

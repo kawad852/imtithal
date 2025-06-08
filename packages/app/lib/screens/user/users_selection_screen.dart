@@ -64,6 +64,7 @@ class _UsersSelectionScreenState extends State<UsersSelectionScreen> {
                 equal
                     ? null
                     : () {
+                      print("_selectedUsers:: $_selectedUsers");
                       Navigator.pop(context, _selectedUsers);
                     },
           ),
