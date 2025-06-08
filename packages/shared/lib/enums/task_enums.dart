@@ -51,13 +51,13 @@ enum RepeatType {
 }
 
 enum TaskDaysEnum {
-  sunday('sunday'),
-  monday('monday'),
-  tuesday('tuesday'),
-  wednesday('wednesday'),
-  thursday('thursday'),
-  friday('friday'),
-  saturday('saturday');
+  sunday('Sunday'),
+  monday('Monday'),
+  tuesday('Tuesday'),
+  wednesday('Wednesday'),
+  thursday('Thursday'),
+  friday('Friday'),
+  saturday('Saturday');
 
   final String value;
 
