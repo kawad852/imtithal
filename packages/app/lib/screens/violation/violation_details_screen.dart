@@ -68,20 +68,23 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
 
         return Scaffold(
           appBar: AppBar(),
-          bottomNavigationBar: BottomButton(
-            onPressed: () {
-              context.showBottomSheet(
-                context,
-                builder: (context) {
-                  return ReplySheet(
-                    violationDocRef: _violationDocRef,
-                    replyCollectionRef: _replyCollectionRef,
-                  );
-                },
-              );
-            },
-            text: context.appLocalization.addReply,
-          ),
+          bottomNavigationBar:
+              violation.status == ViolationStatus.pending.value
+                  ? BottomButton(
+                    onPressed: () {
+                      context.showBottomSheet(
+                        context,
+                        builder: (context) {
+                          return ReplySheet(
+                            violationDocRef: _violationDocRef,
+                            replyCollectionRef: _replyCollectionRef,
+                          );
+                        },
+                      );
+                    },
+                    text: context.appLocalization.addReply,
+                  )
+                  : null,
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             children: [

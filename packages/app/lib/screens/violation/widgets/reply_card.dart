@@ -80,14 +80,17 @@ class ReplyCard extends StatelessWidget {
             ),
           ),
           if (reply.status != ViolationStatus.pending.value)
-            Text(
-              context.isRTL
-                  ? _getStatusArabicLabel
-                  : "${context.appLocalization.violation} ${ViolationStatus.getLabel(reply.status, context)}",
-              style: TextStyle(
-                color: context.colorPalette.primary,
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                context.isRTL
+                    ? _getStatusArabicLabel
+                    : "${context.appLocalization.violation} ${ViolationStatus.getLabel(reply.status, context)}",
+                style: TextStyle(
+                  color: context.colorPalette.primary,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           if (reply.attachments?.isNotEmpty ?? false) AttachmentsList(files: reply.attachments!),

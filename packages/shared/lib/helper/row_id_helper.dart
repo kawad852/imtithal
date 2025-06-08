@@ -40,4 +40,10 @@ extension RowIdExtension on RowIdHelper {
       return row.userId;
     },
   );
+  Future<String> getViolationId() async => get(
+    'violationId',
+    onValueUpdate: (row) {
+      return row.violationId;
+    },
+  );
 }

@@ -41,6 +41,7 @@ class RowIdModel with _$RowIdModel {
     @Default(1) int userId,
     @Default(1) int taskId,
     @Default(1) int assignedTaskId,
+    @Default(1) int violationId,
   }) = _RowIdModel;
 
   factory RowIdModel.fromJson(Map<String, dynamic> json) => _$RowIdModelFromJson(json);

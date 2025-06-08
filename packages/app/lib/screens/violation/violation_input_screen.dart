@@ -31,7 +31,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
       ApiService.fetch(
         context,
         callBack: () async {
-          _violation.id = kUUID;
+          _violation.id = await RowIdHelper().getViolationId();
           _violation.createdAt = kNowDate;
           _violation.companyId = kCompanyId;
           final batch = kFirebaseInstant.batch();
