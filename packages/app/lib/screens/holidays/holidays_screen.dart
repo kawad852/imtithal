@@ -1,23 +1,21 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
-class LeavesScreen extends StatefulWidget {
-  const LeavesScreen({super.key});
+class HolidaysScreen extends StatefulWidget {
+  const HolidaysScreen({super.key});
 
   @override
-  State<LeavesScreen> createState() => _LeavesScreenState();
+  State<HolidaysScreen> createState() => _HolidaysScreenState();
 }
 
-class _LeavesScreenState extends State<LeavesScreen> {
+class _HolidaysScreenState extends State<HolidaysScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-      ),
+      appBar: AppBar(forceMaterialTransparency: true),
       bottomNavigationBar: BottomButton(
         onPressed: () {
-          context.navigate((context) => const LeaveInputScreen());
+          context.navigate((context) => const HolidayInputScreen());
         },
         text: context.appLocalization.addNewLeave,
       ),
@@ -52,7 +50,7 @@ class _LeavesScreenState extends State<LeavesScreen> {
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
                 itemBuilder: (context, index) {
-                  return const LeaveCard();
+                  return const HolidayCard();
                 },
               ),
             ),

@@ -22,4 +22,9 @@ extension FireConvertors on Query {
     fromFirestore: (snapshot, _) => ViolationReplyModel.fromJson(snapshot.data()!),
     toFirestore: (snapshot, _) => snapshot.toJson(),
   );
+
+  get holidayConvertor => withConverter<HolidayModel>(
+    fromFirestore: (snapshot, _) => HolidayModel.fromJson(snapshot.data()!),
+    toFirestore: (snapshot, _) => snapshot.toJson(),
+  );
 }

@@ -1,7 +1,7 @@
 import 'package:shared/shared.dart';
 
-class LeaveCard extends StatelessWidget {
-  const LeaveCard({super.key});
+class HolidayCard extends StatelessWidget {
+  const HolidayCard({super.key});
 
   @override
   Widget build(BuildContext context) {

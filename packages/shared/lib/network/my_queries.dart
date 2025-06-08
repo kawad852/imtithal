@@ -20,6 +20,9 @@ extension CollectionReferenceExtension on FirebaseFirestore {
   CollectionReference<TaskModel> userAssignedTasks(String userId) =>
       users.doc(userId).collection(MyCollections.assignedTasks).taskConvertor;
 
+  CollectionReference<HolidayModel> get companyHolidays =>
+      companies.doc(kCompanyId).collection(MyCollections.holidays).holidayConvertor;
+
   CollectionReference<CountryModel> get countries =>
       collection("countries").withConverter<CountryModel>(
         fromFirestore: (snapshot, _) => CountryModel.fromJson(snapshot.data()!),

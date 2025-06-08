@@ -70,6 +70,7 @@ export 'helper/web_scroll_behavior.dart';
 export 'models/country_code_model.dart';
 export 'models/department/department_model.dart';
 export 'models/expense_model.dart';
+export 'models/holiday/holiday_model.dart';
 export 'models/message/message_model.dart';
 export 'models/operation_info_model.dart';
 export 'models/permission/permission_model.dart';

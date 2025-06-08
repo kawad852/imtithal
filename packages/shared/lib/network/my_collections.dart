@@ -26,4 +26,5 @@ class MyCollections {
   static const String notifications = 'notifications';
   static const String roles = 'roles';
   static const String replies = 'replies';
+  static const String holidays = 'holidays';
 }

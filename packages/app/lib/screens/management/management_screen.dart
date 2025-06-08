@@ -92,7 +92,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
                   children: [
                     ManageButton(
                       onTap: () {
-                        context.navigate((context) => const LeavesScreen());
+                        context.navigate((context) => const HolidaysScreen());
                       },
                       icon: MyIcons.emoji,
                       title: context.appLocalization.leavesAndHolidays,
