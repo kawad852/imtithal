@@ -27,7 +27,6 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) {
     List<String> userIds = selectedUsers.map((e) => e.id!).toList();
     final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
-    print("ids::: $userIds");
     taskDocRef.update({
       MyFields.assignedUserIds: userIds.isEmpty ? [] : FieldValue.arrayUnion(userIds),
     });
