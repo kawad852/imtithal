@@ -18,14 +18,17 @@ class _AppNavBarState extends State<AppNavBar> {
   final items = [
     MyIcons.home,
     MyIcons.calendar,
-    if (!kIsEmployee) ...[MyIcons.add, MyIcons.building],
+    if (!kIsEmployee && !kIsDepartmentManager) ...[MyIcons.add, MyIcons.building],
     MyIcons.profile,
   ];
 
   final screens = [
     const HomeScreen(),
     const CalenderScreen(),
-    if (!kIsEmployee) ...[const SizedBox.shrink(), const ManagementScreen()],
+    if (!kIsEmployee && !kIsDepartmentManager) ...[
+      const SizedBox.shrink(),
+      const ManagementScreen(),
+    ],
     const ProfileScreen(),
   ];
 
