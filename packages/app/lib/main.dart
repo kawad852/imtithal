@@ -1,5 +1,4 @@
 import 'package:app/screens_exports.dart';
-import 'package:shared/models/company/company_model.dart';
 import 'package:shared/providers/task_provider.dart';
 import 'package:shared/shared.dart';
 
@@ -109,17 +108,6 @@ class _MyAppState extends State<MyApp> {
                 ),
                 initialData: const [],
                 updateShouldNotify: (initialValue, value) {
-                  return true;
-                },
-              ),
-              StreamProvider<CompanyModel>.value(
-                key: ValueKey(userProvider.isAuthenticated),
-                value: kFirebaseInstant.companies.doc(kCompanyId).snapshots().map((e) {
-                  return e.data()!;
-                }),
-                initialData: MySharedPreferences.company ?? CompanyModel(),
-                updateShouldNotify: (initialValue, value) {
-                  MySharedPreferences.company = value;
                   return true;
                 },
               ),

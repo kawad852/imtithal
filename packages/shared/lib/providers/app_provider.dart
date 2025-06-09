@@ -38,4 +38,10 @@ class AppProvider extends ChangeNotifier {
       debugPrint('countryCode:: $countryCode');
     }
   }
+
+  Future<void> fetchCompany() async {
+    kFirebaseInstant.companies.doc(kCompanyId).get().then((value) {
+      MySharedPreferences.company = value.data()!;
+    });
+  }
 }

@@ -67,6 +67,10 @@ class UserProvider extends ChangeNotifier {
           return;
         }
 
+        if (context.mounted) {
+          await context.appProvider.fetchCompany();
+        }
+
         notifyListeners();
 
         if (context.mounted) {

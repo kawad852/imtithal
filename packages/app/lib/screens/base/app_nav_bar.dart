@@ -63,6 +63,7 @@ class _AppNavBarState extends State<AppNavBar> {
     _pageController = PageController();
     cloudMessagingService.requestPermission(context);
     context.userProvider.updateDeviceToken(context);
+    context.appProvider.fetchCompany();
   }
 
   @override
