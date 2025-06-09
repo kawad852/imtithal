@@ -113,7 +113,7 @@ class _UserScreenState extends State<UserScreen> {
               ),
               CustomFirestoreQueryBuilder(
                 key: ValueKey(_selectedDate),
-                query: context.taskProvider.getAssignedTasksFromDate(context, _selectedDate),
+                query: TasksService.fetchTasksList(context, userId: user.id),
                 isSliver: true,
                 onComplete: (context, snapshot) {
                   return SliverPadding(

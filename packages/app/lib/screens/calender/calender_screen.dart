@@ -78,7 +78,8 @@ class _CalenderScreenState extends State<CalenderScreen> {
           Expanded(
             child: CustomFirestoreQueryBuilder(
               key: ValueKey(_selectedDate),
-              query: context.taskProvider.getAssignedTasksFromDate(context, _selectedDate),
+              // query: context.taskProvider.getAssignedTasksFromDate(context, _selectedDate),
+              query: TasksService.fetchTasksList(context, date: _selectedDate),
               onComplete: (context, snapshot) {
                 return ListView.separated(
                   separatorBuilder: (context, index) => const SizedBox(height: 10),

@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late DateTime _endDate;
 
   void _initialize() {
-    _assignedTasksQuery = context.taskProvider.getTasks(context);
+    _assignedTasksQuery = TasksService.fetchTasksList(context);
   }
 
   @override

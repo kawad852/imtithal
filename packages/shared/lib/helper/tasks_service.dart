@@ -5,11 +5,12 @@ class TasksService {
   static Query<T> getQuery<T>(
     BuildContext context, {
     required String? status,
-    required DateTime start,
-    required DateTime end,
+    required (DateTime, DateTime)? rangeDates,
+    required DateTime? date,
     required String? userId,
     required String? departmentId,
     required bool late,
+    bool isEvaluation = false,
   }) {
     late Query<TaskModel> tasksDocRef;
     late Query<ViolationModel> violationsDocRef;
@@ -30,9 +31,9 @@ class TasksService {
           context,
           filter,
           userId: userId,
+          date: date,
+          rangeDates: rangeDates,
           departmentId: departmentId,
-          start: start,
-          end: end,
         ),
       );
       return tasksQuery.orderByDeliveryDateDesc as Query<T>;
@@ -44,24 +45,24 @@ class TasksService {
             null,
             userId: userId,
             departmentId: departmentId,
-            start: start,
-            end: end,
+            date: date,
+            rangeDates: rangeDates,
             timeField: MyFields.createdAt,
           ),
         );
         return violationsQuery.orderByCreatedAtDesc as Query<T>;
       } else {
         final filter = status != null ? Filter(MyFields.status, isEqualTo: status) : null;
-        final filter2 = Filter(MyFields.violation, isNull: true);
+        final filter2 = isEvaluation ? Filter(MyFields.violation, isNull: true) : null;
         tasksQuery = tasksDocRef.where(
           _getFilter(
             context,
             filter,
             filter2: filter2,
             userId: userId,
+            date: date,
+            rangeDates: rangeDates,
             departmentId: departmentId,
-            start: start,
-            end: end,
           ),
         );
         return tasksQuery.orderByDeliveryDateDesc as Query<T>;
@@ -73,19 +74,33 @@ class TasksService {
     BuildContext context,
     Filter? filter, {
     Filter? filter2,
-    required DateTime start,
-    required DateTime end,
+    required (DateTime, DateTime)? rangeDates,
+    required DateTime? date,
     required String? userId,
     required String? departmentId,
     String timeField = MyFields.deliveryDate,
   }) {
-    final startDate = DateTime(start.year, start.month, 1);
-    final endDate = startDate.add(Duration(days: end.day + 1));
-    final startDateFilter = Filter(
+    late Filter startDateFilter;
+    late Filter endDateFilter;
+    DateTime? startDate;
+    DateTime? endDate;
+    if (date != null) {
+      startDate = DateTime(date.year, date.month, date.day);
+      endDate = startDate.add(const Duration(days: 1));
+    } else if (rangeDates != null) {
+      final start = rangeDates.$1;
+      final end = rangeDates.$2;
+      startDate = DateTime(start.year, start.month, 1);
+      endDate = startDate.add(Duration(days: end.day + 1));
+    }
+    startDateFilter = Filter(
       timeField,
-      isGreaterThanOrEqualTo: Timestamp.fromDate(startDate),
+      isGreaterThanOrEqualTo: startDate != null ? Timestamp.fromDate(startDate) : null,
     );
-    final endDateFilter = Filter(timeField, isLessThan: Timestamp.fromDate(endDate));
+    endDateFilter = Filter(
+      timeField,
+      isLessThan: endDate != null ? Timestamp.fromDate(endDate) : null,
+    );
     if (userId != null) {
       return Filter.and(startDateFilter, endDateFilter, filter, filter2);
     } else if (departmentId != null) {
@@ -99,5 +114,20 @@ class TasksService {
     }
   }
 
-  static fetchTasks(BuildContext context) {}
+  static Query<TaskModel> fetchTasksList(
+    BuildContext context, {
+    DateTime? date,
+    (DateTime, DateTime)? rangeDates,
+    String? userId,
+  }) {
+    return TasksService.getQuery(
+      context,
+      status: null,
+      rangeDates: rangeDates,
+      date: date,
+      userId: userId ?? (kIsEmployee ? kUserId : null),
+      departmentId: kIsDepartmentManager ? kUser.departmentId : null,
+      late: false,
+    );
+  }
 }

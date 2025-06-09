@@ -18,7 +18,6 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   String get _taskId => widget.id ?? widget.task!.id;
 
   void _initialize() {
-    print("id:::$_taskId");
     final taskQuery = context.taskProvider.getTaskDocRef(_taskId);
     var assignedTasksQuery = context.taskProvider.getAssignedTasksQuery(_taskId).limit(10);
     _streams =

@@ -49,11 +49,12 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
     final query = TasksService.getQuery<T>(
       context,
       status: status,
-      start: _startDate,
-      end: _endDate,
+      rangeDates: (_startDate, _endDate),
+      date: null,
       userId: userId,
       departmentId: departmentId,
       late: late,
+      isEvaluation: true,
     );
 
     final c = await query.count().get().then((value) {
@@ -185,7 +186,7 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
       //   startDate: kNowDate,
       //   endDate: kNowDate,
       // ),
-      onError: (error) => const SizedBox.shrink(),
+      onError: (error) => const Center(child: Icon(Icons.error)),
       onComplete: (context, snapshot) {
         final inCompletedTasks = snapshot.data![0] as (int, double);
         final completedTasks = snapshot.data![1] as (int, double);
