@@ -61,6 +61,7 @@ export 'helper/row_id_helper.dart';
 export 'helper/scroll_extension.dart';
 export 'helper/separator.dart';
 export 'helper/storage_service.dart';
+export 'helper/tasks_service.dart';
 export 'helper/time_stamp_serializer.dart';
 export 'helper/translation_extension.dart';
 export 'helper/ui_helper.dart';

@@ -30,7 +30,6 @@ class TaskProvider extends ChangeNotifier {
       final users = context.read<List<UserModel>>();
       final userIds =
           users.where((e) => e.departmentId == kUser.departmentId).map((e) => e.id!).toList();
-      print("userIds:: $userIds");
       if (userIds.isEmpty) {
         return null;
       }
