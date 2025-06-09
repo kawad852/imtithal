@@ -117,6 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 13),
                       child: StatusSummeryBubbles(
+                        userId: kIsEmployee ? kUserId : null,
                         inCompletedTasksCount: inCompletedTasks.$1,
                         completedTasksCount: completedTasks.$1,
                         lateTasksCount: lateTasks.$1,

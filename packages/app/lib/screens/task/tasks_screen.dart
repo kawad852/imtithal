@@ -25,34 +25,18 @@ class TasksScreen extends StatefulWidget {
 class _TasksScreenState extends State<TasksScreen> {
   late Query<TaskModel> _query;
 
-  String? get _departmentId => widget.departmentId;
   String? get _userId => widget.userId;
 
-  Query<TaskModel> get _getQuery {
-    late Query<TaskModel> query;
-    late Filter filter;
-    late Filter statusFilter;
-    if (widget.late) {
-      statusFilter = Filter(MyFields.markedAsLate, isEqualTo: true);
-    } else {
-      statusFilter = Filter(MyFields.status, isEqualTo: widget.status.value);
-    }
-    filter = Filter.and(
-      statusFilter,
-      _departmentId != null
-          ? Filter(MyFields.userId, isEqualTo: _departmentId) // Change!!!
-          : Filter(MyFields.companyId, isEqualTo: kCompanyId),
-    );
-    if (_userId != null) {
-      return kFirebaseInstant.userAssignedTasks(_userId!).where(statusFilter);
-    } else {
-      query = kFirebaseInstant.assignedTasksQuery.where(filter);
-    }
-    return query.orderByDeliveryDateDesc;
-  }
-
   void _initialize() {
-    _query = _getQuery;
+    _query = TasksService.getQuery<TaskModel>(
+      context,
+      status: widget.status.value,
+      rangeDates: null,
+      date: null,
+      userId: widget.userId,
+      departmentId: widget.departmentId,
+      late: widget.late,
+    );
   }
 
   (String, Color) _getTaskInfo(BuildContext context) {
@@ -82,19 +66,6 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     final task = _getTaskInfo(context);
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          try {
-            await _getQuery.get().then((value) {
-              for (var e in value.docs) {
-                print("e::: ${e.data()!.status}");
-              }
-            });
-          } catch (e) {
-            print("e:: $e");
-          }
-        },
-      ),
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),

@@ -15,6 +15,7 @@ class TasksService {
     late Query<TaskModel> tasksDocRef;
     late Query<ViolationModel> violationsDocRef;
     if (userId != null) {
+      print("kkkk:: $userId");
       tasksDocRef = kFirebaseInstant.userAssignedTasks(userId);
       violationsDocRef = kFirebaseInstant.userViolations(userId);
     } else {
@@ -103,7 +104,9 @@ class TasksService {
         endDate != null ? Filter(timeField, isLessThan: Timestamp.fromDate(endDate)) : null;
     Filter? departmentIdFilter;
     Filter? companyIdFilter;
-    if (departmentId != null) {
+    if (userId != null) {
+      // Do Nothing!
+    } else if (departmentId != null) {
       final users = context.read<List<UserModel>>();
       final userIds = users.where((e) => e.departmentId == departmentId).map((e) => e.id!).toList();
       departmentIdFilter = Filter(MyFields.userId, whereIn: userIds);
