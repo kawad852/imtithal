@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Query<TaskModel> _assignedTasksQuery;
+  late Query<TaskModel>? _assignedTasksQuery;
   late DateTime _startDate;
   late DateTime _endDate;
 
@@ -136,55 +136,56 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              CustomFirestoreQueryBuilder(
-                query: _assignedTasksQuery,
-                isSliver: true,
-                onComplete: (context, snapshot) {
-                  final tasks = snapshot.docs;
-                  if (tasks.isEmpty) {
-                    return const SliverToBoxAdapter(child: SizedBox.shrink());
-                  }
-                  return SliverMainAxisGroup(
-                    slivers: [
-                      SliverPadding(
-                        padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
-                        sliver: SliverToBoxAdapter(
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  context.appLocalization.topTasks,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: context.colorPalette.primary,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
+              if (_assignedTasksQuery != null)
+                CustomFirestoreQueryBuilder(
+                  query: _assignedTasksQuery!,
+                  isSliver: true,
+                  onComplete: (context, snapshot) {
+                    final tasks = snapshot.docs;
+                    if (tasks.isEmpty) {
+                      return const SliverToBoxAdapter(child: SizedBox.shrink());
+                    }
+                    return SliverMainAxisGroup(
+                      slivers: [
+                        SliverPadding(
+                          padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+                          sliver: SliverToBoxAdapter(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    context.appLocalization.topTasks,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: context.colorPalette.primary,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              MoreButton(onTap: () {}),
-                            ],
+                                MoreButton(onTap: () {}),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      SliverPadding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        sliver: SliverList.separated(
-                          separatorBuilder: (context, index) => const SizedBox(height: 10),
-                          itemCount: tasks.length,
-                          itemBuilder: (context, index) {
-                            if (snapshot.isLoadingMore(index)) {
-                              return const FPLoading();
-                            }
-                            final task = tasks[index].data();
-                            return TaskCard(task: task);
-                          },
+                        SliverPadding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          sliver: SliverList.separated(
+                            separatorBuilder: (context, index) => const SizedBox(height: 10),
+                            itemCount: tasks.length,
+                            itemBuilder: (context, index) {
+                              if (snapshot.isLoadingMore(index)) {
+                                return const FPLoading();
+                              }
+                              final task = tasks[index].data();
+                              return TaskCard(task: task);
+                            },
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-              ),
+                      ],
+                    );
+                  },
+                ),
             ],
           );
         },

@@ -33,7 +33,7 @@ class _AppNavBarState extends State<AppNavBar> {
   ];
 
   void _onSelect(int index) {
-    if (index != 2 || kIsEmployee) {
+    if (index != 2 || kIsEmployee || kIsDepartmentManager) {
       setState(() {
         _currentIndex = index;
       });

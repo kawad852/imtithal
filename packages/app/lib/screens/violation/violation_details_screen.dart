@@ -69,7 +69,7 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
         return Scaffold(
           appBar: AppBar(),
           bottomNavigationBar:
-              violation.status == ViolationStatus.pending.value
+              violation.status == ViolationStatus.pending.value && !kIsDepartmentManager
                   ? BottomButton(
                     onPressed: () {
                       context.showBottomSheet(

@@ -306,27 +306,23 @@ class _UserInputScreenState extends State<UserInputScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: ListBody(
                   children: [
-                    Expanded(
-                      child: TitledTextField(
-                        title: context.appLocalization.email,
-                        child: EmailEditor(
-                          initialValue: _user.email,
-                          readonly: widget.user != null,
-                          onChanged: (value) => _user.email = value!,
-                        ),
+                    TitledTextField(
+                      title: context.appLocalization.email,
+                      child: EmailEditor(
+                        initialValue: _user.email,
+                        readonly: widget.user != null,
+                        labelText: '',
+                        onChanged: (value) => _user.email = value!,
                       ),
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: TitledTextField(
-                        title: context.appLocalization.password,
-                        child: PasswordEditor(
-                          initialValue: _user.password,
-                          onChanged: (value) => _user.password = value!,
-                        ),
+                    TitledTextField(
+                      title: context.appLocalization.password,
+                      child: PasswordEditor(
+                        initialValue: _user.password,
+                        labelText: '',
+                        onChanged: (value) => _user.password = value!,
                       ),
                     ),
                   ],

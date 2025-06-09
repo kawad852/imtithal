@@ -23,13 +23,17 @@ class TaskProvider extends ChangeNotifier {
   CollectionReference<TaskModel> assignedTaskQuery(String userId) =>
       kFirebaseInstant.users.doc(userId).collection(MyCollections.assignedTasks).taskConvertor;
 
-  Query<TaskModel> getTasks(BuildContext context) {
+  Query<TaskModel>? getTasks(BuildContext context) {
     if (kIsEmployee) {
       return assignedTaskQuery(kUserId).orderByDeliveryDateDesc;
     } else if (kIsDepartmentManager) {
       final users = context.read<List<UserModel>>();
       final userIds =
           users.where((e) => e.departmentId == kUser.departmentId).map((e) => e.id!).toList();
+      print("userIds:: $userIds");
+      if (userIds.isEmpty) {
+        return null;
+      }
       return kFirebaseInstant.assignedTasks
           .where(MyFields.userId, whereIn: userIds)
           .orderByDeliveryDateDesc;
@@ -45,9 +49,8 @@ class TaskProvider extends ChangeNotifier {
     final filter = Filter.and(
       Filter(MyFields.deliveryDate, isGreaterThanOrEqualTo: Timestamp.fromDate(startDate)),
       Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate)),
-      Filter(MyFields.companyId, isEqualTo: kCompanyId),
     );
-    query = getTasks(context).where(filter);
+    query = getTasks(context)!.where(filter);
     return query;
   }
 }
