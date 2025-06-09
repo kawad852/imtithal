@@ -14,8 +14,10 @@ String get kUserId => MySharedPreferences.user!.id!;
 String get kCompanyId => kUser.companyId;
 SearchClient get kAlgoliaClient =>
     SearchClient(appId: kAlgoliaApplicationId, apiKey: kAlgoliaApiKey);
+
 bool get kIsAdmin => MySharedPreferences.user?.role == RoleEnum.admin.value;
 bool get kIsEmployee => MySharedPreferences.user?.role == RoleEnum.employee.value;
+bool get kIsDepartmentManager => MySharedPreferences.user?.role == RoleEnum.departmentManager.value;
 bool get kIsEmtithalManager => MySharedPreferences.user?.role == RoleEnum.emtithalManager.value;
 
 class ApiService {

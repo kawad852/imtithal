@@ -23,15 +23,22 @@ class TaskProvider extends ChangeNotifier {
   CollectionReference<TaskModel> assignedTaskQuery(String userId) =>
       kFirebaseInstant.users.doc(userId).collection(MyCollections.assignedTasks).taskConvertor;
 
-  Query<TaskModel> get tasksQuery {
+  Query<TaskModel> getTasks(BuildContext context) {
     if (kIsEmployee) {
-      return assignedTaskQuery(kUserId).orderByCreatedAtDesc;
+      return assignedTaskQuery(kUserId).orderByDeliveryDateDesc;
+    } else if (kIsDepartmentManager) {
+      final users = context.read<List<UserModel>>();
+      final userIds =
+          users.where((e) => e.departmentId == kUser.departmentId).map((e) => e.id!).toList();
+      return kFirebaseInstant.assignedTasks
+          .where(MyFields.userId, whereIn: userIds)
+          .orderByDeliveryDateDesc;
     } else {
-      return kFirebaseInstant.tasks.orderByCreatedAtDesc.whereMyCompany;
+      return kFirebaseInstant.tasks.orderByDeliveryDateDesc.whereMyCompany;
     }
   }
 
-  Query<TaskModel> getAssignedTasksFromDate(DateTime date) {
+  Query<TaskModel> getAssignedTasksFromDate(BuildContext context, DateTime date) {
     late Query<TaskModel> query;
     final startDate = DateTime(date.year, date.month, date.day);
     final endDate = startDate.add(const Duration(days: 1));
@@ -40,11 +47,7 @@ class TaskProvider extends ChangeNotifier {
       Filter(MyFields.deliveryDate, isLessThan: Timestamp.fromDate(endDate)),
       Filter(MyFields.companyId, isEqualTo: kCompanyId),
     );
-    if (kIsEmployee) {
-      return kFirebaseInstant.assignedTasksQuery.where(filter);
-    } else {
-      query = kFirebaseInstant.tasks.where(filter);
-    }
-    return query.orderByDeliveryDateDesc;
+    query = getTasks(context).where(filter);
+    return query;
   }
 }

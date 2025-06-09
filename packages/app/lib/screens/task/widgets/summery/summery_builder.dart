@@ -116,7 +116,7 @@ class SummeryBuilder extends StatefulWidget {
       return Filter.and(startDateFilter, endDateFilter, filter, filter2);
     } else if (departmentId != null) {
       final users = context.read<List<UserModel>>();
-      final userIds = users.map((e) => e.id!).toList();
+      final userIds = users.where((e) => e.departmentId == departmentId).map((e) => e.id!).toList();
       final departmentIdFilter = Filter(MyFields.userId, whereIn: userIds);
       return Filter.and(startDateFilter, endDateFilter, departmentIdFilter, filter, filter2);
     } else {

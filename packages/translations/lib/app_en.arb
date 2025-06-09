@@ -218,5 +218,6 @@
   "emailNotFound": "Email not found",
   "wrongPassword": "Wrong password",
   "searchTask": "Search for task",
-  "taskStartTime": "Task Start Time"
+  "taskStartTime": "Task Start Time",
+  "progressingUserMsg": "Progressing Task, Please wait..."
 }

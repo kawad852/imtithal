@@ -681,4 +681,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get taskStartTime => 'Task Start Time';
+
+  @override
+  String get progressingUserMsg => 'Progressing Task, Please wait...';
 }

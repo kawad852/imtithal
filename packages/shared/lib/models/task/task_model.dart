@@ -14,11 +14,11 @@ class TaskModel with _$TaskModel {
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? deliveryDate,
     @TimestampSerializer() DateTime? assignedDate,
+    @Default("09:00 Am") String startTime,
     @Default("") String deliveryTime,
     @Default(0) int allowedDurationInMinutes,
     @Default(0) int points,
     @Default("") String id,
-    @Default("09:00 Am") String startTime,
     String? parentTaskId,
     required String companyId,
     @Default("") String title,
@@ -46,13 +46,6 @@ class TaskModel with _$TaskModel {
 
   TaskModel._();
 
-  // void getUser(List<UserModel> users) {
-  //   userModel ??= users.firstWhere(
-  //         (e) => e.id == user?.id,
-  //     orElse: () => UserModel(),
-  //   );
-  // }
-
   Color indicatorColor(BuildContext context) {
     if (markedAsLate) {
       return context.colorPalette.yellowF5E;
@@ -70,40 +63,4 @@ class TaskModel with _$TaskModel {
       }
     }
   }
-
-  // (Color cardColor, Color indicatorColor) getStatusColors(BuildContext context) {
-  //   final primaryColor = context.colorPalette.primary;
-  //   final greyLightColor = context.colorPalette.greyF2F;
-  //   final greyDarkColor = context.colorPalette.greyC4C;
-  //   final yellowF5E = context.colorPalette.yellowF5E;
-  //   if (markedAsLate) {
-  //     return (
-  //       status == TaskStatusEnum.completed.value ? context.colorPalette.greyE2E : greyLightColor,
-  //       context.colorPalette.yellowC02,
-  //     );
-  //   } else if (status == TaskStatusEnum.completed.value) {
-  //     return (context.colorPalette.greyE2E, primaryColor);
-  //   } else {
-  //     return (greyLightColor, greyDarkColor);
-  //   }
-  // }
-
-  //
-  // (String, List<String>) get values {
-  //   var images = <String>[];
-  //   var imagesField = '';
-  //   final isCompleted = status == TaskStatusEnum.completed.value;
-  //   final isNotStarted = status == TaskStatusEnum.notStarted.value;
-  //   final isInProgress = status == TaskStatusEnum.inProgress.value;
-  //   if (isCompleted) {
-  //     images = [...startingImages, ...endingImages];
-  //   } else if (isNotStarted) {
-  //     images = startingImages;
-  //     imagesField = MyFields.startingImages;
-  //   } else if (isInProgress) {
-  //     images = endingImages;
-  //     imagesField = MyFields.endingImages;
-  //   }
-  //   return (imagesField, images);
-  // }
 }

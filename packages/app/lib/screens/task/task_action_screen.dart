@@ -30,6 +30,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
     taskDocRef.update({
       MyFields.assignedUserIds: userIds.isEmpty ? [] : FieldValue.arrayUnion(userIds),
     });
+    context.showSnackBar(context.appLocalization.progressingUserMsg, duration: 60);
   }
 
   @override

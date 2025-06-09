@@ -17,6 +17,12 @@ const { algoliasearch } = require("algoliasearch");
 const { onSchedule } = require("firebase-functions/v2/scheduler");
 const { getFirestore, Timestamp, Filter } = require("firebase-admin/firestore");
 const dayjs = require("dayjs");
+const utc = require("dayjs/plugin/utc");
+const timezone = require("dayjs/plugin/timezone");
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Amman");
 
 admin.initializeApp();
 const db = getFirestore();
@@ -115,7 +121,6 @@ exports.onDepartmentDeleted = onDocumentDeleted({
   }
 });
 
-
 exports.onTasksUpdate = onDocumentUpdated({
   region: "europe-west3",
   document: 'tasks/{taskId}',
@@ -131,20 +136,29 @@ exports.onTasksUpdate = onDocumentUpdated({
 
   const db = admin.firestore();
 
-  const deletePromises = removedUserIds.map(async (userId) => {
-    const assignedTasksRef = db
-      .collection('users')
-      .doc(userId)
+  const deleteAssignedAndViolationsPromises = removedUserIds.map(async (userId) => {
+    const userRef = db.collection('users').doc(userId);
+
+    // Delete from assignedTasks
+    const assignedTasksSnap = await userRef
       .collection('assignedTasks')
-      .where('parentTaskId', '==', taskId);
+      .where('parentTaskId', '==', taskId)
+      .get();
 
-    const snapshot = await assignedTasksRef.get();
-    const deletions = snapshot.docs.map((doc) => doc.ref.delete());
+    const assignedTasksDeletions = assignedTasksSnap.docs.map((doc) => doc.ref.delete());
 
-    return Promise.all(deletions);
+    // Delete from violations
+    const violationsSnap = await userRef
+      .collection('violations')
+      .where('taskId', '==', taskId)
+      .get();
+
+    const violationsDeletions = violationsSnap.docs.map((doc) => doc.ref.delete());
+
+    return Promise.all([...assignedTasksDeletions, ...violationsDeletions]);
   });
 
-  await Promise.all(deletePromises);
+  await Promise.all(deleteAssignedAndViolationsPromises);
   return;
 });
 
@@ -295,7 +309,9 @@ exports.assignTasks = onSchedule(
   },
   async () => {
     try {
-      const now = dayjs();
+      const timezoneName = "Asia/Amman";
+
+      const now = dayjs().tz(timezoneName); // current time
       const todayDateStr = now.format("YYYY-MM-DD");
       const currentDay = now.format("dddd");
       const currentDate = now.toDate();
@@ -304,24 +320,35 @@ exports.assignTasks = onSchedule(
 
       for (const doc of tasksSnapshot.docs) {
         const task = doc.data();
-        const startDate = task.startDate ? task.startDate.toDate() : null;
+        const startTimeStr = task.startTime; // e.g., "10:00 AM"
         const repeatType = task.repeatType;
         const repeatDays = task.repeatDays || [];
 
+        if (!startTimeStr) continue;
+
+        // 🕒 Parse startTime with today’s date
+        const taskStartTime = dayjs.tz(`${todayDateStr} ${startTimeStr}`, "YYYY-MM-DD hh:mm A", timezoneName);
+        const isSameMinute = now.isSame(taskStartTime, "minute");
+
+        console.error("startTimeStr", startTimeStr);
+        console.error("todayDateStr", todayDateStr);
+        console.error("taskStartTime", taskStartTime);
+        console.error("isSameMinute", isSameMinute);
+
         const isDue = (() => {
           if (!repeatType || repeatType === "ONCE") {
-            return startDate && dayjs(startDate).isSame(now, "day");
+            return isSameMinute;
           }
-          if (repeatType === "DAILY") return true;
+          if (repeatType === "DAILY") return isSameMinute;
           if (repeatType === "WEEKLY" || repeatType === "MONTHLY") {
-            return repeatDays.includes(currentDay);
+            return repeatDays.includes(currentDay) && isSameMinute;
           }
           return false;
         })();
 
         if (!isDue) continue;
 
-        // Check for holidays
+        // 📅 Check for holidays
         const holidaySnap = await db
           .collection("companies")
           .doc(task.companyId)
@@ -343,12 +370,12 @@ exports.assignTasks = onSchedule(
 
         let currentAssignedTaskId = rowId.assignedTaskId;
 
-        // Assign to each user
-        for (const userId of task.assignedUserIds) {
+        // 👤 Assign to each user
+        for (const userId of task.assignedUserIds || []) {
           const userRef = db.collection("users").doc(userId);
           const assignedTasksRef = userRef.collection("assignedTasks");
 
-          // 🔸 Check if task is already assigned today
+          // ✅ Avoid reassigning the same task today
           const alreadyAssigned = await assignedTasksRef
             .where("parentTaskId", "==", task.id)
             .where("assignedDate", "==", todayDateStr)
@@ -360,7 +387,6 @@ exports.assignTasks = onSchedule(
             continue;
           }
 
-          // 🔸 Assign task with incremented ID
           const assignedTaskId = `${currentAssignedTaskId}`;
           const assignedDocRef = assignedTasksRef.doc(assignedTaskId);
 
@@ -370,12 +396,13 @@ exports.assignTasks = onSchedule(
             assignedDate: todayDateStr,
             parentTaskId: task.id,
             userId: userId,
+            assignedAt: admin.firestore.FieldValue.serverTimestamp(),
           };
 
           await assignedDocRef.set(taskToAssign);
           currentAssignedTaskId++;
 
-          // 🔸 Send notification
+          // 📲 Send notification
           const userDoc = await userRef.get();
           const user = userDoc.data();
           const deviceToken = user.deviceToken;
@@ -395,7 +422,7 @@ exports.assignTasks = onSchedule(
           }
         }
 
-        // 🔸 Update company.rowId.assignedTaskId
+        // 🔄 Update company.rowId.assignedTaskId
         await companyRef.update({
           "rowId.assignedTaskId": currentAssignedTaskId,
         });

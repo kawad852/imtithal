@@ -1411,6 +1411,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'وقت بدء المهمة'**
   String get taskStartTime;
+
+  /// No description provided for @progressingUserMsg.
+  ///
+  /// In ar, this message translates to:
+  /// **'جاري إضافة الموظفين، الرجاء الإنتظار...'**
+  String get progressingUserMsg;
 }
 
 class _AppLocalizationsDelegate
