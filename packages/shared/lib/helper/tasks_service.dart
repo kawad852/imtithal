@@ -22,55 +22,59 @@ class TasksService {
       violationsDocRef = kFirebaseInstant.violations;
     }
 
-    late Query<TaskModel> tasksQuery;
-    late Query<ViolationModel> violationsQuery;
+    Filter? queryFilter;
+
     if (late) {
       final filter = Filter(MyFields.markedAsLate, isEqualTo: true);
-      tasksQuery = tasksDocRef.where(
-        _getFilter(
+      queryFilter = _getFilter(
+        context,
+        filter,
+        userId: userId,
+        date: date,
+        rangeDates: rangeDates,
+        departmentId: departmentId,
+      );
+    } else {
+      if (status == TaskStatusEnum.violated.value) {
+        queryFilter = _getFilter(
+          context,
+          null,
+          userId: userId,
+          departmentId: departmentId,
+          date: date,
+          rangeDates: rangeDates,
+          timeField: MyFields.createdAt,
+        );
+      } else {
+        final filter = status != null ? Filter(MyFields.status, isEqualTo: status) : null;
+        final filter2 = isEvaluation ? Filter(MyFields.violation, isNull: true) : null;
+        queryFilter = _getFilter(
           context,
           filter,
+          filter2: filter2,
           userId: userId,
           date: date,
           rangeDates: rangeDates,
           departmentId: departmentId,
-        ),
-      );
-      return tasksQuery.orderByDeliveryDateDesc as Query<T>;
-    } else {
-      if (status == TaskStatusEnum.violated.value) {
-        violationsQuery = violationsDocRef.where(
-          _getFilter(
-            context,
-            null,
-            userId: userId,
-            departmentId: departmentId,
-            date: date,
-            rangeDates: rangeDates,
-            timeField: MyFields.createdAt,
-          ),
         );
-        return violationsQuery.orderByCreatedAtDesc as Query<T>;
+      }
+    }
+    if (T is ViolationModel) {
+      if (queryFilter != null) {
+        return violationsDocRef.where(queryFilter).orderByCreatedAtDesc as Query<T>;
       } else {
-        final filter = status != null ? Filter(MyFields.status, isEqualTo: status) : null;
-        final filter2 = isEvaluation ? Filter(MyFields.violation, isNull: true) : null;
-        tasksQuery = tasksDocRef.where(
-          _getFilter(
-            context,
-            filter,
-            filter2: filter2,
-            userId: userId,
-            date: date,
-            rangeDates: rangeDates,
-            departmentId: departmentId,
-          ),
-        );
-        return tasksQuery.orderByDeliveryDateDesc as Query<T>;
+        return violationsDocRef.orderByCreatedAtDesc as Query<T>;
+      }
+    } else {
+      if (queryFilter != null) {
+        return tasksDocRef.where(queryFilter).orderByDeliveryDateDesc as Query<T>;
+      } else {
+        return tasksDocRef.orderByDeliveryDateDesc as Query<T>;
       }
     }
   }
 
-  static Filter _getFilter(
+  static Filter? _getFilter(
     BuildContext context,
     Filter? filter, {
     Filter? filter2,
@@ -80,8 +84,6 @@ class TasksService {
     required String? departmentId,
     String timeField = MyFields.deliveryDate,
   }) {
-    late Filter startDateFilter;
-    late Filter endDateFilter;
     DateTime? startDate;
     DateTime? endDate;
     if (date != null) {
@@ -93,24 +95,64 @@ class TasksService {
       startDate = DateTime(start.year, start.month, 1);
       endDate = startDate.add(Duration(days: end.day + 1));
     }
-    startDateFilter = Filter(
-      timeField,
-      isGreaterThanOrEqualTo: startDate != null ? Timestamp.fromDate(startDate) : null,
-    );
-    endDateFilter = Filter(
-      timeField,
-      isLessThan: endDate != null ? Timestamp.fromDate(endDate) : null,
-    );
-    if (userId != null) {
-      return Filter.and(startDateFilter, endDateFilter, filter, filter2);
-    } else if (departmentId != null) {
+    final startDateFilter =
+        startDate != null
+            ? Filter(timeField, isGreaterThanOrEqualTo: Timestamp.fromDate(startDate))
+            : null;
+    final endDateFilter =
+        endDate != null ? Filter(timeField, isLessThan: Timestamp.fromDate(endDate)) : null;
+    Filter? departmentIdFilter;
+    Filter? companyIdFilter;
+    if (departmentId != null) {
       final users = context.read<List<UserModel>>();
       final userIds = users.where((e) => e.departmentId == departmentId).map((e) => e.id!).toList();
-      final departmentIdFilter = Filter(MyFields.userId, whereIn: userIds);
-      return Filter.and(startDateFilter, endDateFilter, departmentIdFilter, filter, filter2);
+      departmentIdFilter = Filter(MyFields.userId, whereIn: userIds);
     } else {
-      final companyIdFilter = Filter(MyFields.companyId, isEqualTo: kCompanyId);
-      return Filter.and(startDateFilter, endDateFilter, companyIdFilter, filter, filter2);
+      companyIdFilter = Filter(MyFields.companyId, isEqualTo: kCompanyId);
+    }
+    final allFilters = [
+      startDateFilter,
+      endDateFilter,
+      departmentIdFilter,
+      companyIdFilter,
+      filter,
+      filter2,
+    ];
+    final nonNullFilters = allFilters.whereType<Filter>().toList();
+    switch (nonNullFilters.length) {
+      case 0:
+        return null;
+      case 1:
+        return nonNullFilters[0];
+      case 2:
+        return Filter.and(nonNullFilters[0], nonNullFilters[1]);
+      case 3:
+        return Filter.and(nonNullFilters[0], nonNullFilters[1], nonNullFilters[2]);
+      case 4:
+        return Filter.and(
+          nonNullFilters[0],
+          nonNullFilters[1],
+          nonNullFilters[2],
+          nonNullFilters[3],
+        );
+      case 5:
+        return Filter.and(
+          nonNullFilters[0],
+          nonNullFilters[1],
+          nonNullFilters[2],
+          nonNullFilters[3],
+          nonNullFilters[4],
+        );
+      case 6:
+      default:
+        return Filter.and(
+          nonNullFilters[0],
+          nonNullFilters[1],
+          nonNullFilters[2],
+          nonNullFilters[3],
+          nonNullFilters[4],
+          nonNullFilters[5],
+        );
     }
   }
 
