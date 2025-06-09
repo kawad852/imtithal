@@ -3,10 +3,9 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class TaskDetailsScreen extends StatefulWidget {
-  final TaskModel? task;
-  final String? id;
+  final TaskModel task;
 
-  const TaskDetailsScreen({super.key, this.task, this.id});
+  const TaskDetailsScreen({super.key, required this.task});
 
   @override
   State<TaskDetailsScreen> createState() => _TaskDetailsScreenState();
@@ -15,11 +14,12 @@ class TaskDetailsScreen extends StatefulWidget {
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   late Stream<List<dynamic>> _streams;
 
-  String get _taskId => widget.id ?? widget.task!.id;
+  TaskModel get _task => widget.task;
+  String get _taskId => _task.id;
 
   void _initialize() {
-    final taskQuery = context.taskProvider.getTaskDocRef(_taskId);
-    var assignedTasksQuery = context.taskProvider.getAssignedTasksQuery(_taskId).limit(10);
+    final taskQuery = TasksService.getTask(_taskId, userId: _task.userId!);
+    var assignedTasksQuery = TasksService.getAssignedTasksQuery(_taskId).limit(10);
     _streams =
         Rx.combineLatest2<DocumentSnapshot<TaskModel>, QuerySnapshot<TaskModel>, List<dynamic>>(
           taskQuery.snapshots(),

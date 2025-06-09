@@ -1,4 +1,3 @@
-import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
 class NotificationRouteHandler {
@@ -10,9 +9,9 @@ class NotificationRouteHandler {
   }) {
     try {
       if (type == NotificationType.emtithal.value || type == NotificationType.lateTask.value) {
-        context.navigate((context) {
-          return TaskDetailsScreen(id: id);
-        });
+        // context.navigate((context) {
+        //   return TaskDetailsScreen(task: id);
+        // });
       }
     } catch (e) {
       debugPrint("RouteError:: $e");

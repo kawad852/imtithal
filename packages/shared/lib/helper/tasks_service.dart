@@ -114,6 +114,7 @@ class TasksService {
     }
   }
 
+  ///Tasks
   static Query<TaskModel> fetchTasksList(
     BuildContext context, {
     DateTime? date,
@@ -128,6 +129,21 @@ class TasksService {
       userId: userId ?? (kIsEmployee ? kUserId : null),
       departmentId: kIsDepartmentManager ? kUser.departmentId : null,
       late: false,
+    );
+  }
+
+  ///Task
+  static DocumentReference<TaskModel> getTask(String taskId, {required String userId}) {
+    if (kIsEmployee || kIsDepartmentManager) {
+      return kFirebaseInstant.userAssignedTasks(userId).doc(taskId);
+    }
+    return kFirebaseInstant.tasks.doc(taskId);
+  }
+
+  static Query<TaskModel> getAssignedTasksQuery(String parentTaskId) {
+    return kFirebaseInstant.assignedTasksQuery.orderByCreatedAtDesc.where(
+      MyFields.parentTaskId,
+      isEqualTo: parentTaskId,
     );
   }
 }

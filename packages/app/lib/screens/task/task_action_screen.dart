@@ -20,8 +20,8 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   String get _taskId => _task.id;
 
   void _initialize() {
-    _taskStream = context.taskProvider.getTaskDocRef(_taskId).snapshots();
-    _assignedTasksQuery = context.taskProvider.getAssignedTasksQuery(_taskId);
+    _taskStream = TasksService.getTask(_taskId, userId: _task.userId!).snapshots();
+    _assignedTasksQuery = TasksService.getAssignedTasksQuery(_taskId);
   }
 
   void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) {
