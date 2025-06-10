@@ -47,14 +47,17 @@ class SummeryLabel extends StatelessWidget {
               Container(
                 width: 36,
                 height: 36,
+                padding: const EdgeInsets.all(2),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(color: values.$3, shape: BoxShape.circle),
-                child: Text(
-                  "${values.$1}%",
-                  style: TextStyle(
-                    color: context.colorPalette.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                child: FittedBox(
+                  child: Text(
+                    "${values.$1}%",
+                    style: TextStyle(
+                      color: context.colorPalette.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),

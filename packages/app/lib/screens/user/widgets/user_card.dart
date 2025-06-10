@@ -14,19 +14,16 @@ class UserCard extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        height: 80,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           color: context.colorPalette.greyF5F,
           borderRadius: BorderRadius.circular(kRadiusSecondary),
         ),
         child: Row(
           children: [
-            VerticalLine(height: 60, color: context.colorPalette.yellowE7B),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 60),
-            ),
+            // VerticalLine(height: 60, color: context.colorPalette.yellowE7B),
+            UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 60),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,15 +50,15 @@ class UserCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text(
-                    "85% امتثال جيد جداً",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: context.colorPalette.grey8B8,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+                  // Text(
+                  //   "85% امتثال جيد جداً",
+                  //   overflow: TextOverflow.ellipsis,
+                  //   style: TextStyle(
+                  //     color: context.colorPalette.grey8B8,
+                  //     fontSize: 12,
+                  //     fontWeight: FontWeight.w400,
+                  //   ),
+                  // ),
                 ],
               ),
             ),
