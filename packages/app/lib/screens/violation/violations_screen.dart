@@ -33,6 +33,16 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          try {
+            final a = await _query.count().get();
+            print("count:: ${a.count}");
+          } catch (e) {
+            print("e::: $e");
+          }
+        },
+      ),
       appBar: AppBar(forceMaterialTransparency: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),

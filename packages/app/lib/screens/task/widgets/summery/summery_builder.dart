@@ -119,7 +119,7 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
   }
 
   void _initialize(BuildContext context) {
-    Future<(int, double)> query<T>(String? status, {bool late = false}) => _fetchQuery(
+    Future<(int, double)> query<T>(String? status, {bool late = false}) => _fetchQuery<T>(
       context,
       status,
       userId: widget.userId,

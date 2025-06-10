@@ -31,6 +31,10 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
       MyFields.assignedUserIds: userIds.isEmpty ? [] : FieldValue.arrayUnion(userIds),
     });
     context.showSnackBar(context.appLocalization.progressingUserMsg, duration: 60);
+    for (var user in selectedUsers) {
+      final docRef = kFirebaseInstant.userAssignedTasks(user.id!).doc();
+      docRef.set(_task.copyWith(userId: user.id, parentTaskId: _taskId));
+    }
   }
 
   @override

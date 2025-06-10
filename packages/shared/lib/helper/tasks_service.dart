@@ -18,8 +18,11 @@ class TasksService {
       tasksDocRef = kFirebaseInstant.userAssignedTasks(userId);
       violationsDocRef = kFirebaseInstant.userViolations(userId);
     } else {
+      print("111");
       tasksDocRef = kFirebaseInstant.assignedTasksQuery;
+      print("2222");
       violationsDocRef = kFirebaseInstant.violations;
+      print("3333");
     }
 
     Filter? queryFilter;
@@ -36,7 +39,6 @@ class TasksService {
       );
     } else {
       if (status == TaskStatusEnum.violated.value) {
-        print("lkajsfaklsfjk:::");
         queryFilter = _getFilter(
           context,
           null,
@@ -60,7 +62,8 @@ class TasksService {
         );
       }
     }
-    if (T is ViolationModel) {
+
+    if (T == ViolationModel) {
       if (queryFilter != null) {
         return violationsDocRef.where(queryFilter).orderByCreatedAtDesc as Query<T>;
       } else {
