@@ -3,9 +3,8 @@ import 'package:shared/shared.dart';
 
 class TaskCard extends StatelessWidget {
   final TaskModel task;
-  final bool showUser;
 
-  const TaskCard({super.key, required this.task, this.showUser = false});
+  const TaskCard({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class TaskCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            if (showUser || (!kIsAdmin && !kIsEmtithalManager)) ...[
+            if (!kIsAdmin && !kIsEmtithalManager) ...[
               VerticalLine(height: 67, color: task.indicatorColor(context)),
               const SizedBox(width: 10),
             ],

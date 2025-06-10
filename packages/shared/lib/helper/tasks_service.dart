@@ -108,8 +108,11 @@ class TasksService {
     if (userId != null) {
       // Do Nothing!
     } else if (departmentId != null) {
-      final users = MySharedPreferences.users;
-      final userIds = users.where((e) => e.departmentId == departmentId).map((e) => e.id!).toList();
+      final userIds =
+          MySharedPreferences.users
+              .where((e) => e.departmentId == departmentId)
+              .map((e) => e.id!)
+              .toList();
       departmentIdFilter = Filter(MyFields.userId, whereIn: userIds);
     } else {
       companyIdFilter = Filter(MyFields.companyId, isEqualTo: kCompanyId);

@@ -10,16 +10,15 @@ class ViolationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final users = MySharedPreferences.users;
     UserModel? user;
     if (!kIsEmployee) {
-      user = users.firstWhere(
+      user = MySharedPreferences.users.firstWhere(
         (e) => e.id == (userId ?? violation.userId),
         orElse: () => UserModel(),
       );
       violation.userModel ??= user;
     }
-    final lastReplyUser = users.firstWhere(
+    final lastReplyUser = MySharedPreferences.users.firstWhere(
       (e) => e.id == violation.lastReply?.userId,
       orElse: () => UserModel(),
     );

@@ -93,7 +93,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         return const FPLoading();
                       }
                       final task = snapshot.docs[index].data();
-                      return TaskCard(task: task, showUser: true);
+                      return TaskCard(task: task);
                     },
                   );
                 },

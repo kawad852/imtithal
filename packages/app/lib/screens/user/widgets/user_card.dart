@@ -1,3 +1,4 @@
+import 'package:app/screens/user/widgets/user_card_display.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -21,47 +22,7 @@ class UserCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // VerticalLine(height: 60, color: context.colorPalette.yellowE7B),
-            UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 60),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    user.jobTitle,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: context.colorPalette.grey8B8,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Text(
-                      user.displayName,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: context.colorPalette.black252,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  // Text(
-                  //   "85% امتثال جيد جداً",
-                  //   overflow: TextOverflow.ellipsis,
-                  //   style: TextStyle(
-                  //     color: context.colorPalette.grey8B8,
-                  //     fontSize: 12,
-                  //     fontWeight: FontWeight.w400,
-                  //   ),
-                  // ),
-                ],
-              ),
-            ),
+            Expanded(child: UserCardDisplay(user: user)),
             Icon(Icons.arrow_forward_ios_rounded, color: context.colorPalette.grey8B8),
           ],
         ),

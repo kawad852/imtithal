@@ -59,8 +59,10 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
         final replies = snapshot.data![1] as QuerySnapshot<ViolationReplyModel>;
 
         UserModel getUser() {
-          final users = MySharedPreferences.users;
-          final user = users.firstWhere((e) => e.id == violation.userId, orElse: () => UserModel());
+          final user = MySharedPreferences.users.firstWhere(
+            (e) => e.id == violation.userId,
+            orElse: () => UserModel(),
+          );
           return user;
         }
 
