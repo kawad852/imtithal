@@ -42,6 +42,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
       if (query == '') {
         return [];
       }
+      final filters = widget.filters ?? '${MyFields.companyId}:$kCompanyId';
       final includeIndexes = widget.includeIndexes;
       final usersFuture =
           includeIndexes.$1
@@ -51,7 +52,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                       indexName: AlgoliaIndices.users.value,
                       query: query,
                       hitsPerPage: 10,
-                      filters: widget.filters,
+                      filters: filters,
                     ),
                   )
                   .then((value) {
@@ -66,7 +67,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                       indexName: AlgoliaIndices.departments.value,
                       query: query,
                       hitsPerPage: 10,
-                      filters: widget.filters,
+                      filters: filters,
                     ),
                   )
                   .then((value) {
@@ -81,7 +82,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                       indexName: AlgoliaIndices.tasks.value,
                       query: query,
                       hitsPerPage: 10,
-                      filters: widget.filters,
+                      filters: filters,
                     ),
                   )
                   .then((value) {

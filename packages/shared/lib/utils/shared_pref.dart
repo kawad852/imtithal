@@ -15,6 +15,7 @@ class MySharedPreferences {
     user = null;
     company = null;
     role = null;
+    users = [];
   }
 
   static UserModel? get user {

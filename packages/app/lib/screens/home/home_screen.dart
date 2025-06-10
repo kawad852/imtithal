@@ -35,15 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     final f = kFirebaseInstant.companies.doc(kCompanyId).snapshots().map((e) {
-      //       print("companyId::: ${e.id}");
-      //       return e.data()!;
-      //     });
-      //     print("steam:: ${f.first.then((v) => print("rrrr::: ${v.id}"))}");
-      //   },
-      // ),
       body: SummeryBuilder(
         height: 60,
         startDate: _startDate,
