@@ -1417,6 +1417,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'جاري إضافة الموظفين، الرجاء الإنتظار...'**
   String get progressingUserMsg;
+
+  /// No description provided for @completeTask.
+  ///
+  /// In ar, this message translates to:
+  /// **'إكمال المهمة'**
+  String get completeTask;
 }
 
 class _AppLocalizationsDelegate

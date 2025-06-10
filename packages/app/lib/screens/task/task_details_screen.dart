@@ -1,4 +1,3 @@
-import 'package:app/screens/task/widgets/summery/status_summery_bubbles.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -19,7 +18,9 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
 
   void _initialize() {
     final taskQuery = TasksService.getTask(_taskId, userId: _task.userId!);
-    var assignedTasksQuery = TasksService.getAssignedTasksQuery(_taskId).limit(10);
+    var assignedTasksQuery = TasksService.getAssignedTasksQuery(
+      kIsEmployee ? _task.parentTaskId! : _taskId,
+    ).limit(10);
     _streams =
         Rx.combineLatest2<DocumentSnapshot<TaskModel>, QuerySnapshot<TaskModel>, List<dynamic>>(
           taskQuery.snapshots(),
@@ -49,9 +50,19 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
         final taskQuerySnapshot = snapshot.data![0] as DocumentSnapshot<TaskModel>;
         final assignedTasksQuerySnapshot = snapshot.data![1] as QuerySnapshot<TaskModel>;
         final task = taskQuerySnapshot.data()!;
-        final assignedTasks = assignedTasksQuerySnapshot.docs;
         return Scaffold(
           appBar: AppBar(),
+          bottomNavigationBar:
+              kIsEmployee && task.status == TaskStatusEnum.pending.value
+                  ? BottomButton(
+                    text: context.appLocalization.completeTask,
+                    onPressed: () {
+                      taskQuerySnapshot.reference.update({
+                        MyFields.status: TaskStatusEnum.inReview.value,
+                      });
+                    },
+                  )
+                  : null,
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             children: [
@@ -176,17 +187,17 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   );
                 },
               ),
-              if (!kIsEmployee) ...[
-                ResponsibleCard(task: task, assignedTasks: assignedTasksQuerySnapshot),
-                StatusSummeryBubbles(
-                  inCompletedTasksCount: task.inCompletedTasksCount,
-                  completedTasksCount: task.completedTasksCount,
-                  lateTasksCount: task.lateTasksCount,
-                  violationTasksCount: task.violationTasksCount,
-                  startDate: kNowDate,
-                  endDate: kNowDate,
-                ),
-              ],
+              // if (!kIsEmployee) ...[
+              ResponsibleCard(task: task, assignedTasks: assignedTasksQuerySnapshot),
+              // StatusSummeryBubbles(
+              //   inCompletedTasksCount: task.inCompletedTasksCount,
+              //   completedTasksCount: task.completedTasksCount,
+              //   lateTasksCount: task.lateTasksCount,
+              //   violationTasksCount: task.violationTasksCount,
+              //   startDate: kNowDate,
+              //   endDate: kNowDate,
+              // ),
+              // ],
             ],
           ),
         );

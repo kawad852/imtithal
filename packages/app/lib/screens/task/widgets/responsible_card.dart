@@ -52,23 +52,25 @@ class ResponsibleCard extends StatelessWidget {
                     children: [
                       if (assignedTasks.docs.isNotEmpty)
                         Expanded(child: AssignedList(assignedTasks: assignedTasks, height: 32)),
-                      GestureDetector(
-                        onTap: () {
-                          context.navigate(
-                            (context) => TaskActionScreen(task: task, assignedTasks: assignedTasks),
-                          );
-                        },
-                        child: Container(
-                          width: 32,
-                          height: 32,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: context.colorPalette.primary,
-                            shape: BoxShape.circle,
+                      if (!kIsEmployee)
+                        GestureDetector(
+                          onTap: () {
+                            context.navigate(
+                              (context) =>
+                                  TaskActionScreen(task: task, assignedTasks: assignedTasks),
+                            );
+                          },
+                          child: Container(
+                            width: 32,
+                            height: 32,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: context.colorPalette.primary,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const CustomSvg(MyIcons.setting),
                           ),
-                          child: const CustomSvg(MyIcons.setting),
                         ),
-                      ),
                     ],
                   ),
                 ),

@@ -12,7 +12,7 @@ class ViolationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     UserModel? user;
     if (!kIsEmployee) {
-      final users = context.read<List<UserModel>>();
+      final users = MySharedPreferences.users;
       user = users.firstWhere(
         (e) => e.id == (userId ?? violation.userId),
         orElse: () => UserModel(),

@@ -219,5 +219,6 @@
   "wrongPassword": "كلمة المرور غير صحيحة",
   "searchTask": "إبحث عن مهمة",
   "taskStartTime": "وقت بدء المهمة",
-  "progressingUserMsg": "جاري إضافة الموظفين، الرجاء الإنتظار..."
+  "progressingUserMsg": "جاري إضافة الموظفين، الرجاء الإنتظار...",
+  "completeTask": "إكمال المهمة"
 }

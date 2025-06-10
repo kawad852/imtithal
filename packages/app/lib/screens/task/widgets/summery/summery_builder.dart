@@ -7,6 +7,7 @@ class SummeryBuilder extends StatefulWidget {
   final DateTime startDate;
   final DateTime endDate;
   final double height;
+  final Widget Function()? onLoading;
 
   final Widget Function(
     (int, double) inCompletedTasks,
@@ -26,6 +27,7 @@ class SummeryBuilder extends StatefulWidget {
     required this.startDate,
     required this.endDate,
     required this.height,
+    this.onLoading,
   });
 
   @override
@@ -163,6 +165,7 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
     return ImpededFutureBuilder(
       future: _futures,
       onLoading:
+          widget.onLoading ??
           () => SizedBox(
             height: widget.height,
             child: Padding(

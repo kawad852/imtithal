@@ -21,7 +21,7 @@ class ReplyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (reply.userModel == null) {
-      final users = context.read<List<UserModel>>();
+      final users = MySharedPreferences.users;
       final user = users.firstWhere((e) => e.id == reply.userId, orElse: () => UserModel());
       reply.userModel = user;
     }

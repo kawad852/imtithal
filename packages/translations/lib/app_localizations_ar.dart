@@ -677,4 +677,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get progressingUserMsg => 'جاري إضافة الموظفين، الرجاء الإنتظار...';
+
+  @override
+  String get completeTask => 'إكمال المهمة';
 }

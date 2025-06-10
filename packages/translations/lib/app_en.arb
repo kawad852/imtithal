@@ -219,5 +219,6 @@
   "wrongPassword": "Wrong password",
   "searchTask": "Search for task",
   "taskStartTime": "Task Start Time",
-  "progressingUserMsg": "Progressing Task, Please wait..."
+  "progressingUserMsg": "Progressing Task, Please wait...",
+  "completeTask": "Complete Task"
 }

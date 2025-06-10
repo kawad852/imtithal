@@ -73,7 +73,7 @@ class _TasksScreenState extends State<TasksScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "${task.$1} ${_userId != null ? "-" : ""} ${_userId != null ? kUser.displayName : ""}",
+              "${task.$1} ${(_userId != null && !kIsEmployee) ? "-" : ""} ${(_userId != null && !kIsEmployee) ? kUser.displayName : ""}",
               style: TextStyle(
                 color: context.colorPalette.black252,
                 fontSize: 16,

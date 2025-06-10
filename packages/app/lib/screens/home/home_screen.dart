@@ -1,5 +1,6 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
+import 'package:shared/widgets/base_loader.dart';
 
 import '../notifications/notifications_screen.dart';
 import '../search/search_screen.dart';
@@ -47,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 60,
         startDate: _startDate,
         endDate: _endDate,
+        onLoading: () => const BaseLoader(),
         userId: kIsEmployee ? kUserId : null,
         builder: (
           (int, double) inCompletedTasks,
@@ -118,6 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 13),
                       child: StatusSummeryBubbles(
                         userId: kIsEmployee ? kUserId : null,
+                        departmentId: kIsDepartmentManager ? kUser.departmentId : null,
                         inCompletedTasksCount: inCompletedTasks.$1,
                         completedTasksCount: completedTasks.$1,
                         lateTasksCount: lateTasks.$1,

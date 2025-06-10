@@ -684,4 +684,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get progressingUserMsg => 'Progressing Task, Please wait...';
+
+  @override
+  String get completeTask => 'Complete Task';
 }

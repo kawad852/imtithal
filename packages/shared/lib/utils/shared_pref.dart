@@ -71,4 +71,26 @@ class MySharedPreferences {
     value?.createdAt = null;
     _sharedPreferences.setString('company', jsonEncode(value?.toJson()));
   }
+
+  static List<UserModel> get users {
+    var value = _sharedPreferences.getString('users');
+    List<UserModel>? users = [];
+    if (value != null && value.isNotEmpty && value != 'null') {
+      List<dynamic> result = jsonDecode(value);
+      users = result.toList().map((element) => UserModel.fromJson(element)).toList();
+      return users;
+    } else {
+      return [];
+    }
+  }
+
+  static set users(List<UserModel>? value) {
+    if (value != null) {
+      for (var element in value) {
+        element.createdAt = null;
+        element.workStartDate = null;
+      }
+    }
+    _sharedPreferences.setString('users', jsonEncode(value));
+  }
 }

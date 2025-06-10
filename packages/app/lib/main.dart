@@ -94,8 +94,9 @@ class _MyAppState extends State<MyApp> {
                   (e) => e.docs.map((e) => e.data()).toList(),
                 ),
                 lazy: false,
-                initialData: const [],
+                initialData: MySharedPreferences.users,
                 updateShouldNotify: (initialValue, value) {
+                  MySharedPreferences.users = value;
                   return true;
                 },
               ),
