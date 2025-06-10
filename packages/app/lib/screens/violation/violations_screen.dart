@@ -5,8 +5,9 @@ import 'package:shared/shared.dart';
 
 class ViolationsScreen extends StatefulWidget {
   final String? userId;
+  final String? departmentId;
 
-  const ViolationsScreen({super.key, required this.userId});
+  const ViolationsScreen({super.key, required this.userId, this.departmentId});
 
   @override
   State<ViolationsScreen> createState() => _ViolationsScreenState();
@@ -16,12 +17,15 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
   late Query<ViolationModel> _query;
 
   void _initialize() {
-    if (widget.userId != null) {
-      _query = kFirebaseInstant.userViolations(widget.userId!);
-    } else {
-      _query = kFirebaseInstant.violations;
-    }
-    _query = _query.orderByCreatedAtDesc;
+    _query = TasksService.getQuery(
+      context,
+      status: TaskStatusEnum.violated.value,
+      rangeDates: null,
+      date: null,
+      userId: widget.userId,
+      departmentId: widget.departmentId,
+      late: false,
+    );
   }
 
   @override
@@ -33,16 +37,16 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () async {
-      //     try {
-      //       final a = await _query.count().get();
-      //       print("count:: ${a.count}");
-      //     } catch (e) {
-      //       print("e::: $e");
-      //     }
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          try {
+            final a = await _query.count().get();
+            print("count:: ${a.count}");
+          } catch (e) {
+            print("e::: $e");
+          }
+        },
+      ),
       appBar: AppBar(forceMaterialTransparency: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),

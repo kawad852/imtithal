@@ -1,5 +1,6 @@
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
+import 'package:shared/widgets/base_loader.dart';
 
 class AppNavBar extends StatefulWidget {
   const AppNavBar({super.key});
@@ -106,10 +107,17 @@ class _AppNavBarState extends State<AppNavBar> {
               }).toList(),
         ),
       ),
-      body: PageView(
-        controller: _pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: screens,
+      body: UsersSelector(
+        builder: (context, users) {
+          if (users.isEmpty) {
+            return const BaseLoader();
+          }
+          return PageView(
+            controller: _pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: screens,
+          );
+        },
       ),
     );
   }

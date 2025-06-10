@@ -37,7 +37,7 @@ class SummeryBuilder extends StatefulWidget {
 class _SummeryBuilderState extends State<SummeryBuilder> {
   late Future<List<dynamic>> _futures;
 
-  String? get _departmentId => widget.departmentId;
+  String? get _departmentId => kIsDepartmentManager ? kUser.departmentId : widget.departmentId;
   DateTime get _startDate => widget.startDate;
   DateTime get _endDate => widget.endDate;
 

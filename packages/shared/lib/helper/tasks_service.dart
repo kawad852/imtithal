@@ -176,7 +176,7 @@ class TasksService {
       status: null,
       rangeDates: rangeDates,
       date: date,
-      mainTasks: mainTasks,
+      mainTasks: kIsEmployee || kIsDepartmentManager ? false : mainTasks,
       userId: kIsEmployee ? kUserId : userId,
       departmentId: kIsDepartmentManager ? kUser.departmentId : null,
       late: false,

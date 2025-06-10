@@ -88,18 +88,6 @@ class _MyAppState extends State<MyApp> {
               },
             ),
             if (userProvider.isAuthenticated) ...[
-              StreamProvider<List<UserModel>>.value(
-                key: ValueKey(userProvider.isAuthenticated),
-                value: kFirebaseInstant.users.whereMyCompany.snapshots().map(
-                  (e) => e.docs.map((e) => e.data()).toList(),
-                ),
-                lazy: false,
-                initialData: MySharedPreferences.users,
-                updateShouldNotify: (initialValue, value) {
-                  MySharedPreferences.users = value;
-                  return true;
-                },
-              ),
               StreamProvider<List<DepartmentModel>>.value(
                 key: ValueKey(userProvider.isAuthenticated),
                 value: kFirebaseInstant.departments.snapshots().map(
@@ -111,6 +99,21 @@ class _MyAppState extends State<MyApp> {
                 },
               ),
             ],
+            StreamProvider<List<UserModel>>.value(
+              key: ValueKey(userProvider.isAuthenticated),
+              value:
+                  userProvider.isAuthenticated
+                      ? kFirebaseInstant.users.whereMyCompany.snapshots().map(
+                        (e) => e.docs.map((e) => e.data()).toList(),
+                      )
+                      : null,
+              lazy: false,
+              initialData: MySharedPreferences.users,
+              updateShouldNotify: (initialValue, value) {
+                MySharedPreferences.users = value;
+                return true;
+              },
+            ),
 
             // StreamProvider<BranchModel>.value(
             //   key: ValueKey(userProvider.isAuthenticated),
