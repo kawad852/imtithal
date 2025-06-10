@@ -36,6 +36,7 @@ class TasksService {
       );
     } else {
       if (status == TaskStatusEnum.violated.value) {
+        print("lkajsfaklsfjk:::");
         queryFilter = _getFilter(
           context,
           null,
@@ -177,8 +178,8 @@ class TasksService {
   }
 
   ///Task
-  static DocumentReference<TaskModel> getTask(String taskId, {required String userId}) {
-    if (kIsEmployee || kIsDepartmentManager) {
+  static DocumentReference<TaskModel> getTask(String taskId, {required String? userId}) {
+    if (userId != null && (kIsEmployee || kIsDepartmentManager)) {
       return kFirebaseInstant.userAssignedTasks(userId).doc(taskId);
     }
     return kFirebaseInstant.tasks.doc(taskId);

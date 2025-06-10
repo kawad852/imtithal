@@ -17,7 +17,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   String get _taskId => _task.id;
 
   void _initialize() {
-    final taskQuery = TasksService.getTask(_taskId, userId: _task.userId!);
+    final taskQuery = TasksService.getTask(_taskId, userId: _task.userId);
     var assignedTasksQuery = TasksService.getAssignedTasksQuery(
       kIsEmployee ? _task.parentTaskId! : _taskId,
     ).limit(10);

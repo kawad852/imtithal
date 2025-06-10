@@ -20,7 +20,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   String get _taskId => _task.id;
 
   void _initialize() {
-    _taskStream = TasksService.getTask(_taskId, userId: _task.userId!).snapshots();
+    _taskStream = TasksService.getTask(_taskId, userId: _task.userId).snapshots();
     _assignedTasksQuery = TasksService.getAssignedTasksQuery(_taskId);
   }
 

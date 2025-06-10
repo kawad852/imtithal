@@ -61,6 +61,7 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
 
     final c = await query.count().get().then((value) {
       final v = value.count!;
+      print("count:: $v");
       return v;
     });
 
