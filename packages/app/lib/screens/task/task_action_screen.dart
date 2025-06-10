@@ -24,7 +24,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
     _assignedTasksQuery = TasksService.getAssignedTasksQuery(_taskId);
   }
 
-  void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) {
+  void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) async {
     List<String> userIds = selectedUsers.map((e) => e.id!).toList();
     final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
     taskDocRef.update({
@@ -32,8 +32,9 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
     });
     context.showSnackBar(context.appLocalization.progressingUserMsg, duration: 60);
     for (var user in selectedUsers) {
-      final docRef = kFirebaseInstant.userAssignedTasks(user.id!).doc();
-      docRef.set(_task.copyWith(userId: user.id, parentTaskId: _taskId));
+      final id = await RowIdHelper().getAssignedTaskId();
+      final docRef = kFirebaseInstant.userAssignedTasks(user.id!).doc(id);
+      docRef.set(_task.copyWith(id: id, userId: user.id, parentTaskId: _taskId));
     }
   }
 

@@ -11,6 +11,7 @@ class TasksService {
     required String? departmentId,
     required bool late,
     bool isEvaluation = false,
+    bool mainTasks = false,
   }) {
     late Query<TaskModel> tasksDocRef;
     late Query<ViolationModel> violationsDocRef;
@@ -18,11 +19,8 @@ class TasksService {
       tasksDocRef = kFirebaseInstant.userAssignedTasks(userId);
       violationsDocRef = kFirebaseInstant.userViolations(userId);
     } else {
-      print("111");
-      tasksDocRef = kFirebaseInstant.assignedTasksQuery;
-      print("2222");
+      tasksDocRef = mainTasks ? kFirebaseInstant.tasks : kFirebaseInstant.assignedTasksQuery;
       violationsDocRef = kFirebaseInstant.violations;
-      print("3333");
     }
 
     Filter? queryFilter;
@@ -168,12 +166,14 @@ class TasksService {
     DateTime? date,
     (DateTime, DateTime)? rangeDates,
     String? userId,
+    bool mainTasks = false,
   }) {
     return TasksService.getQuery(
       context,
       status: null,
       rangeDates: rangeDates,
       date: date,
+      mainTasks: mainTasks,
       userId: kIsEmployee ? kUserId : userId,
       departmentId: kIsDepartmentManager ? kUser.departmentId : null,
       late: false,

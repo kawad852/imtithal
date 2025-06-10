@@ -10,15 +10,19 @@ class ViolationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final users = MySharedPreferences.users;
     UserModel? user;
     if (!kIsEmployee) {
-      final users = MySharedPreferences.users;
       user = users.firstWhere(
         (e) => e.id == (userId ?? violation.userId),
         orElse: () => UserModel(),
       );
       violation.userModel ??= user;
     }
+    final lastReplyUser = users.firstWhere(
+      (e) => e.id == violation.lastReply?.userId,
+      orElse: () => UserModel(),
+    );
     return GestureDetector(
       onTap: () {
         context.navigate((context) => ViolationDetailsScreen(violation: violation));
@@ -38,7 +42,7 @@ class ViolationCard extends StatelessWidget {
             if (user?.id != null)
               Padding(
                 padding: const EdgeInsetsDirectional.only(end: 10),
-                child: UserPhoto(url: user!.profilePhoto, displayName: user.displayName, size: 30),
+                child: UserPhoto(url: user!.profilePhoto, displayName: user.displayName, size: 60),
               ),
             Expanded(
               child: Column(
@@ -102,7 +106,7 @@ class ViolationCard extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            user?.displayName ?? '',
+                            lastReplyUser.displayName,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: context.colorPalette.primary,
