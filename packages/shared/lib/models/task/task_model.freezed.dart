@@ -29,10 +29,6 @@ mixin _$TaskModel {
   DateTime? get deliveryDate => throw _privateConstructorUsedError;
   @TimestampSerializer()
   set deliveryDate(DateTime? value) => throw _privateConstructorUsedError;
-  @TimestampSerializer()
-  DateTime? get assignedDate => throw _privateConstructorUsedError;
-  @TimestampSerializer()
-  set assignedDate(DateTime? value) => throw _privateConstructorUsedError;
   String get deliveryTime => throw _privateConstructorUsedError;
   set deliveryTime(String value) => throw _privateConstructorUsedError;
   int get allowedDurationInMinutes => throw _privateConstructorUsedError;
@@ -41,8 +37,6 @@ mixin _$TaskModel {
   set points(int value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  String get startTime => throw _privateConstructorUsedError;
-  set startTime(String value) => throw _privateConstructorUsedError;
   String? get parentTaskId => throw _privateConstructorUsedError;
   set parentTaskId(String? value) => throw _privateConstructorUsedError;
   String get companyId => throw _privateConstructorUsedError;
@@ -59,6 +53,8 @@ mixin _$TaskModel {
   set violationDescription(String value) => throw _privateConstructorUsedError;
   String get notes => throw _privateConstructorUsedError;
   set notes(String value) => throw _privateConstructorUsedError;
+  String get createdById => throw _privateConstructorUsedError;
+  set createdById(String value) => throw _privateConstructorUsedError;
   String? get repeatType => throw _privateConstructorUsedError;
   set repeatType(String? value) => throw _privateConstructorUsedError;
   bool get markedAsLate => throw _privateConstructorUsedError;
@@ -66,10 +62,6 @@ mixin _$TaskModel {
   List<AttachmentModel>? get attachments => throw _privateConstructorUsedError;
   set attachments(List<AttachmentModel>? value) =>
       throw _privateConstructorUsedError;
-  List<String> get assignedUserIds => throw _privateConstructorUsedError;
-  set assignedUserIds(List<String> value) => throw _privateConstructorUsedError;
-  List<String> get repeatDays => throw _privateConstructorUsedError;
-  set repeatDays(List<String> value) => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
   set userId(String? value) => throw _privateConstructorUsedError;
   int get inCompletedTasksCount => throw _privateConstructorUsedError;
@@ -85,8 +77,12 @@ mixin _$TaskModel {
   LightViolationModel? get violation => throw _privateConstructorUsedError;
   set violation(LightViolationModel? value) =>
       throw _privateConstructorUsedError;
-  String get createdById => throw _privateConstructorUsedError;
-  set createdById(String value) => throw _privateConstructorUsedError;
+  List<String> get assignedUserIds => throw _privateConstructorUsedError;
+  set assignedUserIds(List<String> value) => throw _privateConstructorUsedError;
+  List<String> get weeklyDays => throw _privateConstructorUsedError;
+  set weeklyDays(List<String> value) => throw _privateConstructorUsedError;
+  List<String> get monthlyDays => throw _privateConstructorUsedError;
+  set monthlyDays(List<String> value) => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
   UserModel? get userModel => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -110,12 +106,10 @@ abstract class $TaskModelCopyWith<$Res> {
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? deliveryDate,
-    @TimestampSerializer() DateTime? assignedDate,
     String deliveryTime,
     int allowedDurationInMinutes,
     int points,
     String id,
-    String startTime,
     String? parentTaskId,
     String companyId,
     String title,
@@ -124,11 +118,10 @@ abstract class $TaskModelCopyWith<$Res> {
     String departmentId,
     String violationDescription,
     String notes,
+    String createdById,
     String? repeatType,
     bool markedAsLate,
     List<AttachmentModel>? attachments,
-    List<String> assignedUserIds,
-    List<String> repeatDays,
     String? userId,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -136,7 +129,9 @@ abstract class $TaskModelCopyWith<$Res> {
     int violationTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
-    String createdById,
+    List<String> assignedUserIds,
+    List<String> weeklyDays,
+    List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   });
 
@@ -161,12 +156,10 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
   $Res call({
     Object? createdAt = freezed,
     Object? deliveryDate = freezed,
-    Object? assignedDate = freezed,
     Object? deliveryTime = null,
     Object? allowedDurationInMinutes = null,
     Object? points = null,
     Object? id = null,
-    Object? startTime = null,
     Object? parentTaskId = freezed,
     Object? companyId = null,
     Object? title = null,
@@ -175,11 +168,10 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? departmentId = null,
     Object? violationDescription = null,
     Object? notes = null,
+    Object? createdById = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
     Object? attachments = freezed,
-    Object? assignedUserIds = null,
-    Object? repeatDays = null,
     Object? userId = freezed,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
@@ -187,7 +179,9 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? violationTasksCount = null,
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
-    Object? createdById = null,
+    Object? assignedUserIds = null,
+    Object? weeklyDays = null,
+    Object? monthlyDays = null,
     Object? userModel = freezed,
   }) {
     return _then(
@@ -201,11 +195,6 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                 freezed == deliveryDate
                     ? _value.deliveryDate
                     : deliveryDate // ignore: cast_nullable_to_non_nullable
-                        as DateTime?,
-            assignedDate:
-                freezed == assignedDate
-                    ? _value.assignedDate
-                    : assignedDate // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
             deliveryTime:
                 null == deliveryTime
@@ -226,11 +215,6 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                 null == id
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            startTime:
-                null == startTime
-                    ? _value.startTime
-                    : startTime // ignore: cast_nullable_to_non_nullable
                         as String,
             parentTaskId:
                 freezed == parentTaskId
@@ -272,6 +256,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.notes
                     : notes // ignore: cast_nullable_to_non_nullable
                         as String,
+            createdById:
+                null == createdById
+                    ? _value.createdById
+                    : createdById // ignore: cast_nullable_to_non_nullable
+                        as String,
             repeatType:
                 freezed == repeatType
                     ? _value.repeatType
@@ -287,16 +276,6 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.attachments
                     : attachments // ignore: cast_nullable_to_non_nullable
                         as List<AttachmentModel>?,
-            assignedUserIds:
-                null == assignedUserIds
-                    ? _value.assignedUserIds
-                    : assignedUserIds // ignore: cast_nullable_to_non_nullable
-                        as List<String>,
-            repeatDays:
-                null == repeatDays
-                    ? _value.repeatDays
-                    : repeatDays // ignore: cast_nullable_to_non_nullable
-                        as List<String>,
             userId:
                 freezed == userId
                     ? _value.userId
@@ -332,11 +311,21 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.violation
                     : violation // ignore: cast_nullable_to_non_nullable
                         as LightViolationModel?,
-            createdById:
-                null == createdById
-                    ? _value.createdById
-                    : createdById // ignore: cast_nullable_to_non_nullable
-                        as String,
+            assignedUserIds:
+                null == assignedUserIds
+                    ? _value.assignedUserIds
+                    : assignedUserIds // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            weeklyDays:
+                null == weeklyDays
+                    ? _value.weeklyDays
+                    : weeklyDays // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            monthlyDays:
+                null == monthlyDays
+                    ? _value.monthlyDays
+                    : monthlyDays // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
             userModel:
                 freezed == userModel
                     ? _value.userModel
@@ -388,12 +377,10 @@ abstract class _$$TaskModelImplCopyWith<$Res>
   $Res call({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? deliveryDate,
-    @TimestampSerializer() DateTime? assignedDate,
     String deliveryTime,
     int allowedDurationInMinutes,
     int points,
     String id,
-    String startTime,
     String? parentTaskId,
     String companyId,
     String title,
@@ -402,11 +389,10 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String departmentId,
     String violationDescription,
     String notes,
+    String createdById,
     String? repeatType,
     bool markedAsLate,
     List<AttachmentModel>? attachments,
-    List<String> assignedUserIds,
-    List<String> repeatDays,
     String? userId,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -414,7 +400,9 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     int violationTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
-    String createdById,
+    List<String> assignedUserIds,
+    List<String> weeklyDays,
+    List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   });
 
@@ -440,12 +428,10 @@ class __$$TaskModelImplCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = freezed,
     Object? deliveryDate = freezed,
-    Object? assignedDate = freezed,
     Object? deliveryTime = null,
     Object? allowedDurationInMinutes = null,
     Object? points = null,
     Object? id = null,
-    Object? startTime = null,
     Object? parentTaskId = freezed,
     Object? companyId = null,
     Object? title = null,
@@ -454,11 +440,10 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? departmentId = null,
     Object? violationDescription = null,
     Object? notes = null,
+    Object? createdById = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
     Object? attachments = freezed,
-    Object? assignedUserIds = null,
-    Object? repeatDays = null,
     Object? userId = freezed,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
@@ -466,7 +451,9 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? violationTasksCount = null,
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
-    Object? createdById = null,
+    Object? assignedUserIds = null,
+    Object? weeklyDays = null,
+    Object? monthlyDays = null,
     Object? userModel = freezed,
   }) {
     return _then(
@@ -480,11 +467,6 @@ class __$$TaskModelImplCopyWithImpl<$Res>
             freezed == deliveryDate
                 ? _value.deliveryDate
                 : deliveryDate // ignore: cast_nullable_to_non_nullable
-                    as DateTime?,
-        assignedDate:
-            freezed == assignedDate
-                ? _value.assignedDate
-                : assignedDate // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
         deliveryTime:
             null == deliveryTime
@@ -505,11 +487,6 @@ class __$$TaskModelImplCopyWithImpl<$Res>
             null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        startTime:
-            null == startTime
-                ? _value.startTime
-                : startTime // ignore: cast_nullable_to_non_nullable
                     as String,
         parentTaskId:
             freezed == parentTaskId
@@ -551,6 +528,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.notes
                 : notes // ignore: cast_nullable_to_non_nullable
                     as String,
+        createdById:
+            null == createdById
+                ? _value.createdById
+                : createdById // ignore: cast_nullable_to_non_nullable
+                    as String,
         repeatType:
             freezed == repeatType
                 ? _value.repeatType
@@ -566,16 +548,6 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.attachments
                 : attachments // ignore: cast_nullable_to_non_nullable
                     as List<AttachmentModel>?,
-        assignedUserIds:
-            null == assignedUserIds
-                ? _value.assignedUserIds
-                : assignedUserIds // ignore: cast_nullable_to_non_nullable
-                    as List<String>,
-        repeatDays:
-            null == repeatDays
-                ? _value.repeatDays
-                : repeatDays // ignore: cast_nullable_to_non_nullable
-                    as List<String>,
         userId:
             freezed == userId
                 ? _value.userId
@@ -611,11 +583,21 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.violation
                 : violation // ignore: cast_nullable_to_non_nullable
                     as LightViolationModel?,
-        createdById:
-            null == createdById
-                ? _value.createdById
-                : createdById // ignore: cast_nullable_to_non_nullable
-                    as String,
+        assignedUserIds:
+            null == assignedUserIds
+                ? _value.assignedUserIds
+                : assignedUserIds // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        weeklyDays:
+            null == weeklyDays
+                ? _value.weeklyDays
+                : weeklyDays // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        monthlyDays:
+            null == monthlyDays
+                ? _value.monthlyDays
+                : monthlyDays // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
         userModel:
             freezed == userModel
                 ? _value.userModel
@@ -633,12 +615,10 @@ class _$TaskModelImpl extends _TaskModel {
   _$TaskModelImpl({
     @TimestampSerializer() this.createdAt,
     @TimestampSerializer() this.deliveryDate,
-    @TimestampSerializer() this.assignedDate,
     this.deliveryTime = "",
     this.allowedDurationInMinutes = 0,
     this.points = 0,
     this.id = "",
-    this.startTime = "09:00 Am",
     this.parentTaskId,
     required this.companyId,
     this.title = "",
@@ -647,11 +627,10 @@ class _$TaskModelImpl extends _TaskModel {
     this.departmentId = "",
     this.violationDescription = "",
     this.notes = "",
+    required this.createdById,
     this.repeatType,
     this.markedAsLate = false,
     this.attachments,
-    this.assignedUserIds = const [],
-    required this.repeatDays,
     this.userId,
     this.inCompletedTasksCount = 0,
     this.completedTasksCount = 0,
@@ -659,7 +638,9 @@ class _$TaskModelImpl extends _TaskModel {
     this.violationTasksCount = 0,
     this.totalAssignedUsers = 0,
     this.violation,
-    required this.createdById,
+    this.assignedUserIds = const [],
+    required this.weeklyDays,
+    required this.monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) this.userModel,
   }) : super._();
 
@@ -673,9 +654,6 @@ class _$TaskModelImpl extends _TaskModel {
   @TimestampSerializer()
   DateTime? deliveryDate;
   @override
-  @TimestampSerializer()
-  DateTime? assignedDate;
-  @override
   @JsonKey()
   String deliveryTime;
   @override
@@ -687,9 +665,6 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   @JsonKey()
   String id;
-  @override
-  @JsonKey()
-  String startTime;
   @override
   String? parentTaskId;
   @override
@@ -713,17 +688,14 @@ class _$TaskModelImpl extends _TaskModel {
   @JsonKey()
   String notes;
   @override
+  String createdById;
+  @override
   String? repeatType;
   @override
   @JsonKey()
   bool markedAsLate;
   @override
   List<AttachmentModel>? attachments;
-  @override
-  @JsonKey()
-  List<String> assignedUserIds;
-  @override
-  List<String> repeatDays;
   @override
   String? userId;
   @override
@@ -744,14 +716,19 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   LightViolationModel? violation;
   @override
-  String createdById;
+  @JsonKey()
+  List<String> assignedUserIds;
+  @override
+  List<String> weeklyDays;
+  @override
+  List<String> monthlyDays;
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   UserModel? userModel;
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, assignedDate: $assignedDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, startTime: $startTime, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, assignedUserIds: $assignedUserIds, repeatDays: $repeatDays, userId: $userId, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, createdById: $createdById, userModel: $userModel)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, userId: $userId, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
   }
 
   /// Create a copy of TaskModel
@@ -772,12 +749,10 @@ abstract class _TaskModel extends TaskModel {
   factory _TaskModel({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? deliveryDate,
-    @TimestampSerializer() DateTime? assignedDate,
     String deliveryTime,
     int allowedDurationInMinutes,
     int points,
     String id,
-    String startTime,
     String? parentTaskId,
     required String companyId,
     String title,
@@ -786,11 +761,10 @@ abstract class _TaskModel extends TaskModel {
     String departmentId,
     String violationDescription,
     String notes,
+    required String createdById,
     String? repeatType,
     bool markedAsLate,
     List<AttachmentModel>? attachments,
-    List<String> assignedUserIds,
-    required List<String> repeatDays,
     String? userId,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -798,7 +772,9 @@ abstract class _TaskModel extends TaskModel {
     int violationTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
-    required String createdById,
+    List<String> assignedUserIds,
+    required List<String> weeklyDays,
+    required List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   }) = _$TaskModelImpl;
   _TaskModel._() : super._();
@@ -817,11 +793,6 @@ abstract class _TaskModel extends TaskModel {
   @TimestampSerializer()
   set deliveryDate(DateTime? value);
   @override
-  @TimestampSerializer()
-  DateTime? get assignedDate;
-  @TimestampSerializer()
-  set assignedDate(DateTime? value);
-  @override
   String get deliveryTime;
   set deliveryTime(String value);
   @override
@@ -833,9 +804,6 @@ abstract class _TaskModel extends TaskModel {
   @override
   String get id;
   set id(String value);
-  @override
-  String get startTime;
-  set startTime(String value);
   @override
   String? get parentTaskId;
   set parentTaskId(String? value);
@@ -861,6 +829,9 @@ abstract class _TaskModel extends TaskModel {
   String get notes;
   set notes(String value);
   @override
+  String get createdById;
+  set createdById(String value);
+  @override
   String? get repeatType;
   set repeatType(String? value);
   @override
@@ -869,12 +840,6 @@ abstract class _TaskModel extends TaskModel {
   @override
   List<AttachmentModel>? get attachments;
   set attachments(List<AttachmentModel>? value);
-  @override
-  List<String> get assignedUserIds;
-  set assignedUserIds(List<String> value);
-  @override
-  List<String> get repeatDays;
-  set repeatDays(List<String> value);
   @override
   String? get userId;
   set userId(String? value);
@@ -897,8 +862,14 @@ abstract class _TaskModel extends TaskModel {
   LightViolationModel? get violation;
   set violation(LightViolationModel? value);
   @override
-  String get createdById;
-  set createdById(String value);
+  List<String> get assignedUserIds;
+  set assignedUserIds(List<String> value);
+  @override
+  List<String> get weeklyDays;
+  set weeklyDays(List<String> value);
+  @override
+  List<String> get monthlyDays;
+  set monthlyDays(List<String> value);
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   UserModel? get userModel;

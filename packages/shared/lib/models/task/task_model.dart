@@ -13,8 +13,6 @@ class TaskModel with _$TaskModel {
   factory TaskModel({
     @TimestampSerializer() DateTime? createdAt,
     @TimestampSerializer() DateTime? deliveryDate,
-    @TimestampSerializer() DateTime? assignedDate,
-    @Default("09:00 Am") String startTime,
     @Default("") String deliveryTime,
     @Default(0) int allowedDurationInMinutes,
     @Default(0) int points,
@@ -27,11 +25,10 @@ class TaskModel with _$TaskModel {
     @Default("") String departmentId,
     @Default("") String violationDescription,
     @Default("") String notes,
+    required String createdById,
     String? repeatType,
     @Default(false) bool markedAsLate,
     List<AttachmentModel>? attachments,
-    @Default([]) List<String> assignedUserIds,
-    required List<String> repeatDays,
     String? userId,
     @Default(0) int inCompletedTasksCount,
     @Default(0) int completedTasksCount,
@@ -39,7 +36,9 @@ class TaskModel with _$TaskModel {
     @Default(0) int violationTasksCount,
     @Default(0) int totalAssignedUsers,
     LightViolationModel? violation,
-    required String createdById,
+    @Default([]) List<String> assignedUserIds,
+    required List<String> weeklyDays,
+    required List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   }) = _TaskModel;
   factory TaskModel.fromJson(Map<String, dynamic> json) => _$TaskModelFromJson(json);

@@ -11,13 +11,11 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
 ) => _$TaskModelImpl(
   createdAt: const TimestampSerializer().fromJson(json['createdAt']),
   deliveryDate: const TimestampSerializer().fromJson(json['deliveryDate']),
-  assignedDate: const TimestampSerializer().fromJson(json['assignedDate']),
   deliveryTime: json['deliveryTime'] as String? ?? "",
   allowedDurationInMinutes:
       (json['allowedDurationInMinutes'] as num?)?.toInt() ?? 0,
   points: (json['points'] as num?)?.toInt() ?? 0,
   id: json['id'] as String? ?? "",
-  startTime: json['startTime'] as String? ?? "09:00 Am",
   parentTaskId: json['parentTaskId'] as String?,
   companyId: json['companyId'] as String,
   title: json['title'] as String? ?? "",
@@ -26,19 +24,13 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
   departmentId: json['departmentId'] as String? ?? "",
   violationDescription: json['violationDescription'] as String? ?? "",
   notes: json['notes'] as String? ?? "",
+  createdById: json['createdById'] as String,
   repeatType: json['repeatType'] as String?,
   markedAsLate: json['markedAsLate'] as bool? ?? false,
   attachments:
       (json['attachments'] as List<dynamic>?)
           ?.map((e) => AttachmentModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-  assignedUserIds:
-      (json['assignedUserIds'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      const [],
-  repeatDays:
-      (json['repeatDays'] as List<dynamic>).map((e) => e as String).toList(),
   userId: json['userId'] as String?,
   inCompletedTasksCount: (json['inCompletedTasksCount'] as num?)?.toInt() ?? 0,
   completedTasksCount: (json['completedTasksCount'] as num?)?.toInt() ?? 0,
@@ -51,19 +43,25 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
           : LightViolationModel.fromJson(
             json['violation'] as Map<String, dynamic>,
           ),
-  createdById: json['createdById'] as String,
+  assignedUserIds:
+      (json['assignedUserIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
+  weeklyDays:
+      (json['weeklyDays'] as List<dynamic>).map((e) => e as String).toList(),
+  monthlyDays:
+      (json['monthlyDays'] as List<dynamic>).map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
     <String, dynamic>{
       'createdAt': const TimestampSerializer().toJson(instance.createdAt),
       'deliveryDate': const TimestampSerializer().toJson(instance.deliveryDate),
-      'assignedDate': const TimestampSerializer().toJson(instance.assignedDate),
       'deliveryTime': instance.deliveryTime,
       'allowedDurationInMinutes': instance.allowedDurationInMinutes,
       'points': instance.points,
       'id': instance.id,
-      'startTime': instance.startTime,
       'parentTaskId': instance.parentTaskId,
       'companyId': instance.companyId,
       'title': instance.title,
@@ -72,11 +70,10 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'departmentId': instance.departmentId,
       'violationDescription': instance.violationDescription,
       'notes': instance.notes,
+      'createdById': instance.createdById,
       'repeatType': instance.repeatType,
       'markedAsLate': instance.markedAsLate,
       'attachments': instance.attachments?.map((e) => e.toJson()).toList(),
-      'assignedUserIds': instance.assignedUserIds,
-      'repeatDays': instance.repeatDays,
       'userId': instance.userId,
       'inCompletedTasksCount': instance.inCompletedTasksCount,
       'completedTasksCount': instance.completedTasksCount,
@@ -84,5 +81,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'violationTasksCount': instance.violationTasksCount,
       'totalAssignedUsers': instance.totalAssignedUsers,
       'violation': instance.violation?.toJson(),
-      'createdById': instance.createdById,
+      'assignedUserIds': instance.assignedUserIds,
+      'weeklyDays': instance.weeklyDays,
+      'monthlyDays': instance.monthlyDays,
     };

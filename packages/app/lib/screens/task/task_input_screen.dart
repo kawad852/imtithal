@@ -65,7 +65,8 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
             status: TaskStatusEnum.pending.value,
             companyId: kCompanyId,
             attachments: [],
-            repeatDays: [],
+            weeklyDays: [],
+            monthlyDays: [],
             createdById: kUserId,
           ).toJson(),
     );
@@ -119,13 +120,6 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                   ),
                 ),
               ),
-              TitledTextField(
-                title: context.appLocalization.taskStartTime,
-                child: DayTimeEditor(
-                  initialValue: _task.startTime,
-                  onChanged: (value) => _task.startTime = value,
-                ),
-              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -173,7 +167,8 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                               if (_task.repeatType != e.value) {
                                 setState(() {
                                   _task.repeatType = e.value;
-                                  _task.repeatDays.clear();
+                                  _task.weeklyDays.clear();
+                                  _task.monthlyDays.clear();
                                 });
                               }
                             },
@@ -204,14 +199,14 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                     children:
                         TaskDaysEnum.values.map((day) {
                           final e = day.value;
-                          final isSelected = _task.repeatDays.contains(e);
+                          final isSelected = _task.weeklyDays.contains(e);
                           return DayBubble(
                             onTap: () {
                               setState(() {
-                                if (_task.repeatDays.contains(e)) {
-                                  _task.repeatDays.remove(e);
+                                if (_task.weeklyDays.contains(e)) {
+                                  _task.weeklyDays.remove(e);
                                 } else {
-                                  _task.repeatDays.add(e);
+                                  _task.weeklyDays.add(e);
                                 }
                               });
                             },
@@ -223,6 +218,32 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
                                     : context.colorPalette.greyF5F,
                           );
                         }).toList(),
+                  ),
+                ),
+              if (_task.repeatType == RepeatType.monthly.value)
+                SizedBox(
+                  height: 40,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children:
+                          List.generate(31, (index) {
+                            final value = '${index + 1}';
+                            return InputChip(
+                              label: Text(value),
+                              selected: _task.monthlyDays.contains(value),
+                              onSelected: (selected) {
+                                setState(() {
+                                  if (selected) {
+                                    _task.monthlyDays.add(value);
+                                  } else {
+                                    _task.monthlyDays.remove(value);
+                                  }
+                                });
+                              },
+                            );
+                          }).separator(const SizedBox(width: 5)).toList(),
+                    ),
                   ),
                 ),
               Padding(
