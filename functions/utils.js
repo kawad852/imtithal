@@ -16,7 +16,16 @@ function isHoliday(date, holidays) {
   });
 }
 
-async function createAssignedTasksForUser({ db, tx, userId, task, parentTaskId, companyRef, currentIdRef, dates }) {
+async function createAssignedTasksForUser({
+  db,
+  tx,
+  userId,
+  task,
+  parentTaskId,
+  companyRef,
+  currentIdRef,
+  dates,
+}) {
   const assignedTasksRef = db.collection("users").doc(userId).collection("assignedTasks");
 
   for (const date of dates) {
@@ -30,19 +39,19 @@ async function createAssignedTasksForUser({ db, tx, userId, task, parentTaskId, 
 
     if (!existing.empty) continue;
 
-    const newRowId = currentIdRef.value++;
+    const newId = currentIdRef.value.toString();
+    currentIdRef.value++;
+
     const newTask = {
       ...task,
-      rowId: newRowId,
+      id: newId,
+      userId: userId,
       parentTaskId,
       deliveryDate: timestamp,
       createdAt: Timestamp.now(),
     };
 
-    delete newTask.id;
-
-    const docRef = assignedTasksRef.doc(); // Auto-generated ID
-    tx.set(docRef, newTask);
+    tx.set(assignedTasksRef.doc(newId), newTask);
   }
 }
 
@@ -50,3 +59,4 @@ module.exports = {
   isHoliday,
   createAssignedTasksForUser,
 };
+
