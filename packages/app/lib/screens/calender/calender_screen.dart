@@ -37,8 +37,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
         actions: [
           SearchScreen(
             hintText: context.appLocalization.searchTask,
-            includeIndexes: (false, false, true),
-            filters: kIsEmployee ? '${MyFields.assignedUserIds}:$kUserId' : null,
+            includeIndexes: (false, false, true, false),
             builder: (controller) {
               return IconButton(
                 onPressed: () {

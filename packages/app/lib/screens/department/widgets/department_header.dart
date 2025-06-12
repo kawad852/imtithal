@@ -121,7 +121,7 @@ class DepartmentHeader extends StatelessWidget {
           const SizedBox(height: 10),
           SearchScreen(
             hintText: context.appLocalization.searchForEmployee,
-            includeIndexes: (true, false, false),
+            includeIndexes: (true, false, false, false),
             filters: '${MyFields.departmentId}:${department.id}',
           ),
         ],

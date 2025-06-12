@@ -11,7 +11,7 @@ class SearchScreen<T> extends StatefulWidget {
   final String hintText;
   final Widget Function(MySearchController controller)? builder;
   final String? filters;
-  final (bool users, bool depatments, bool tasks) includeIndexes;
+  final (bool users, bool depatments, bool tasks, bool violations) includeIndexes;
 
   const SearchScreen({
     super.key,
@@ -42,7 +42,41 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
       if (query == '') {
         return [];
       }
-      final filters = widget.filters ?? '${MyFields.companyId}:$kCompanyId';
+      String? myFilter;
+      if (widget.filters != null) {
+        myFilter = widget.filters;
+      } else {
+        final values = widget.includeIndexes;
+        if (kIsAdmin || kIsEmtithalManager) {
+          myFilter = '${MyFields.companyId}:$kCompanyId';
+        } else if (kIsDepartmentManager) {
+          //Users
+          if (values.$1) {
+            myFilter = '${MyFields.departmentId}:${kUser.departmentId}';
+          }
+
+          final departmentUsers =
+              MySharedPreferences.users.map((e) => e.departmentId == kUser.departmentId).toList();
+          //Tasks
+          if (values.$3) {
+            myFilter = departmentUsers.map((id) => '${MyFields.assignedUserIds}:$id').join(' OR ');
+          }
+          //Violations
+          if (values.$4) {
+            myFilter = departmentUsers.map((id) => '${MyFields.userId}:$id').join(' OR ');
+          }
+
+          myFilter = '${MyFields.userId}:$kUserId';
+        } else if (kIsEmployee) {
+          if (values.$3) {
+            //Tasks
+            myFilter = "${MyFields.assignedUserIds}:$kUserId";
+          } else {
+            myFilter = '${MyFields.userId}:$kUserId';
+          }
+        }
+      }
+
       final includeIndexes = widget.includeIndexes;
       final usersFuture =
           includeIndexes.$1
@@ -52,7 +86,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                       indexName: AlgoliaIndices.users.value,
                       query: query,
                       hitsPerPage: 10,
-                      filters: filters,
+                      filters: myFilter,
                     ),
                   )
                   .then((value) {
@@ -67,7 +101,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                       indexName: AlgoliaIndices.departments.value,
                       query: query,
                       hitsPerPage: 10,
-                      filters: filters,
+                      filters: myFilter,
                     ),
                   )
                   .then((value) {
@@ -82,7 +116,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                       indexName: AlgoliaIndices.tasks.value,
                       query: query,
                       hitsPerPage: 10,
-                      filters: filters,
+                      filters: myFilter,
                     ),
                   )
                   .then((value) {

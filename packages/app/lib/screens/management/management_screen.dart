@@ -129,7 +129,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
                 ),
                 SearchScreen(
                   hintText: context.appLocalization.searchDepartmentEmployee,
-                  includeIndexes: (true, true, false),
+                  includeIndexes: (true, true, false, false),
                 ),
                 // TextEditor(
                 //   onChanged: (value) {},
