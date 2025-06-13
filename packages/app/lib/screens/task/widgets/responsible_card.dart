@@ -109,21 +109,22 @@ class ResponsibleCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomSvg(MyIcons.calendar, color: context.colorPalette.grey8B8, width: 16),
-                    const SizedBox(width: 10),
-                    Text(
-                      task.deliveryDate!.getDefaultFormattedDate(context),
-                      style: TextStyle(
-                        color: context.colorPalette.grey8B8,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                if (task.deliveryDate != null)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomSvg(MyIcons.calendar, color: context.colorPalette.grey8B8, width: 16),
+                      const SizedBox(width: 10),
+                      Text(
+                        task.deliveryDate!.getDefaultFormattedDate(context),
+                        style: TextStyle(
+                          color: context.colorPalette.grey8B8,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
               ],
             ),
           ),
