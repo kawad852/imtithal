@@ -31,7 +31,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
             _task.createdAt = kNowDate;
           }
           final time = _task.deliveryTime.convertStringToTimeOfDay;
-          _task.deliveryDate = _task.deliveryDate!.copyWith(
+          _task.deliveryDate = _task.deliveryDate?.copyWith(
             hour: time.hour,
             minute: time.minute,
             second: 0,

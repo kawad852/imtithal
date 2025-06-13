@@ -42,34 +42,34 @@ class TaskCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // if (isPrivate)
-                      Container(
-                        height: 20,
-                        padding: const EdgeInsets.symmetric(horizontal: 4),
-                        margin: const EdgeInsetsDirectional.only(end: 4),
-                        decoration: BoxDecoration(
-                          color: context.colorPalette.greyECE,
-                          borderRadius: BorderRadius.circular(kRadiusPrimary),
-                        ),
-                        child: Row(
-                          children: [
-                            CustomSvg(
-                              MyIcons.calendar,
-                              width: 14,
-                              color: context.colorPalette.grey8B8,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              task.deliveryDate!.getDefaultFormattedDate(context),
-                              style: TextStyle(
+                      if (task.deliveryDate != null)
+                        Container(
+                          height: 20,
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          margin: const EdgeInsetsDirectional.only(end: 4),
+                          decoration: BoxDecoration(
+                            color: context.colorPalette.greyECE,
+                            borderRadius: BorderRadius.circular(kRadiusPrimary),
+                          ),
+                          child: Row(
+                            children: [
+                              CustomSvg(
+                                MyIcons.calendar,
+                                width: 14,
                                 color: context.colorPalette.grey8B8,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
                               ),
-                            ),
-                          ],
+                              const SizedBox(width: 4),
+                              Text(
+                                task.deliveryDate!.getDefaultFormattedDate(context),
+                                style: TextStyle(
+                                  color: context.colorPalette.grey8B8,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
                       Container(
                         height: 20,
                         padding: const EdgeInsets.symmetric(horizontal: 4),
