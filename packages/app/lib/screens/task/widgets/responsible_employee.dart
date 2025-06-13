@@ -26,7 +26,7 @@ class ResponsibleEmployee extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: CustomSvg(MyIcons.check, color: indicatorColor),
           ),
-          UserPhoto(url: user.profilePhoto, displayName: user.displayName),
+          UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 32),
           const SizedBox(width: 5),
           Expanded(
             child: Column(

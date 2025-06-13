@@ -25,6 +25,7 @@ class NavSheet extends StatelessWidget {
           Expanded(
             child: GestureDetector(
               onTap: () {
+                context.back();
                 context.navigate((context) => const TaskInputScreen());
               },
               child: Container(
@@ -60,6 +61,7 @@ class NavSheet extends StatelessWidget {
           Expanded(
             child: GestureDetector(
               onTap: () {
+                context.back();
                 context.navigate((context) => const ViolationInputScreen(task: null));
               },
               child: Container(
