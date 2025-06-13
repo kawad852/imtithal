@@ -56,18 +56,14 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
             myFilter = '${MyFields.departmentId}:${kUser.departmentId}';
           }
 
-          final departmentUsers =
-              MySharedPreferences.users.map((e) => e.departmentId == kUser.departmentId).toList();
           //Tasks
           if (values.$3) {
-            myFilter = departmentUsers.map((id) => '${MyFields.assignedUserIds}:$id').join(' OR ');
+            myFilter = "${MyFields.assignedDepartmentIds}:${kUser.departmentId}";
           }
           //Violations
           if (values.$4) {
-            myFilter = departmentUsers.map((id) => '${MyFields.user_id}:$id').join(' OR ');
+            myFilter = "${MyFields.user_departmentId}:${kUser.departmentId}";
           }
-
-          myFilter = '${MyFields.user_id}:$kUserId';
         } else if (kIsEmployee) {
           if (values.$3) {
             //Tasks

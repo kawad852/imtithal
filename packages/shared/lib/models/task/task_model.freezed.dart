@@ -78,8 +78,9 @@ mixin _$TaskModel {
   LightViolationModel? get violation => throw _privateConstructorUsedError;
   set violation(LightViolationModel? value) =>
       throw _privateConstructorUsedError;
-  List<String> get assignedUserIds => throw _privateConstructorUsedError;
-  set assignedUserIds(List<String> value) => throw _privateConstructorUsedError;
+  List<LightUserModel> get assignedUsers => throw _privateConstructorUsedError;
+  set assignedUsers(List<LightUserModel> value) =>
+      throw _privateConstructorUsedError;
   List<String> get weeklyDays => throw _privateConstructorUsedError;
   set weeklyDays(List<String> value) => throw _privateConstructorUsedError;
   List<String> get monthlyDays => throw _privateConstructorUsedError;
@@ -130,7 +131,7 @@ abstract class $TaskModelCopyWith<$Res> {
     int violationTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
-    List<String> assignedUserIds,
+    List<LightUserModel> assignedUsers,
     List<String> weeklyDays,
     List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
@@ -181,7 +182,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? violationTasksCount = null,
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
-    Object? assignedUserIds = null,
+    Object? assignedUsers = null,
     Object? weeklyDays = null,
     Object? monthlyDays = null,
     Object? userModel = freezed,
@@ -313,11 +314,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.violation
                     : violation // ignore: cast_nullable_to_non_nullable
                         as LightViolationModel?,
-            assignedUserIds:
-                null == assignedUserIds
-                    ? _value.assignedUserIds
-                    : assignedUserIds // ignore: cast_nullable_to_non_nullable
-                        as List<String>,
+            assignedUsers:
+                null == assignedUsers
+                    ? _value.assignedUsers
+                    : assignedUsers // ignore: cast_nullable_to_non_nullable
+                        as List<LightUserModel>,
             weeklyDays:
                 null == weeklyDays
                     ? _value.weeklyDays
@@ -412,7 +413,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     int violationTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
-    List<String> assignedUserIds,
+    List<LightUserModel> assignedUsers,
     List<String> weeklyDays,
     List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
@@ -465,7 +466,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? violationTasksCount = null,
     Object? totalAssignedUsers = null,
     Object? violation = freezed,
-    Object? assignedUserIds = null,
+    Object? assignedUsers = null,
     Object? weeklyDays = null,
     Object? monthlyDays = null,
     Object? userModel = freezed,
@@ -597,11 +598,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.violation
                 : violation // ignore: cast_nullable_to_non_nullable
                     as LightViolationModel?,
-        assignedUserIds:
-            null == assignedUserIds
-                ? _value.assignedUserIds
-                : assignedUserIds // ignore: cast_nullable_to_non_nullable
-                    as List<String>,
+        assignedUsers:
+            null == assignedUsers
+                ? _value.assignedUsers
+                : assignedUsers // ignore: cast_nullable_to_non_nullable
+                    as List<LightUserModel>,
         weeklyDays:
             null == weeklyDays
                 ? _value.weeklyDays
@@ -652,7 +653,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.violationTasksCount = 0,
     this.totalAssignedUsers = 0,
     this.violation,
-    this.assignedUserIds = const [],
+    this.assignedUsers = const [],
     required this.weeklyDays,
     required this.monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) this.userModel,
@@ -732,7 +733,7 @@ class _$TaskModelImpl extends _TaskModel {
   LightViolationModel? violation;
   @override
   @JsonKey()
-  List<String> assignedUserIds;
+  List<LightUserModel> assignedUsers;
   @override
   List<String> weeklyDays;
   @override
@@ -743,7 +744,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUsers: $assignedUsers, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
   }
 
   /// Create a copy of TaskModel
@@ -787,7 +788,7 @@ abstract class _TaskModel extends TaskModel {
     int violationTasksCount,
     int totalAssignedUsers,
     LightViolationModel? violation,
-    List<String> assignedUserIds,
+    List<LightUserModel> assignedUsers,
     required List<String> weeklyDays,
     required List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
@@ -877,8 +878,8 @@ abstract class _TaskModel extends TaskModel {
   LightViolationModel? get violation;
   set violation(LightViolationModel? value);
   @override
-  List<String> get assignedUserIds;
-  set assignedUserIds(List<String> value);
+  List<LightUserModel> get assignedUsers;
+  set assignedUsers(List<LightUserModel> value);
   @override
   List<String> get weeklyDays;
   set weeklyDays(List<String> value);

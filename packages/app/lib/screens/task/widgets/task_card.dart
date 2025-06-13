@@ -134,7 +134,11 @@ class TaskCard extends StatelessWidget {
                         UsersSelector(
                           builder: (context, users) {
                             final assignedUsers =
-                                users.where((e) => task.assignedUserIds.contains(e.id)).toList();
+                                users
+                                    .where(
+                                      (e) => task.assignedUsers.map((e) => e.id).contains(e.id),
+                                    )
+                                    .toList();
                             return UserPhotos(users: assignedUsers, height: 32);
                           },
                         ),
