@@ -198,8 +198,8 @@ exports.onTasksUpdate = onDocumentUpdated({
           dates.push(date);
         } else if (repeatType === "WEEKLY" && weeklyDays.includes(weekday)) {
           dates.push(date);
-        } else if (repeatType === "MONTHLY" && monthlyDays.includes(date.date())) {
-          dates.push(date);
+        } else if (repeatType === "MONTHLY" && monthlyDays.includes(String(date.date()))) {
+            dates.push(date);
         }
       }
 
