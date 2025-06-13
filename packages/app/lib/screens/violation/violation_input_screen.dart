@@ -39,13 +39,13 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
           if (_isGeneralViolation) {
             for (var user in _selectedUsers) {
               final violationDocRef = kFirebaseInstant.userViolations(user.id!).doc(_violation.id);
-              _violation.userId = user.id!;
+              _violation.user = LightUserModel(id: user.id!, departmentId: user.departmentId!);
               _violation.userDisplayName = user.displayName;
               batch.set(violationDocRef, _violation);
               _sendNotification(context, user: user);
             }
           } else {
-            _violation.userId = _user!.id!;
+            _violation.user = LightUserModel(id: _user!.id!, departmentId: _user!.departmentId!);
             _violation.userDisplayName = _user!.displayName;
             final taskDocRef = kFirebaseInstant.userAssignedTasks(_user!.id!).doc(_task!.id);
             final violationDocRef = kFirebaseInstant.userViolations(_user!.id!).doc(_violation.id);
@@ -86,7 +86,11 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
   @override
   void initState() {
     super.initState();
-    _violation = ViolationModel(createdById: kUserId, attachments: []);
+    _violation = ViolationModel(
+      createdById: kUserId,
+      attachments: [],
+      user: LightUserModel(id: '', departmentId: ''),
+    );
   }
 
   @override
@@ -172,7 +176,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
                 UsersSelector(
                   builder: (context, users) {
                     _task!.userModel ??= users.firstWhere(
-                      (e) => e.id == _task!.userId,
+                      (e) => e.id == _task!.user.id,
                       orElse: () => UserModel(),
                     );
                     return Row(

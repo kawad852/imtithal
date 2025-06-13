@@ -61,9 +61,10 @@ mixin _$TaskModel {
   set markedAsLate(bool value) => throw _privateConstructorUsedError;
   List<AttachmentModel>? get attachments => throw _privateConstructorUsedError;
   set attachments(List<AttachmentModel>? value) =>
-      throw _privateConstructorUsedError;
-  String? get userId => throw _privateConstructorUsedError;
-  set userId(String? value) => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; // String? userId,
+  LightUserModel get user =>
+      throw _privateConstructorUsedError; // String? userId,
+  set user(LightUserModel value) => throw _privateConstructorUsedError;
   int get inCompletedTasksCount => throw _privateConstructorUsedError;
   set inCompletedTasksCount(int value) => throw _privateConstructorUsedError;
   int get completedTasksCount => throw _privateConstructorUsedError;
@@ -122,7 +123,7 @@ abstract class $TaskModelCopyWith<$Res> {
     String? repeatType,
     bool markedAsLate,
     List<AttachmentModel>? attachments,
-    String? userId,
+    LightUserModel user,
     int inCompletedTasksCount,
     int completedTasksCount,
     int lateTasksCount,
@@ -135,6 +136,7 @@ abstract class $TaskModelCopyWith<$Res> {
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   });
 
+  $LightUserModelCopyWith<$Res> get user;
   $LightViolationModelCopyWith<$Res>? get violation;
   $UserModelCopyWith<$Res>? get userModel;
 }
@@ -172,7 +174,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? repeatType = freezed,
     Object? markedAsLate = null,
     Object? attachments = freezed,
-    Object? userId = freezed,
+    Object? user = null,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
     Object? lateTasksCount = null,
@@ -276,11 +278,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.attachments
                     : attachments // ignore: cast_nullable_to_non_nullable
                         as List<AttachmentModel>?,
-            userId:
-                freezed == userId
-                    ? _value.userId
-                    : userId // ignore: cast_nullable_to_non_nullable
-                        as String?,
+            user:
+                null == user
+                    ? _value.user
+                    : user // ignore: cast_nullable_to_non_nullable
+                        as LightUserModel,
             inCompletedTasksCount:
                 null == inCompletedTasksCount
                     ? _value.inCompletedTasksCount
@@ -340,6 +342,16 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $LightUserModelCopyWith<$Res> get user {
+    return $LightUserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TaskModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $LightViolationModelCopyWith<$Res>? get violation {
     if (_value.violation == null) {
       return null;
@@ -393,7 +405,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String? repeatType,
     bool markedAsLate,
     List<AttachmentModel>? attachments,
-    String? userId,
+    LightUserModel user,
     int inCompletedTasksCount,
     int completedTasksCount,
     int lateTasksCount,
@@ -406,6 +418,8 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
   });
 
+  @override
+  $LightUserModelCopyWith<$Res> get user;
   @override
   $LightViolationModelCopyWith<$Res>? get violation;
   @override
@@ -444,7 +458,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? repeatType = freezed,
     Object? markedAsLate = null,
     Object? attachments = freezed,
-    Object? userId = freezed,
+    Object? user = null,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
     Object? lateTasksCount = null,
@@ -548,11 +562,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.attachments
                 : attachments // ignore: cast_nullable_to_non_nullable
                     as List<AttachmentModel>?,
-        userId:
-            freezed == userId
-                ? _value.userId
-                : userId // ignore: cast_nullable_to_non_nullable
-                    as String?,
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as LightUserModel,
         inCompletedTasksCount:
             null == inCompletedTasksCount
                 ? _value.inCompletedTasksCount
@@ -631,7 +645,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.repeatType,
     this.markedAsLate = false,
     this.attachments,
-    this.userId,
+    required this.user,
     this.inCompletedTasksCount = 0,
     this.completedTasksCount = 0,
     this.lateTasksCount = 0,
@@ -696,8 +710,9 @@ class _$TaskModelImpl extends _TaskModel {
   bool markedAsLate;
   @override
   List<AttachmentModel>? attachments;
+  // String? userId,
   @override
-  String? userId;
+  LightUserModel user;
   @override
   @JsonKey()
   int inCompletedTasksCount;
@@ -728,7 +743,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, userId: $userId, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
   }
 
   /// Create a copy of TaskModel
@@ -765,7 +780,7 @@ abstract class _TaskModel extends TaskModel {
     String? repeatType,
     bool markedAsLate,
     List<AttachmentModel>? attachments,
-    String? userId,
+    required LightUserModel user,
     int inCompletedTasksCount,
     int completedTasksCount,
     int lateTasksCount,
@@ -839,10 +854,10 @@ abstract class _TaskModel extends TaskModel {
   set markedAsLate(bool value);
   @override
   List<AttachmentModel>? get attachments;
-  set attachments(List<AttachmentModel>? value);
+  set attachments(List<AttachmentModel>? value); // String? userId,
   @override
-  String? get userId;
-  set userId(String? value);
+  LightUserModel get user; // String? userId,
+  set user(LightUserModel value);
   @override
   int get inCompletedTasksCount;
   set inCompletedTasksCount(int value);

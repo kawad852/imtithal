@@ -13,7 +13,7 @@ class ViolationCard extends StatelessWidget {
     UserModel? user;
     if (!kIsEmployee) {
       user = MySharedPreferences.users.firstWhere(
-        (e) => e.id == (userId ?? violation.userId),
+        (e) => e.id == (userId ?? violation.user.id),
         orElse: () => UserModel(),
       );
       violation.userModel ??= user;

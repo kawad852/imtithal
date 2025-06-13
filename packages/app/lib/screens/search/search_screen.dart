@@ -64,16 +64,16 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
           }
           //Violations
           if (values.$4) {
-            myFilter = departmentUsers.map((id) => '${MyFields.userId}:$id').join(' OR ');
+            myFilter = departmentUsers.map((id) => '${MyFields.user_id}:$id').join(' OR ');
           }
 
-          myFilter = '${MyFields.userId}:$kUserId';
+          myFilter = '${MyFields.user_id}:$kUserId';
         } else if (kIsEmployee) {
           if (values.$3) {
             //Tasks
             myFilter = "${MyFields.assignedUserIds}:$kUserId";
           } else {
-            myFilter = '${MyFields.userId}:$kUserId';
+            myFilter = '${MyFields.user_id}:$kUserId';
           }
         }
       }

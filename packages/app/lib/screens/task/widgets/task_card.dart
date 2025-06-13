@@ -12,7 +12,7 @@ class TaskCard extends StatelessWidget {
     final displayUser = (!kIsAdmin && !kIsEmtithalManager) || showUser;
     UserModel? user;
     if (displayUser) {
-      user = MySharedPreferences.users.firstWhere((e) => e.id == task.userId);
+      user = MySharedPreferences.users.firstWhere((e) => e.id == task.user.id);
     }
     return GestureDetector(
       onTap: () {

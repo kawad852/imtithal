@@ -15,7 +15,7 @@ _$ViolationModelImpl _$$ViolationModelImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String? ?? '',
       taskId: json['taskId'] as String?,
       companyId: json['companyId'] as String? ?? '',
-      userId: json['userId'] as String?,
+      user: LightUserModel.fromJson(json['user'] as Map<String, dynamic>),
       status: json['status'] as String? ?? ViolationStatus.defaultValue,
       createdById: json['createdById'] as String,
       attachments:
@@ -41,7 +41,7 @@ Map<String, dynamic> _$$ViolationModelImplToJson(
   'description': instance.description,
   'taskId': instance.taskId,
   'companyId': instance.companyId,
-  'userId': instance.userId,
+  'user': instance.user.toJson(),
   'status': instance.status,
   'createdById': instance.createdById,
   'attachments': instance.attachments?.map((e) => e.toJson()).toList(),
