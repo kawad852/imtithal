@@ -66,18 +66,21 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     final task = _getTaskInfo(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(forceMaterialTransparency: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "${task.$1} ${(_userId != null && !kIsEmployee) ? "-" : ""} ${(_userId != null && !kIsEmployee) ? kUser.displayName : ""}",
-              style: TextStyle(
-                color: context.colorPalette.black252,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                "${task.$1} ${(_userId != null && !kIsEmployee) ? "-" : ""} ${(_userId != null && !kIsEmployee) ? kUser.displayName : ""}",
+                style: TextStyle(
+                  color: context.colorPalette.black252,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
             Expanded(
@@ -93,7 +96,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         return const FPLoading();
                       }
                       final task = snapshot.docs[index].data();
-                      return TaskCard(task: task);
+                      return TaskCard(task: task, showUser: true);
                     },
                   );
                 },

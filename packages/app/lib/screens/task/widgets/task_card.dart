@@ -3,11 +3,17 @@ import 'package:shared/shared.dart';
 
 class TaskCard extends StatelessWidget {
   final TaskModel task;
+  final bool showUser;
 
-  const TaskCard({super.key, required this.task});
+  const TaskCard({super.key, required this.task, this.showUser = false});
 
   @override
   Widget build(BuildContext context) {
+    final displayUser = (!kIsAdmin && !kIsEmtithalManager) || showUser;
+    UserModel? user;
+    if (displayUser) {
+      user = MySharedPreferences.users.firstWhere((e) => e.id == task.userId);
+    }
     return GestureDetector(
       onTap: () {
         context.navigate((context) => TaskDetailsScreen(task: task));
@@ -21,9 +27,14 @@ class TaskCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            if (!kIsAdmin && !kIsEmtithalManager) ...[
+            if (user != null) ...[
               VerticalLine(height: 67, color: task.indicatorColor(context)),
               const SizedBox(width: 10),
+              if (user.id != null)
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(end: 10),
+                  child: UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 60),
+                ),
             ],
             Expanded(
               child: Column(
@@ -119,7 +130,7 @@ class TaskCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (!kIsEmployee)
+                      if (!kIsEmployee && !showUser)
                         UsersSelector(
                           builder: (context, users) {
                             final assignedUsers =
