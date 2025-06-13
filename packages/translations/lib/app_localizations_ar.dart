@@ -676,8 +676,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get taskStartTime => 'وقت بدء المهمة';
 
   @override
-  String get progressingUserMsg => 'جاري إضافة الموظفين، الرجاء الإنتظار...';
+  String get progressingUserMsg => 'جاري التنفيذ، يرجى الانتظار...';
 
   @override
   String get completeTask => 'إكمال المهمة';
+
+  @override
+  String get searchForViolation => 'إبحث عن مخالفة';
 }

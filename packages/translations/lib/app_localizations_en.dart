@@ -687,4 +687,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get completeTask => 'Complete Task';
+
+  @override
+  String get searchForViolation => 'Search for violation';
 }

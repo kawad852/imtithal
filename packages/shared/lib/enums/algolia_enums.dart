@@ -1,7 +1,8 @@
 enum AlgoliaIndices {
   users('users'),
   departments('departments'),
-  tasks('tasks');
+  tasks('tasks'),
+  violations('violations');
 
   final String value;
 

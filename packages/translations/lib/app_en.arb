@@ -220,5 +220,6 @@
   "searchTask": "Search for task",
   "taskStartTime": "Task Start Time",
   "progressingUserMsg": "Progressing Task, Please wait...",
-  "completeTask": "Complete Task"
+  "completeTask": "Complete Task",
+  "searchForViolation": "Search for violation"
 }

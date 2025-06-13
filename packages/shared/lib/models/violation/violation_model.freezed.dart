@@ -49,6 +49,8 @@ mixin _$ViolationModel {
   ViolationReplyModel? get lastReply => throw _privateConstructorUsedError;
   set lastReply(ViolationReplyModel? value) =>
       throw _privateConstructorUsedError;
+  String? get userDisplayName => throw _privateConstructorUsedError;
+  set userDisplayName(String? value) => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   UserModel? get userModel => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
@@ -84,6 +86,7 @@ abstract class $ViolationModelCopyWith<$Res> {
     String createdById,
     List<AttachmentModel>? attachments,
     ViolationReplyModel? lastReply,
+    String? userDisplayName,
     @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   });
 
@@ -118,6 +121,7 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
     Object? createdById = null,
     Object? attachments = freezed,
     Object? lastReply = freezed,
+    Object? userDisplayName = freezed,
     Object? userModel = freezed,
   }) {
     return _then(
@@ -182,6 +186,11 @@ class _$ViolationModelCopyWithImpl<$Res, $Val extends ViolationModel>
                     ? _value.lastReply
                     : lastReply // ignore: cast_nullable_to_non_nullable
                         as ViolationReplyModel?,
+            userDisplayName:
+                freezed == userDisplayName
+                    ? _value.userDisplayName
+                    : userDisplayName // ignore: cast_nullable_to_non_nullable
+                        as String?,
             userModel:
                 freezed == userModel
                     ? _value.userModel
@@ -243,6 +252,7 @@ abstract class _$$ViolationModelImplCopyWith<$Res>
     String createdById,
     List<AttachmentModel>? attachments,
     ViolationReplyModel? lastReply,
+    String? userDisplayName,
     @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   });
 
@@ -278,6 +288,7 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
     Object? createdById = null,
     Object? attachments = freezed,
     Object? lastReply = freezed,
+    Object? userDisplayName = freezed,
     Object? userModel = freezed,
   }) {
     return _then(
@@ -342,6 +353,11 @@ class __$$ViolationModelImplCopyWithImpl<$Res>
                 ? _value.lastReply
                 : lastReply // ignore: cast_nullable_to_non_nullable
                     as ViolationReplyModel?,
+        userDisplayName:
+            freezed == userDisplayName
+                ? _value.userDisplayName
+                : userDisplayName // ignore: cast_nullable_to_non_nullable
+                    as String?,
         userModel:
             freezed == userModel
                 ? _value.userModel
@@ -369,6 +385,7 @@ class _$ViolationModelImpl implements _ViolationModel {
     required this.createdById,
     this.attachments,
     this.lastReply,
+    this.userDisplayName,
     @JsonKey(includeToJson: false, includeFromJson: false) this.userModel,
   });
 
@@ -407,12 +424,14 @@ class _$ViolationModelImpl implements _ViolationModel {
   @override
   ViolationReplyModel? lastReply;
   @override
+  String? userDisplayName;
+  @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   UserModel? userModel;
 
   @override
   String toString() {
-    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, taskId: $taskId, companyId: $companyId, userId: $userId, status: $status, createdById: $createdById, attachments: $attachments, lastReply: $lastReply, userModel: $userModel)';
+    return 'ViolationModel(createdAt: $createdAt, id: $id, type: $type, notes: $notes, description: $description, taskId: $taskId, companyId: $companyId, userId: $userId, status: $status, createdById: $createdById, attachments: $attachments, lastReply: $lastReply, userDisplayName: $userDisplayName, userModel: $userModel)';
   }
 
   /// Create a copy of ViolationModel
@@ -446,6 +465,7 @@ abstract class _ViolationModel implements ViolationModel {
     required String createdById,
     List<AttachmentModel>? attachments,
     ViolationReplyModel? lastReply,
+    String? userDisplayName,
     @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   }) = _$ViolationModelImpl;
 
@@ -490,6 +510,9 @@ abstract class _ViolationModel implements ViolationModel {
   @override
   ViolationReplyModel? get lastReply;
   set lastReply(ViolationReplyModel? value);
+  @override
+  String? get userDisplayName;
+  set userDisplayName(String? value);
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   UserModel? get userModel;

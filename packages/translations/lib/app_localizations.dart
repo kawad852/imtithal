@@ -1415,7 +1415,7 @@ abstract class AppLocalizations {
   /// No description provided for @progressingUserMsg.
   ///
   /// In ar, this message translates to:
-  /// **'جاري إضافة الموظفين، الرجاء الإنتظار...'**
+  /// **'جاري التنفيذ، يرجى الانتظار...'**
   String get progressingUserMsg;
 
   /// No description provided for @completeTask.
@@ -1423,6 +1423,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إكمال المهمة'**
   String get completeTask;
+
+  /// No description provided for @searchForViolation.
+  ///
+  /// In ar, this message translates to:
+  /// **'إبحث عن مخالفة'**
+  String get searchForViolation;
 }
 
 class _AppLocalizationsDelegate

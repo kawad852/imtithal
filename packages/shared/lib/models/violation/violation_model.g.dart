@@ -28,6 +28,7 @@ _$ViolationModelImpl _$$ViolationModelImplFromJson(Map<String, dynamic> json) =>
               : ViolationReplyModel.fromJson(
                 json['lastReply'] as Map<String, dynamic>,
               ),
+      userDisplayName: json['userDisplayName'] as String?,
     );
 
 Map<String, dynamic> _$$ViolationModelImplToJson(
@@ -45,6 +46,7 @@ Map<String, dynamic> _$$ViolationModelImplToJson(
   'createdById': instance.createdById,
   'attachments': instance.attachments?.map((e) => e.toJson()).toList(),
   'lastReply': instance.lastReply?.toJson(),
+  'userDisplayName': instance.userDisplayName,
 };
 
 _$LightViolationModelImpl _$$LightViolationModelImplFromJson(

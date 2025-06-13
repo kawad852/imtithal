@@ -1,3 +1,4 @@
+import 'package:app/screens/search/search_screen.dart';
 import 'package:app/screens/violation/widgets/violation_card.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/models/violation/violation_model.dart';
@@ -37,16 +38,6 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          try {
-            final a = await _query.count().get();
-            print("count:: ${a.count}");
-          } catch (e) {
-            print("e::: $e");
-          }
-        },
-      ),
       appBar: AppBar(forceMaterialTransparency: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
@@ -61,16 +52,16 @@ class _ViolationsScreenState extends State<ViolationsScreen> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            // if (!kIsEmployee)
-            //   Padding(
-            //     padding: const EdgeInsets.symmetric(vertical: 10),
-            //     child: TextEditor(
-            //       onChanged: (value) {},
-            //       required: false,
-            //       hintText: context.appLocalization.searchViolationEmployee,
-            //       prefixIcon: const IconButton(onPressed: null, icon: CustomSvg(MyIcons.search)),
-            //     ),
-            //   ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: SearchScreen(
+                hintText:
+                    kIsEmployee
+                        ? context.appLocalization.searchForViolation
+                        : context.appLocalization.searchViolationEmployee,
+                includeIndexes: (false, false, false, true),
+              ),
+            ),
             Expanded(
               child: CustomFirestoreQueryBuilder(
                 query: _query,

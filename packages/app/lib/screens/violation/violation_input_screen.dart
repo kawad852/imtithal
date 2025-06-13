@@ -40,11 +40,13 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
             for (var user in _selectedUsers) {
               final violationDocRef = kFirebaseInstant.userViolations(user.id!).doc(_violation.id);
               _violation.userId = user.id!;
+              _violation.userDisplayName = user.displayName;
               batch.set(violationDocRef, _violation);
               _sendNotification(context, user: user);
             }
           } else {
             _violation.userId = _user!.id!;
+            _violation.userDisplayName = _user!.displayName;
             final taskDocRef = kFirebaseInstant.userAssignedTasks(_user!.id!).doc(_task!.id);
             final violationDocRef = kFirebaseInstant.userViolations(_user!.id!).doc(_violation.id);
             batch.set(violationDocRef, _violation);
@@ -69,7 +71,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
     SendNotificationService.sendToUser(
       context,
       userId: user.id!,
-      deviceToken: user.deviceToken!,
+      deviceToken: user.deviceToken,
       languageCode: user.languageCode,
       id: _violation.id,
       type: NotificationType.violation.value,
@@ -85,7 +87,6 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
   void initState() {
     super.initState();
     _violation = ViolationModel(createdById: kUserId, attachments: []);
-    print("_user:: ${_user?.toJson()}");
   }
 
   @override

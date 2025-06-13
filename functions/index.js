@@ -9,6 +9,7 @@
 const ALGOLIA_APP_ID = 'A8ZSH6H4WN';
 const ALGOLIA_ADMIN_KEY = 'deccda5b1c9c370107b978ec8e7f63db';
 const ALGOLIA_DEPARTMENTS_INDEX = 'departments';
+const ALGOLIA_VIOLATIONS_INDEX = 'violations';
 
 const admin = require("firebase-admin");
 const { onCall } = require("firebase-functions/v2/https");
@@ -122,6 +123,73 @@ exports.onDepartmentDeleted = onDocumentDeleted({
     console.error(`❌ Error deleting ${objectID} from Algolia`, error);
   }
 });
+
+
+// 📌 On Create
+exports.onViolationCreated = onDocumentCreated({
+  region: "europe-west3",
+  document: 'users/{userId}/violations/{violationId}',
+  }, async (event) => {
+    const data = event.data.data();
+    const objectID = data.id;
+
+    try {
+    await client.saveObject({
+      indexName: ALGOLIA_VIOLATIONS_INDEX,
+      body: {
+        objectID,
+        ...data,
+      },
+    });
+      console.log(`✅ Created: ${objectID} added to Algolia`);
+    } catch (error) {
+      console.error(`❌ Error adding ${objectID} to Algolia`, error);
+    }
+  },
+);
+
+// 📌 On Update
+exports.onViolationUpdated = onDocumentUpdated({
+  region: "europe-west3",
+  document: 'users/{userId}/violations/{violationId}',
+}, async (event) => {
+  const newData = event.data.after.data();
+  const objectID = newData.id;
+
+  try {
+    await client.saveObject({
+      indexName: ALGOLIA_VIOLATIONS_INDEX,
+      body: {
+        objectID,
+        ...newData,
+      },
+    });
+    console.log(`✅ Updated: ${objectID} updated in Algolia`);
+  } catch (error) {
+    console.error(`❌ Error updating ${objectID} in Algolia`, error);
+  }
+});
+
+// 📌 On Delete
+exports.onViolationDeleted = onDocumentDeleted({
+  region: "europe-west3",
+  document: 'users/{userId}/violations/{violationId}',
+}, async (event) => {
+  // Assuming the objectID is stored in the deleted document data
+  const oldData = event.data.data();
+  const objectID = oldData.id;
+
+  try {
+    await client.deleteObject({
+      indexName: ALGOLIA_VIOLATIONS_INDEX,
+      objectID,
+    });
+    console.log(`✅ Deleted: ${objectID} removed from Algolia`);
+  } catch (error) {
+    console.error(`❌ Error deleting ${objectID} from Algolia`, error);
+  }
+});
+
 
 exports.onTasksUpdate = onDocumentUpdated({
   region: "europe-west3",

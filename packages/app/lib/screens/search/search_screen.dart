@@ -4,6 +4,7 @@ import 'package:app/screens/search/widgets/my_search_anchor.dart';
 import 'package:app/screens/search/widgets/search_header.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/algolia_exports.dart';
+import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
 class SearchScreen<T> extends StatefulWidget {
@@ -123,7 +124,22 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                     return value.hits.map((e) => TaskModel.fromJson(e.toJson())).toList();
                   })
               : Future.value(<TaskModel>[]);
-      return Future.wait([usersFuture, departmentsFuture, tasksFuture]);
+      final violationsFuture =
+          includeIndexes.$4
+              ? kAlgoliaClient
+                  .searchIndex(
+                    request: SearchForHits(
+                      indexName: AlgoliaIndices.violations.value,
+                      query: query,
+                      hitsPerPage: 10,
+                      filters: myFilter,
+                    ),
+                  )
+                  .then((value) {
+                    return value.hits.map((e) => ViolationModel.fromJson(e.toJson())).toList();
+                  })
+              : Future.value(<TaskModel>[]);
+      return Future.wait([usersFuture, departmentsFuture, tasksFuture, violationsFuture]);
     } catch (e) {
       debugPrint("SearchError::: $e");
       return [];
@@ -171,7 +187,8 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
             final users = snapshot.data![0] as List<UserModel>;
             final departments = snapshot.data![1] as List<DepartmentModel>;
             final tasks = snapshot.data![2] as List<TaskModel>;
-            if (users.isEmpty && departments.isEmpty && tasks.isEmpty) {
+            final violations = snapshot.data![3] as List<ViolationModel>;
+            if (users.isEmpty && departments.isEmpty && tasks.isEmpty && violations.isEmpty) {
               return const SizedBox.shrink();
             }
             return SingleChildScrollView(
@@ -215,6 +232,20 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                         onTap: () {
                           context.navigate((context) {
                             return TaskDetailsScreen(task: element);
+                          });
+                        },
+                      );
+                    }),
+                  ],
+                  if (violations.isNotEmpty) ...[
+                    SearchHeader(titleText: context.appLocalization.violations),
+                    ...violations.map((element) {
+                      return AnchorTile(
+                        name: element.description,
+                        description: element.description,
+                        onTap: () {
+                          context.navigate((context) {
+                            return ViolationDetailsScreen(violation: element);
                           });
                         },
                       );

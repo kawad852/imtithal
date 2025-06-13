@@ -24,6 +24,7 @@ class ViolationModel with _$ViolationModel {
     required String createdById,
     List<AttachmentModel>? attachments,
     ViolationReplyModel? lastReply,
+    String? userDisplayName,
     @JsonKey(includeToJson: false, includeFromJson: false) UserModel? userModel,
   }) = _ViolationModel;
 
