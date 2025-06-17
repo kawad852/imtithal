@@ -199,8 +199,8 @@ exports.onTasksUpdate = onDocumentUpdated({
   const newData = event.data.after.data();
   const taskId = event.params.taskId;
 
-  const beforeAssigned = (beforeData.assignedUsers || []).map((u) => u.id);
-  const afterAssigned = (newData.assignedUsers || []).map((u) => u.id);
+  const beforeAssigned = beforeData.assignedUserIds || [];
+  const afterAssigned = newData.assignedUserIds || [];
 
   const removedUserIds = beforeAssigned.filter((id) => !afterAssigned.includes(id));
   const addedUserIds = afterAssigned.filter((id) => !beforeAssigned.includes(id));
@@ -249,8 +249,7 @@ exports.onTasksUpdate = onDocumentUpdated({
     const rowId = (companyData.rowId && companyData.rowId.assignedTaskId) || 1;
     const currentIdRef = { value: rowId };
 
-    for (const user of newData.assignedUsers || []) {
-      const { id: userId } = user;
+    for (const userId of newData.assignedUserIds || []) {
       if (!addedUserIds.includes(userId)) continue;
 
       const dates = [];

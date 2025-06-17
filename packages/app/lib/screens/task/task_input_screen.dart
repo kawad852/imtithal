@@ -43,7 +43,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
           taskDocRef.set(_task);
           if (context.mounted) {
             if (isAdd) {
-              context.navigate((context) {
+              context.pushReplacement2((context) {
                 return TaskDetailsScreen(task: _task);
               });
             } else {
