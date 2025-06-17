@@ -31,7 +31,7 @@ class MyFields {
   static const String branch = 'branch';
   static const String companyId = 'companyId';
   static const String violation = 'violation';
-  static const String assignedUsers = 'assignedUsers';
+  // static const String assignedUsers = 'assignedUsers';
   static const String markedAsLate = 'markedAsLate';
   static const String deliveryDate = 'deliveryDate';
   static const String user_departmentId = 'user.departmentId';

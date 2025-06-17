@@ -199,8 +199,8 @@ exports.onTasksUpdate = onDocumentUpdated({
   const newData = event.data.after.data();
   const taskId = event.params.taskId;
 
-  const beforeAssigned = beforeData.assignedUserIds || [];
-  const afterAssigned = newData.assignedUserIds || [];
+  const beforeAssigned = (beforeData.assignedUsers || []).map((u) => u.id);
+  const afterAssigned = (newData.assignedUsers || []).map((u) => u.id);
 
   const removedUserIds = beforeAssigned.filter((id) => !afterAssigned.includes(id));
   const addedUserIds = afterAssigned.filter((id) => !beforeAssigned.includes(id));
@@ -249,7 +249,10 @@ exports.onTasksUpdate = onDocumentUpdated({
     const rowId = (companyData.rowId && companyData.rowId.assignedTaskId) || 1;
     const currentIdRef = { value: rowId };
 
-    for (const userId of addedUserIds) {
+    for (const user of newData.assignedUsers || []) {
+      const { id: userId } = user;
+      if (!addedUserIds.includes(userId)) continue;
+
       const dates = [];
 
       for (let i = 0; i < 7; i++) {
@@ -258,16 +261,14 @@ exports.onTasksUpdate = onDocumentUpdated({
 
         if (isHoliday(date, holidays)) continue;
 
-       if (repeatType === "ONCE") {
-         if (i === 0) {
-           dates.push(date); // only push today
-         }
-       } else if (repeatType === "DAILY") {
+        if (repeatType === "ONCE" && i === 0) {
+          dates.push(date);
+        } else if (repeatType === "DAILY") {
           dates.push(date);
         } else if (repeatType === "WEEKLY" && weeklyDays.includes(weekday)) {
           dates.push(date);
         } else if (repeatType === "MONTHLY" && monthlyDays.includes(String(date.date()))) {
-            dates.push(date);
+          dates.push(date);
         }
       }
 

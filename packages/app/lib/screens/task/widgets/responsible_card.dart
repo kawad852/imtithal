@@ -36,7 +36,7 @@ class ResponsibleCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "(${task.assignedUsers.length})",
+                      "(${task.assignedUserIds.length})",
                       style: TextStyle(
                         color: context.colorPalette.primary,
                         fontSize: 14,

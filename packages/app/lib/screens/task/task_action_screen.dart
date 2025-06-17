@@ -25,10 +25,17 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   }
 
   void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) async {
-    List<LightUserModel> users =
-        selectedUsers.map((e) => LightUserModel(id: e.id!, departmentId: e.departmentId!)).toList();
+    // List<Map<String, dynamic>> users =
+    //     selectedUsers
+    //         .map((e) => LightUserModel(id: e.id!, departmentId: e.departmentId!))
+    //         .toList();
+    final assignedUserIds = selectedUsers.map((e) => e.id).toList();
+    final assignedDepartmentIds = selectedUsers.map((e) => e.departmentId).toList();
     final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
-    taskDocRef.update({MyFields.assignedUsers: users.isEmpty ? [] : FieldValue.arrayUnion(users)});
+    taskDocRef.update({
+      MyFields.assignedUserIds: assignedUserIds,
+      MyFields.assignedDepartmentIds: assignedDepartmentIds,
+    });
     context.showSnackBar(context.appLocalization.progressingUserMsg);
   }
 
@@ -75,9 +82,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                     onTap: () {
                       context
                           .navigate((context) {
-                            return UsersSelectionScreen(
-                              userIds: task.assignedUsers.map((e) => e.id).toList(),
-                            );
+                            return UsersSelectionScreen(userIds: task.assignedUserIds);
                           })
                           .then((value) {
                             if (value != null && context.mounted) {

@@ -17,7 +17,7 @@
     "@algolia/client-search": "^5.25.0",
     "algoliasearch": "^5.25.0",
     "dayjs": "^1.11.13",
-    "firebase-admin": "^13.4.0",
+    "firebase-admin": "^12.7.0",
     "firebase-functions": "^6.3.2"
   },
   "devDependencies": {

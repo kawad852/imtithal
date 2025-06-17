@@ -43,9 +43,14 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
           : LightViolationModel.fromJson(
             json['violation'] as Map<String, dynamic>,
           ),
-  assignedUsers:
-      (json['assignedUsers'] as List<dynamic>?)
-          ?.map((e) => LightUserModel.fromJson(e as Map<String, dynamic>))
+  assignedUserIds:
+      (json['assignedUserIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
+  assignedDepartmentIds:
+      (json['assignedDepartmentIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList() ??
       const [],
   weeklyDays:
@@ -81,7 +86,8 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
       'violationTasksCount': instance.violationTasksCount,
       'totalAssignedUsers': instance.totalAssignedUsers,
       'violation': instance.violation?.toJson(),
-      'assignedUsers': instance.assignedUsers.map((e) => e.toJson()).toList(),
+      'assignedUserIds': instance.assignedUserIds,
+      'assignedDepartmentIds': instance.assignedDepartmentIds,
       'weeklyDays': instance.weeklyDays,
       'monthlyDays': instance.monthlyDays,
     };
