@@ -47,6 +47,7 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
     bool late = false,
     required String? userId,
     required String? departmentId,
+    bool generalViolationOnly = false,
   }) async {
     final query = TasksService.getQuery<T>(
       context,
@@ -57,6 +58,7 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
       departmentId: departmentId,
       late: late,
       isEvaluation: true,
+      generalViolationOnly: generalViolationOnly,
     );
 
     final c = await query.count().get().then((value) {
@@ -88,7 +90,21 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
     if (departmentUsers.isNotEmpty) {
       for (var e in departmentUsers) {
         final userId = e.id;
-        (int, double) values = await _fetchQuery(context, null, userId: userId, departmentId: null);
+        (int, double) values1 = await _fetchQuery<TaskModel>(
+          context,
+          null,
+          userId: userId,
+          departmentId: null,
+        );
+        (int, double) values2 = await _fetchQuery<ViolationModel>(
+          context,
+          TaskStatusEnum.violated.value,
+          userId: userId,
+          departmentId: null,
+          generalViolationOnly: true,
+        );
+        e.violatedCount = values2.$1;
+        final values = (values1.$1 + values2.$1, values1.$2 + values2.$2);
         if (context.mounted) {
           final imtithalPercentage =
               TaskPoints.getPercentage(context, count: values.$1, sum: values.$2).$1;
@@ -103,14 +119,6 @@ class _SummeryBuilderState extends State<SummeryBuilder> {
       final lowestUser = departmentUsers.reduce(
         (a, b) => a.imtithalPercentage < b.imtithalPercentage ? a : b,
       );
-
-      final violationValues = await _fetchQuery(
-        context,
-        TaskStatusEnum.violated.value,
-        userId: lowestUser.id,
-        departmentId: null,
-      );
-      lowestUser.violatedCount = violationValues.$1;
 
       return (highestUser, lowestUser);
     }

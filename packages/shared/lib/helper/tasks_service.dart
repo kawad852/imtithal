@@ -12,6 +12,7 @@ class TasksService {
     required bool late,
     bool isEvaluation = false,
     bool mainTasks = false,
+    bool generalViolationOnly = false,
   }) {
     late Query<TaskModel> tasksDocRef;
     late Query<ViolationModel> violationsDocRef;
@@ -45,6 +46,7 @@ class TasksService {
           date: date,
           rangeDates: rangeDates,
           timeField: MyFields.createdAt,
+          generalViolationOnly: generalViolationOnly,
         );
       } else {
         final filter = status != null ? Filter(MyFields.status, isEqualTo: status) : null;
@@ -85,6 +87,7 @@ class TasksService {
     required String? userId,
     required String? departmentId,
     String timeField = MyFields.deliveryDate,
+    bool generalViolationOnly = false,
   }) {
     DateTime? startDate;
     DateTime? endDate;
@@ -105,8 +108,12 @@ class TasksService {
         endDate != null ? Filter(timeField, isLessThan: Timestamp.fromDate(endDate)) : null;
     Filter? departmentIdFilter;
     Filter? companyIdFilter;
+    Filter? generalViolationFilter;
     if (userId != null) {
-      // Do Nothing!
+      if (generalViolationOnly) {
+        generalViolationFilter = Filter(MyFields.taskId, isNull: true);
+        print("generalViolationFiltergeneralViolationFilter");
+      }
     } else if (departmentId != null) {
       departmentIdFilter = Filter(MyFields.user_departmentId, isEqualTo: departmentId);
     } else {
@@ -119,6 +126,7 @@ class TasksService {
       companyIdFilter,
       filter,
       filter2,
+      generalViolationFilter,
     ];
     final nonNullFilters = allFilters.whereType<Filter>().toList();
     switch (nonNullFilters.length) {
@@ -146,6 +154,14 @@ class TasksService {
           nonNullFilters[4],
         );
       case 6:
+        return Filter.and(
+          nonNullFilters[0],
+          nonNullFilters[1],
+          nonNullFilters[2],
+          nonNullFilters[3],
+          nonNullFilters[4],
+          nonNullFilters[5],
+        );
       default:
         return Filter.and(
           nonNullFilters[0],
@@ -154,6 +170,7 @@ class TasksService {
           nonNullFilters[3],
           nonNullFilters[4],
           nonNullFilters[5],
+          nonNullFilters[6],
         );
     }
   }

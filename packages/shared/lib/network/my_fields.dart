@@ -47,4 +47,5 @@ class MyFields {
   static const String parentTaskId = 'parentTaskId';
   static const String assignedUserIds = 'assignedUserIds';
   static const String assignedDepartmentIds = 'assignedDepartmentIds';
+  static const String taskId = 'taskId';
 }
