@@ -112,7 +112,6 @@ class TasksService {
     if (userId != null) {
       if (generalViolationOnly) {
         generalViolationFilter = Filter(MyFields.taskId, isNull: true);
-        print("generalViolationFiltergeneralViolationFilter");
       }
     } else if (departmentId != null) {
       departmentIdFilter = Filter(MyFields.user_departmentId, isEqualTo: departmentId);

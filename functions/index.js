@@ -16,7 +16,7 @@ const { onCall } = require("firebase-functions/v2/https");
 const { onDocumentCreated, onDocumentUpdated, onDocumentDeleted } = require("firebase-functions/v2/firestore");
 const { algoliasearch } = require("algoliasearch");
 const { onSchedule } = require("firebase-functions/v2/scheduler");
-const { getFirestore, Timestamp, Filter } = require("firebase-admin/firestore");
+const { getFirestore, Timestamp } = require("firebase-admin/firestore");
 const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc");
 const timezone = require("dayjs/plugin/timezone");
@@ -302,15 +302,11 @@ exports.markLateAssignedTasks = onSchedule(
     try {
       const now = Timestamp.now();
 
-      const filter = Filter.and(
-        Filter.where("markedAsLate", "==", false),
-        Filter.where("status", "==", "PENDING"),
-        Filter.where("deliveryDate", "<=", Timestamp.fromMillis(now.toMillis())),
-      );
-
       const snapshot = await db
         .collectionGroup("assignedTasks")
-        .where(filter)
+        .where("markedAsLate", "==", false)
+        .where("status", "==", "PENDING")
+        .where("deliveryDate", "<=", Timestamp.fromMillis(now.toMillis()))
         .get();
 
       if (snapshot.empty) {
@@ -323,16 +319,15 @@ exports.markLateAssignedTasks = onSchedule(
 
       for (const doc of snapshot.docs) {
         const data = doc.data();
-
         const deliveryDate = data.deliveryDate;
         const allowedDurationInMinutes = data.allowedDurationInMinutes;
         const userId = data.user.id;
 
-        if (!deliveryDate || !allowedDurationInMinutes || data.markedAsLate) continue;
-
+        const nowMillis = Date.now();
         const deadlineMillis = deliveryDate.toDate().getTime() + allowedDurationInMinutes * 60 * 1000;
 
-        if (Date.now() > deadlineMillis) {
+        if (nowMillis > deadlineMillis) {
+          console.log("Ref: ", doc.ref);
           batch.update(doc.ref, { markedAsLate: true });
 
           const taskId = doc.id;
