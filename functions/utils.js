@@ -29,7 +29,9 @@ async function createAssignedTasksForUser({
   const assignedTasksRef = db.collection("users").doc(userId).collection("assignedTasks");
 
   for (const date of dates) {
-    const timestamp = Timestamp.fromDate(date.toDate());
+    const timezone = "Asia/Amman";
+    const fullDateTime = dayjs.tz(`${date.format("YYYY-MM-DD")} ${task.deliveryTime}`, "YYYY-MM-DD hh:mm A", timezone);
+    const timestamp = Timestamp.fromDate(fullDateTime.toDate());
 
     const existing = await assignedTasksRef
       .where("parentTaskId", "==", parentTaskId)
