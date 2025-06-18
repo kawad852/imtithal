@@ -15,7 +15,6 @@ class TaskCard extends StatelessWidget {
         context.navigate((context) => TaskDetailsScreen(task: task));
       },
       child: Container(
-        width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           color: context.colorPalette.greyF5F,
