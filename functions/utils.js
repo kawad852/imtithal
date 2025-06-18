@@ -19,14 +19,14 @@ function isHoliday(date, holidays) {
 async function createAssignedTasksForUser({
   db,
   tx,
-  userId,
+  user,
   task,
   parentTaskId,
   companyRef,
   currentIdRef,
   dates,
 }) {
-  const assignedTasksRef = db.collection("users").doc(userId).collection("assignedTasks");
+  const assignedTasksRef = db.collection("users").doc(user.id).collection("assignedTasks");
 
   for (const date of dates) {
     const timezone = "Asia/Amman";
@@ -47,7 +47,7 @@ async function createAssignedTasksForUser({
     const newTask = {
       ...task,
       id: newId,
-      userId: userId,
+      user: user,
       parentTaskId,
       deliveryDate: timestamp,
       createdAt: Timestamp.now(),

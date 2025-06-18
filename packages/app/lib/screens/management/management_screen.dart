@@ -60,7 +60,9 @@ class _ManagementScreenState extends State<ManagementScreen> {
                     ),
                     const SizedBox(width: 10),
                     ManageButton(
-                      onTap: () {},
+                      onTap: () {
+                        context.navigate((context) => const TaskInputScreen());
+                      },
                       icon: MyIcons.add,
                       title: context.appLocalization.addNewCompliance,
                     ),
@@ -99,7 +101,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
                     ),
                     const SizedBox(width: 10),
                     ManageButton(
-                      onTap: () {},
+                      onTap: () {
+                        context.navigate(
+                          (context) => PolicyScreen(id: PolicyDocument.lawsAndRegulations.value),
+                        );
+                      },
                       icon: MyIcons.laws,
                       title: context.appLocalization.lawsAndRegulations,
                     ),

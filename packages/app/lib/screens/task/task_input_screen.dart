@@ -68,7 +68,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
             weeklyDays: [],
             monthlyDays: [],
             createdById: kUserId,
-            user: LightUserModel(id: '', departmentId: ''),
+            user: LightUserModel(id: '', departmentId: '', displayName: ''),
           ).toJson(),
     );
     if (_task.attachments != null) {

@@ -249,8 +249,8 @@ exports.onTasksUpdate = onDocumentUpdated({
     const rowId = (companyData.rowId && companyData.rowId.assignedTaskId) || 1;
     const currentIdRef = { value: rowId };
 
-    for (const userId of newData.assignedUserIds || []) {
-      if (!addedUserIds.includes(userId)) continue;
+    for (const user of newData.assignedUsers || []) {
+      if (!addedUserIds.includes(user.id)) continue;
 
       const dates = [];
 
@@ -274,7 +274,7 @@ exports.onTasksUpdate = onDocumentUpdated({
       await createAssignedTasksForUser({
         db,
         tx,
-        userId,
+        user,
         task: newData,
         parentTaskId: taskId,
         companyRef,
@@ -444,10 +444,10 @@ exports.repeatTasksScheduler = onSchedule(
         companyId,
         weeklyDays = [],
         monthlyDays = [],
-        assignedUserIds = [],
+        assignedUsers = [],
       } = task;
 
-      if (!companyId || assignedUserIds.length === 0) continue;
+      if (!companyId || assignedUsers.length === 0) continue;
 
       const holidaysSnap = await db
         .collection(`companies/${companyId}/holidays`)
@@ -462,7 +462,7 @@ exports.repeatTasksScheduler = onSchedule(
         const rowId = (companyData.rowId && companyData.rowId.assignedTaskId) || 1;
         const currentIdRef = { value: rowId };
 
-        for (const userId of assignedUserIds) {
+        for (const user of assignedUsers) {
           const dates = [];
 
           for (let i = 0; i < 7; i++) {
@@ -486,7 +486,7 @@ exports.repeatTasksScheduler = onSchedule(
           await createAssignedTasksForUser({
             db,
             tx,
-            userId,
+            user,
             task,
             parentTaskId: taskId,
             companyRef,
@@ -500,3 +500,44 @@ exports.repeatTasksScheduler = onSchedule(
     }
   },
 );
+
+exports.onUserInfoUpdated = onDocumentUpdated({
+  region: "europe-west3",
+  document: "users/{userId}",
+}, async (event) => {
+  const before = event.data.before.data();
+  const after = event.data.after.data();
+  const userId = event.params.userId;
+
+  const displayNameChanged = before.displayName !== after.displayName;
+  const departmentIdChanged = before.departmentId !== after.departmentId;
+
+  if (!displayNameChanged && !departmentIdChanged) return;
+
+  const newUserData = {
+    id: userId,
+    displayName: after.displayName,
+    departmentId: after.departmentId,
+  };
+
+  const db = admin.firestore();
+  const userRef = db.collection("users").doc(userId);
+
+    const updateSubcollection = async (subcollectionName) => {
+      const snapshot = await userRef.collection(subcollectionName).get();
+
+      const batch = db.batch();
+      snapshot.docs.forEach((doc) => {
+        batch.update(doc.ref, { user: newUserData });
+      });
+
+      await batch.commit();
+    };
+
+  await Promise.all([
+    updateSubcollection("assignedTasks"),
+    updateSubcollection("violations"),
+  ]);
+
+  return;
+});

@@ -68,6 +68,7 @@ _$LightUserModelImpl _$$LightUserModelImplFromJson(Map<String, dynamic> json) =>
     _$LightUserModelImpl(
       id: json['id'] as String,
       departmentId: json['departmentId'] as String,
+      displayName: json['displayName'] as String,
     );
 
 Map<String, dynamic> _$$LightUserModelImplToJson(
@@ -75,4 +76,5 @@ Map<String, dynamic> _$$LightUserModelImplToJson(
 ) => <String, dynamic>{
   'id': instance.id,
   'departmentId': instance.departmentId,
+  'displayName': instance.displayName,
 };

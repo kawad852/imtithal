@@ -792,6 +792,7 @@ LightUserModel _$LightUserModelFromJson(Map<String, dynamic> json) {
 mixin _$LightUserModel {
   String get id => throw _privateConstructorUsedError;
   String get departmentId => throw _privateConstructorUsedError;
+  String get displayName => throw _privateConstructorUsedError;
 
   /// Serializes this LightUserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -810,7 +811,7 @@ abstract class $LightUserModelCopyWith<$Res> {
     $Res Function(LightUserModel) then,
   ) = _$LightUserModelCopyWithImpl<$Res, LightUserModel>;
   @useResult
-  $Res call({String id, String departmentId});
+  $Res call({String id, String departmentId, String displayName});
 }
 
 /// @nodoc
@@ -827,7 +828,11 @@ class _$LightUserModelCopyWithImpl<$Res, $Val extends LightUserModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null, Object? departmentId = null}) {
+  $Res call({
+    Object? id = null,
+    Object? departmentId = null,
+    Object? displayName = null,
+  }) {
     return _then(
       _value.copyWith(
             id:
@@ -839,6 +844,11 @@ class _$LightUserModelCopyWithImpl<$Res, $Val extends LightUserModel>
                 null == departmentId
                     ? _value.departmentId
                     : departmentId // ignore: cast_nullable_to_non_nullable
+                        as String,
+            displayName:
+                null == displayName
+                    ? _value.displayName
+                    : displayName // ignore: cast_nullable_to_non_nullable
                         as String,
           )
           as $Val,
@@ -855,7 +865,7 @@ abstract class _$$LightUserModelImplCopyWith<$Res>
   ) = __$$LightUserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String departmentId});
+  $Res call({String id, String departmentId, String displayName});
 }
 
 /// @nodoc
@@ -871,7 +881,11 @@ class __$$LightUserModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null, Object? departmentId = null}) {
+  $Res call({
+    Object? id = null,
+    Object? departmentId = null,
+    Object? displayName = null,
+  }) {
     return _then(
       _$LightUserModelImpl(
         id:
@@ -884,6 +898,11 @@ class __$$LightUserModelImplCopyWithImpl<$Res>
                 ? _value.departmentId
                 : departmentId // ignore: cast_nullable_to_non_nullable
                     as String,
+        displayName:
+            null == displayName
+                ? _value.displayName
+                : displayName // ignore: cast_nullable_to_non_nullable
+                    as String,
       ),
     );
   }
@@ -892,7 +911,11 @@ class __$$LightUserModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LightUserModelImpl implements _LightUserModel {
-  _$LightUserModelImpl({required this.id, required this.departmentId});
+  _$LightUserModelImpl({
+    required this.id,
+    required this.departmentId,
+    required this.displayName,
+  });
 
   factory _$LightUserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LightUserModelImplFromJson(json);
@@ -901,10 +924,12 @@ class _$LightUserModelImpl implements _LightUserModel {
   final String id;
   @override
   final String departmentId;
+  @override
+  final String displayName;
 
   @override
   String toString() {
-    return 'LightUserModel(id: $id, departmentId: $departmentId)';
+    return 'LightUserModel(id: $id, departmentId: $departmentId, displayName: $displayName)';
   }
 
   @override
@@ -914,12 +939,14 @@ class _$LightUserModelImpl implements _LightUserModel {
             other is _$LightUserModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.departmentId, departmentId) ||
-                other.departmentId == departmentId));
+                other.departmentId == departmentId) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, departmentId);
+  int get hashCode => Object.hash(runtimeType, id, departmentId, displayName);
 
   /// Create a copy of LightUserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -942,6 +969,7 @@ abstract class _LightUserModel implements LightUserModel {
   factory _LightUserModel({
     required final String id,
     required final String departmentId,
+    required final String displayName,
   }) = _$LightUserModelImpl;
 
   factory _LightUserModel.fromJson(Map<String, dynamic> json) =
@@ -951,6 +979,8 @@ abstract class _LightUserModel implements LightUserModel {
   String get id;
   @override
   String get departmentId;
+  @override
+  String get displayName;
 
   /// Create a copy of LightUserModel
   /// with the given fields replaced by the non-null parameter values.

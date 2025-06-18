@@ -41,7 +41,11 @@ class UserModel with _$UserModel {
 
 @freezed
 class LightUserModel with _$LightUserModel {
-  factory LightUserModel({required String id, required String departmentId}) = _LightUserModel;
+  factory LightUserModel({
+    required String id,
+    required String departmentId,
+    required String displayName,
+  }) = _LightUserModel;
 
   factory LightUserModel.fromJson(Map<String, dynamic> json) => _$LightUserModelFromJson(json);
 }

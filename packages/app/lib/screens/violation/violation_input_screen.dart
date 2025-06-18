@@ -39,13 +39,21 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
           if (_isGeneralViolation) {
             for (var user in _selectedUsers) {
               final violationDocRef = kFirebaseInstant.userViolations(user.id!).doc(_violation.id);
-              _violation.user = LightUserModel(id: user.id!, departmentId: user.departmentId!);
+              _violation.user = LightUserModel(
+                id: user.id!,
+                departmentId: user.departmentId!,
+                displayName: user.displayName,
+              );
               _violation.userDisplayName = user.displayName;
               batch.set(violationDocRef, _violation);
               _sendNotification(context, user: user);
             }
           } else {
-            _violation.user = LightUserModel(id: _user!.id!, departmentId: _user!.departmentId!);
+            _violation.user = LightUserModel(
+              id: _user!.id!,
+              departmentId: _user!.departmentId!,
+              displayName: _user!.displayName,
+            );
             _violation.userDisplayName = _user!.displayName;
             final taskDocRef = kFirebaseInstant.userAssignedTasks(_user!.id!).doc(_task!.id);
             final violationDocRef = kFirebaseInstant.userViolations(_user!.id!).doc(_violation.id);
@@ -89,7 +97,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
     _violation = ViolationModel(
       createdById: kUserId,
       attachments: [],
-      user: LightUserModel(id: '', departmentId: ''),
+      user: LightUserModel(id: '', departmentId: '', displayName: ''),
     );
   }
 
