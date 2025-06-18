@@ -68,7 +68,11 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             children: [
-              if (_user != null) UserRail(lightUser: _user!),
+              if (_user != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: UserRail(lightUser: _user!),
+                ),
               Text(
                 task.title,
                 style: TextStyle(
