@@ -82,6 +82,9 @@ mixin _$TaskModel {
   List<String> get assignedDepartmentIds => throw _privateConstructorUsedError;
   set assignedDepartmentIds(List<String> value) =>
       throw _privateConstructorUsedError;
+  List<LightUserModel> get assignedUsers => throw _privateConstructorUsedError;
+  set assignedUsers(List<LightUserModel> value) =>
+      throw _privateConstructorUsedError;
   List<String> get weeklyDays => throw _privateConstructorUsedError;
   set weeklyDays(List<String> value) => throw _privateConstructorUsedError;
   List<String> get monthlyDays => throw _privateConstructorUsedError;
@@ -134,6 +137,7 @@ abstract class $TaskModelCopyWith<$Res> {
     LightViolationModel? violation,
     List<String> assignedUserIds,
     List<String> assignedDepartmentIds,
+    List<LightUserModel> assignedUsers,
     List<String> weeklyDays,
     List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
@@ -186,6 +190,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? violation = freezed,
     Object? assignedUserIds = null,
     Object? assignedDepartmentIds = null,
+    Object? assignedUsers = null,
     Object? weeklyDays = null,
     Object? monthlyDays = null,
     Object? userModel = freezed,
@@ -327,6 +332,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.assignedDepartmentIds
                     : assignedDepartmentIds // ignore: cast_nullable_to_non_nullable
                         as List<String>,
+            assignedUsers:
+                null == assignedUsers
+                    ? _value.assignedUsers
+                    : assignedUsers // ignore: cast_nullable_to_non_nullable
+                        as List<LightUserModel>,
             weeklyDays:
                 null == weeklyDays
                     ? _value.weeklyDays
@@ -423,6 +433,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     LightViolationModel? violation,
     List<String> assignedUserIds,
     List<String> assignedDepartmentIds,
+    List<LightUserModel> assignedUsers,
     List<String> weeklyDays,
     List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
@@ -477,6 +488,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? violation = freezed,
     Object? assignedUserIds = null,
     Object? assignedDepartmentIds = null,
+    Object? assignedUsers = null,
     Object? weeklyDays = null,
     Object? monthlyDays = null,
     Object? userModel = freezed,
@@ -618,6 +630,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.assignedDepartmentIds
                 : assignedDepartmentIds // ignore: cast_nullable_to_non_nullable
                     as List<String>,
+        assignedUsers:
+            null == assignedUsers
+                ? _value.assignedUsers
+                : assignedUsers // ignore: cast_nullable_to_non_nullable
+                    as List<LightUserModel>,
         weeklyDays:
             null == weeklyDays
                 ? _value.weeklyDays
@@ -670,6 +687,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.violation,
     this.assignedUserIds = const [],
     this.assignedDepartmentIds = const [],
+    this.assignedUsers = const [],
     required this.weeklyDays,
     required this.monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) this.userModel,
@@ -753,6 +771,9 @@ class _$TaskModelImpl extends _TaskModel {
   @JsonKey()
   List<String> assignedDepartmentIds;
   @override
+  @JsonKey()
+  List<LightUserModel> assignedUsers;
+  @override
   List<String> weeklyDays;
   @override
   List<String> monthlyDays;
@@ -762,7 +783,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, assignedDepartmentIds: $assignedDepartmentIds, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, assignedDepartmentIds: $assignedDepartmentIds, assignedUsers: $assignedUsers, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
   }
 
   /// Create a copy of TaskModel
@@ -808,6 +829,7 @@ abstract class _TaskModel extends TaskModel {
     LightViolationModel? violation,
     List<String> assignedUserIds,
     List<String> assignedDepartmentIds,
+    List<LightUserModel> assignedUsers,
     required List<String> weeklyDays,
     required List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,
@@ -902,6 +924,9 @@ abstract class _TaskModel extends TaskModel {
   @override
   List<String> get assignedDepartmentIds;
   set assignedDepartmentIds(List<String> value);
+  @override
+  List<LightUserModel> get assignedUsers;
+  set assignedUsers(List<LightUserModel> value);
   @override
   List<String> get weeklyDays;
   set weeklyDays(List<String> value);

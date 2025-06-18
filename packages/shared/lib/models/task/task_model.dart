@@ -38,6 +38,7 @@ class TaskModel with _$TaskModel {
     LightViolationModel? violation,
     @Default([]) List<String> assignedUserIds,
     @Default([]) List<String> assignedDepartmentIds,
+    @Default([]) List<LightUserModel> assignedUsers,
     required List<String> weeklyDays,
     required List<String> monthlyDays,
     @JsonKey(includeFromJson: false, includeToJson: false) UserModel? userModel,

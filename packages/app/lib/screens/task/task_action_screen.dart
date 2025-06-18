@@ -25,14 +25,13 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   }
 
   void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) async {
-    // List<Map<String, dynamic>> users =
-    //     selectedUsers
-    //         .map((e) => LightUserModel(id: e.id!, departmentId: e.departmentId!))
-    //         .toList();
-    final assignedUserIds = selectedUsers.map((e) => e.id).toList();
-    final assignedDepartmentIds = selectedUsers.map((e) => e.departmentId).toList();
+    List<LightUserModel> assignedUsers =
+        selectedUsers.map((e) => LightUserModel(id: e.id!, departmentId: e.departmentId!)).toList();
+    final assignedUserIds = assignedUsers.map((e) => e.id).toList();
+    final assignedDepartmentIds = assignedUsers.map((e) => e.departmentId).toList();
     final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
     taskDocRef.update({
+      MyFields.assignedUsers: assignedUsers.map((e) => e.toJson()).toList(),
       MyFields.assignedUserIds: assignedUserIds,
       MyFields.assignedDepartmentIds: assignedDepartmentIds,
     });
