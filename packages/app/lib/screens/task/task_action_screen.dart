@@ -2,6 +2,9 @@ import 'package:app/screens/user/users_selection_screen.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
+import '../calender/widgets/calendar_date_text.dart';
+import '../calender/widgets/calendar_icon_button.dart';
+
 class TaskActionScreen extends StatefulWidget {
   final TaskModel task;
 
@@ -13,14 +16,12 @@ class TaskActionScreen extends StatefulWidget {
 
 class _TaskActionScreenState extends State<TaskActionScreen> {
   late Stream<DocumentSnapshot<TaskModel>> _taskStream;
-  late Query<TaskModel> _assignedTasksQuery;
+  late DateTime _selectedDate;
 
   TaskModel get _task => widget.task;
-  String get _taskId => _task.id;
 
   void _initialize() {
     _taskStream = TasksService.getTask(task: _task).snapshots();
-    _assignedTasksQuery = TasksService.getAssignedTasksQuery(_taskId);
   }
 
   void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) async {
@@ -48,6 +49,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   @override
   void initState() {
     super.initState();
+    _selectedDate = kNowDate;
     _initialize();
   }
 
@@ -111,6 +113,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                   ),
                 ],
               ),
+
               // Padding(
               //   padding: const EdgeInsets.symmetric(vertical: 10),
               //   child: Text(
@@ -123,44 +126,59 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
               //   ),
               // ),
               // ResponsibleDepartment(task: _task, users: users),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        context.appLocalization.responsibleEmployees,
+                        style: TextStyle(
+                          color: context.colorPalette.primary,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        CalendarDateText(date: _selectedDate, fullDate: true),
+                        CalendarIconButton(
+                          value: _selectedDate,
+                          minDateTime: kNowDate,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedDate = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               UsersSelector(
                 builder: (context, users) {
                   return CustomFirestoreQueryBuilder(
-                    query: _assignedTasksQuery,
+                    query: TasksService.fetchTasksList(context, date: _selectedDate),
                     onComplete: (context, snapshot) {
                       final assignedTasks = snapshot.docs;
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Text(
-                              context.appLocalization.responsibleEmployees,
-                              style: TextStyle(
-                                color: context.colorPalette.primary,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                          ListView.separated(
-                            separatorBuilder: (context, index) => const SizedBox(height: 10),
-                            itemCount: assignedTasks.length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              if (snapshot.isLoadingMore(index)) {
-                                return const FPLoading();
-                              }
-                              final assignedTask = assignedTasks[index].data();
-                              assignedTask.userModel ??= users.firstWhere(
-                                (e) => e.id == assignedTask.user!.id,
-                                orElse: () => UserModel(),
-                              );
-                              return ResponsibleEmployee(assignedTask: assignedTask);
-                            },
-                          ),
-                        ],
+                      return ListView.separated(
+                        separatorBuilder: (context, index) => const SizedBox(height: 10),
+                        itemCount: assignedTasks.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          if (snapshot.isLoadingMore(index)) {
+                            return const FPLoading();
+                          }
+                          final assignedTask = assignedTasks[index].data();
+                          assignedTask.userModel ??= users.firstWhere(
+                            (e) => e.id == assignedTask.user!.id,
+                            orElse: () => UserModel(),
+                          );
+                          return ResponsibleEmployee(assignedTask: assignedTask);
+                        },
                       );
                     },
                   );

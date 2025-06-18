@@ -12,25 +12,14 @@ class TaskDetailsScreen extends StatefulWidget {
 }
 
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
-  late Stream<List<dynamic>> _streams;
+  late Stream<DocumentSnapshot<TaskModel>> _stream;
 
   TaskModel get _task => widget.task;
   String get _taskId => _task.id;
   LightUserModel? get _user => _task.user;
 
   void _initialize() {
-    final taskQuery = TasksService.getTask(task: _task);
-    var assignedTasksQuery = TasksService.getAssignedTasksQuery(
-      kIsEmployee ? _task.parentTaskId! : _taskId,
-    ).limit(10);
-    _streams =
-        Rx.combineLatest2<DocumentSnapshot<TaskModel>, QuerySnapshot<TaskModel>, List<dynamic>>(
-          taskQuery.snapshots(),
-          assignedTasksQuery.snapshots(),
-          (s1, s2) {
-            return [s1, s2];
-          },
-        );
+    _stream = TasksService.getTask(task: _task).snapshots();
   }
 
   @override
@@ -47,10 +36,9 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       fontWeight: FontWeight.w400,
     );
     return BigStreamBuilder(
-      stream: _streams,
+      stream: _stream,
       onComplete: (context, snapshot) {
-        final taskQuerySnapshot = snapshot.data![0] as DocumentSnapshot<TaskModel>;
-        final assignedTasksQuerySnapshot = snapshot.data![1] as QuerySnapshot<TaskModel>;
+        final taskQuerySnapshot = snapshot.data!;
         final task = taskQuerySnapshot.data()!;
         return Scaffold(
           appBar: AppBar(),

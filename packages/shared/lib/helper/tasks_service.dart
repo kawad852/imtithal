@@ -205,9 +205,10 @@ class TasksService {
   }
 
   static Query<TaskModel> getAssignedTasksQuery(String parentTaskId) {
-    return kFirebaseInstant.assignedTasksQuery.orderByCreatedAtDesc.where(
+    final query = kFirebaseInstant.assignedTasksQuery.orderByCreatedAtDesc.where(
       MyFields.parentTaskId,
       isEqualTo: parentTaskId,
     );
+    return query;
   }
 }
