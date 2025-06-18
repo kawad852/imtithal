@@ -134,7 +134,7 @@ class _SearchScreenState<T> extends State<SearchScreen<T>> {
                   .then((value) {
                     return value.hits.map((e) => ViolationModel.fromJson(e.toJson())).toList();
                   })
-              : Future.value(<TaskModel>[]);
+              : Future.value(<ViolationModel>[]);
       return Future.wait([usersFuture, departmentsFuture, tasksFuture, violationsFuture]);
     } catch (e) {
       debugPrint("SearchError::: $e");
