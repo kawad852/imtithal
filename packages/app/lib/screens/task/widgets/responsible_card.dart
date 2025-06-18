@@ -20,62 +20,64 @@ class ResponsibleCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "${context.appLocalization.responsibleParties} ",
-                      style: TextStyle(
-                        color: context.colorPalette.black252,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Text(
-                      "(${task.assignedUserIds.length})",
-                      style: TextStyle(
-                        color: context.colorPalette.primary,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Row(
+          if (task.user == null) ...[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
-                      if (task.assignedUserIds.isNotEmpty)
-                        Expanded(
-                          child: AssignedList(assignedUserIds: task.assignedUserIds, height: 32),
+                      Text(
+                        "${context.appLocalization.responsibleParties} ",
+                        style: TextStyle(
+                          color: context.colorPalette.black252,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
                         ),
-                      if (!kIsEmployee)
-                        GestureDetector(
-                          onTap: () {
-                            context.navigate((context) => TaskActionScreen(task: task));
-                          },
-                          child: Container(
-                            width: 32,
-                            height: 32,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: context.colorPalette.primary,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const CustomSvg(MyIcons.setting),
-                          ),
+                      ),
+                      Text(
+                        "(${task.assignedUserIds.length})",
+                        style: TextStyle(
+                          color: context.colorPalette.primary,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
                         ),
+                      ),
                     ],
                   ),
-                ),
-              ],
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Row(
+                      children: [
+                        if (task.assignedUserIds.isNotEmpty)
+                          Expanded(
+                            child: AssignedList(assignedUserIds: task.assignedUserIds, height: 32),
+                          ),
+                        if (!kIsEmployee)
+                          GestureDetector(
+                            onTap: () {
+                              context.navigate((context) => TaskActionScreen(task: task));
+                            },
+                            child: Container(
+                              width: 32,
+                              height: 32,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: context.colorPalette.primary,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const CustomSvg(MyIcons.setting),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          VerticalDivider(color: context.colorPalette.grey8B8, indent: 12, endIndent: 12),
+            VerticalDivider(color: context.colorPalette.grey8B8, indent: 12, endIndent: 12),
+          ],
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
