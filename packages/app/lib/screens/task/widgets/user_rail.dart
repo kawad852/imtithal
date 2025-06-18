@@ -2,8 +2,9 @@ import 'package:shared/shared.dart';
 
 class UserRail extends StatelessWidget {
   final LightUserModel lightUser;
+  final Color color;
 
-  const UserRail({super.key, required this.lightUser});
+  const UserRail({super.key, required this.lightUser, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class UserRail extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        VerticalLine(height: 86, color: context.colorPalette.redD62),
+        VerticalLine(height: 86, color: color),
         const SizedBox(width: 6),
         Padding(
           padding: const EdgeInsetsDirectional.only(end: 10),

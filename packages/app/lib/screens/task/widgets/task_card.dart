@@ -22,7 +22,9 @@ class TaskCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            if (user != null) ...[UserRail(lightUser: task.user!)],
+            if (user != null) ...[
+              UserRail(lightUser: task.user!, color: task.indicatorColor(context)),
+            ],
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

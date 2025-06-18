@@ -25,7 +25,7 @@ class ViolationCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            UserRail(lightUser: violation.user),
+            UserRail(lightUser: violation.user, color: context.colorPalette.redC10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

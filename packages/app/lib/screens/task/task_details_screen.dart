@@ -71,7 +71,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               if (_user != null)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
-                  child: UserRail(lightUser: _user!),
+                  child: UserRail(lightUser: _user!, color: task.indicatorColor(context)),
                 ),
               Text(
                 task.title,
