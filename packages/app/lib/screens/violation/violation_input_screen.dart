@@ -184,7 +184,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
                 UsersSelector(
                   builder: (context, users) {
                     _task!.userModel ??= users.firstWhere(
-                      (e) => e.id == _task!.user.id,
+                      (e) => e.id == _task!.user!.id,
                       orElse: () => UserModel(),
                     );
                     return Row(

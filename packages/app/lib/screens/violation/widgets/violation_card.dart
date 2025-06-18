@@ -1,3 +1,4 @@
+import 'package:app/screens/task/widgets/user_rail.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
@@ -10,18 +11,6 @@ class ViolationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserModel? user;
-    if (!kIsEmployee) {
-      user = MySharedPreferences.users.firstWhere(
-        (e) => e.id == (userId ?? violation.user.id),
-        orElse: () => UserModel(),
-      );
-      violation.userModel ??= user;
-    }
-    final lastReplyUser = MySharedPreferences.users.firstWhere(
-      (e) => e.id == violation.lastReply?.userId,
-      orElse: () => UserModel(),
-    );
     return GestureDetector(
       onTap: () {
         context.navigate((context) => ViolationDetailsScreen(violation: violation));
@@ -36,13 +25,7 @@ class ViolationCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            VerticalLine(height: 86, color: context.colorPalette.redD62),
-            const SizedBox(width: 6),
-            if (user?.id != null)
-              Padding(
-                padding: const EdgeInsetsDirectional.only(end: 10),
-                child: UserPhoto(url: user!.profilePhoto, displayName: user.displayName, size: 60),
-              ),
+            UserRail(lightUser: violation.user),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,28 +76,33 @@ class ViolationCard extends StatelessWidget {
                     ),
                   ),
                   if (violation.lastReply != null)
-                    Row(
-                      children: [
-                        Text(
-                          "${context.appLocalization.lastResponseBy} : ",
-                          style: TextStyle(
-                            color: context.colorPalette.grey8B8,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            lastReplyUser.displayName,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: context.colorPalette.primary,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
+                    Builder(
+                      builder: (context) {
+                        final lastReplyUser = UiHelper.getUser(violation.lastReply!.userId);
+                        return Row(
+                          children: [
+                            Text(
+                              "${context.appLocalization.lastResponseBy} : ",
+                              style: TextStyle(
+                                color: context.colorPalette.grey8B8,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
-                          ),
-                        ),
-                      ],
+                            Expanded(
+                              child: Text(
+                                lastReplyUser.displayName,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: context.colorPalette.primary,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   const SizedBox(height: 4),
                   Text(

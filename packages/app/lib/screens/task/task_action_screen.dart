@@ -4,9 +4,8 @@ import 'package:shared/shared.dart';
 
 class TaskActionScreen extends StatefulWidget {
   final TaskModel task;
-  final QuerySnapshot<TaskModel> assignedTasks;
 
-  const TaskActionScreen({super.key, required this.task, required this.assignedTasks});
+  const TaskActionScreen({super.key, required this.task});
 
   @override
   State<TaskActionScreen> createState() => _TaskActionScreenState();
@@ -20,7 +19,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
   String get _taskId => _task.id;
 
   void _initialize() {
-    _taskStream = TasksService.getTask(_taskId, userId: _task.user.id).snapshots();
+    _taskStream = TasksService.getTask(task: _task).snapshots();
     _assignedTasksQuery = TasksService.getAssignedTasksQuery(_taskId);
   }
 
@@ -155,7 +154,7 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                               }
                               final assignedTask = assignedTasks[index].data();
                               assignedTask.userModel ??= users.firstWhere(
-                                (e) => e.id == assignedTask.user.id,
+                                (e) => e.id == assignedTask.user!.id,
                                 orElse: () => UserModel(),
                               );
                               return ResponsibleEmployee(assignedTask: assignedTask);

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
 class UiHelper {
@@ -31,5 +30,9 @@ class UiHelper {
       default:
         return FontAwesomeIcons.house;
     }
+  }
+
+  static UserModel getUser(String id) {
+    return MySharedPreferences.users.firstWhere((e) => e.id == id, orElse: () => UserModel());
   }
 }

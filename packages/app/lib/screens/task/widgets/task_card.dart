@@ -1,19 +1,15 @@
 import 'package:app/screens/task/task_details_screen.dart';
+import 'package:app/screens/task/widgets/user_rail.dart';
 import 'package:shared/shared.dart';
 
 class TaskCard extends StatelessWidget {
   final TaskModel task;
-  final bool showUser;
 
-  const TaskCard({super.key, required this.task, this.showUser = false});
+  const TaskCard({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
-    final displayUser = (!kIsAdmin && !kIsEmtithalManager) || showUser;
-    UserModel? user;
-    if (displayUser) {
-      user = MySharedPreferences.users.firstWhere((e) => e.id == task.user.id);
-    }
+    final user = task.user != null ? UiHelper.getUser(task.user!.id) : null;
     return GestureDetector(
       onTap: () {
         context.navigate((context) => TaskDetailsScreen(task: task));
@@ -27,15 +23,7 @@ class TaskCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            if (user != null) ...[
-              VerticalLine(height: 67, color: task.indicatorColor(context)),
-              const SizedBox(width: 10),
-              if (user.id != null)
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 10),
-                  child: UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 60),
-                ),
-            ],
+            if (user != null) ...[UserRail(lightUser: task.user!)],
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +118,7 @@ class TaskCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (!kIsEmployee && !showUser)
+                      if (user == null)
                         UsersSelector(
                           builder: (context, users) {
                             final assignedUsers =

@@ -4,9 +4,8 @@ import 'package:shared/shared.dart';
 
 class ResponsibleCard extends StatelessWidget {
   final TaskModel task;
-  final QuerySnapshot<TaskModel> assignedTasks;
 
-  const ResponsibleCard({super.key, required this.task, required this.assignedTasks});
+  const ResponsibleCard({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -50,15 +49,14 @@ class ResponsibleCard extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10),
                   child: Row(
                     children: [
-                      if (assignedTasks.docs.isNotEmpty)
-                        Expanded(child: AssignedList(assignedTasks: assignedTasks, height: 32)),
+                      if (task.assignedUserIds.isNotEmpty)
+                        Expanded(
+                          child: AssignedList(assignedUserIds: task.assignedUserIds, height: 32),
+                        ),
                       if (!kIsEmployee)
                         GestureDetector(
                           onTap: () {
-                            context.navigate(
-                              (context) =>
-                                  TaskActionScreen(task: task, assignedTasks: assignedTasks),
-                            );
+                            context.navigate((context) => TaskActionScreen(task: task));
                           },
                           child: Container(
                             width: 32,

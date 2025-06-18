@@ -1,3 +1,4 @@
+import 'package:app/screens/task/widgets/user_rail.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -15,9 +16,10 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
 
   TaskModel get _task => widget.task;
   String get _taskId => _task.id;
+  LightUserModel? get _user => _task.user;
 
   void _initialize() {
-    final taskQuery = TasksService.getTask(_taskId, userId: _task.user.id);
+    final taskQuery = TasksService.getTask(task: _task);
     var assignedTasksQuery = TasksService.getAssignedTasksQuery(
       kIsEmployee ? _task.parentTaskId! : _taskId,
     ).limit(10);
@@ -66,6 +68,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             children: [
+              if (_user != null) UserRail(lightUser: _user!),
               Text(
                 task.title,
                 style: TextStyle(
@@ -188,7 +191,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 },
               ),
               // if (!kIsEmployee) ...[
-              ResponsibleCard(task: task, assignedTasks: assignedTasksQuerySnapshot),
+              ResponsibleCard(task: task),
               // StatusSummeryBubbles(
               //   inCompletedTasksCount: task.inCompletedTasksCount,
               //   completedTasksCount: task.completedTasksCount,

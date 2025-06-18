@@ -20,13 +20,7 @@ class ReplyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (reply.userModel == null) {
-      final user = MySharedPreferences.users.firstWhere(
-        (e) => e.id == reply.userId,
-        orElse: () => UserModel(),
-      );
-      reply.userModel = user;
-    }
+    reply.userModel ??= UiHelper.getUser(reply.userId);
     final user = reply.userModel!;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

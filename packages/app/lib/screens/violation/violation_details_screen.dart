@@ -58,15 +58,7 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
         final violation = snapshot.data![0] as ViolationModel;
         final replies = snapshot.data![1] as QuerySnapshot<ViolationReplyModel>;
 
-        UserModel getUser() {
-          final user = MySharedPreferences.users.firstWhere(
-            (e) => e.id == violation.user.id,
-            orElse: () => UserModel(),
-          );
-          return user;
-        }
-
-        violation.userModel ??= getUser();
+        violation.userModel ??= UiHelper.getUser(violation.user.id);
 
         return Scaffold(
           appBar: AppBar(),

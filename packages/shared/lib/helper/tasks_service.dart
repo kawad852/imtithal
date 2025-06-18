@@ -195,11 +195,13 @@ class TasksService {
   }
 
   ///Task
-  static DocumentReference<TaskModel> getTask(String taskId, {required String? userId}) {
-    if (userId != null && (kIsEmployee || kIsDepartmentManager)) {
-      return kFirebaseInstant.userAssignedTasks(userId).doc(taskId);
+  static DocumentReference<TaskModel> getTask({required TaskModel task}) {
+    final userId = task.user?.id;
+    if (userId != null) {
+      return kFirebaseInstant.userAssignedTasks(userId).doc(task.id);
+    } else {
+      return kFirebaseInstant.tasks.doc(task.id);
     }
-    return kFirebaseInstant.tasks.doc(taskId);
   }
 
   static Query<TaskModel> getAssignedTasksQuery(String parentTaskId) {
