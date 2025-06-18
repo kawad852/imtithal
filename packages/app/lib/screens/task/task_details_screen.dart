@@ -1,3 +1,4 @@
+import 'package:app/screens/task/widgets/imtithal_button.dart';
 import 'package:app/screens/task/widgets/user_rail.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
@@ -41,7 +42,12 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
         final taskQuerySnapshot = snapshot.data!;
         final task = taskQuerySnapshot.data()!;
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            actions: [
+              if (task.user != null)
+                ImtithalButton(assignedTask: task, user: UiHelper.getUser(task.user!.id)),
+            ],
+          ),
           bottomNavigationBar:
               kIsEmployee && task.status == TaskStatusEnum.pending.value
                   ? BottomButton(
