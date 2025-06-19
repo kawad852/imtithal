@@ -71,9 +71,9 @@ class TasksService {
       }
     } else {
       if (queryFilter != null) {
-        return tasksDocRef.where(queryFilter).orderByDeliveryDateDesc as Query<T>;
+        return tasksDocRef.where(queryFilter).orderByDeliveryDateAsc as Query<T>;
       } else {
-        return tasksDocRef.orderByDeliveryDateDesc as Query<T>;
+        return tasksDocRef.orderByDeliveryDateAsc as Query<T>;
       }
     }
   }
