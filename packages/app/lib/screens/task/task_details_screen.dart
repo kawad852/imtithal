@@ -44,7 +44,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
         return Scaffold(
           appBar: AppBar(
             actions: [
-              if (task.user != null)
+              if (task.user != null && (kIsAdmin || kIsEmtithalManager))
                 ImtithalButton(assignedTask: task, user: UiHelper.getUser(task.user!.id)),
             ],
           ),
@@ -65,7 +65,27 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               if (_user != null)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
-                  child: UserRail(lightUser: _user!, color: task.indicatorColor(context)),
+                  child: Row(
+                    children: [
+                      UserRail(lightUser: _user!, color: task.indicatorColor(context)),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _user!.displayName,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                // color: context.colorPalette.grey8B8,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               Text(
                 task.title,

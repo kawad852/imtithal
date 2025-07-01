@@ -58,15 +58,15 @@ class _ReplySheetState extends State<ReplySheet> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              context.appLocalization.managementDecision,
-              style: TextStyle(
-                color: context.colorPalette.primary,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+            if (kIsAdmin) ...[
+              Text(
+                context.appLocalization.managementDecision,
+                style: TextStyle(
+                  color: context.colorPalette.primary,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            if (kIsAdmin)
               Wrap(
                 direction: Axis.horizontal,
                 children:
@@ -88,6 +88,7 @@ class _ReplySheetState extends State<ReplySheet> {
                       );
                     }).toList(),
               ),
+            ],
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: TitledTextField(
