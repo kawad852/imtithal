@@ -102,6 +102,7 @@ class _ReplySheetState extends State<ReplySheet> {
               ),
             ),
             ImagesAttacher(
+              files: _files,
               onChanged: (files) {
                 _files.addAll(files);
               },

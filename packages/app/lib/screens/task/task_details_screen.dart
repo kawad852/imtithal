@@ -1,3 +1,4 @@
+import 'package:app/screens/task/widgets/attachment_bubble.dart';
 import 'package:app/screens/task/widgets/imtithal_button.dart';
 import 'package:app/screens/task/widgets/user_rail.dart';
 import 'package:app/screens_exports.dart';
@@ -147,26 +148,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       final attachment = task.attachments![index];
-                      return Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        height: 40,
-                        constraints: const BoxConstraints(maxWidth: 150),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: context.colorPalette.greyF5F,
-                          borderRadius: BorderRadius.circular(kRadiusSecondary),
-                        ),
-                        child: Text(
-                          attachment.name,
-                          style: TextStyle(
-                            color: context.colorPalette.grey8B8,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      );
+                      return AttachmentBubble(file: attachment);
                     },
                   ),
                 ),

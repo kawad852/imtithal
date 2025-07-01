@@ -1,4 +1,3 @@
-import 'package:app/screens/task/widgets/attachments_list.dart';
 import 'package:app/screens_exports.dart' show DayBubble, TaskDetailsScreen;
 import 'package:shared/shared.dart';
 
@@ -72,7 +71,7 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
           ).toJson(),
     );
     if (_task.attachments != null) {
-      _files.addAll(_task.attachments!.map((e) => e.url));
+      _files.addAll(_task.attachments!);
     }
   }
 
@@ -268,11 +267,12 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
               ),
               const SizedBox(height: 15),
               ImagesAttacher(
+                files: _files,
                 onChanged: (files) {
                   _files.addAll(files);
                 },
               ),
-              if (_files.isNotEmpty) AttachmentsList(files: _files),
+              // if (_files.isNotEmpty) AttachmentsList(files: _files),
             ],
           ),
         ),

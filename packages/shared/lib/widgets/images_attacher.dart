@@ -1,31 +1,39 @@
-import 'dart:io';
-
+import 'package:app/screens/task/widgets/attachment_bubble.dart';
 import 'package:shared/shared.dart';
 
 class ImagesAttacher extends StatefulWidget {
   final void Function(List<XFile> files) onChanged;
   final String? title;
+  final List<Object> files;
 
-  const ImagesAttacher({super.key, required this.onChanged, this.title});
+  const ImagesAttacher({super.key, required this.onChanged, this.title, required this.files});
 
   @override
   State<ImagesAttacher> createState() => _ImagesAttacherState();
 }
 
 class _ImagesAttacherState extends State<ImagesAttacher> {
-  final List<XFile> _files = [];
+  final List<Object> _files = [];
 
   Future<void> _pickImages(BuildContext context) async {
     AppOverlayLoader.fakeLoading();
-    List<XFile> files = await ImagePicker().pickMultiImage(
-      // maxWidth: widget.size.width + kImageSizeVariation,
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'pdf'],
     );
-    if (files.isNotEmpty) {
+    if (result != null && result.files.isNotEmpty) {
+      final files = result.files.map((e) => e.xFile).toList();
       setState(() {
         _files.addAll(files);
       });
-      widget.onChanged(_files);
+      widget.onChanged(_files as List<XFile>);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _files.addAll(widget.files);
   }
 
   @override
@@ -57,14 +65,7 @@ class _ImagesAttacherState extends State<ImagesAttacher> {
           spacing: 10,
           children: List.generate(_files.length, (index) {
             final file = _files[index];
-            return Container(
-              height: 130,
-              width: 130,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(image: FileImage(File(file.path)), fit: BoxFit.cover),
-              ),
-            );
+            return AttachmentBubble(file: file);
           }),
         ),
       ],

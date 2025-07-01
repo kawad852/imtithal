@@ -23,6 +23,9 @@ class AttachmentsList extends StatelessWidget {
                         child: Image.file(File(e.path), height: 90, width: 90, fit: BoxFit.cover),
                       );
                     } else if (e is AttachmentModel) {
+                      // if(e.url.contains(".pdf")) {
+                      //   return
+                      // }
                       return BaseNetworkImage(e.url, height: 90, width: 90);
                     } else {
                       return BaseNetworkImage(e as String, height: 90, width: 90);

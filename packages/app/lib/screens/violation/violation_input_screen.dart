@@ -276,7 +276,9 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
                   ),
                 ),
               ),
+
               ImagesAttacher(
+                files: [],
                 onChanged: (files) {},
                 title: context.appLocalization.attachFilesImages,
               ),
