@@ -37,7 +37,8 @@ class _TaskInputScreenState extends State<TaskInputScreen> {
           );
           final taskDocRef = kFirebaseInstant.tasks.doc(_task.id);
           if (_files.whereType<XFile>().isNotEmpty) {
-            _task.attachments = await _storageService.uploadFiles(MyCollections.tasks, _files);
+            final files = await _storageService.uploadFiles(MyCollections.tasks, _files);
+            _task.attachments = [..._task.attachments!, ...files];
           }
           taskDocRef.set(_task);
           if (context.mounted) {

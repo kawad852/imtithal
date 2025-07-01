@@ -18,6 +18,8 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
   late ViolationModel _violation;
   final _formKey = GlobalKey<FormState>();
   List<UserModel> _selectedUsers = [];
+  final List<XFile> _files = [];
+  final _storageService = StorageService();
 
   List<String> get _userIds => _selectedUsers.map((e) => e.id!).toList();
 
@@ -36,6 +38,10 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
           _violation.companyId = kCompanyId;
           _violation.taskId = _task?.id;
           final batch = kFirebaseInstant.batch();
+          if (_files.isNotEmpty) {
+            final files = await _storageService.uploadFiles(MyCollections.violations, _files);
+            _violation.attachments = [..._violation.attachments!, ...files];
+          }
           if (_isGeneralViolation) {
             for (var user in _selectedUsers) {
               final violationDocRef = kFirebaseInstant.userViolations(user.id!).doc(_violation.id);
@@ -94,6 +100,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
   @override
   void initState() {
     super.initState();
+
     _violation = ViolationModel(
       createdById: kUserId,
       attachments: [],
@@ -278,8 +285,10 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
               ),
 
               ImagesAttacher(
-                files: [],
-                onChanged: (files) {},
+                files: _files,
+                onChanged: (files) {
+                  _files.addAll(files);
+                },
                 title: context.appLocalization.attachFilesImages,
               ),
             ],

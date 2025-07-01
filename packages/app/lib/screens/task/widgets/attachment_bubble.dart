@@ -5,8 +5,9 @@ import 'package:shared/shared.dart';
 
 class AttachmentBubble extends StatelessWidget {
   final Object file;
+  final Color? color;
 
-  const AttachmentBubble({super.key, required this.file});
+  const AttachmentBubble({super.key, required this.file, this.color});
 
   String get _getName {
     if (file is XFile) {
@@ -54,7 +55,7 @@ class AttachmentBubble extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 150),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: context.colorPalette.greyF5F,
+          color: color ?? context.colorPalette.greyF5F,
           borderRadius: BorderRadius.circular(kRadiusSecondary),
         ),
         child: Text(

@@ -2,8 +2,6 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
-import '../task/widgets/attachments_list.dart';
-
 class ViolationDetailsScreen extends StatefulWidget {
   final ViolationModel? violation;
   final String? id;
@@ -248,7 +246,7 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                AttachmentsList(files: violation.attachments!),
+                ImagesAttacher(onChanged: null, files: violation.attachments!),
               ],
               Divider(color: context.colorPalette.grey8B8),
               ListView.separated(

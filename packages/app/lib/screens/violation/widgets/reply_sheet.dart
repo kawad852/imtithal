@@ -2,8 +2,6 @@ import 'package:app/screens_exports.dart';
 import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
-import '../../task/widgets/attachments_list.dart';
-
 class ReplySheet extends StatefulWidget {
   final DocumentReference<ViolationModel> violationDocRef;
   final CollectionReference<ViolationReplyModel> replyCollectionRef;
@@ -107,7 +105,6 @@ class _ReplySheetState extends State<ReplySheet> {
                 _files.addAll(files);
               },
             ),
-            if (_files.isNotEmpty) AttachmentsList(files: _files),
             const SizedBox(height: 30),
             StretchedButton(
               onPressed: () {

@@ -1,4 +1,3 @@
-import 'package:app/screens/task/widgets/attachments_list.dart';
 import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
@@ -89,7 +88,12 @@ class ReplyCard extends StatelessWidget {
                 ),
               ),
             ),
-          if (reply.attachments?.isNotEmpty ?? false) AttachmentsList(files: reply.attachments!),
+          if (reply.attachments?.isNotEmpty ?? false)
+            ImagesAttacher(
+              files: reply.attachments!,
+              onChanged: null,
+              bubbleColor: context.colorPalette.greyECE,
+            ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
