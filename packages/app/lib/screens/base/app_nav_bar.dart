@@ -65,6 +65,7 @@ class _AppNavBarState extends State<AppNavBar> {
     cloudMessagingService.requestPermission(context);
     context.userProvider.updateDeviceToken(context);
     context.appProvider.fetchCompany();
+    cloudMessagingService.subscribeToTopic();
   }
 
   @override

@@ -56,22 +56,23 @@ class SendNotificationService {
     docRef.collection(MyCollections.notifications).doc(notificationDocId).set(json);
 
     // ignore: use_build_context_synchronously
-    _send(context, notificationModel: notificationModel);
+    send(context, notificationModel: notificationModel);
   }
 
-  static Future<void> _send(
+  static Future<void> send(
     BuildContext context, {
     required NotificationModel notificationModel,
+    bool targetAll = false,
   }) async {
     final accessToken = await _getAccessToken();
 
     final notification = notificationModel.notification!;
-    final data = notificationModel.data!;
-    final token = notificationModel.token!;
+    final data = notificationModel.data;
     var json = <String, dynamic>{
       "notification": notification.toJson(),
-      "data": data.toJson(),
-      "token": token,
+      "data": data?.toJson(),
+      if (targetAll) "topic": "all",
+      if (!targetAll) "token": notificationModel.token!,
     };
 
     final result = await http.post(
@@ -102,7 +103,7 @@ class SendNotificationService {
   static Future<String> _getAccessToken() async {
     // Load the service account JSON from the assets folder
     final String serviceAccountString = await rootBundle.loadString(
-      'assets/serviceAccountKey.json',
+      'assets/serviceAccountJsonKey.json',
     );
 
     // Parse the JSON string into a Map

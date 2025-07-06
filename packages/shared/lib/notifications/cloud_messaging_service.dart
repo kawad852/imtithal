@@ -63,4 +63,12 @@ class CloudMessagingService {
     final type = dataJson["type"];
     NotificationRouteHandler.toggle(rootNavigatorKey.currentContext!, id: id, type: type);
   }
+
+  void subscribeToTopic() {
+    FirebaseMessaging.instance.subscribeToTopic("all");
+  }
+
+  void unSubscribeToTopic() {
+    FirebaseMessaging.instance.unsubscribeFromTopic("all");
+  }
 }

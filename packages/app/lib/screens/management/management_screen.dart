@@ -1,3 +1,4 @@
+import 'package:app/screens/notifications/send_notification_screen.dart';
 import 'package:app/screens/search/search_screen.dart';
 import 'package:app/screens/user/user_input_screen.dart';
 import 'package:app/screens_exports.dart';
@@ -83,7 +84,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
                       ),
                       const SizedBox(width: 10),
                       ManageButton(
-                        onTap: () {},
+                        onTap: () {
+                          context.navigate((context) {
+                            return const SendNotificationScreen();
+                          });
+                        },
                         icon: MyIcons.notificationSolid,
                         title: context.appLocalization.sendNewNotification,
                       ),
