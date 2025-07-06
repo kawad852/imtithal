@@ -31,6 +31,10 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
       (json['attachments'] as List<dynamic>?)
           ?.map((e) => AttachmentModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+  userAttachments:
+      (json['userAttachments'] as List<dynamic>?)
+          ?.map((e) => AttachmentModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
   user:
       json['user'] == null
           ? null
@@ -67,36 +71,38 @@ _$TaskModelImpl _$$TaskModelImplFromJson(
       (json['monthlyDays'] as List<dynamic>).map((e) => e as String).toList(),
 );
 
-Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
-    <String, dynamic>{
-      'createdAt': const TimestampSerializer().toJson(instance.createdAt),
-      'deliveryDate': const TimestampSerializer().toJson(instance.deliveryDate),
-      'deliveryTime': instance.deliveryTime,
-      'allowedDurationInMinutes': instance.allowedDurationInMinutes,
-      'points': instance.points,
-      'id': instance.id,
-      'parentTaskId': instance.parentTaskId,
-      'companyId': instance.companyId,
-      'title': instance.title,
-      'description': instance.description,
-      'status': instance.status,
-      'departmentId': instance.departmentId,
-      'violationDescription': instance.violationDescription,
-      'notes': instance.notes,
-      'createdById': instance.createdById,
-      'repeatType': instance.repeatType,
-      'markedAsLate': instance.markedAsLate,
-      'attachments': instance.attachments?.map((e) => e.toJson()).toList(),
-      'user': instance.user?.toJson(),
-      'inCompletedTasksCount': instance.inCompletedTasksCount,
-      'completedTasksCount': instance.completedTasksCount,
-      'lateTasksCount': instance.lateTasksCount,
-      'violationTasksCount': instance.violationTasksCount,
-      'totalAssignedUsers': instance.totalAssignedUsers,
-      'violation': instance.violation?.toJson(),
-      'assignedUserIds': instance.assignedUserIds,
-      'assignedDepartmentIds': instance.assignedDepartmentIds,
-      'assignedUsers': instance.assignedUsers.map((e) => e.toJson()).toList(),
-      'weeklyDays': instance.weeklyDays,
-      'monthlyDays': instance.monthlyDays,
-    };
+Map<String, dynamic> _$$TaskModelImplToJson(
+  _$TaskModelImpl instance,
+) => <String, dynamic>{
+  'createdAt': const TimestampSerializer().toJson(instance.createdAt),
+  'deliveryDate': const TimestampSerializer().toJson(instance.deliveryDate),
+  'deliveryTime': instance.deliveryTime,
+  'allowedDurationInMinutes': instance.allowedDurationInMinutes,
+  'points': instance.points,
+  'id': instance.id,
+  'parentTaskId': instance.parentTaskId,
+  'companyId': instance.companyId,
+  'title': instance.title,
+  'description': instance.description,
+  'status': instance.status,
+  'departmentId': instance.departmentId,
+  'violationDescription': instance.violationDescription,
+  'notes': instance.notes,
+  'createdById': instance.createdById,
+  'repeatType': instance.repeatType,
+  'markedAsLate': instance.markedAsLate,
+  'attachments': instance.attachments?.map((e) => e.toJson()).toList(),
+  'userAttachments': instance.userAttachments?.map((e) => e.toJson()).toList(),
+  'user': instance.user?.toJson(),
+  'inCompletedTasksCount': instance.inCompletedTasksCount,
+  'completedTasksCount': instance.completedTasksCount,
+  'lateTasksCount': instance.lateTasksCount,
+  'violationTasksCount': instance.violationTasksCount,
+  'totalAssignedUsers': instance.totalAssignedUsers,
+  'violation': instance.violation?.toJson(),
+  'assignedUserIds': instance.assignedUserIds,
+  'assignedDepartmentIds': instance.assignedDepartmentIds,
+  'assignedUsers': instance.assignedUsers.map((e) => e.toJson()).toList(),
+  'weeklyDays': instance.weeklyDays,
+  'monthlyDays': instance.monthlyDays,
+};

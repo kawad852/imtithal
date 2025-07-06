@@ -49,4 +49,5 @@ class MyFields {
   static const String assignedDepartmentIds = 'assignedDepartmentIds';
   static const String taskId = 'taskId';
   static const String assignedUsers = 'assignedUsers';
+  static const String userAttachments = 'userAttachments';
 }

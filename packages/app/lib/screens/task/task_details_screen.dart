@@ -2,6 +2,7 @@ import 'package:app/screens/task/widgets/attachment_bubble.dart';
 import 'package:app/screens/task/widgets/imtithal_button.dart';
 import 'package:app/screens/task/widgets/user_rail.dart';
 import 'package:app/screens_exports.dart';
+import 'package:shared/models/attachment/attachment_model.dart';
 import 'package:shared/shared.dart';
 
 class TaskDetailsScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class TaskDetailsScreen extends StatefulWidget {
 
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   late Stream<DocumentSnapshot<TaskModel>> _stream;
+  final List<XFile> _files = [];
 
   TaskModel get _task => widget.task;
   String get _taskId => _task.id;
@@ -22,6 +24,25 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
 
   void _initialize() {
     _stream = TasksService.getTask(task: _task).snapshots();
+  }
+
+  Future<void> _pickImages(BuildContext context, {required VoidCallback onSuccess}) async {
+    try {
+      AppOverlayLoader.fakeLoading();
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'pdf'],
+      );
+      if (result != null && result.files.isNotEmpty) {
+        final files = result.files.map((e) => e.xFile).toList();
+        setState(() {
+          _files.addAll(files);
+        });
+        onSuccess();
+      }
+    } catch (e) {
+      print("errrp:: $e");
+    }
   }
 
   @override
@@ -54,9 +75,22 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   ? BottomButton(
                     text: context.appLocalization.completeTask,
                     onPressed: () {
-                      taskQuerySnapshot.reference.update({
-                        MyFields.status: TaskStatusEnum.inReview.value,
-                      });
+                      _pickImages(
+                        context,
+                        onSuccess: () {
+                          ApiService.fetch(
+                            context,
+                            callBack: () async {
+                              print("id::: ${task.id}");
+                              final files = await StorageService().uploadFiles("tasks", _files);
+                              await taskQuerySnapshot.reference.update({
+                                MyFields.status: TaskStatusEnum.inReview.value,
+                                MyFields.userAttachments: files.map((e) => e.toJson()).toList(),
+                              });
+                            },
+                          );
+                        },
+                      );
                     },
                   )
                   : null,
@@ -129,28 +163,42 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               ),
               Text(task.notes, style: style),
               if (task.attachments != null) ...[
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    "${context.appLocalization.attachedFiles} (${task.attachments!.length})",
-                    style: style.copyWith(
-                      color: context.colorPalette.primary,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 40,
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(width: 10),
-                    itemCount: task.attachments!.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      final attachment = task.attachments![index];
-                      return AttachmentBubble(file: attachment);
-                    },
-                  ),
+                Builder(
+                  builder: (context) {
+                    List<AttachmentModel> attachments = [];
+                    attachments.addAll(task.attachments!);
+                    if (kIsEmployee && task.userAttachments != null) {
+                      attachments.addAll(task.userAttachments!);
+                    }
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${context.appLocalization.attachedFiles} (${attachments.length})",
+                            style: style.copyWith(
+                              color: context.colorPalette.primary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 40,
+                            child: ListView.separated(
+                              separatorBuilder: (context, index) => const SizedBox(width: 10),
+                              itemCount: attachments.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                final attachment = attachments[index];
+                                return AttachmentBubble(file: attachment);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ],
               Padding(

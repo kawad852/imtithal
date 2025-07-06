@@ -62,6 +62,10 @@ mixin _$TaskModel {
   List<AttachmentModel>? get attachments => throw _privateConstructorUsedError;
   set attachments(List<AttachmentModel>? value) =>
       throw _privateConstructorUsedError;
+  List<AttachmentModel>? get userAttachments =>
+      throw _privateConstructorUsedError;
+  set userAttachments(List<AttachmentModel>? value) =>
+      throw _privateConstructorUsedError;
   LightUserModel? get user => throw _privateConstructorUsedError;
   set user(LightUserModel? value) => throw _privateConstructorUsedError;
   int get inCompletedTasksCount => throw _privateConstructorUsedError;
@@ -128,6 +132,7 @@ abstract class $TaskModelCopyWith<$Res> {
     String? repeatType,
     bool markedAsLate,
     List<AttachmentModel>? attachments,
+    List<AttachmentModel>? userAttachments,
     LightUserModel? user,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -181,6 +186,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? repeatType = freezed,
     Object? markedAsLate = null,
     Object? attachments = freezed,
+    Object? userAttachments = freezed,
     Object? user = freezed,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
@@ -286,6 +292,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                 freezed == attachments
                     ? _value.attachments
                     : attachments // ignore: cast_nullable_to_non_nullable
+                        as List<AttachmentModel>?,
+            userAttachments:
+                freezed == userAttachments
+                    ? _value.userAttachments
+                    : userAttachments // ignore: cast_nullable_to_non_nullable
                         as List<AttachmentModel>?,
             user:
                 freezed == user
@@ -428,6 +439,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String? repeatType,
     bool markedAsLate,
     List<AttachmentModel>? attachments,
+    List<AttachmentModel>? userAttachments,
     LightUserModel? user,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -483,6 +495,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? repeatType = freezed,
     Object? markedAsLate = null,
     Object? attachments = freezed,
+    Object? userAttachments = freezed,
     Object? user = freezed,
     Object? inCompletedTasksCount = null,
     Object? completedTasksCount = null,
@@ -589,6 +602,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.attachments
                 : attachments // ignore: cast_nullable_to_non_nullable
                     as List<AttachmentModel>?,
+        userAttachments:
+            freezed == userAttachments
+                ? _value.userAttachments
+                : userAttachments // ignore: cast_nullable_to_non_nullable
+                    as List<AttachmentModel>?,
         user:
             freezed == user
                 ? _value.user
@@ -682,6 +700,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.repeatType,
     this.markedAsLate = false,
     this.attachments,
+    this.userAttachments,
     required this.user,
     this.inCompletedTasksCount = 0,
     this.completedTasksCount = 0,
@@ -750,6 +769,8 @@ class _$TaskModelImpl extends _TaskModel {
   @override
   List<AttachmentModel>? attachments;
   @override
+  List<AttachmentModel>? userAttachments;
+  @override
   LightUserModel? user;
   @override
   @JsonKey()
@@ -787,7 +808,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, assignedDepartmentIds: $assignedDepartmentIds, assignedUsers: $assignedUsers, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, userAttachments: $userAttachments, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, assignedDepartmentIds: $assignedDepartmentIds, assignedUsers: $assignedUsers, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
   }
 
   /// Create a copy of TaskModel
@@ -824,6 +845,7 @@ abstract class _TaskModel extends TaskModel {
     String? repeatType,
     bool markedAsLate,
     List<AttachmentModel>? attachments,
+    List<AttachmentModel>? userAttachments,
     required LightUserModel? user,
     int inCompletedTasksCount,
     int completedTasksCount,
@@ -901,6 +923,9 @@ abstract class _TaskModel extends TaskModel {
   @override
   List<AttachmentModel>? get attachments;
   set attachments(List<AttachmentModel>? value);
+  @override
+  List<AttachmentModel>? get userAttachments;
+  set userAttachments(List<AttachmentModel>? value);
   @override
   LightUserModel? get user;
   set user(LightUserModel? value);
