@@ -5,8 +5,14 @@ import 'package:shared/shared.dart';
 class ReplySheet extends StatefulWidget {
   final DocumentReference<ViolationModel> violationDocRef;
   final CollectionReference<ViolationReplyModel> replyCollectionRef;
+  final LightUserModel user;
 
-  const ReplySheet({super.key, required this.violationDocRef, required this.replyCollectionRef});
+  const ReplySheet({
+    super.key,
+    required this.violationDocRef,
+    required this.replyCollectionRef,
+    required this.user,
+  });
 
   @override
   State<ReplySheet> createState() => _ReplySheetState();
@@ -38,6 +44,55 @@ class _ReplySheetState extends State<ReplySheet> {
             MyFields.status: _reply.status,
             MyFields.lastReply: _reply.toJson(),
           });
+          var titleEn = "";
+          var titleAr = "";
+          var bodyEn = "";
+          var bodyAr = "";
+          if (_reply.status != ViolationStatus.pending.value && kIsEmployee) {
+            titleEn = "Violation Reply";
+            bodyEn = "The employee has submitted a reply to the violation.";
+            titleAr = "تم الرد على المخالفة";
+            bodyAr = "قام الموظف بالرد على المخالفة";
+            final user = UiHelper.getUser(_reply.userId);
+            SendNotificationService.sendToUser(
+              context,
+              userId: user.id!,
+              deviceToken: user.deviceToken,
+              languageCode: user.languageCode,
+              id: _violationDocRef.id,
+              type: NotificationType.violation.value,
+              titleEn: titleEn,
+              titleAr: titleAr,
+              bodyEn: bodyEn,
+              bodyAr: bodyAr,
+            );
+          } else {
+            final user = UiHelper.getUser(widget.user.id);
+            if (_reply.status == ViolationStatus.confirmed.value) {
+              titleEn = "Violation Confirmed";
+              bodyEn = "A violation issued by your manager has been confirmed.";
+              titleAr = "تم تأكيد المخالفة";
+              bodyAr = "تم تأكيد المخالفة التي أصدرها المدير.";
+            } else if (_reply.status == ViolationStatus.canceled.value) {
+              titleEn = "Violation Canceled";
+              bodyEn = "The violation issued by your manager has been canceled.";
+              titleAr = "تم إلغاء المخالفة";
+              bodyAr = "تم إلغاء المخالفة التي أصدرها المدير.";
+            }
+            SendNotificationService.sendToUser(
+              context,
+              userId: user.id!,
+              deviceToken: user.deviceToken,
+              languageCode: user.languageCode,
+              id: _violationDocRef.id,
+              type: NotificationType.violation.value,
+              titleEn: titleEn,
+              titleAr: titleAr,
+              bodyEn: bodyEn,
+              bodyAr: bodyAr,
+            );
+          }
+
           await batch.commit();
           if (context.mounted) {
             Navigator.pop(context);

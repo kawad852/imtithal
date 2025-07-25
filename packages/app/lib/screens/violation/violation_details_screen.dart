@@ -70,6 +70,7 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
                           return ReplySheet(
                             violationDocRef: _violationDocRef,
                             replyCollectionRef: _replyCollectionRef,
+                            user: violation.user,
                           );
                         },
                       );
