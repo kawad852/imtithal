@@ -40,7 +40,9 @@ class TasksService {
       if (status == TaskStatusEnum.violated.value) {
         queryFilter = _getFilter(
           context,
-          null,
+          isEvaluation
+              ? Filter(MyFields.status, isNotEqualTo: ViolationStatus.canceled.value)
+              : null,
           userId: userId,
           departmentId: departmentId,
           date: date,
