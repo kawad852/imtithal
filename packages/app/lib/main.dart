@@ -13,8 +13,8 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey(debugLabel: "Main N
 
 // employee:: kawad852@gmail.com
 // department-header: leena@gmail.com
-// emtithal-manager:
-// manager:
+// emtithal-manager: deema@gmail.com
+// manager: suhaib@gmail.com
 
 Future<void> _logout() async {
   await FirebaseAuth.instance.signOut();
