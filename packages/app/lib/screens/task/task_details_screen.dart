@@ -81,11 +81,15 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                           ApiService.fetch(
                             context,
                             callBack: () async {
-                              print("id::: ${task.id}");
                               final files = await StorageService().uploadFiles("tasks", _files);
+                              final filesAsJson = files.map((e) => e.toJson()).toList();
+                              final array = FieldValue.arrayUnion(filesAsJson);
                               await taskQuerySnapshot.reference.update({
                                 MyFields.status: TaskStatusEnum.inReview.value,
-                                MyFields.userAttachments: files.map((e) => e.toJson()).toList(),
+                                MyFields.userAttachments: array,
+                              });
+                              await kFirebaseInstant.tasks.doc(task.parentTaskId).update({
+                                MyFields.userAttachments: array,
                               });
                             },
                           );
@@ -167,7 +171,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   builder: (context) {
                     List<AttachmentModel> attachments = [];
                     attachments.addAll(task.attachments!);
-                    if (kIsEmployee && task.userAttachments != null) {
+                    if (task.userAttachments != null) {
                       attachments.addAll(task.userAttachments!);
                     }
                     return Padding(
