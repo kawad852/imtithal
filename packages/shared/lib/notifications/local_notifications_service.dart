@@ -29,7 +29,13 @@ class LocalNotificationsService {
           // final type = notificationModel.data?.type;
           final id = data["id"];
           final type = data["type"];
-          NotificationRouteHandler.toggle(rootNavigatorKey.currentContext!, id: id, type: type);
+          final userId = data["userId"];
+          NotificationRouteHandler.toggle(
+            rootNavigatorKey.currentContext!,
+            id: id,
+            type: type,
+            userId: userId,
+          );
         }
       },
     );

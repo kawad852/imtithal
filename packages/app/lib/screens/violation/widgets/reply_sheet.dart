@@ -63,18 +63,18 @@ class _ReplySheetState extends State<ReplySheet> {
           } else {
             users.add(UiHelper.getUser(widget.user.id));
           }
-          print("_reply.status:: ${_reply.status}");
-          if (widget.status == ViolationStatus.pending.value) {
+
+          if (_reply.status == ViolationStatus.pending.value) {
             titleEn = "Violation Reply";
             bodyEn = "The employee has submitted a reply to the violation.";
             titleAr = "تم الرد على المخالفة";
             bodyAr = "قام الموظف بالرد على المخالفة";
-          } else if (widget.status == ViolationStatus.confirmed.value) {
+          } else if (_reply.status == ViolationStatus.confirmed.value) {
             titleEn = "Violation Confirmed";
             bodyEn = "A violation issued by your manager has been confirmed.";
             titleAr = "تم تأكيد المخالفة";
             bodyAr = "تم تأكيد المخالفة التي أصدرها المدير.";
-          } else if (widget.status == ViolationStatus.canceled.value) {
+          } else if (_reply.status == ViolationStatus.canceled.value) {
             titleEn = "Violation Canceled";
             bodyEn = "The violation issued by your manager has been canceled.";
             titleAr = "تم إلغاء المخالفة";
@@ -92,6 +92,7 @@ class _ReplySheetState extends State<ReplySheet> {
               titleAr: titleAr,
               bodyEn: bodyEn,
               bodyAr: bodyAr,
+              userIdForData: widget.user.id,
             );
           }
 

@@ -11,8 +11,13 @@ _$NotificationDataModelImpl _$$NotificationDataModelImplFromJson(
 ) => _$NotificationDataModelImpl(
   id: json['id'] as String?,
   type: json['type'] as String?,
+  userId: json['userId'] as String?,
 );
 
 Map<String, dynamic> _$$NotificationDataModelImplToJson(
   _$NotificationDataModelImpl instance,
-) => <String, dynamic>{'id': instance.id, 'type': instance.type};
+) => <String, dynamic>{
+  'id': instance.id,
+  'type': instance.type,
+  'userId': instance.userId,
+};

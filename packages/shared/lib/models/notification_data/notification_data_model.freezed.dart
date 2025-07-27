@@ -27,6 +27,8 @@ mixin _$NotificationDataModel {
   set id(String? value) => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   set type(String? value) => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
+  set userId(String? value) => throw _privateConstructorUsedError;
 
   /// Serializes this NotificationDataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +47,7 @@ abstract class $NotificationDataModelCopyWith<$Res> {
     $Res Function(NotificationDataModel) then,
   ) = _$NotificationDataModelCopyWithImpl<$Res, NotificationDataModel>;
   @useResult
-  $Res call({String? id, String? type});
+  $Res call({String? id, String? type, String? userId});
 }
 
 /// @nodoc
@@ -65,7 +67,11 @@ class _$NotificationDataModelCopyWithImpl<
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = freezed, Object? type = freezed}) {
+  $Res call({
+    Object? id = freezed,
+    Object? type = freezed,
+    Object? userId = freezed,
+  }) {
     return _then(
       _value.copyWith(
             id:
@@ -77,6 +83,11 @@ class _$NotificationDataModelCopyWithImpl<
                 freezed == type
                     ? _value.type
                     : type // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            userId:
+                freezed == userId
+                    ? _value.userId
+                    : userId // ignore: cast_nullable_to_non_nullable
                         as String?,
           )
           as $Val,
@@ -93,7 +104,7 @@ abstract class _$$NotificationDataModelImplCopyWith<$Res>
   ) = __$$NotificationDataModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? type});
+  $Res call({String? id, String? type, String? userId});
 }
 
 /// @nodoc
@@ -110,7 +121,11 @@ class __$$NotificationDataModelImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = freezed, Object? type = freezed}) {
+  $Res call({
+    Object? id = freezed,
+    Object? type = freezed,
+    Object? userId = freezed,
+  }) {
     return _then(
       _$NotificationDataModelImpl(
         id:
@@ -123,6 +138,11 @@ class __$$NotificationDataModelImplCopyWithImpl<$Res>
                 ? _value.type
                 : type // ignore: cast_nullable_to_non_nullable
                     as String?,
+        userId:
+            freezed == userId
+                ? _value.userId
+                : userId // ignore: cast_nullable_to_non_nullable
+                    as String?,
       ),
     );
   }
@@ -131,7 +151,7 @@ class __$$NotificationDataModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NotificationDataModelImpl implements _NotificationDataModel {
-  _$NotificationDataModelImpl({this.id, this.type});
+  _$NotificationDataModelImpl({this.id, this.type, this.userId});
 
   factory _$NotificationDataModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NotificationDataModelImplFromJson(json);
@@ -140,10 +160,12 @@ class _$NotificationDataModelImpl implements _NotificationDataModel {
   String? id;
   @override
   String? type;
+  @override
+  String? userId;
 
   @override
   String toString() {
-    return 'NotificationDataModel(id: $id, type: $type)';
+    return 'NotificationDataModel(id: $id, type: $type, userId: $userId)';
   }
 
   /// Create a copy of NotificationDataModel
@@ -165,7 +187,7 @@ class _$NotificationDataModelImpl implements _NotificationDataModel {
 }
 
 abstract class _NotificationDataModel implements NotificationDataModel {
-  factory _NotificationDataModel({String? id, String? type}) =
+  factory _NotificationDataModel({String? id, String? type, String? userId}) =
       _$NotificationDataModelImpl;
 
   factory _NotificationDataModel.fromJson(Map<String, dynamic> json) =
@@ -177,6 +199,9 @@ abstract class _NotificationDataModel implements NotificationDataModel {
   @override
   String? get type;
   set type(String? value);
+  @override
+  String? get userId;
+  set userId(String? value);
 
   /// Create a copy of NotificationDataModel
   /// with the given fields replaced by the non-null parameter values.

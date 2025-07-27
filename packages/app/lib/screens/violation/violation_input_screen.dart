@@ -94,6 +94,7 @@ class _ViolationInputScreenState extends State<ViolationInputScreen> {
       bodyEn:
           "A violation has been recorded for the assigned task. Please review and take corrective action.",
       bodyAr: "تم تسجيل مخالفة على المهمة الموكلة إليك. يرجى المراجعة واتخاذ الإجراءات اللازمة",
+      userIdForData: user.id!,
     );
   }
 

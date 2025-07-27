@@ -11,9 +11,10 @@ class NotificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final id = notification.data?.id;
     final type = notification.data?.type;
+    final userId = notification.data?.userId;
     return GestureDetector(
       onTap: () {
-        NotificationRouteHandler.toggle(context, id: id, type: type);
+        NotificationRouteHandler.toggle(context, id: id, type: type, userId: userId);
       },
       child: Container(
         width: double.infinity,

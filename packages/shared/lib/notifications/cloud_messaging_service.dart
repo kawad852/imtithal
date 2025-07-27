@@ -61,7 +61,13 @@ class CloudMessagingService {
     final dataJson = message.data;
     final id = dataJson["id"];
     final type = dataJson["type"];
-    NotificationRouteHandler.toggle(rootNavigatorKey.currentContext!, id: id, type: type);
+    final userId = dataJson["userId"];
+    NotificationRouteHandler.toggle(
+      rootNavigatorKey.currentContext!,
+      id: id,
+      type: type,
+      userId: userId,
+    );
   }
 
   void subscribeToTopic() {

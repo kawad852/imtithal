@@ -1,5 +1,4 @@
 import 'package:app/screens_exports.dart';
-import 'package:shared/models/violation/violation_model.dart';
 import 'package:shared/shared.dart';
 
 class NotificationRouteHandler {
@@ -7,6 +6,7 @@ class NotificationRouteHandler {
     BuildContext context, {
     required String? id,
     required String? type,
+    required String? userId,
     Map<dynamic, dynamic>? extra,
   }) {
     try {
@@ -16,13 +16,7 @@ class NotificationRouteHandler {
         // });
       } else if (type == NotificationType.violation.value) {
         context.navigate((context) {
-          return ViolationDetailsScreen(
-            id: id,
-            violation: ViolationModel(
-              user: LightUserModel(id: '', departmentId: '', displayName: ''),
-              createdById: "",
-            ),
-          );
+          return ViolationDetailsScreen(id: id, violation: null, userId: userId);
         });
       }
     } catch (e) {

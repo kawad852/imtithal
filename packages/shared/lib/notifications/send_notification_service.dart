@@ -21,6 +21,7 @@ class SendNotificationService {
     required String titleAr,
     required String bodyEn,
     required String bodyAr,
+    String? userIdForData,
   }) async {
     if (deviceToken == null) {
       return;
@@ -41,7 +42,7 @@ class SendNotificationService {
     final notificationModel = NotificationModel(
       notification: NotificationHeaderModel(title: title, body: body),
       token: deviceToken,
-      data: NotificationDataModel(id: id, type: type),
+      data: NotificationDataModel(id: id, type: type, userId: userIdForData),
     );
 
     docRef.update({MyFields.unReadNotificationsCount: FieldValue.increment(1)});
