@@ -71,6 +71,7 @@ class _ViolationDetailsScreenState extends State<ViolationDetailsScreen> {
                             violationDocRef: _violationDocRef,
                             replyCollectionRef: _replyCollectionRef,
                             user: violation.user,
+                            status: violation.status,
                           );
                         },
                       );

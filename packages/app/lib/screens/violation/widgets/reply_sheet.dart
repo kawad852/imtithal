@@ -6,12 +6,14 @@ class ReplySheet extends StatefulWidget {
   final DocumentReference<ViolationModel> violationDocRef;
   final CollectionReference<ViolationReplyModel> replyCollectionRef;
   final LightUserModel user;
+  final String status;
 
   const ReplySheet({
     super.key,
     required this.violationDocRef,
     required this.replyCollectionRef,
     required this.user,
+    required this.status,
   });
 
   @override
@@ -48,37 +50,37 @@ class _ReplySheetState extends State<ReplySheet> {
           var titleAr = "";
           var bodyEn = "";
           var bodyAr = "";
-          if (_reply.status != ViolationStatus.pending.value && kIsEmployee) {
+          List<UserModel> users = [];
+          if (kIsEmployee) {
+            users =
+                MySharedPreferences.users
+                    .where(
+                      (e) =>
+                          e.role == RoleEnum.admin.value ||
+                          e.role == RoleEnum.emtithalManager.value,
+                    )
+                    .toList();
+          } else {
+            users.add(UiHelper.getUser(widget.user.id));
+          }
+          print("_reply.status:: ${_reply.status}");
+          if (widget.status == ViolationStatus.pending.value) {
             titleEn = "Violation Reply";
             bodyEn = "The employee has submitted a reply to the violation.";
             titleAr = "تم الرد على المخالفة";
             bodyAr = "قام الموظف بالرد على المخالفة";
-            final user = UiHelper.getUser(_reply.userId);
-            SendNotificationService.sendToUser(
-              context,
-              userId: user.id!,
-              deviceToken: user.deviceToken,
-              languageCode: user.languageCode,
-              id: _violationDocRef.id,
-              type: NotificationType.violation.value,
-              titleEn: titleEn,
-              titleAr: titleAr,
-              bodyEn: bodyEn,
-              bodyAr: bodyAr,
-            );
-          } else {
-            final user = UiHelper.getUser(widget.user.id);
-            if (_reply.status == ViolationStatus.confirmed.value) {
-              titleEn = "Violation Confirmed";
-              bodyEn = "A violation issued by your manager has been confirmed.";
-              titleAr = "تم تأكيد المخالفة";
-              bodyAr = "تم تأكيد المخالفة التي أصدرها المدير.";
-            } else if (_reply.status == ViolationStatus.canceled.value) {
-              titleEn = "Violation Canceled";
-              bodyEn = "The violation issued by your manager has been canceled.";
-              titleAr = "تم إلغاء المخالفة";
-              bodyAr = "تم إلغاء المخالفة التي أصدرها المدير.";
-            }
+          } else if (widget.status == ViolationStatus.confirmed.value) {
+            titleEn = "Violation Confirmed";
+            bodyEn = "A violation issued by your manager has been confirmed.";
+            titleAr = "تم تأكيد المخالفة";
+            bodyAr = "تم تأكيد المخالفة التي أصدرها المدير.";
+          } else if (widget.status == ViolationStatus.canceled.value) {
+            titleEn = "Violation Canceled";
+            bodyEn = "The violation issued by your manager has been canceled.";
+            titleAr = "تم إلغاء المخالفة";
+            bodyAr = "تم إلغاء المخالفة التي أصدرها المدير.";
+          }
+          for (var user in users) {
             SendNotificationService.sendToUser(
               context,
               userId: user.id!,
