@@ -91,6 +91,28 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                               await kFirebaseInstant.tasks.doc(task.parentTaskId).update({
                                 MyFields.userAttachments: array,
                               });
+                              final users =
+                                  MySharedPreferences.users
+                                      .where(
+                                        (e) =>
+                                            e.role == RoleEnum.admin.value ||
+                                            e.role == RoleEnum.emtithalManager.value,
+                                      )
+                                      .toList();
+                              for (var user in users) {
+                                SendNotificationService.sendToUser(
+                                  context,
+                                  userId: user.id!,
+                                  deviceToken: user.deviceToken,
+                                  languageCode: user.languageCode,
+                                  id: task.id,
+                                  type: NotificationType.completedTask.value,
+                                  titleEn: "Task Completed",
+                                  titleAr: "مهمة مكتملة",
+                                  bodyEn: "${kUser.displayName} completed the task #${task.id}",
+                                  bodyAr: "${kUser.displayName} إكمل المهمة #${task.id}",
+                                );
+                              }
                             },
                           );
                         },
