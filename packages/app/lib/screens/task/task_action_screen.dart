@@ -24,7 +24,11 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
     _taskStream = TasksService.getTask(task: _task).snapshots();
   }
 
-  void _onAddUsers(BuildContext context, {required List<UserModel> selectedUsers}) async {
+  void _onAddUsers(
+    BuildContext context, {
+    required List<UserModel> selectedUsers,
+    required List<String> previousUserIds,
+  }) async {
     List<LightUserModel> assignedUsers =
         selectedUsers
             .map(
@@ -44,6 +48,23 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
       MyFields.assignedDepartmentIds: assignedDepartmentIds,
     });
     context.showSnackBar(context.appLocalization.progressingUserMsg);
+
+    final newAddedUsers =
+        selectedUsers.where((user) => !previousUserIds.contains(user.id)).toList();
+    for (var user in newAddedUsers) {
+      SendNotificationService.sendToUser(
+        context,
+        userId: user.id!,
+        deviceToken: user.deviceToken,
+        languageCode: user.languageCode,
+        id: _task.id,
+        type: NotificationType.newTask.value,
+        titleEn: "New Task Assigned",
+        titleAr: "تم تعيين مهمة جديدة",
+        bodyEn: "You have been assigned to a new task.",
+        bodyAr: "تم تعيينك إلى مهمة جديدة.",
+      );
+    }
   }
 
   @override
@@ -88,13 +109,18 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
                 children: [
                   ActionButton(
                     onTap: () {
+                      final previousUserIds = task.assignedUserIds;
                       context
                           .navigate((context) {
                             return UsersSelectionScreen(userIds: task.assignedUserIds);
                           })
                           .then((value) {
                             if (value != null && context.mounted) {
-                              _onAddUsers(context, selectedUsers: value);
+                              _onAddUsers(
+                                context,
+                                selectedUsers: value,
+                                previousUserIds: previousUserIds,
+                              );
                             }
                           });
                     },

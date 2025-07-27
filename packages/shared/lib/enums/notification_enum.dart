@@ -1,4 +1,5 @@
 enum NotificationType {
+  newTask('NEW-TASK'),
   emtithal('EMTITHAL'),
   violation('VIOLATION'),
   lateTask('LATE-TASK');
