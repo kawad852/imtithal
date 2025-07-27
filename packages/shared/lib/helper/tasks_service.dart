@@ -13,6 +13,7 @@ class TasksService {
     bool isEvaluation = false,
     bool mainTasks = false,
     bool generalViolationOnly = false,
+    String? parentTaskId,
   }) {
     late Query<TaskModel> tasksDocRef;
     late Query<ViolationModel> violationsDocRef;
@@ -73,7 +74,13 @@ class TasksService {
       }
     } else {
       if (queryFilter != null) {
-        return tasksDocRef.where(queryFilter).orderByDeliveryDateAsc as Query<T>;
+        late Filter filter;
+        if (parentTaskId != null) {
+          filter = Filter.and(queryFilter, Filter(MyFields.parentTaskId, isEqualTo: parentTaskId));
+        } else {
+          filter = queryFilter;
+        }
+        return tasksDocRef.where(filter).orderByDeliveryDateAsc as Query<T>;
       } else {
         return tasksDocRef.orderByDeliveryDateAsc as Query<T>;
       }
@@ -183,6 +190,7 @@ class TasksService {
     (DateTime, DateTime)? rangeDates,
     String? userId,
     bool mainTasks = false,
+    String? parentTaskId,
   }) {
     return TasksService.getQuery(
       context,
@@ -193,6 +201,7 @@ class TasksService {
       userId: kIsEmployee ? kUserId : userId,
       departmentId: kIsDepartmentManager ? kUser.departmentId : null,
       late: false,
+      parentTaskId: parentTaskId,
     );
   }
 

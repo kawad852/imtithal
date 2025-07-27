@@ -160,7 +160,12 @@ class _TaskActionScreenState extends State<TaskActionScreen> {
               UsersSelector(
                 builder: (context, users) {
                   return CustomFirestoreQueryBuilder(
-                    query: TasksService.fetchTasksList(context, date: _selectedDate),
+                    query: TasksService.fetchTasksList(
+                      context,
+                      date: _selectedDate,
+                      parentTaskId: task.id,
+                    ),
+
                     onComplete: (context, snapshot) {
                       final assignedTasks = snapshot.docs;
                       return ListView.separated(
