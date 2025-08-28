@@ -22,6 +22,7 @@ class TaskModel with _$TaskModel {
     @Default("") String title,
     @Default("") String description,
     @Default("") String status,
+    @Default(TaskStatusEnum.defaultOrder) int order,
     @Default("") String departmentId,
     @Default("") String violationDescription,
     @Default("") String notes,

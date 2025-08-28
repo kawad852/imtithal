@@ -80,9 +80,9 @@ class TasksService {
         } else {
           filter = queryFilter;
         }
-        return tasksDocRef.where(filter).orderByDeliveryDateAsc as Query<T>;
+        return tasksDocRef.where(filter).orderByDeliveryDateDesc as Query<T>;
       } else {
-        return tasksDocRef.orderByDeliveryDateAsc as Query<T>;
+        return tasksDocRef.orderByDeliveryDateDesc as Query<T>;
       }
     }
   }

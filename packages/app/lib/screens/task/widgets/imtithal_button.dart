@@ -14,9 +14,11 @@ class ImtithalButton extends StatelessWidget {
       icon: const CustomSvg(MyIcons.moreCircle),
       onSelected: (value) {
         if (value) {
+          final status = TaskStatusEnum.completed.value;
           kFirebaseInstant.userAssignedTasks(user.id!).doc(assignedTask.id).update({
-            MyFields.status: TaskStatusEnum.completed.value,
+            MyFields.status: status,
             MyFields.points: TaskPoints.imtithal.value,
+            MyFields.order: TaskStatusEnum.getOrder(status),
           });
           SendNotificationService.sendToUser(
             context,

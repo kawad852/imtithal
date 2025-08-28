@@ -84,8 +84,10 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                               final files = await StorageService().uploadFiles("tasks", _files);
                               final filesAsJson = files.map((e) => e.toJson()).toList();
                               final array = FieldValue.arrayUnion(filesAsJson);
+                              final status = TaskStatusEnum.inReview.value;
                               await taskQuerySnapshot.reference.update({
-                                MyFields.status: TaskStatusEnum.inReview.value,
+                                MyFields.status: status,
+                                MyFields.order: TaskStatusEnum.getOrder(status),
                                 MyFields.userAttachments: array,
                               });
                               await kFirebaseInstant.tasks.doc(task.parentTaskId).update({

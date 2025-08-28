@@ -23,6 +23,22 @@ enum TaskStatusEnum {
     }
     return '';
   }
+
+  static const int defaultOrder = 5;
+
+  static getOrder(String status) {
+    final statusEnum = TaskStatusEnum.values.firstWhere((e) => e.value == status);
+    switch (statusEnum) {
+      case violated:
+        return 2;
+      case inReview:
+        return 3;
+      case completed:
+        return 4;
+      default:
+        return defaultOrder;
+    }
+  }
 }
 
 enum RepeatType {

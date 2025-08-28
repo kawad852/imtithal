@@ -328,7 +328,7 @@ exports.markLateAssignedTasks = onSchedule(
 
         if (nowMillis > deadlineMillis) {
           console.log("Ref: ", doc.ref);
-          batch.update(doc.ref, { markedAsLate: true });
+          batch.update(doc.ref, { markedAsLate: true, order: 1 });
 
           const taskId = doc.id;
           const taskName = data.title || "Unnamed Task";
