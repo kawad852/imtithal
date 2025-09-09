@@ -28,7 +28,7 @@ class _UsersScreenState extends State<UsersScreen> {
         title: Text(context.appLocalization.employees),
         actions: [
           IconButton.filledTonal(
-            onPressed: () {
+            onPressed: () async {
               context.navigate((context) {
                 return const UserInputScreen();
               });
