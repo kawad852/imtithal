@@ -1,6 +1,6 @@
 import 'package:app/screens/notifications/send_notification_screen.dart';
 import 'package:app/screens/search/search_screen.dart';
-import 'package:app/screens/user/user_input_screen.dart';
+import 'package:app/screens/user/users_screen.dart';
 import 'package:app/screens_exports.dart';
 import 'package:shared/shared.dart';
 
@@ -53,11 +53,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
                     ManageButton(
                       onTap: () {
                         context.navigate((context) {
-                          return const UserInputScreen();
+                          return const UsersScreen();
                         });
                       },
                       icon: MyIcons.addStaff,
-                      title: context.appLocalization.addNewEmployee,
+                      title: context.appLocalization.employees,
                     ),
                     const SizedBox(width: 10),
                     ManageButton(

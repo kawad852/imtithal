@@ -35,6 +35,27 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     try {
+      //       await kFirebaseInstant.users.doc("7Z8Sg0O3HaMpeZeX0JEwTM73va13").get().then((value) {
+      //         final user = value.data()!;
+      //         value.reference.collection(MyCollections.assignedTasks).get().then((value) {
+      //           value.docs.forEach((e) {
+      //             final lightUser = LightUserModel(
+      //               id: user.id!,
+      //               departmentId: user.departmentId!,
+      //               displayName: user.displayName,
+      //             );
+      //             e.reference.update({MyFields.assignedUsers: lightUser.toJson()});
+      //           });
+      //         });
+      //       });
+      //     } catch (e) {
+      //       print("e::: $e");
+      //     }
+      //   },
+      // ),
       body: SummeryBuilder(
         height: 60,
         startDate: _startDate,
