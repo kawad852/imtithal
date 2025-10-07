@@ -690,4 +690,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchForViolation => 'Search for violation';
+
+  @override
+  String get file => 'File';
+
+  @override
+  String get image => 'Image';
 }

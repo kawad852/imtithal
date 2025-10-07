@@ -683,4 +683,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get searchForViolation => 'إبحث عن مخالفة';
+
+  @override
+  String get file => 'ملف';
+
+  @override
+  String get image => 'صورة';
 }

@@ -221,5 +221,7 @@
   "taskStartTime": "وقت بدء المهمة",
   "progressingUserMsg":  "جاري التنفيذ، يرجى الانتظار...",
   "completeTask": "إكمال المهمة",
-  "searchForViolation": "إبحث عن مخالفة"
+  "searchForViolation": "إبحث عن مخالفة",
+  "file": "ملف",
+  "image": "صورة"
 }

@@ -32,6 +32,7 @@ export 'package:timelines_plus/timelines_plus.dart'; //l10n
 export 'package:translations/app_localizations.dart';
 export 'package:translations/app_localizations.dart';
 export 'package:url_strategy/url_strategy.dart';
+export 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 //controllers
 export 'controllers/phone_controller.dart';

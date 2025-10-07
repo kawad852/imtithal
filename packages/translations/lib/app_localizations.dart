@@ -1429,6 +1429,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إبحث عن مخالفة'**
   String get searchForViolation;
+
+  /// No description provided for @file.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملف'**
+  String get file;
+
+  /// No description provided for @image.
+  ///
+  /// In ar, this message translates to:
+  /// **'صورة'**
+  String get image;
 }
 
 class _AppLocalizationsDelegate

@@ -221,5 +221,7 @@
   "taskStartTime": "Task Start Time",
   "progressingUserMsg": "Progressing Task, Please wait...",
   "completeTask": "Complete Task",
-  "searchForViolation": "Search for violation"
+  "searchForViolation": "Search for violation",
+  "file": "File",
+  "image": "Image"
 }
