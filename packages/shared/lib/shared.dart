@@ -57,6 +57,7 @@ export 'extensions/operation_extension.dart';
 export 'extensions/snackbar_extension.dart';
 //helper
 export 'helper/app_over_loader.dart';
+export 'helper/file_picker_helper.dart';
 export 'helper/my_header_delegate.dart';
 export 'helper/objects_comparer.dart';
 export 'helper/pagination_handler.dart';

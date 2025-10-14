@@ -71,7 +71,7 @@ class MyTheme {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadiusPrimary)),
         ),
       ),
-      bottomAppBarTheme: BottomAppBarTheme(
+      bottomAppBarTheme: BottomAppBarThemeData(
         surfaceTintColor: colorScheme.background,
         color: colorScheme.background,
         elevation: 0,
