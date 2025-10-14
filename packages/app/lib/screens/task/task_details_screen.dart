@@ -15,6 +15,7 @@ class TaskDetailsScreen extends StatefulWidget {
 }
 
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
+  late FilePickerHelper _filePickerHelper;
   late Stream<DocumentSnapshot<TaskModel>> _stream;
   final List<XFile> _files = [];
 
@@ -26,28 +27,16 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     _stream = TasksService.getTask(task: _task).snapshots();
   }
 
-  Future<void> _pickImages(BuildContext context, {required VoidCallback onSuccess}) async {
-    try {
-      AppOverlayLoader.fakeLoading();
-      final result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
-        allowedExtensions: ['jpg', 'jpeg', 'png', 'pdf'],
-      );
-      if (result != null && result.files.isNotEmpty) {
-        final files = result.files.map((e) => e.xFile).toList();
-        setState(() {
-          _files.addAll(files);
-        });
-        onSuccess();
-      }
-    } catch (e) {
-      print("errrp:: $e");
-    }
-  }
-
   @override
   void initState() {
     super.initState();
+    _filePickerHelper = FilePickerHelper(
+      onChanged: (files) {
+        setState(() {
+          _files.addAll(files);
+        });
+      },
+    );
     _initialize();
   }
 
@@ -75,7 +64,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   ? BottomButton(
                     text: context.appLocalization.completeTask,
                     onPressed: () {
-                      _pickImages(
+                      _filePickerHelper.pickSomething(
                         context,
                         onSuccess: () {
                           ApiService.fetch(

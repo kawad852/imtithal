@@ -5,7 +5,7 @@ class FilePickerHelper {
 
   FilePickerHelper({required this.onChanged});
 
-  Future<void> _pickMedia(BuildContext context) async {
+  Future<void> _pickMedia(BuildContext context, {required VoidCallback? onSuccess}) async {
     final List<AssetEntity>? assets = await AssetPicker.pickAssets(
       context,
       pickerConfig: const AssetPickerConfig(
@@ -21,10 +21,13 @@ class FilePickerHelper {
         }
       }
       onChanged(files);
+      if (onSuccess != null) {
+        onSuccess();
+      }
     }
   }
 
-  Future<void> _pickPdfOrOther(BuildContext context) async {
+  Future<void> _pickPdfOrOther(BuildContext context, {required VoidCallback? onSuccess}) async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf', 'doc', 'docx'], // etc
@@ -32,10 +35,13 @@ class FilePickerHelper {
     if (result != null && result.files.isNotEmpty) {
       final files = result.files.map((e) => e.xFile).toList();
       onChanged(files);
+      if (onSuccess != null) {
+        onSuccess();
+      }
     }
   }
 
-  Future<void> pickSomething(BuildContext context) async {
+  Future<void> pickSomething(BuildContext context, {VoidCallback? onSuccess}) async {
     final choice = await showModalBottomSheet<String>(
       context: context,
       builder:
@@ -57,9 +63,9 @@ class FilePickerHelper {
           ),
     );
     if (choice == 'images') {
-      await _pickMedia(context);
+      await _pickMedia(context, onSuccess: onSuccess);
     } else if (choice == 'file') {
-      await _pickPdfOrOther(context);
+      await _pickPdfOrOther(context, onSuccess: onSuccess);
     }
   }
 }
