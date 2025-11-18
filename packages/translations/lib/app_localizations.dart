@@ -1459,6 +1459,24 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'ملاحظات الموظف'**
   String get employeeNotes;
+
+  /// No description provided for @deleteBody.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل انت متأكد انك تريد حذف الصورة؟'**
+  String get deleteBody;
+
+  /// No description provided for @confirm.
+  ///
+  /// In ar, this message translates to:
+  /// **'تاكيد'**
+  String get confirm;
+
+  /// No description provided for @cancel.
+  ///
+  /// In ar, this message translates to:
+  /// **'الغاء'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate

@@ -5,13 +5,56 @@ import 'package:shared/shared.dart';
 
 class ImageScreen extends StatelessWidget {
   final Object file;
+  final VoidCallback? onDelete;
 
-  const ImageScreen({super.key, required this.file});
+  const ImageScreen({super.key, required this.file, required this.onDelete});
+
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(context.appLocalization.delete),
+          content: Text(context.appLocalization.deleteBody),
+          actions: <Widget>[
+            TextButton(
+              child: Text(context.appLocalization.cancel),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            FilledButton(
+              child: Text(context.appLocalization.confirm),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                if (onDelete != null) {
+                  print("aslkfjakljsf");
+                  onDelete!();
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          if (file is AttachmentModel)
+            IconButton(
+              onPressed: () {
+                _showMyDialog(context);
+              },
+              icon: const Icon(Icons.delete),
+            ),
+          const SizedBox(width: 10),
+        ],
+      ),
       body: Center(
         child: Builder(
           builder: (context) {

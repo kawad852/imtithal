@@ -226,5 +226,9 @@
   "image": "Image",
   "camera": "Camera",
   "notes": "Notes",
-  "employeeNotes": "Employee Notes"
+  "employeeNotes": "Employee Notes",
+  "deleteBody": "Are you sure you want to delete the image?",
+  "confirm": "Confirm",
+  "cancel": "Cancel"
+
 }

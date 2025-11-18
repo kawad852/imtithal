@@ -698,4 +698,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get employeeNotes => 'ملاحظات الموظف';
+
+  @override
+  String get deleteBody => 'هل انت متأكد انك تريد حذف الصورة؟';
+
+  @override
+  String get confirm => 'تاكيد';
+
+  @override
+  String get cancel => 'الغاء';
 }

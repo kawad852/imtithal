@@ -6,8 +6,9 @@ import 'package:shared/shared.dart';
 class AttachmentBubble extends StatelessWidget {
   final Object file;
   final Color? color;
+  final VoidCallback? onDelete;
 
-  const AttachmentBubble({super.key, required this.file, this.color});
+  const AttachmentBubble({super.key, required this.file, this.color, this.onDelete});
 
   String get _getName {
     if (file is XFile) {
@@ -45,7 +46,7 @@ class AttachmentBubble extends StatelessWidget {
           }
         } else {
           context.navigate((context) {
-            return ImageScreen(file: file);
+            return ImageScreen(file: file, onDelete: onDelete);
           });
         }
       },

@@ -705,4 +705,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get employeeNotes => 'Employee Notes';
+
+  @override
+  String get deleteBody => 'Are you sure you want to delete the image?';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get cancel => 'Cancel';
 }

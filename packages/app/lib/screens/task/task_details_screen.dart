@@ -212,7 +212,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 Text(task.userNotes!, style: style),
               ],
 
-              if (task.attachments != null) ...[
+              if (task.attachments != null && task.attachments!.isNotEmpty) ...[
                 Builder(
                   builder: (context) {
                     List<AttachmentModel> attachments = [];
@@ -241,7 +241,17 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 final attachment = attachments[index];
-                                return AttachmentBubble(file: attachment);
+                                return AttachmentBubble(
+                                  key: ValueKey(attachment.url),
+                                  file: attachment,
+                                  onDelete: () {
+                                    taskQuerySnapshot.reference.update({
+                                      MyFields.userAttachments: FieldValue.arrayRemove([
+                                        attachment.toJson(),
+                                      ]),
+                                    });
+                                  },
+                                );
                               },
                             ),
                           ),

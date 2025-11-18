@@ -226,5 +226,8 @@
   "image": "صورة",
   "camera": "كاميرا",
   "notes": "ملاحظات",
-  "employeeNotes": "ملاحظات الموظف"
+  "employeeNotes": "ملاحظات الموظف",
+  "deleteBody": "هل انت متأكد انك تريد حذف الصورة؟",
+  "confirm": "تاكيد",
+  "cancel": "الغاء"
 }
