@@ -26,6 +26,7 @@ class TaskModel with _$TaskModel {
     @Default("") String departmentId,
     @Default("") String violationDescription,
     @Default("") String notes,
+    String? userNotes,
     required String createdById,
     String? repeatType,
     @Default(false) bool markedAsLate,

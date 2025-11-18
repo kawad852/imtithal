@@ -64,8 +64,25 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   ? BottomButton(
                     text: context.appLocalization.completeTask,
                     onPressed: () {
+                      String? notes;
                       _filePickerHelper.pickSomething(
                         context,
+                        extraWidget: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 20,
+                              ).copyWith(top: 30),
+                              child: TextEditor(
+                                onChanged: (value) => notes = value,
+                                hintText: context.appLocalization.notes,
+                                maxLines: 3,
+                              ),
+                            ),
+                          ],
+                        ),
                         onSuccess: () {
                           ApiService.fetch(
                             context,
@@ -76,6 +93,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                               final status = TaskStatusEnum.inReview.value;
                               await taskQuerySnapshot.reference.update({
                                 MyFields.status: status,
+                                MyFields.userNotes: notes,
                                 MyFields.order: TaskStatusEnum.getOrder(status),
                                 MyFields.userAttachments: array,
                               });
@@ -179,6 +197,21 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 ),
               ),
               Text(task.notes, style: style),
+              if (task.userNotes != null) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    context.appLocalization.employeeNotes,
+                    style: TextStyle(
+                      color: context.colorPalette.primary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                Text(task.userNotes!, style: style),
+              ],
+
               if (task.attachments != null) ...[
                 Builder(
                   builder: (context) {

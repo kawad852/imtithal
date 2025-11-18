@@ -223,5 +223,8 @@
   "completeTask": "إكمال المهمة",
   "searchForViolation": "إبحث عن مخالفة",
   "file": "ملف",
-  "image": "صورة"
+  "image": "صورة",
+  "camera": "كاميرا",
+  "notes": "ملاحظات",
+  "employeeNotes": "ملاحظات الموظف"
 }

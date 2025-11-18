@@ -51,4 +51,5 @@ class MyFields {
   static const String assignedUsers = 'assignedUsers';
   static const String userAttachments = 'userAttachments';
   static const String attachments = 'attachments';
+  static const String userNotes = 'userNotes';
 }

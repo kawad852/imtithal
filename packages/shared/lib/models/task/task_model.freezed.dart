@@ -55,6 +55,8 @@ mixin _$TaskModel {
   set violationDescription(String value) => throw _privateConstructorUsedError;
   String get notes => throw _privateConstructorUsedError;
   set notes(String value) => throw _privateConstructorUsedError;
+  String? get userNotes => throw _privateConstructorUsedError;
+  set userNotes(String? value) => throw _privateConstructorUsedError;
   String get createdById => throw _privateConstructorUsedError;
   set createdById(String value) => throw _privateConstructorUsedError;
   String? get repeatType => throw _privateConstructorUsedError;
@@ -131,6 +133,7 @@ abstract class $TaskModelCopyWith<$Res> {
     String departmentId,
     String violationDescription,
     String notes,
+    String? userNotes,
     String createdById,
     String? repeatType,
     bool markedAsLate,
@@ -186,6 +189,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? departmentId = null,
     Object? violationDescription = null,
     Object? notes = null,
+    Object? userNotes = freezed,
     Object? createdById = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
@@ -282,6 +286,11 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
                     ? _value.notes
                     : notes // ignore: cast_nullable_to_non_nullable
                         as String,
+            userNotes:
+                freezed == userNotes
+                    ? _value.userNotes
+                    : userNotes // ignore: cast_nullable_to_non_nullable
+                        as String?,
             createdById:
                 null == createdById
                     ? _value.createdById
@@ -445,6 +454,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
     String departmentId,
     String violationDescription,
     String notes,
+    String? userNotes,
     String createdById,
     String? repeatType,
     bool markedAsLate,
@@ -502,6 +512,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? departmentId = null,
     Object? violationDescription = null,
     Object? notes = null,
+    Object? userNotes = freezed,
     Object? createdById = null,
     Object? repeatType = freezed,
     Object? markedAsLate = null,
@@ -598,6 +609,11 @@ class __$$TaskModelImplCopyWithImpl<$Res>
                 ? _value.notes
                 : notes // ignore: cast_nullable_to_non_nullable
                     as String,
+        userNotes:
+            freezed == userNotes
+                ? _value.userNotes
+                : userNotes // ignore: cast_nullable_to_non_nullable
+                    as String?,
         createdById:
             null == createdById
                 ? _value.createdById
@@ -713,6 +729,7 @@ class _$TaskModelImpl extends _TaskModel {
     this.departmentId = "",
     this.violationDescription = "",
     this.notes = "",
+    this.userNotes,
     required this.createdById,
     this.repeatType,
     this.markedAsLate = false,
@@ -780,6 +797,8 @@ class _$TaskModelImpl extends _TaskModel {
   @JsonKey()
   String notes;
   @override
+  String? userNotes;
+  @override
   String createdById;
   @override
   String? repeatType;
@@ -828,7 +847,7 @@ class _$TaskModelImpl extends _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, order: $order, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, userAttachments: $userAttachments, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, assignedDepartmentIds: $assignedDepartmentIds, assignedUsers: $assignedUsers, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
+    return 'TaskModel(createdAt: $createdAt, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, allowedDurationInMinutes: $allowedDurationInMinutes, points: $points, id: $id, parentTaskId: $parentTaskId, companyId: $companyId, title: $title, description: $description, status: $status, order: $order, departmentId: $departmentId, violationDescription: $violationDescription, notes: $notes, userNotes: $userNotes, createdById: $createdById, repeatType: $repeatType, markedAsLate: $markedAsLate, attachments: $attachments, userAttachments: $userAttachments, user: $user, inCompletedTasksCount: $inCompletedTasksCount, completedTasksCount: $completedTasksCount, lateTasksCount: $lateTasksCount, violationTasksCount: $violationTasksCount, totalAssignedUsers: $totalAssignedUsers, violation: $violation, assignedUserIds: $assignedUserIds, assignedDepartmentIds: $assignedDepartmentIds, assignedUsers: $assignedUsers, weeklyDays: $weeklyDays, monthlyDays: $monthlyDays, userModel: $userModel)';
   }
 
   /// Create a copy of TaskModel
@@ -862,6 +881,7 @@ abstract class _TaskModel extends TaskModel {
     String departmentId,
     String violationDescription,
     String notes,
+    String? userNotes,
     required String createdById,
     String? repeatType,
     bool markedAsLate,
@@ -935,6 +955,9 @@ abstract class _TaskModel extends TaskModel {
   @override
   String get notes;
   set notes(String value);
+  @override
+  String? get userNotes;
+  set userNotes(String? value);
   @override
   String get createdById;
   set createdById(String value);

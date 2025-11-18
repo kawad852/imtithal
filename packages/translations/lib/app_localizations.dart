@@ -1441,6 +1441,24 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'صورة'**
   String get image;
+
+  /// No description provided for @camera.
+  ///
+  /// In ar, this message translates to:
+  /// **'كاميرا'**
+  String get camera;
+
+  /// No description provided for @notes.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملاحظات'**
+  String get notes;
+
+  /// No description provided for @employeeNotes.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملاحظات الموظف'**
+  String get employeeNotes;
 }
 
 class _AppLocalizationsDelegate

@@ -223,5 +223,8 @@
   "completeTask": "Complete Task",
   "searchForViolation": "Search for violation",
   "file": "File",
-  "image": "Image"
+  "image": "Image",
+  "camera": "Camera",
+  "notes": "Notes",
+  "employeeNotes": "Employee Notes"
 }

@@ -689,4 +689,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get image => 'صورة';
+
+  @override
+  String get camera => 'كاميرا';
+
+  @override
+  String get notes => 'ملاحظات';
+
+  @override
+  String get employeeNotes => 'ملاحظات الموظف';
 }
