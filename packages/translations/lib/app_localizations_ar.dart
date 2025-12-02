@@ -707,4 +707,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cancel => 'الغاء';
+
+  @override
+  String get noResults => 'لا يوجد نتائج';
 }

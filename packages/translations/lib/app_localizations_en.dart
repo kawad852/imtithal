@@ -714,4 +714,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get noResults => 'No Results';
 }

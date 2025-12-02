@@ -1477,6 +1477,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الغاء'**
   String get cancel;
+
+  /// No description provided for @noResults.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا يوجد نتائج'**
+  String get noResults;
 }
 
 class _AppLocalizationsDelegate

@@ -229,6 +229,7 @@
   "employeeNotes": "Employee Notes",
   "deleteBody": "Are you sure you want to delete the image?",
   "confirm": "Confirm",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "noResults": "No Results"
 
 }

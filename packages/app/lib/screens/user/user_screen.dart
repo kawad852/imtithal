@@ -107,15 +107,31 @@ class _UserScreenState extends State<UserScreen> {
                   onChanged: (value) {
                     setState(() {
                       _selectedDate = value;
+                      print("date:: ${_selectedDate}");
                     });
                   },
                 ),
               ),
               CustomFirestoreQueryBuilder(
                 key: ValueKey(_selectedDate),
-                query: TasksService.fetchTasksList(context, userId: user.id),
+                query: TasksService.fetchTasksList(context, userId: user.id, date: _selectedDate),
                 isSliver: true,
                 onComplete: (context, snapshot) {
+                  if (snapshot.docs.isEmpty) {
+                    return SliverToBoxAdapter(
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Text(
+                            context.appLocalization.noResults,
+                            style: context.textTheme.titleLarge!.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
                   return SliverPadding(
                     padding: const EdgeInsets.symmetric(horizontal: 15).copyWith(bottom: 20),
                     sliver: SliverList.separated(
