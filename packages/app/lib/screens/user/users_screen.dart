@@ -46,6 +46,9 @@ class _UsersScreenState extends State<UsersScreen> {
             separatorBuilder: (context, index) => const SizedBox(height: 10),
             padding: const EdgeInsets.all(kScreenMargin),
             itemBuilder: (context, index) {
+              if (snapshot.isLoadingMore(index)) {
+                return const FPLoading();
+              }
               final user = snapshot.docs[index].data();
               return ListTile(
                 onTap: () {

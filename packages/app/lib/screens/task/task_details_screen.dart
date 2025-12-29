@@ -24,6 +24,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   LightUserModel? get _user => _task.user;
 
   void _initialize() {
+    print("id:: ${_task.id}");
     _stream = TasksService.getTask(task: _task).snapshots();
   }
 

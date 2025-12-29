@@ -106,7 +106,25 @@ class FilePickerHelper {
                       spacing: 10,
                       children: List.generate(_files.length, (index) {
                         final file = _files[index];
-                        return AttachmentBubble(file: file);
+                        return Stack(
+                          key: ObjectKey(file),
+                          clipBehavior: Clip.none,
+                          children: [
+                            AttachmentBubble(file: file),
+                            PositionedDirectional(
+                              top: -20,
+                              start: -10,
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _files.removeAt(index);
+                                  });
+                                },
+                                icon: const Icon(Icons.delete),
+                              ),
+                            ),
+                          ],
+                        );
                       }),
                     ),
                   ),
