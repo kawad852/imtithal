@@ -53,6 +53,14 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       onComplete: (context, snapshot) {
         final taskQuerySnapshot = snapshot.data!;
         final task = taskQuerySnapshot.data()!;
+
+        List<AttachmentModel> attachments = [];
+
+        if (attachments.isEmpty) {
+          attachments.addAll(task.attachments ?? []);
+          attachments.addAll(task.userAttachments ?? []);
+        }
+
         return Scaffold(
           appBar: AppBar(
             actions: [
@@ -213,14 +221,9 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 Text(task.userNotes!, style: style),
               ],
 
-              if (task.attachments != null && task.attachments!.isNotEmpty) ...[
+              if (attachments.isNotEmpty) ...[
                 Builder(
                   builder: (context) {
-                    List<AttachmentModel> attachments = [];
-                    attachments.addAll(task.attachments!);
-                    if (task.userAttachments != null) {
-                      attachments.addAll(task.userAttachments!);
-                    }
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Column(
