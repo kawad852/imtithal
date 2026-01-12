@@ -423,6 +423,20 @@ async function sendNotification({
   ]);
 }
 
+exports.sendPush = onCall(
+  { region: "europe-west3" },
+  async (request) => {
+    try {
+      const payload = request.data;
+      const messageId = await admin.messaging().send(payload);
+      return { success: true, messageId };
+    } catch (error) {
+      console.error("FCM send error:", error);
+      throw new Error(error.message || "Failed to send notification");
+    }
+  },
+);
+
 exports.repeatTasksScheduler = onSchedule(
   {
     schedule: "0 9 * * 3", // Every Wednesday at 9:00 AM

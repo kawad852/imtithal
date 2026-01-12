@@ -65,8 +65,6 @@ class SendNotificationService {
     required NotificationModel notificationModel,
     bool targetAll = false,
   }) async {
-    final accessToken = await _getAccessToken();
-
     final notification = notificationModel.notification!;
     final data = notificationModel.data;
     var json = <String, dynamic>{
@@ -76,29 +74,17 @@ class SendNotificationService {
       if (!targetAll) "token": notificationModel.token!,
     };
 
-    final result = await http.post(
-      Uri.parse('https://fcm.googleapis.com/v1/projects/imtithal-app/messages:send'),
-      headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $accessToken'},
-      body: jsonEncode({
-        "message": {
-          ...json,
-          "apns": {
-            "payload": {
-              "aps": {"sound": "default"},
-            },
-          },
-        },
-      }),
-    );
-    if (result.statusCode == 200) {
-      final documentREF = FirebaseFirestore.instance.collection("notifications").doc();
-      json["id"] = documentREF.id;
-      json["createdAt"] = FieldValue.serverTimestamp();
-      await documentREF.set(json);
-      debugPrint("Notification Sent Successfully!!");
-    } else {
-      debugPrint("NotificationStatus Failed:: ${result.body} ${result.statusCode}");
-    }
+    final callable = FirebaseFunctions.instanceFor(
+      region: "europe-west3",
+    ).httpsCallable('sendPush');
+
+    await callable.call(json);
+
+    final documentREF = FirebaseFirestore.instance.collection("notifications").doc();
+    json["id"] = documentREF.id;
+    json["createdAt"] = FieldValue.serverTimestamp();
+    await documentREF.set(json);
+    debugPrint("Notification Sent Successfully!!");
   }
 
   static Future<String> _getAccessToken() async {
