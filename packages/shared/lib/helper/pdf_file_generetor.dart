@@ -120,7 +120,7 @@ class PdfFileGeneretor {
   }
 
   static Future<pw.Font> _loadIbmPlexSansArabicFont() async {
-    final fontData = await rootBundle.load('packages/shared/assets/fonts/ibm.ttf');
+    final fontData = await rootBundle.load('packages/shared/assets/fonts/naksh.ttf');
     return pw.Font.ttf(fontData.buffer.asByteData());
   }
 
