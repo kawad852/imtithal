@@ -20,7 +20,7 @@ class PdfFileGeneretor {
     String? departmentName,
   }) async {
     final logoData = await rootBundle.load('assets/images/logo.png');
-    // final arabicFont = await _loadIbmPlexSansArabicFont();
+    final arabicFont = await _loadIbmPlexSansArabicFont();
     final logoImage = pw.MemoryImage(logoData.buffer.asUint8List());
     final doc = pw.Document();
     final dateFormat = DateFormat.yMd('ar');
@@ -33,8 +33,7 @@ class PdfFileGeneretor {
         margin: const pw.EdgeInsets.all(32),
         build: (context) {
           return pw.Theme(
-            // data: pw.ThemeData.withFont(base: arabicFont, bold: arabicFont),
-            data: pw.ThemeData(),
+            data: pw.ThemeData.withFont(base: arabicFont, bold: arabicFont),
             child: pw.Directionality(
               textDirection: pw.TextDirection.rtl,
               child: pw.Column(
@@ -121,7 +120,7 @@ class PdfFileGeneretor {
   }
 
   static Future<pw.Font> _loadIbmPlexSansArabicFont() async {
-    final fontData = await rootBundle.load('assets/fonts/ibm.ttf');
+    final fontData = await rootBundle.load('packages/shared/assets/fonts/ibm.ttf');
     return pw.Font.ttf(fontData.buffer.asByteData());
   }
 
