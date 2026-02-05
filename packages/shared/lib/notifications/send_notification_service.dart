@@ -65,26 +65,39 @@ class SendNotificationService {
     required NotificationModel notificationModel,
     bool targetAll = false,
   }) async {
-    final notification = notificationModel.notification!;
-    final data = notificationModel.data;
-    var json = <String, dynamic>{
-      "notification": notification.toJson(),
-      "data": data?.toJson(),
-      if (targetAll) "topic": "all",
-      if (!targetAll) "token": notificationModel.token!,
-    };
+    try {
+      final notification = notificationModel.notification!;
+      final data = notificationModel.data;
 
-    final callable = FirebaseFunctions.instanceFor(
-      region: "europe-west3",
-    ).httpsCallable('sendPush');
+      final rawNotification = notification.toJson()..removeWhere((key, value) => value == null);
 
-    await callable.call(json);
+      final rawData = (data?.toJson() ?? {})..removeWhere((key, value) => value == null);
 
-    final documentREF = FirebaseFirestore.instance.collection("notifications").doc();
-    json["id"] = documentREF.id;
-    json["createdAt"] = FieldValue.serverTimestamp();
-    await documentREF.set(json);
-    debugPrint("Notification Sent Successfully!!");
+      final dataAsStrings = rawData.map(
+            (key, value) => MapEntry(key, value is String ? value : value.toString()),
+      );
+
+      final json = <String, dynamic>{
+        "notification": rawNotification,
+        "data": dataAsStrings,
+        if (targetAll) "topic": "all",
+        if (!targetAll) "token": notificationModel.token!,
+      };
+
+      final callable = FirebaseFunctions.instanceFor(
+        region: "europe-west3",
+      ).httpsCallable('sendPush');
+
+      await callable.call(json);
+
+      final documentREF = FirebaseFirestore.instance.collection("notifications").doc();
+      json["id"] = documentREF.id;
+      json["createdAt"] = FieldValue.serverTimestamp();
+      await documentREF.set(json);
+      debugPrint("Notification Sent Successfully!!");
+    }catch(e) {
+      print("e::: $e");
+    }
   }
 
   static Future<String> _getAccessToken() async {
