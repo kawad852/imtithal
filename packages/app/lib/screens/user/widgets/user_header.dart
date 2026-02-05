@@ -14,80 +14,85 @@ class UserHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      alignment: Alignment.bottomCenter,
-      decoration: const BoxDecoration(
-        image: DecorationImage(image: sv.Svg(MyIcons.employeeBackground), fit: BoxFit.fill),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 70),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      user.displayName,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: context.colorPalette.primary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: DepartmentUserBuilder(
-                        id: user.departmentId!,
-                        builder: (context, department) {
-                          return Text(
-                            "${user.jobTitle} - ${department?.name ?? ''}",
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: context.colorPalette.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    Text(
-                      "${context.appLocalization.employeeNo} : ${user.rowId}",
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: context.colorPalette.grey8B8,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+    return SummeryBuilder(
+      height: 160,
+      userId: user.id,
+      startDate: startDate,
+      endDate: endDate,
+      builder: (
+        (int, double) inCompletedTasks,
+        (int, double) completedTasks,
+        (int, double) violationTasks,
+        (int, double) lateTasks,
+        users,
+        percentageValues,
+      ) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          alignment: Alignment.bottomCenter,
+          decoration: const BoxDecoration(
+            image: DecorationImage(image: sv.Svg(MyIcons.employeeBackground), fit: BoxFit.fill),
           ),
-          const SizedBox(height: 10),
-          SummeryBuilder(
-            height: 160,
-            userId: user.id,
-            startDate: startDate,
-            endDate: endDate,
-            builder: (
-              (int, double) inCompletedTasks,
-              (int, double) completedTasks,
-              (int, double) violationTasks,
-              (int, double) lateTasks,
-              users,
-              percentageValues,
-            ) {
-              return Column(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 70),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          user.displayName,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: context.colorPalette.primary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: DepartmentUserBuilder(
+                            id: user.departmentId!,
+                            builder: (context, department) {
+                              return Text(
+                                "${user.jobTitle} - ${department?.name ?? ''}",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: context.colorPalette.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Text(
+                          "${context.appLocalization.employeeNo} : ${user.rowId}",
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: context.colorPalette.grey8B8,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.cloud_upload_outlined, color: Colors.white),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Column(
                 children: [
                   SummeryLabel(startDate: startDate, endDate: endDate, values: percentageValues),
                   StatusSummeryBubbles(
@@ -100,11 +105,11 @@ class UserHeader extends StatelessWidget {
                     endDate: endDate,
                   ),
                 ],
-              );
-            },
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
