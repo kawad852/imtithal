@@ -57,8 +57,8 @@ class PdfFileGeneretor {
                     children: [
                       pw.Expanded(
                         child: _buildStatCard(
-                          label: 'غير مكتمل',
-                          value: '$inCompletedTasksCount',
+                          label: 'مكتمل',
+                          value: '$completedTasksCount',
                           background: const PdfColor.fromInt(0xFFF5F5F5),
                           accent: const PdfColor.fromInt(0xFF04BF8A),
                         ),
@@ -66,8 +66,8 @@ class PdfFileGeneretor {
                       pw.SizedBox(width: 10),
                       pw.Expanded(
                         child: _buildStatCard(
-                          label: 'مكتمل',
-                          value: '$completedTasksCount',
+                          label: 'غير مكتمل',
+                          value: '$inCompletedTasksCount',
                           background: const PdfColor.fromInt(0xFFF5F5F5),
                           accent: const PdfColor.fromInt(0xFF04BF8A),
                         ),
@@ -79,19 +79,19 @@ class PdfFileGeneretor {
                     children: [
                       pw.Expanded(
                         child: _buildStatCard(
-                          label: 'متأخر',
-                          value: '$lateTasksCount',
-                          background: const PdfColor.fromInt(0xFFFFE48A),
-                          accent: const PdfColor.fromInt(0xFFC39600),
+                          label: 'مخالفة',
+                          value: '$violationTasksCount',
+                          background: const PdfColor.fromInt(0xFFFFCAC7),
+                          accent: const PdfColor.fromInt(0xFFC10C01),
                         ),
                       ),
                       pw.SizedBox(width: 10),
                       pw.Expanded(
                         child: _buildStatCard(
-                          label: 'مخالفة',
-                          value: '$violationTasksCount',
-                          background: const PdfColor.fromInt(0xFFFFCAC7),
-                          accent: const PdfColor.fromInt(0xFFC10C01),
+                          label: 'متأخر',
+                          value: '$lateTasksCount',
+                          background: const PdfColor.fromInt(0xFFFFE48A),
+                          accent: const PdfColor.fromInt(0xFFC39600),
                         ),
                       ),
                     ],
@@ -135,6 +135,26 @@ class PdfFileGeneretor {
         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
         crossAxisAlignment: pw.CrossAxisAlignment.center,
         children: [
+          pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Text(
+                'ملخص الموظف',
+                style: pw.TextStyle(
+                  fontSize: 18,
+                  fontWeight: pw.FontWeight.bold,
+                  color: const PdfColor.fromInt(0xFF04BF8A),
+                ),
+                textAlign: pw.TextAlign.right,
+              ),
+              pw.SizedBox(height: 4),
+              pw.Text(
+                rangeText,
+                style: pw.TextStyle(fontSize: 11, color: const PdfColor.fromInt(0xFF8B8B8B)),
+                textAlign: pw.TextAlign.right,
+              ),
+            ],
+          ),
           pw.Container(
             width: 52,
             height: 52,
@@ -144,29 +164,6 @@ class PdfFileGeneretor {
               borderRadius: pw.BorderRadius.circular(12),
             ),
             child: pw.Image(logoImage, fit: pw.BoxFit.contain),
-          ),
-          pw.SizedBox(width: 12),
-          pw.Expanded(
-            child: pw.Column(
-              crossAxisAlignment: pw.CrossAxisAlignment.end,
-              children: [
-                pw.Text(
-                  'ملخص الموظف',
-                  style: pw.TextStyle(
-                    fontSize: 18,
-                    fontWeight: pw.FontWeight.bold,
-                    color: const PdfColor.fromInt(0xFF04BF8A),
-                  ),
-                  textAlign: pw.TextAlign.right,
-                ),
-                pw.SizedBox(height: 4),
-                pw.Text(
-                  rangeText,
-                  style: pw.TextStyle(fontSize: 11, color: const PdfColor.fromInt(0xFF8B8B8B)),
-                  textAlign: pw.TextAlign.right,
-                ),
-              ],
-            ),
           ),
         ],
       ),
@@ -201,8 +198,6 @@ class PdfFileGeneretor {
       child: pw.Row(
         crossAxisAlignment: pw.CrossAxisAlignment.start,
         children: [
-          pw.Expanded(child: pw.Text(value.isEmpty ? '-' : value, textAlign: pw.TextAlign.right)),
-          pw.SizedBox(width: 10),
           pw.SizedBox(
             width: 90,
             child: pw.Text(
@@ -214,6 +209,8 @@ class PdfFileGeneretor {
               textAlign: pw.TextAlign.right,
             ),
           ),
+          pw.SizedBox(width: 10),
+          pw.Expanded(child: pw.Text(value.isEmpty ? '-' : value, textAlign: pw.TextAlign.right)),
         ],
       ),
     );
