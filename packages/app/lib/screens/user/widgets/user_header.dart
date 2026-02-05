@@ -37,59 +37,79 @@ class UserHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 70),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          user.displayName,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: context.colorPalette.primary,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: DepartmentUserBuilder(
-                            id: user.departmentId!,
-                            builder: (context, department) {
-                              return Text(
-                                "${user.jobTitle} - ${department?.name ?? ''}",
+              DepartmentUserBuilder(
+                id: user.departmentId!,
+                builder: (context, department) {
+                  final departmentName = department?.name ?? '';
+                  return Row(
+                    children: [
+                      UserPhoto(url: user.profilePhoto, displayName: user.displayName, size: 70),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              user.displayName,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: context.colorPalette.primary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              child: Text(
+                                "${user.jobTitle} - $departmentName",
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: context.colorPalette.white,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                 ),
-                              );
-                            },
-                          ),
+                              ),
+                            ),
+                            Text(
+                              "${context.appLocalization.employeeNo} : ${user.rowId}",
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: context.colorPalette.grey8B8,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          "${context.appLocalization.employeeNo} : ${user.rowId}",
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: context.colorPalette.grey8B8,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.cloud_upload_outlined, color: Colors.white),
-                  ),
-                ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () async {
+                          AppOverlayLoader.show();
+                          try {
+                            await PdfFileGeneretor.generateUserSummaryPdf(
+                              user: user,
+                              startDate: startDate,
+                              endDate: endDate,
+                              inCompletedTasksCount: inCompletedTasks.$1,
+                              completedTasksCount: completedTasks.$1,
+                              lateTasksCount: lateTasks.$1,
+                              violationTasksCount: violationTasks.$1,
+                              departmentName: departmentName,
+                            );
+                          } catch (e) {
+                            print("ee:: $e");
+                            context.showSnackBar(context.appLocalization.generalError);
+                          } finally {
+                            AppOverlayLoader.hide();
+                          }
+                        },
+                        icon: const Icon(Icons.cloud_upload_outlined, color: Colors.white),
+                      ),
+                    ],
+                  );
+                },
               ),
               const SizedBox(height: 10),
               Column(
