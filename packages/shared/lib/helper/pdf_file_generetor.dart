@@ -57,8 +57,8 @@ class PdfFileGeneretor {
                     children: [
                       pw.Expanded(
                         child: _buildStatCard(
-                          label: 'مكتمل',
-                          value: '$completedTasksCount',
+                          label: 'غير مكتمل',
+                          value: '$inCompletedTasksCount',
                           background: const PdfColor.fromInt(0xFFF5F5F5),
                           accent: const PdfColor.fromInt(0xFF04BF8A),
                         ),
@@ -66,10 +66,10 @@ class PdfFileGeneretor {
                       pw.SizedBox(width: 10),
                       pw.Expanded(
                         child: _buildStatCard(
-                          label: 'غير مكتمل',
-                          value: '$inCompletedTasksCount',
-                          background: const PdfColor.fromInt(0xFFF5F5F5),
-                          accent: const PdfColor.fromInt(0xFF04BF8A),
+                          label: 'مكتمل',
+                          value: '$completedTasksCount',
+                          background: const PdfColor.fromInt(0xFF04BF8A),
+                          accent: const PdfColor.fromInt(0xFF000000),
                         ),
                       ),
                     ],
@@ -79,19 +79,19 @@ class PdfFileGeneretor {
                     children: [
                       pw.Expanded(
                         child: _buildStatCard(
-                          label: 'مخالفة',
-                          value: '$violationTasksCount',
-                          background: const PdfColor.fromInt(0xFFFFCAC7),
-                          accent: const PdfColor.fromInt(0xFFC10C01),
+                          label: 'متأخر',
+                          value: '$lateTasksCount',
+                          background: const PdfColor.fromInt(0xFFFFE48A),
+                          accent: const PdfColor.fromInt(0xFFC39600),
                         ),
                       ),
                       pw.SizedBox(width: 10),
                       pw.Expanded(
                         child: _buildStatCard(
-                          label: 'متأخر',
-                          value: '$lateTasksCount',
-                          background: const PdfColor.fromInt(0xFFFFE48A),
-                          accent: const PdfColor.fromInt(0xFFC39600),
+                          label: 'مخالفة',
+                          value: '$violationTasksCount',
+                          background: const PdfColor.fromInt(0xFFFFCAC7),
+                          accent: const PdfColor.fromInt(0xFFC10C01),
                         ),
                       ),
                     ],
